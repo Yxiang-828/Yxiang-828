@@ -1,144 +1,143 @@
-# 👋 Hi, I'm Yao Xiang
+﻿# Hi, I'm Yao Xiang 
 
-**Computer Engineering Student @ NUS** | **AI/ML Enthusiast** | **Full-Stack Developer**
+[![Profile Views](https://komarev.com/ghpvc/?username=Yxiang-828&color=blue)](https://yxiang-828.github.io)
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-blue?style=flat&logo=github)](https://yxiang-828.github.io/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://linkedin.com/in/your-profile)
-[![Email](https://img.shields.io/badge/Email-Contact-red?style=flat&logo=gmail)](mailto:your.email@example.com)
+Computer Engineering @ NUS (Year 2). Hardware design (Verilog, Arduino, C/C++) + software automation (Python, Java, JavaScript, TypeScript). Building AI tools and efficient systems.
 
----
+ Website: https://yxiang-828.github.io/
 
-## 🚀 Featured Projects
-
-### 🎯 **Wingman** - AI-Powered Code Review Assistant
-**Team Project - NUS Orbital Apollo 2025** | React 18 + TypeScript 5.2 + FastAPI + Electron + Supabase + Ollama
-
-- Built a desktop application for automated code review and documentation generation
-- Integrated multiple AI models (GPT-4, Claude, local Ollama) with intelligent routing
-- Implemented real-time collaborative editing with Supabase real-time subscriptions
-- Developed custom VS Code extension for seamless IDE integration
-- **Tech Stack**: React 18, TypeScript 5.2, FastAPI, Electron, Supabase, Ollama, PostgreSQL
-
-### 🛠️ **Helper Tools Collection** - Personal CLI Productivity Suite
-**Individual Projects** | Python, PowerShell, C++, FFmpeg, AI/ML
-
-A comprehensive collection of high-performance CLI tools for developers:
-
-#### 🎤 **Audio Transcriber** (Whisper AI + DirectML)
-- Custom pipeline leveraging OpenAI Whisper with AMD GPU acceleration
-- 3-5x speedup over CPU processing for AMD Radeon RX 6000/7000/8000 series
-- Intelligent audio chunking for unlimited file lengths
-- ONNX Runtime optimization with automatic model caching
-
-#### 🎬 **Video Upscaler** (Real-ESRGAN + EDSR)
-- Dual AI architecture combining Real-ESRGAN and EDSR models
-- AMD VCE hardware encoding integration for 4K video processing
-- Frame-by-frame AI enhancement with Vulkan GPU acceleration
-- Custom progress visualization and performance analytics
-
-#### 🖼️ **Image Upscaler** (AI Super-Resolution)
-- Real-ESRGAN implementation optimized for AMD GPUs
-- Support for multiple upscale factors (2x, 3x, 4x)
-- Batch processing with automatic format detection
-- Vulkan compute shader optimization
-
-#### 📁 **File Scanner** (High-Performance .NET)
-- Min-heap algorithm implementation for O(M log K) complexity
-- BFS traversal with parallel processing capabilities
-- PowerShell integration with .NET Framework optimization
-- Memory-efficient scanning for large directory structures
-
-#### 🎮 **Unity Asset Extractor**
-- Advanced UnityFS parsing for game asset extraction
-- Batch processing pipeline with progress tracking
-- Support for multiple Unity versions and compression formats
-- Automated texture and audio asset recovery
+##  Repos
+- [Wingman](https://github.com/Yxiang-828/Wingman) - Personal Assistant Desktop App 
+- [Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
+- [Repo 3]
+- [Repo 4]
+- [Repo 5]
 
 ---
 
-## 🏆 **Engineering Achievements**
+##  Personal Projects
 
-### **AI/ML Optimization**
-- **GPU Acceleration**: Specialized DirectML implementations for AMD GPUs
-- **Model Optimization**: ONNX conversion and caching for 5-10x faster inference
-- **Hardware-Specific Tuning**: Architecture restrictions for maximum performance
+### Wingman  AI Personal Assistant
 
-### **System Architecture**
-- **Pipeline Design**: Modular architectures for media processing workflows
-- **Performance Engineering**: Real-time factor optimization and memory management
-- **Cross-Platform**: Windows-focused with hardware-specific optimizations
+<img src="images/7409.png" width="400" alt="Wingman Screenshot">
 
-### **Algorithm Implementation**
-- **Advanced Data Structures**: Min-heap, BFS, and graph algorithms
-- **Complexity Analysis**: O(M log K) optimization for file scanning
-- **Memory Efficiency**: Streaming processing for large media files
+**Local-first desktop app** | React + TypeScript + Electron + Python/FastAPI
 
----
+Task manager, calendar, mood diary with Ollama-powered AI chat. SQLite + Supabase auth. 6 custom themes. Full privacy, packaged cross-platform distribution.
 
-## 🛠️ **Tech Stack**
+<details>
+<summary><b> Themes</b></summary>
 
-### **Languages**
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
-![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white)
-![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=flat&logo=powershell&logoColor=white)
+<div align="center">
+<table>
+<tr>
+<td align="center"><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/dark-theme.png" width="200" alt="Dark Theme"/><br/><b> Dark</b></td>
+<td align="center"><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/light-theme.png" width="200" alt="Light Theme"/><br/><b> Light</b></td>
+<td align="center"><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/yandere-theme.png" width="200" alt="Yandere Theme"/><br/><b> Yandere</b></td>
+</tr>
+<tr>
+<td align="center"><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/kuudere-theme.png" width="200" alt="Kuudere Theme"/><br/><b> Kuudere</b></td>
+<td align="center"><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/tsundere-theme.png" width="200" alt="Tsundere Theme"/><br/><b> Tsundere</b></td>
+<td align="center"><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/dandere-theme.png" width="200" alt="Dandere Theme"/><br/><b> Dandere</b></td>
+</tr>
+</table>
+</div>
 
-### **AI/ML Frameworks**
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
-![ONNX](https://img.shields.io/badge/ONNX-005CED?style=flat&logo=onnx&logoColor=white)
-![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=flat&logo=openai&logoColor=white)
+</details>
 
-### **Web Technologies**
-![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
-![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)
-![Electron](https://img.shields.io/badge/Electron-47848F?style=flat&logo=electron&logoColor=white)
-
-### **Tools & Platforms**
-![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?style=flat&logo=ffmpeg&logoColor=white)
-![Unity](https://img.shields.io/badge/Unity-100000?style=flat&logo=unity&logoColor=white)
-![VS Code](https://img.shields.io/badge/VS_Code-0078D4?style=flat&logo=visual%20studio%20code&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
+[View Repository](https://github.com/Yxiang-828/Wingman) 
 
 ---
 
-## 📊 **GitHub Stats**
+### Helper Tools  -- Self-Efficiency CLI Tools
 
-![Yao Xiang's GitHub stats](https://github-readme-stats.vercel.app/api?username=Yxiang-828&show_icons=true&theme=dark&hide_border=true)
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Yxiang-828&layout=compact&theme=dark&hide_border=true)
+**7 automation tools** | PowerShell + Python + .NET + AI Models
+
+Built to solve daily workflow bottlenecks: find/delete large files, upscale images, extract video content, transcribe audio. Offline, fast, no GUI overhead.
+
+> **Note:** Showing 2 of 7 tools below. [View repository](https://github.com/Yxiang-828/Helper_Tools) for all tools and documentation.
+
+## Examples
+#### AI Image Upscaler  Real-ESRGAN + EDSR
+
+<div align="center">
+
+| **Real-ESRGAN 4x (GPU 2-5s)** | **EDSR 4x (CPU 15-30s)** |
+|:---:|:---:|
+| ![Real-ESRGAN](https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/realesrgan_1.png) | ![EDSR](https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/edsr_1.png) |
+| *Left: Blurry  Right: GAN upscaled* | *Left: Blurry  Right: CNN upscaled* |
+
+AMD Vulkan acceleration. GAN for dramatic recovery, CNN for precise sharpening.
+
+</div>
+
+#### File Scanner  O(M log K) Min-Heap
+
+```powershell
+PS C:\> .\file_scanner.ps1 -FileType game -TopCount 10
+
+Target Type  : GAME Files
+Extensions   : .unity3d, .pak, .wad, .bsa, .esp, .esm
+
+[81.4s] Found 95,551 files | 1,173 files/sec
+
+Total Size (Top 10): 53.38 GB
+  1. (11.61 GB) pakchunk26-WindowsNoEditor.pak
+  2. (9.14 GB) pakchunk34-WindowsNoEditor.pak
+```
+
+.NET BFS traversal + SortedSet min-heap. Scans entire C:\ in ~2min vs Windows Explorer's 40min.
+
+#### All 8 Tools
+
+| Tool | Purpose | Tech |
+|------|---------|------|
+| **File Scanner** | Find/delete large files for storage cleanup | .NET + Min-Heap (1,173-8,821 files/sec) |
+| **Image Upscaler** | Restore/Sharpen images with AI | Real-ESRGAN + Vulkan (2-5s/image) |
+| **Video Upscaler** | AI frame enhancement for videos | Real-ESRGAN + FFmpeg |
+| **Subtitle/MP3 Extractor** | Extract embedded subs + mp3 from videos | FFmpeg automation |
+| **Audio Transcriber** | Convert mp3 to text transcripts | Whisper AI (GPU 3-5x faster) |
+| **Video to GIF** | Convert videos to GIFs (speed & quality customisable) | MoviePy + auto-scaling |
+| **Unity Extractor** | Extract assets from .unity3d files and convert to PNG | UnityPy parser |
+
+
+[View Repository](https://github.com/Yxiang-828/Helper_Tools) 
 
 ---
 
-## 🎓 **Education**
+##  Experiences
+- **[Internship/Job Title] @ [Company]** ([Dates])  [Description of your work and technologies used]
+- **[Internship/Job Title] @ [Company]** ([Dates])  [Description of your work and technologies used]
 
-**National University of Singapore (NUS)**  
-*Bachelor of Engineering in Computer Engineering*  
-*Expected Graduation: 2026*
+##  Highlights & Hackathons
+- **[Hackathon Name] [Year]**  [Project Name]
+  [Brief description of the project and your role]
+  [Repo Link]
 
-**Relevant Coursework:**
-- CS2040C: Data Structures and Algorithms
-- EE2026: Digital Design
-- CG2111A: Engineering Principles and Practice II
+- **[Hackathon Name] [Year]**  [Achievement, e.g., Finalist, Best Usage of Data]
+- **[Hackathon Name] [Year]**  [Achievement]
+- **[Hackathon Name] [Year]**  [Achievement]
+- **[Hackathon Name] [Year]**  [Project Name]: [Description]
 
----
+##  Tech Stack
+![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Verilog](https://img.shields.io/badge/Verilog-000000?style=for-the-badge&logo=verilog&logoColor=white)
+![Arduino](https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white)
 
-## 🌟 **Current Focus**
+##  Get in touch
+-  Website: https://yxiang-828.github.io/
+-  LinkedIn: [linkedin.com/in/yourprofile]
+-  Email: xiangyao888@gmail.com
 
-- **AI/ML Engineering**: Optimizing neural networks for consumer hardware
-- **System Performance**: Building high-performance CLI tools and pipelines
-- **Full-Stack Development**: Modern web applications with real-time features
-- **Computer Engineering**: Hardware-software integration and optimization
 
----
 
-## 📫 **Let's Connect!**
 
-I'm always interested in discussing AI/ML optimization, system architecture, and innovative engineering solutions. Feel free to reach out for collaborations or technical discussions!
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-blue?style=for-the-badge&logo=github)](https://yxiang-828.github.io/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/your-profile)
-[![Email](https://img.shields.io/badge/Email-Contact-red?style=for-the-badge&logo=gmail)](mailto:your.email@example.com)
 
----
-
-*⭐️ From [Yao Xiang](https://github.com/Yxiang-828)*
