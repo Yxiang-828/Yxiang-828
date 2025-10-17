@@ -1,4 +1,4 @@
-﻿# Hi, I'm Yao Xiang 
+# Hi, I'm Yao Xiang 
 
 [![Profile Views](https://komarev.com/ghpvc/?username=Yxiang-828&color=blue)](https://yxiang-828.github.io)
 
@@ -19,7 +19,7 @@ Computer Engineering @ NUS (Year 2). Hardware design (Verilog, Arduino, C/C++) +
 
 ### Wingman  AI Personal Assistant
 
-<img src="images/7409.png" width="400" alt="Wingman Screenshot">
+<img src="https://raw.githubusercontent.com/Yxiang-828/Yxiang-828.github.io/main/images/7409.png" width="400" alt="Wingman Screenshot">
 
 **Local-first desktop app** | React + TypeScript + Electron + Python/FastAPI
 
