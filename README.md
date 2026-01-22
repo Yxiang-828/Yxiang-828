@@ -2,16 +2,16 @@
 
 [![Profile Views](https://komarev.com/ghpvc/?username=Yxiang-828&color=blue)](https://yxiang-828.github.io)
 
-Computer Engineering @ NUS (Year 2). Hardware design (Verilog, Arduino, C/C++) + software automation (Python, Java, JavaScript, TypeScript). Building AI tools and efficient systems.
+Computer Engineering @ NUS (Year 2) | Teaching Assistant (CS2113). Hardware design (Verilog, Arduino, C/C++) + software automation (Python, Java, JavaScript, TypeScript). Building AI tools and efficient systems.
 
-**Website:** [yxiang-828.github.io](https://yxiang-828.github.io/) | **LinkedIn:** [linkedin.com/in/yao-xiang-733b06329](https://www.linkedin.com/in/yao-xiang-733b06329/) | **Email:** [xiangyao888@gmail.com](mailto:xiangyao888@gmail.com)
+ Website: https://yxiang-828.github.io/
 
 ##  Repos
 - [Wingman](https://github.com/Yxiang-828/Wingman) - Personal Assistant Desktop App 
 - [Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
+- [Hack4Good 2026](https://github.com/Yxiang-828/Hack4Good2026) - Hackathon Project
+- [Maritime Hackathon](https://github.com/Yxiang-828/Maritime-Hackthon-2026) - In Progress 
 - [Dual-Mode AV Disruptor](https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor) - HacX 2025 Hackathon Project
-- [FPGA Calculator](https://github.com/Yxiang-828/EE2026-Project-Vivado) - EE2026 Scientific Calculator & Grapher
-- [FlowCLI](https://github.com/AY2526S1-CS2113-W13-2/tp) - CS2113 Task Manager
 
 ---
 
@@ -107,38 +107,26 @@ Total Size (Top 10): 53.38 GB
 
 ---
 
+##  Experiences
+
+### Undergraduate Teaching Assistant (CS2113) @ National University of Singapore
+*(Jan 2026 - Present)*
+- Mentoring students in **Software Engineering & Object-Oriented Programming**.
+- Guiding labs on Java, JUnit testing, and collaborative GitHub workflows.
+
 ##  Highlights & Hackathons
 
-### Dual-Mode AV Disruptor (HacX 2025)
-**Team Project** | *Python, Raspberry Pi, CARLA, mmWave Radar*
-*   Developed a non-destructive prototype to halt hostile autonomous vehicles by disrupting LiDAR and camera sensors.
-*   Implemented dual-mode logic (Smoke Bomb vs Smart Obstacle) with safety features (thermal monitoring).
-*   Validated system effectiveness using **CARLA simulation** and hardware field tests (15m range).
-*   [View Repository](https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor)
+- **Maritime Hackathon 2026** (In Progress)
+  Developing an innovative solution for the maritime industry.
+  [View Repo](https://github.com/Yxiang-828/Maritime-Hackthon-2026)
 
-### FPGA Graphic Calculator (EE2026)
-**Team Project** | *Verilog, Vivado, Basys 3 FPGA*
-*   Designed a multifunction scientific calculator and grapher on an Artix-7 FPGA.
-*   **Keypad Interface:** Engineered a pipelined input system with debouncing and OLED visualization.
-*   **Polynomial Solver:** Implemented a **Newton-Raphson** root finder using **Q22.14 fixed-point arithmetic**.
-*   [View Repository](https://github.com/Yxiang-828/EE2026-Project-Vivado)
+- **Hack4Good 2026**
+  Hackathon project focused on social good.
+  [View Repo](https://github.com/Yxiang-828/Hack4Good2026)
 
-### FlowCLI (CS2113)
-**Team Lead** | *Java, JUnit, Gradle, GitHub Actions*
-*   Developed a keyboard-optimized CLI task manager for developers to track project deadlines and priorities.
-*   Implemented advanced filtering, sorting, and data export features.
-*   Managed CI/CD pipelines using **GitHub Actions** and enforced code quality with **Checkstyle**.
-*   [View Repository](https://github.com/AY2526S1-CS2113-W13-2/tp)
-
----
-
-##  Experience
-**Singapore Armed Forces (Sungei Gedong Camp)** | *Signaller* | **Nov 2022 - Jan 2024**
-*   **Awards:** Best Unit Award, Outstanding Conduct Grade.
-*   Managed signal equipment, electric circuits, and IP address configurations for mission-critical communications.
-*   Mentored junior personnel in technical operations, contributing to the unit's operational readiness.
-
----
+- **HacX 2025**  Dual-Mode AV Disruptor
+  Developed a prototype to halt hostile autonomous vehicles by disrupting LiDAR/camera sensors. Validated with CARLA simulation.
+  [View Repo](https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor)
 
 ##  Tech Stack
 ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
@@ -153,9 +141,9 @@ Total Size (Top 10): 53.38 GB
 ![Arduino](https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white)
 
 ##  Get in touch
--  **Website:** https://yxiang-828.github.io/
--  **LinkedIn:** [linkedin.com/in/yao-xiang-733b06329](https://www.linkedin.com/in/yao-xiang-733b06329/)
--  **Email:** [xiangyao888@gmail.com](mailto:xiangyao888@gmail.com)
+-  Website: https://yxiang-828.github.io/
+-  LinkedIn: [linkedin.com/in/yourprofile]
+-  Email: xiangyao888@gmail.com
 
 
 
