@@ -142,7 +142,7 @@ Total Size (Top 10): 53.38 GB
 
 ##  Get in touch
 -  Website: https://yxiang-828.github.io/
--  LinkedIn: [linkedin.com/in/yourprofile]
+-  LinkedIn: https://www.linkedin.com/in/yao-xiang-733b06329
 -  Email: xiangyao888@gmail.com
 
 
