@@ -112,7 +112,7 @@ Total Size (Top 10): 53.38 GB
 ### Undergraduate Teaching Assistant (CS2113) @ National University of Singapore
 *(Jan 2026 - Present)*
 - Mentoring students in **Software Engineering & Object-Oriented Programming**.
-- Guiding labs on Java, JUnit testing, and collaborative GitHub workflows.
+- Guiding tutorials on Java, JUnit testing, and collaborative GitHub workflows.
 
 ##  Highlights & Hackathons
 
