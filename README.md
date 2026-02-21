@@ -9,7 +9,7 @@ Computer Engineering (+ AI Minor) @ NUS (Year 2) | Teaching Assistant (CS2113). 
 ##  Repos
 - [Wingman](https://github.com/Yxiang-828/Wingman) - Personal Assistant Desktop App 
 - [Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
-- [Hack4Good 2026](https://github.com/Yxiang-828/Hack4Good2026) - Hackathon Project
+- [Hack4Good 2026](https://github.com/Yxiang-828/Hack4Good2026) - Care Guardian System: Modular Care Infrastructure
 - [Maritime Hackathon](https://github.com/Yxiang-828/Maritime-Hackthon-2026) - In Progress 
 - [Dual-Mode AV Disruptor](https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor) - HacX 2025 Hackathon Project
 
