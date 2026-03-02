@@ -7,6 +7,7 @@ Computer Engineering (+ AI Minor) @ NUS (Year 2) | Teaching Assistant (CS2113). 
  Website: https://yxiang-828.github.io/
 
 ##  Repos
+- [Notes 2 Website](https://github.com/Yxiang-828/notes-2-website) - Offline PDF/Image to HTML Converter
 - [Wingman](https://github.com/Yxiang-828/Wingman) - Personal Assistant Desktop App 
 - [Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
 - [Hack4Good 2026](https://github.com/Yxiang-828/Hack4Good2026) - Care Guardian System: Modular Care Infrastructure
@@ -16,6 +17,23 @@ Computer Engineering (+ AI Minor) @ NUS (Year 2) | Teaching Assistant (CS2113). 
 ---
 
 ##  Personal Projects
+
+### Notes 2 Website  Offline Interactive Study Tool
+**Individual Project**
+
+<img src="https://raw.githubusercontent.com/Yxiang-828/Yxiang-828.github.io/main/images/demo_dark.png" width="800" alt="Notes 2 Website Screenshot">
+
+**CLI Pipeline & Local Web App** | Python + PyMuPDF + EasyOCR + HTML/JS/CSS
+
+No backend, completely standalone. Transforms folders of raw lecture PDFs or native images into a single interconnected, beautifully formatted offline HTML website. Ideal for studying complex material.
+
+- Automated Pipeline triggered via simple `.bat` scripts, orchestrating Python parsing.
+- Features a custom built-in Javascript Fuzzy Search Engine (Ctrl+K) allowing instantaneous global searching across all generated chapters.
+- Fully portable: generated web folder easily runs off a thumb drive on any browser without Node modules or databases.
+
+[View Repository](https://github.com/Yxiang-828/notes-2-website) | [Live Demo](https://yxiang-828.github.io/notes-2-website/)
+
+---
 
 ### Wingman  AI Personal Assistant
 **Team Project - NUS Orbital Apollo 2025**
