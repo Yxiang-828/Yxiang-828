@@ -21,7 +21,7 @@ Computer Engineering (+ AI Minor) @ NUS (Year 2) | Teaching Assistant (CS2113). 
 ### Notes 2 Website  Offline Interactive Study Tool
 **Individual Project**
 
-<img src="https://raw.githubusercontent.com/Yxiang-828/Yxiang-828.github.io/main/images/demo_dark.png" width="800" alt="Notes 2 Website Screenshot">
+<img src="https://yxiang-828.github.io/images/demo_dark.png" width="800" alt="Notes 2 Website Screenshot">
 
 **CLI Pipeline & Local Web App** | Python + PyMuPDF + EasyOCR + HTML/JS/CSS
 
@@ -38,7 +38,7 @@ No backend, completely standalone. Transforms folders of raw lecture PDFs or nat
 ### Wingman  AI Personal Assistant
 **Team Project - NUS Orbital Apollo 2025**
 
-<img src="https://raw.githubusercontent.com/Yxiang-828/Yxiang-828.github.io/main/images/7409.png" width="400" alt="Wingman Screenshot">
+<img src="https://yxiang-828.github.io/images/7409.png" width="400" alt="Wingman Screenshot">
 
 **Local-first desktop app** | React + TypeScript + Electron + Python/FastAPI
 
