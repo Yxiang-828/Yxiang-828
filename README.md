@@ -6,18 +6,60 @@ Computer Engineering (+ AI Minor) @ NUS (Year 2) | Teaching Assistant (CS2113). 
 
  Website: https://yxiang-828.github.io/
 
-##  Repos
+### 🏆 Highlights & Hackathons
+
+### [Synapxe × IMDA AI Innovation Challenge 2026 — Mera: The Digital Health Companion](https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge) (Team Lead)
+<div align="center">
+<img src="./images/mera_circular.png" width="120" alt="Mera Logo">
+<br/>
+
+**⚡ Try on Telegram [@Meramerarabot](https://t.me/Meramerarabot)**  
+*Available every 7-9pm from now till Apr 5th 2026*
+
+</div>
+
+Architected a fully functional agentic Telegram health bot for aged & chronically ill patients. Deployed a Dockerized "Open Claw" multi-LLM stack using Singapore's sovereign AI models: **SEA-LION** (reasoning/vision) + **MERaLiON** (ASR/SER). 
+
+#### 🚀 Key Features & Innovation
+- **3 WASM Clinical Mini-Apps**: Smile Checker, Mobility FSM, and rPPG Heart Rate running 100% on-device for total privacy.
+- **Multimodal Fusion**: Processes voice biomarkers (fatigue/sentiment) and visual symmetry in real-time.
+- **Agentic FSM**: Autonomous 4-state loop from passive monitoring to clinical intervention.
+
+<div align="center">
+<img src="./images/games.png" width="800" alt="Mera Clinical Games">
+<p><i>Clinical Edge-Games: Smile Symmetry, Mobility FSM, and rPPG Heart Rate</i></p>
+</div>
+
+#### 📊 Empirical Validation
+- **100% Smile Precision** (Zero False Positives)
+- **92–98% Mobility Accuracy** (Skeletal FSM tracking)
+- **3.70 MAE rPPG** (0.93 Pearson Correlation vs Clinical Oximeter)
+
+[View Repository](https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge) | [Try on Telegram @Meramerarabot](https://t.me/Meramerarabot)
+
+---
+
+- **Hack4Good 2026**
+  Hackathon project focused on social good.
+  [View Repo](https://github.com/Yxiang-828/Hack4Good2026)
+
+- **HacX 2025**  Dual-Mode AV Disruptor
+  Developed a prototype to halt hostile autonomous vehicles by disrupting LiDAR/camera sensors. Validated with CARLA simulation.
+  [View Repo](https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor)
+
+---
+
+## Repos
 - [Mera — Digital Health Companion](https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge) - Agentic Telegram Health Bot | Synapxe × IMDA AI Innovation Challenge
 - [Notes 2 Website](https://github.com/Yxiang-828/notes-2-website) - Offline PDF/Image to HTML Converter
 - [Wingman](https://github.com/Yxiang-828/Wingman) - Personal Assistant Desktop App 
 - [Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
 - [Hack4Good 2026](https://github.com/Yxiang-828/Hack4Good2026) - Care Guardian System: Modular Care Infrastructure
-- [Maritime Hackathon](https://github.com/Yxiang-828/Maritime-Hackthon-2026) - In Progress 
 - [Dual-Mode AV Disruptor](https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor) - HacX 2025 Hackathon Project
 
 ---
 
-##  Personal Projects
+## 💻 Personal Projects
 
 ### Notes 2 Website  Offline Interactive Study Tool
 **Individual Project**
@@ -85,7 +127,7 @@ Built to solve daily workflow bottlenecks: find/delete large files, upscale imag
 
 | **Real-ESRGAN 4x (GPU 2-5s)** | **EDSR 4x (CPU 15-30s)** |
 |:---:|:---:|
-| ![Real-ESRGAN](https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/realesrgan_1.png) | ![EDSR](https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/edsr_1.png) |
+| ![Real-ESRGAN](./images/realesrgan_1.png) | ![EDSR](./images/edsr_1.png) |
 | *Left: Blurry  Right: GAN upscaled* | *Left: Blurry  Right: CNN upscaled* |
 
 AMD Vulkan acceleration. GAN for dramatic recovery, CNN for precise sharpening.
@@ -126,32 +168,14 @@ Total Size (Top 10): 53.38 GB
 
 ---
 
-##  Experiences
+## 👨‍🏫 Experiences
 
 ### Undergraduate Teaching Assistant (CS2113) @ National University of Singapore
 *(Jan 2026 - Present)*
 - Mentoring students in **Software Engineering & Object-Oriented Programming**.
 - Guiding tutorials on Java, JUnit testing, and collaborative GitHub workflows.
 
-##  Highlights & Hackathons
-
-- **Synapxe × IMDA AI Innovation Challenge 2026** — *Mera: The Digital Health Companion* (Team Lead)
-  Architected a fully functional agentic Telegram health bot for aged & chronically ill patients. Deployed a Dockerized "Open Claw" multi-LLM stack using Singapore's sovereign AI models: **SEA-LION** (reasoning/vision) + **MERaLiON** (ASR/SER). Built 3 WASM-based clinical mini-apps (Smile Checker, Mobility FSM, rPPG Heart Rate) running entirely on-device. Empirically validated: **100% Smile Precision · 92–98% Mobility Accuracy · 3.70 MAE rPPG**.
-  [View Repo](https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge) | [Try on Telegram @Meramerarabot](https://t.me/Meramerarabot)
-
-- **Maritime Hackathon 2026** (In Progress)
-  Developing an innovative solution for the maritime industry.
-  [View Repo](https://github.com/Yxiang-828/Maritime-Hackthon-2026)
-
-- **Hack4Good 2026**
-  Hackathon project focused on social good.
-  [View Repo](https://github.com/Yxiang-828/Hack4Good2026)
-
-- **HacX 2025**  Dual-Mode AV Disruptor
-  Developed a prototype to halt hostile autonomous vehicles by disrupting LiDAR/camera sensors. Validated with CARLA simulation.
-  [View Repo](https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor)
-
-##  Tech Stack
+## Tech Stack
 ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
