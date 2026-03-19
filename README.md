@@ -7,6 +7,7 @@ Computer Engineering (+ AI Minor) @ NUS (Year 2) | Teaching Assistant (CS2113). 
  Website: https://yxiang-828.github.io/
 
 ##  Repos
+- [Mera — Digital Health Companion](https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge) - Agentic Telegram Health Bot | Synapxe × IMDA AI Innovation Challenge
 - [Notes 2 Website](https://github.com/Yxiang-828/notes-2-website) - Offline PDF/Image to HTML Converter
 - [Wingman](https://github.com/Yxiang-828/Wingman) - Personal Assistant Desktop App 
 - [Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
@@ -21,7 +22,7 @@ Computer Engineering (+ AI Minor) @ NUS (Year 2) | Teaching Assistant (CS2113). 
 ### Notes 2 Website  Offline Interactive Study Tool
 **Individual Project**
 
-<img src="https://yxiang-828.github.io/images/demo_dark.png" width="800" alt="Notes 2 Website Screenshot">
+<img src="https://raw.githubusercontent.com/Yxiang-828/Yxiang-828.github.io/main/images/demo_dark.png" width="800" alt="Notes 2 Website Screenshot">
 
 **CLI Pipeline & Local Web App** | Python + PyMuPDF + EasyOCR + HTML/JS/CSS
 
@@ -38,7 +39,7 @@ No backend, completely standalone. Transforms folders of raw lecture PDFs or nat
 ### Wingman  AI Personal Assistant
 **Team Project - NUS Orbital Apollo 2025**
 
-<img src="https://yxiang-828.github.io/images/7409.png" width="400" alt="Wingman Screenshot">
+<img src="https://raw.githubusercontent.com/Yxiang-828/Yxiang-828.github.io/main/images/7409.png" width="400" alt="Wingman Screenshot">
 
 **Local-first desktop app** | React + TypeScript + Electron + Python/FastAPI
 
@@ -133,6 +134,10 @@ Total Size (Top 10): 53.38 GB
 - Guiding tutorials on Java, JUnit testing, and collaborative GitHub workflows.
 
 ##  Highlights & Hackathons
+
+- **Synapxe × IMDA AI Innovation Challenge 2026** — *Mera: The Digital Health Companion* (Team Lead)
+  Architected a fully functional agentic Telegram health bot for aged & chronically ill patients. Deployed a Dockerized "Open Claw" multi-LLM stack using Singapore's sovereign AI models: **SEA-LION** (reasoning/vision) + **MERaLiON** (ASR/SER). Built 3 WASM-based clinical mini-apps (Smile Checker, Mobility FSM, rPPG Heart Rate) running entirely on-device. Empirically validated: **100% Smile Precision · 92–98% Mobility Accuracy · 3.70 MAE rPPG**.
+  [View Repo](https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge) | [Try on Telegram @Meramerarabot](https://t.me/Meramerarabot)
 
 - **Maritime Hackathon 2026** (In Progress)
   Developing an innovative solution for the maritime industry.
