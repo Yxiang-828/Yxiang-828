@@ -51,14 +51,14 @@ Task manager, calendar, mood diary with Ollama-powered AI chat. SQLite + Supabas
 <div align="center">
 <table>
 <tr>
-<td align="center"><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/dark-theme.png" width="200" alt="Dark Theme"/><br/><b> Dark</b></td>
-<td align="center"><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/light-theme.png" width="200" alt="Light Theme"/><br/><b> Light</b></td>
-<td align="center"><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/yandere-theme.png" width="200" alt="Yandere Theme"/><br/><b> Yandere</b></td>
+<td align="center"><img src="./images/dark-theme.png" width="200" alt="Dark Theme"/><br/><b> Dark</b></td>
+<td align="center"><img src="./images/light-theme.png" width="200" alt="Light Theme"/><br/><b> Light</b></td>
+<td align="center"><img src="./images/yandere-theme.png" width="200" alt="Yandere Theme"/><br/><b> Yandere</b></td>
 </tr>
 <tr>
-<td align="center"><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/kuudere-theme.png" width="200" alt="Kuudere Theme"/><br/><b> Kuudere</b></td>
-<td align="center"><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/tsundere-theme.png" width="200" alt="Tsundere Theme"/><br/><b> Tsundere</b></td>
-<td align="center"><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/dandere-theme.png" width="200" alt="Dandere Theme"/><br/><b> Dandere</b></td>
+<td align="center"><img src="./images/kuudere-theme.png" width="200" alt="Kuudere Theme"/><br/><b> Kuudere</b></td>
+<td align="center"><img src="./images/tsundere-theme.png" width="200" alt="Tsundere Theme"/><br/><b> Tsundere</b></td>
+<td align="center"><img src="./images/dandere-theme.png" width="200" alt="Dandere Theme"/><br/><b> Dandere</b></td>
 </tr>
 </table>
 </div>
