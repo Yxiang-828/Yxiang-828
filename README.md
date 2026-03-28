@@ -36,51 +36,13 @@ Architected a fully functional agentic Telegram health bot for aged & chronicall
 - **3.70 MAE rPPG** (0.93 Pearson Correlation vs Clinical Oximeter)
 
 [View Repository](https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge) | [Try on Telegram @Meramerarabot](https://t.me/Meramerarabot)
-
----
-
-- **Hack4Good 2026**
-  Hackathon project focused on social good.
-  [View Repo](https://github.com/Yxiang-828/Hack4Good2026)
-
-- **HacX 2025**  Dual-Mode AV Disruptor
-  Developed a prototype to halt hostile autonomous vehicles by disrupting LiDAR/camera sensors. Validated with CARLA simulation.
-  [View Repo](https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor)
-
----
-
-## Repos
-- [Mera — Digital Health Companion](https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge) - Agentic Telegram Health Bot | Synapxe × IMDA AI Innovation Challenge
 - [Shoppo / TinyFish](https://github.com/Yxiang-828/TinyFish-SG-Hackathon) - Telegram-native shopping agent with cross-marketplace decision support
-- [Wingman](https://github.com/Yxiang-828/Wingman) - Personal Assistant Desktop App 
-- [Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
 - [Hack4Good 2026](https://github.com/Yxiang-828/Hack4Good2026) - Care Guardian System: Modular Care Infrastructure
 - [Dual-Mode AV Disruptor](https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor) - HacX 2025 Hackathon Project
 
 ---
 
 ## 💻 Personal Projects
-
-### Shoppo / TinyFish  Telegram Shopping Agent
-**Team Project - Singapore Hackathon 2026**
-
-<div align="center">
-<img src="./images/shoppo_icon.png" width="120" alt="Shoppo Icon">
-</div>
-
-<img src="./images/shoppo_fulleval.png" width="800" alt="Shoppo Screenshot">
-
-**Telegram-native multi-marketplace shopping agent** | React + FastAPI + SQLite + SSE + TinyFish
-
-Shoppo helps users start from messy shopping intent inside Telegram, then turns that into a structured sourcing brief, fans search out across marketplaces through TinyFish, and returns a ranked shortlist with evidence instead of a jungle of tabs.
-
-- Accepts shopping requests as chat messages, photos, budget ranges, and follow-up clarifications inside one Telegram thread.
-- Preserves live per-marketplace telemetry including search URLs, upstream run ids, screenshot paths, diagnostics, and streaming state through a FastAPI + SQLite backend.
-- Normalizes and ranks listings across Carousell, Lazada, Amazon SG, and Alibaba so the final output helps the user decide, not just click more links.
-
-[View Repository](https://github.com/Yxiang-828/TinyFish-SG-Hackathon) | [Portfolio Page](https://yxiang-828.github.io/projects/tinyfish.html)
-
----
 
 ### Wingman  AI Personal Assistant
 **Team Project - NUS Orbital Apollo 2025**
@@ -112,64 +74,7 @@ Task manager, calendar, mood diary with Ollama-powered AI chat. SQLite + Supabas
 </details>
 
 [View Repository](https://github.com/Yxiang-828/Wingman) 
-
----
-
-### Helper Tools  -- Self-Efficiency CLI Tools
-**Individual Project**
-
-**7 automation tools** | PowerShell + Python + .NET + AI Models
-
-Built to solve daily workflow bottlenecks: find/delete large files, upscale images, extract video content, transcribe audio. Offline, fast, no GUI overhead.
-
-> **Note:** Showing 2 of 7 tools below. [View repository](https://github.com/Yxiang-828/Helper_Tools) for all tools and documentation.
-
-## Examples
-#### AI Image Upscaler  Real-ESRGAN + EDSR
-
-<div align="center">
-
-| **Real-ESRGAN 4x (GPU 2-5s)** | **EDSR 4x (CPU 15-30s)** |
-|:---:|:---:|
-| ![Real-ESRGAN](./images/realesrgan_1.png) | ![EDSR](./images/edsr_1.png) |
-| *Left: Blurry  Right: GAN upscaled* | *Left: Blurry  Right: CNN upscaled* |
-
-AMD Vulkan acceleration. GAN for dramatic recovery, CNN for precise sharpening.
-
-</div>
-
-#### File Scanner  O(M log K) Min-Heap
-
-```powershell
-PS C:\> .\file_scanner.ps1 -FileType game -TopCount 10
-
-Target Type  : GAME Files
-Extensions   : .unity3d, .pak, .wad, .bsa, .esp, .esm
-
-[81.4s] Found 95,551 files | 1,173 files/sec
-
-Total Size (Top 10): 53.38 GB
-  1. (11.61 GB) pakchunk26-WindowsNoEditor.pak
-  2. (9.14 GB) pakchunk34-WindowsNoEditor.pak
-```
-
-.NET BFS traversal + SortedSet min-heap. Scans entire C:\ in ~2min vs Windows Explorer's 40min.
-
-#### All 8 Tools
-
-| Tool | Purpose | Tech |
-|------|---------|------|
-| **File Scanner** | Find/delete large files for storage cleanup | .NET + Min-Heap (1,173-8,821 files/sec) |
-| **Image Upscaler** | Restore/Sharpen images with AI | Real-ESRGAN + Vulkan (2-5s/image) |
-| **Video Upscaler** | AI frame enhancement for videos | Real-ESRGAN + FFmpeg |
-| **Subtitle/MP3 Extractor** | Extract embedded subs + mp3 from videos | FFmpeg automation |
-| **Audio Transcriber** | Convert mp3 to text transcripts | Whisper AI (GPU 3-5x faster) |
-| **Video to GIF** | Convert videos to GIFs (speed & quality customisable) | MoviePy + auto-scaling |
-| **Unity Extractor** | Extract assets from .unity3d files and convert to PNG | UnityPy parser |
-
-
-[View Repository](https://github.com/Yxiang-828/Helper_Tools) 
-
+[Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
 ---
 
 ## 👨‍🏫 Experiences
