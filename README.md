@@ -36,6 +36,8 @@ Architected a fully functional agentic Telegram health bot for aged & chronicall
 - **3.70 MAE rPPG** (0.93 Pearson Correlation vs Clinical Oximeter)
 
 [View Repository](https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge) | [Try on Telegram @Meramerarabot](https://t.me/Meramerarabot)
+
+### More Hackathons
 - [Shoppo / TinyFish](https://github.com/Yxiang-828/TinyFish-SG-Hackathon) - Telegram-native shopping agent with cross-marketplace decision support
 - [Hack4Good 2026](https://github.com/Yxiang-828/Hack4Good2026) - Care Guardian System: Modular Care Infrastructure
 - [Dual-Mode AV Disruptor](https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor) - HacX 2025 Hackathon Project
@@ -73,8 +75,11 @@ Task manager, calendar, mood diary with Ollama-powered AI chat. SQLite + Supabas
 
 </details>
 
+### More Personal Projects
 [View Repository](https://github.com/Yxiang-828/Wingman) 
 [Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
+[Matrix Solver](https://github.com/Yxiang-828/MatrixSolver) - Matrix Solver (Ridge Regression, Linear Regression, Matrix Arithmetic, Gradient Descent etc. calculator)
+
 ---
 
 ## 👨‍🏫 Experiences
