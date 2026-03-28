@@ -75,10 +75,11 @@ Task manager, calendar, mood diary with Ollama-powered AI chat. SQLite + Supabas
 
 </details>
 
-### More Personal Projects
 [View Repository](https://github.com/Yxiang-828/Wingman) 
-[Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
-[Matrix Solver](https://github.com/Yxiang-828/MatrixSolver) - Matrix Solver (Ridge Regression, Linear Regression, Matrix Arithmetic, Gradient Descent etc. calculator)
+
+### More Personal Projects
+- [Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
+- [Matrix Solver](https://github.com/Yxiang-828/MatrixSolver) - Matrix Solver (Ridge Regression, Linear Regression, Matrix Arithmetic, Gradient Descent etc. calculator)
 
 ---
 
