@@ -51,7 +51,7 @@ Architected a fully functional agentic Telegram health bot for aged & chronicall
 
 ## Repos
 - [Mera — Digital Health Companion](https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge) - Agentic Telegram Health Bot | Synapxe × IMDA AI Innovation Challenge
-- [Notes 2 Website](https://github.com/Yxiang-828/notes-2-website) - Offline PDF/Image to HTML Converter
+- [Shoppo / TinyFish](https://github.com/Yxiang-828/TinyFish-SG-Hackathon) - Telegram-native shopping agent with cross-marketplace decision support
 - [Wingman](https://github.com/Yxiang-828/Wingman) - Personal Assistant Desktop App 
 - [Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
 - [Hack4Good 2026](https://github.com/Yxiang-828/Hack4Good2026) - Care Guardian System: Modular Care Infrastructure
@@ -61,20 +61,24 @@ Architected a fully functional agentic Telegram health bot for aged & chronicall
 
 ## 💻 Personal Projects
 
-### Notes 2 Website  Offline Interactive Study Tool
-**Individual Project**
+### Shoppo / TinyFish  Telegram Shopping Agent
+**Team Project - Singapore Hackathon 2026**
 
-<img src="./images/demo_dark.png" width="800" alt="Notes 2 Website Screenshot">
+<div align="center">
+<img src="./images/shoppo_icon.png" width="120" alt="Shoppo Icon">
+</div>
 
-**CLI Pipeline & Local Web App** | Python + PyMuPDF + EasyOCR + HTML/JS/CSS
+<img src="./images/shoppo_fulleval.png" width="800" alt="Shoppo Screenshot">
 
-No backend, completely standalone. Transforms folders of raw lecture PDFs or native images into a single interconnected, beautifully formatted offline HTML website. Ideal for studying complex material.
+**Telegram-native multi-marketplace shopping agent** | React + FastAPI + SQLite + SSE + TinyFish
 
-- Automated Pipeline triggered via simple `.bat` scripts, orchestrating Python parsing.
-- Features a custom built-in Javascript Fuzzy Search Engine (Ctrl+K) allowing instantaneous global searching across all generated chapters.
-- Fully portable: generated web folder easily runs off a thumb drive on any browser without Node modules or databases.
+Shoppo helps users start from messy shopping intent inside Telegram, then turns that into a structured sourcing brief, fans search out across marketplaces through TinyFish, and returns a ranked shortlist with evidence instead of a jungle of tabs.
 
-[View Repository](https://github.com/Yxiang-828/notes-2-website) | [Live Demo](https://yxiang-828.github.io/notes-2-website/)
+- Accepts shopping requests as chat messages, photos, budget ranges, and follow-up clarifications inside one Telegram thread.
+- Preserves live per-marketplace telemetry including search URLs, upstream run ids, screenshot paths, diagnostics, and streaming state through a FastAPI + SQLite backend.
+- Normalizes and ranks listings across Carousell, Lazada, Amazon SG, and Alibaba so the final output helps the user decide, not just click more links.
+
+[View Repository](https://github.com/Yxiang-828/TinyFish-SG-Hackathon) | [Portfolio Page](https://yxiang-828.github.io/projects/tinyfish.html)
 
 ---
 
