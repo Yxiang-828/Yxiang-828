@@ -6,27 +6,17 @@ Computer Engineering (+ AI Minor) @ NUS (Year 2) | Teaching Assistant (CS2113). 
 
  Website: https://yxiang-828.github.io/
 
-### ⋬ The Mothership — Aiko (Ongoing R&D · 2025 → Present)
+### Aiko — my personal AI hub (Apr 2026 → Present)
 
-> **Why "Mothership"?** Aiko is the persistent central daemon that every other surface docks into. Its **3-lane software factory** has spawned **29 autonomous builds**, all consolidated into a cross-project event store with **42,847 indexed events**. The phone app and Telegram bridge are docking ports; sub-projects orbit back through its memory. Other things I build are work — Aiko is the system that keeps running, watching, and shipping when I'm not at the keyboard.
+Side project I've been building for about a month. The "Mothership" name is literal: it's where all my other projects — hackathon code, CLI helpers, weekend tools — eventually plug in and become skills Aiko can call. Instead of having a graveyard of half-remembered Python scripts, they all end up as one thing I can talk to.
 
-**Aiko** is my multi-year personal AI companion. Not a chatbot — a **persistent presence** with persistent emotional state, a five-tier memory system, and three communication surfaces.
+**Stack** — Linux background daemon in TypeScript / Node. Brain is local **Ollama** by default, **OpenRouter** (`minimax/minimax-m2.5`, swap with `AIKO_MODEL`) when I want something faster. I reach it from my phone on a React Native / Expo app over a **Tailscale** tunnel, or on a TOTP-gated **Telegram** bot.
 
-**Composition:**
-- **aiko-core** — Linux background daemon (TypeScript / Node). Brain runs on **Ollama (local)** with **OpenRouter** as the cloud provider; default model `minimax/minimax-m2.5`, swappable via `AIKO_MODEL`. Holds identity, memory, limbic state, skill executor, and the project factory.
-- **aiko-app** — React Native (Expo) Android client. Reaches the daemon over a **Tailscale WireGuard tunnel** — zero public internet, zero cloud.
-- **Telegram bridge** — TOTP-gated persistent bot for casual contact and on-the-go control. All three surfaces subscribe to one shared structured event log.
+**Skills so far** — local image-gen with FLUX.2 Klein on ComfyUI, local Whisper transcription, ElevenLabs TTS, plus the boring useful stuff: shell, git, docker, file ops, calendar, web fetch, diary, system control. New ones get added whenever I write something I'd want to reuse.
 
-**Inside:**
-- **5-tier memory** (identity / relationship / episodic / working / world) with a 3 AM nightly distiller compressing the diary and extracting facts.
-- **6-dimension limbic state machine** (affection, trust, annoyance, protectiveness, curiosity, energy) — appraisal-driven mutation, per-dimension decay, baseline-locking. State persists across restarts.
-- **54-skill DAG** governed by a constitutional `SKILL_LAW.md` manifest (20+ required fields). Tier-0 primitives → Tier-3 autonomy. Includes **local FLUX.2 Klein 4B + ComfyUI** image-gen, local **OpenAI Whisper** STT (`whisper` + `ffmpeg`), and **ElevenLabs** TTS with multi-key rotation.
-- **Proactive engine** with 4 delivery tiers (silent / queued / push / check-in), gated by annoyance + focus mode.
-- **Inline agentic tool loop** — `[EXEC:]`, `[OPEN:]`, `[READ:]`, `[LIST:]` parsed and executed mid-response.
-- **3-lane software factory** on the **Gemini CLI** — one binary spawned with three `ROLE.md`s (Architect / Executor / Auditor), mutex-gated, phase-routed FSM (SCOPING → BRIEFING → CODING → AUDITING → ALIGNING → REVIEW → DONE), CSOT war-room coordination.
-- **Cross-project SQLite** — all 29 historical builds merged into `automator-logs.db` with FTS over **42,847 events** and 416 Architect ↔ User conversations.
+**Also inside** — a small software factory built on the Gemini CLI (architect / executor / auditor lanes, each a Gemini process with its own role prompt, mutex-gated, phase-routed) that handles short build tasks in the background while I'm working on something else.
 
-*Not public — case study at [yxiang-828.github.io](https://yxiang-828.github.io/projects/aiko.html) · live demo on request.*
+Not public, but happy to demo. Longer write-up at [yxiang-828.github.io/projects/aiko.html](https://yxiang-828.github.io/projects/aiko.html).
 
 ---
 
