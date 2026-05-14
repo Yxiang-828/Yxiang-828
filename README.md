@@ -6,23 +6,55 @@ Computer Engineering (+ AI Minor) @ NUS (Year 2) | Teaching Assistant (CS2113). 
 
  Website: https://yxiang-828.github.io/
 
+### ⋬ The Mothership — Aiko (Ongoing R&D · 2025 → Present)
+
+> **Why "Mothership"?** Aiko is the persistent central daemon that every other surface docks into. Its **3-lane software factory** has spawned **29 autonomous builds**, all consolidated into a cross-project event store with **42,847 indexed events**. The phone app and Telegram bridge are docking ports; sub-projects orbit back through its memory. Other things I build are work — Aiko is the system that keeps running, watching, and shipping when I'm not at the keyboard.
+
+**Aiko** is my multi-year personal AI companion. Not a chatbot — a **persistent presence** with persistent emotional state, a five-tier memory system, and three communication surfaces.
+
+**Composition:**
+- **aiko-core** — Linux background daemon (TypeScript / Node). Brain runs on **Ollama (local)** with **OpenRouter** as the cloud provider; default model `minimax/minimax-m2.5`, swappable via `AIKO_MODEL`. Holds identity, memory, limbic state, skill executor, and the project factory.
+- **aiko-app** — React Native (Expo) Android client. Reaches the daemon over a **Tailscale WireGuard tunnel** — zero public internet, zero cloud.
+- **Telegram bridge** — TOTP-gated persistent bot for casual contact and on-the-go control. All three surfaces subscribe to one shared structured event log.
+
+**Inside:**
+- **5-tier memory** (identity / relationship / episodic / working / world) with a 3 AM nightly distiller compressing the diary and extracting facts.
+- **6-dimension limbic state machine** (affection, trust, annoyance, protectiveness, curiosity, energy) — appraisal-driven mutation, per-dimension decay, baseline-locking. State persists across restarts.
+- **54-skill DAG** governed by a constitutional `SKILL_LAW.md` manifest (20+ required fields). Tier-0 primitives → Tier-3 autonomy. Includes **local FLUX.2 Klein 4B + ComfyUI** image-gen, local **OpenAI Whisper** STT (`whisper` + `ffmpeg`), and **ElevenLabs** TTS with multi-key rotation.
+- **Proactive engine** with 4 delivery tiers (silent / queued / push / check-in), gated by annoyance + focus mode.
+- **Inline agentic tool loop** — `[EXEC:]`, `[OPEN:]`, `[READ:]`, `[LIST:]` parsed and executed mid-response.
+- **3-lane software factory** on the **Gemini CLI** — one binary spawned with three `ROLE.md`s (Architect / Executor / Auditor), mutex-gated, phase-routed FSM (SCOPING → BRIEFING → CODING → AUDITING → ALIGNING → REVIEW → DONE), CSOT war-room coordination.
+- **Cross-project SQLite** — all 29 historical builds merged into `automator-logs.db` with FTS over **42,847 events** and 416 Architect ↔ User conversations.
+
+*Not public — case study at [yxiang-828.github.io](https://yxiang-828.github.io/projects/aiko.html) · live demo on request.*
+
+---
+
 ### 🏆 Highlights & Hackathons
 
-### [Synapxe × IMDA AI Innovation Challenge 2026 — Mera: The Digital Health Companion](https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge) (Team Lead)
+### [PLAN.AI — Deep-Research Architect Co-Pilot](https://github.com/Yxiang-828/PLAN_AI) (AI-Engineer Hackathon · Apr 2026)
+
+The Architect's co-pilot. A planner that researches across **9 sources** (GitHub, arXiv, Semantic Scholar, Reddit, Stack Exchange, Wikipedia, Hacker News, Tavily, Firecrawl) and synthesizes inline-cited 22-section technical blueprints with Mermaid C4 diagrams.
+
+- Three research depths (Quick / Standard / **STORM-lite Deep** with Engineer / PM / SRE personas).
+- React + Vite + Vercel Edge serverless catch-all; client-side API keys, localStorage workspaces, workspace branching + merge.
+- **Shipping Floor** compiles each blueprint into Architect / Executor / Auditor tasks with React-Flow + dagre topology.
+- Full case study: [yxiang-828.github.io/projects/planai.html](https://yxiang-828.github.io/projects/planai.html)
+
+### [Synapxe × IMDA AI Innovation Challenge 2026 — Mera: The Digital Health Companion](https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge) (Team Lead · Feb–Mar 2026)
 <div align="center">
 <img src="./images/mera_circular.png" width="120" alt="Mera Logo">
 <br/>
 
-**⚡ Try on Telegram [@Meramerarabot](https://t.me/Meramerarabot)**  
-*Available every 7-9pm from now till Apr 5th 2026*
+**⚡ Try on Telegram [@Meramerarabot](https://t.me/Meramerarabot)**
 
 </div>
 
-Architected a fully functional agentic Telegram health bot for aged & chronically ill patients. Deployed a Dockerized "Open Claw" multi-LLM stack using Singapore's sovereign AI models: **SEA-LION** (reasoning/vision) + **MERaLiON** (ASR/SER). 
+Architected a fully functional agentic Telegram health bot for aged & chronically ill patients. Deployed a Dockerized "Open Claw" multi-LLM stack using Singapore's sovereign AI models: **SEA-LION** (reasoning/vision) + **MERaLiON** (ASR/SER).
 
 #### 🚀 Key Features & Innovation
-- **3 WASM Clinical Mini-Apps**: Smile Checker, Mobility FSM, and rPPG Heart Rate running 100% on-device for total privacy.
-- **Multimodal Fusion**: Processes voice biomarkers (fatigue/sentiment) and visual symmetry in real-time.
+- **3 WASM Clinical Mini-Apps**: Smile Checker, Mobility FSM, and rPPG Heart Rate running 100 % on-device for total privacy.
+- **Multimodal Fusion**: Voice biomarkers (fatigue/sentiment) + visual symmetry in real-time.
 - **Agentic FSM**: Autonomous 4-state loop from passive monitoring to clinical intervention.
 
 <div align="center">
@@ -31,16 +63,31 @@ Architected a fully functional agentic Telegram health bot for aged & chronicall
 </div>
 
 #### 📊 Empirical Validation
-- **100% Smile Precision** (Zero False Positives)
-- **92–98% Mobility Accuracy** (Skeletal FSM tracking)
-- **3.70 MAE rPPG** (0.93 Pearson Correlation vs Clinical Oximeter)
+- **100 % Smile Precision** (zero false positives)
+- **92–98 % Mobility Accuracy** (skeletal FSM tracking)
+- **3.70 MAE rPPG** (0.93 Pearson vs clinical oximeter)
 
 [View Repository](https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge) | [Try on Telegram @Meramerarabot](https://t.me/Meramerarabot)
 
+### [Shoppo — TinyFish Telegram Shopping Agent](https://github.com/Yxiang-828/TinyFish-SG-Hackathon) (TinyFish-SG Hackathon · Mar 2026)
+
+Telegram-native shopping agent that turns messy user intent into TinyFish marketplace fan-out, evidence-backed ranking, and a clearer shortlist across **Carousell, Lazada, Amazon SG, and Alibaba**.
+
+- **FastAPI + SQLite + SSE** backend; Telegram Bot API frontend.
+- Cross-marketplace search planner with structured-output decision support.
+- Designed for budget-bounded, evidence-cited shopping where users see *why* one listing beat another.
+
+### [VibeWithSG × Duality AI — Offroad Autonomy Semantic Segmentation](https://github.com/Yxiang-828/VibeWithSG) (Solo, Team SyntaxError · Apr–May 2026)
+
+Solo submission for desert-biome semantic segmentation. **DINOv2-L + DPT** with last-8-block LLRD fine-tune, multi-scale + HFlip TTA on H100.
+
+- **Final test mIoU 0.4214** (0.691 pixel accuracy) on the 1 002-image OOD desert test set.
+- **Val mIoU 0.6361** — honest val/test gap explained as pure distribution shift.
+- Diagnosed and fixed two silent dataset bugs (missing `Flowers=600`, 16-bit PIL `I;16` mask saturation) before training.
+
 ### More Hackathons
-- [Shoppo / TinyFish](https://github.com/Yxiang-828/TinyFish-SG-Hackathon) - Telegram-native shopping agent with cross-marketplace decision support
-- [Hack4Good 2026](https://github.com/Yxiang-828/Hack4Good2026) - Care Guardian System: Modular Care Infrastructure
-- [Dual-Mode AV Disruptor](https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor) - HacX 2025 Hackathon Project
+- [Hack4Good 2026](https://github.com/Yxiang-828/Hack4Good2026) — Care Guardian System: Modular Care Infrastructure
+- [Dual-Mode AV Disruptor](https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor) — HacX 2025 (HTX + Microsoft) hardware prototype
 
 ---
 
