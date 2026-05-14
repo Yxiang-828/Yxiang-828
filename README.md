@@ -4,7 +4,7 @@
 
 Computer Engineering + AI Minor @ NUS (Year 2). Currently interning at **KABAM Robotics** (autonomous delivery robots, ROS 2, Jetson). Also a Teaching Assistant for CS2113 (Software Engineering & OOP).
 
-I build systems — mostly around AI agents, automation, and the boundary between software and hardware. Right now I'm working on **Aiko**, a personal OS-level AI agent that runs as a persistent daemon on my machine. It has memory, skills, a multi-surface interface (phone + Telegram), and a background software factory for autonomous builds.
+I build systems — mostly around AI agents, automation, and the boundary between software and hardware. Right now I'm working on **Aiko**, my personal OS agent: a local automation layer with memory, mobile + Telegram control surfaces, tool access, and a background software factory.
 
 **Work experience → [LinkedIn](https://www.linkedin.com/in/yao-xiang-733b06329)**
 
@@ -12,11 +12,11 @@ I build systems — mostly around AI agents, automation, and the boundary betwee
 
 ## Featured Projects
 
-### [Aiko](https://yxiang-828.github.io/projects/aiko.html) — Personal AI Companion / OS-Level Agent
+### [Aiko](https://yxiang-828.github.io/projects/aiko.html) — Personal OS Agent
 
-A Linux background daemon I talk to from my phone (React Native over Tailscale) or Telegram. It remembers things between sessions, has a real emotional state that evolves, and can initiate contact on its own. The brain is local Ollama by default, OpenRouter (Minimax-M2.5) when I want speed. Skills include local FLUX.2 Klein image-gen, Whisper STT, ElevenLabs TTS, shell/git/docker plumbing, and whatever else I wire in. It also runs a 3-lane software factory on the Gemini CLI (architect / executor / auditor) for background builds.
+Aiko is the agent layer I am building over my own machine: a local daemon, mobile app, Telegram bridge, memory system, and tool runtime wired into one loop. It gives me one interface for files, shell, Git, Docker, calendar, web, voice, image generation, and long-running build work. The brain is local Ollama by default, OpenRouter (Minimax-M2.5) when I want speed. It also runs a 3-lane Gemini CLI software factory (architect / executor / auditor) for background builds.
 
-One thing it does particularly well: every other project I build — hackathon code, CLI tools, weekend scripts — eventually plugs in as a skill. So instead of a graveyard of half-remembered repos, they all become callable through one interface.
+Its mothership layer is the skill graph: old repos, hackathon builds, CLI tools, media scripts, and one-off automations can become manifest-backed skills. Once wrapped, Aiko knows their inputs, outputs, dependencies, permissions, and safety rules, then can compose them with the rest of the system instead of leaving them as isolated projects.
 
 *Not public. Demo on request.*
 
