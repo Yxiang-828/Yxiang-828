@@ -4,7 +4,7 @@
 
 [![Personal Projects](komarev.com)](https://yxiang-828.github.io)
 
-Computer Engineering + AI Minor @ NUS (Year 2). Currently interning at **KABAM Robotics** (autonomous delivery robots, ROS 2, Jetson). Also a Teaching Assistant for CS2113 (Software Engineering & OOP).
+Computer Engineering + AI Minor @ NUS (Year 2). Currently interning at **KABAM Robotics** (autonomous security robots, ROS 2, Jetson). Also a Teaching Assistant for CS2113 (Software Engineering & OOP).
 
 I build systems — mostly around AI agents, automation, and the boundary between software and hardware. Right now I'm working on **Aiko**, my personal OS agent: a local automation layer with memory, mobile + Telegram control surfaces, tool access, and a background software factory.
 
