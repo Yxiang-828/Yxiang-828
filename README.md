@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img alt="Typing intro" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=700&amp;size=18&amp;duration=2400&amp;pause=750&amp;color=00E5FF&amp;center=true&amp;vCenter=true&amp;width=900&amp;lines=Intelligence+Layer+%2B+Hardware+Layer;Advanced+Electronics+%2B+IoT;Robotics+software+intern+%40+KABAM;AI+systems+for+physical+hardware" />
+  <img alt="Typing intro" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=700&amp;size=18&amp;duration=2400&amp;pause=750&amp;color=00E5FF&amp;center=true&amp;vCenter=true&amp;width=900&amp;lines=AI+abstraction+layers+%2B+hardware+constraints;Advanced+Electronics+%2B+IoT;Robotics+software+intern+%40+KABAM;AI+systems+for+physical+hardware" />
 </p>
 
 ---
@@ -19,7 +19,7 @@
 
 I am an **NUS Computer Engineering student** (**AI Minor, Advanced Electronics & IoT**) focused on building AI systems that interface directly with physical hardware.
 
-My work connects high-level intelligence with low-level constraints across two main layers:
+My work connects high-level AI abstractions with low-level hardware constraints across two abstraction layers:
 
 <table>
   <tr>
@@ -30,13 +30,13 @@ My work connects high-level intelligence with low-level constraints across two m
       Advanced Electronics + IoT
     </td>
     <td width="33%" valign="top">
-      <strong>The Intelligence Layer</strong><br />
+      <strong>AI / Agent Abstraction Layer</strong><br />
       Applied ML, computer vision, local inference<br />
       autonomous agent architectures<br />
       memory, tool runtimes, CLI/workspace workflows
     </td>
     <td width="33%" valign="top">
-      <strong>The Hardware Layer</strong><br />
+      <strong>Hardware / Systems Layer</strong><br />
       Robotics, embedded systems<br />
       C/C++, assembly<br />
       latency-aware programming
@@ -195,9 +195,9 @@ Currently: **Robotics Software Intern at KABAM Robotics**, building on the Matri
 
 ---
 
-## Hackathons & Recognition
+## Hackathons
 
-| Year | Recognition | Project |
+| Year | Hackathon | Project |
 | --- | --- | --- |
 | 2026 | DSTA BrainHack CODE_EXP Open Finalist | Kampung Kaki |
 | 2026 | AI-Engineer Hackathon | PLAN.AI |
