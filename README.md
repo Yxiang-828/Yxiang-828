@@ -18,7 +18,7 @@
 
 I am a **Computer Engineering + AI Minor student at NUS**. My main direction is AI-integrated engineering: applying AI on the model side, then giving agents the tools, roles, memory, and execution surfaces they need to do useful work.
 
-On one end, I work with applied ML, computer vision, speech, multimodal workflows, local inference, and product-facing AI systems. On the other end, I build agent harnesses: skills, tool runtimes, CLI-agent workers, background software factories, Telegram/Discord surfaces, mobile controls, and local workspace servers such as Mattermost-style collaboration environments.
+On one end, I work with applied ML, computer vision, speech, multimodal workflows, local inference, and product-facing AI systems. On the other end, I equip agents with skills, roles, tool runtimes, CLI-agent workflows, Telegram/Discord surfaces, mobile controls, and workspace integrations.
 
 I do not want that work to float above the machine. I also keep grounding myself in robotics, C/C++, assembly, embedded systems, hardware-facing code, and latency-aware programming. The long-term arc is to merge both ends: AI systems that can reason, act, and operate close to real hardware.
 
@@ -33,7 +33,7 @@ I do not want that work to float above the machine. I also keep grounding myself
     <td width="33%" valign="top">
       <strong>Agent Harnessing</strong><br />
       skills, roles, memory, tool runtimes<br />
-      CLI agents, Telegram, Discord, Mattermost-style workspaces<br />
+      CLI agents, Telegram, Discord, workspace integrations<br />
       local daemons and long-running workers
     </td>
     <td width="33%" valign="top">
@@ -58,7 +58,7 @@ Python · TypeScript · JavaScript · Java · C/C++ · SQL · Verilog · ARM Ass
 PyTorch · OpenCV · MediaPipe WASM · SEA-LION · MERaLiON · Whisper · Ollama · OpenRouter · local inference workflows
 
 **Agents / Product Surfaces**
-Node.js · React · React Native · Electron · FastAPI · Telegram bots · Discord bots · Mattermost-style plugins · CLI-agent orchestration
+Node.js · React · React Native · Electron · FastAPI · Telegram bots · Discord bots · workspace integrations · CLI-agent orchestration
 
 **Robotics / Systems**
 ROS 2 Jazzy · Nav2 · MQTT · Jetson Orin AGX · Docker · CAN bus · SLAM · Linux · GitHub Actions · Vercel
