@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img alt="Typing intro" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=700&amp;size=18&amp;duration=2400&amp;pause=750&amp;color=00E5FF&amp;center=true&amp;vCenter=true&amp;width=900&amp;lines=AI+abstraction+layers+%2B+hardware+constraints;Advanced+Electronics+%2B+IoT;Robotics+software+intern+%40+KABAM;AI+systems+for+physical+hardware" />
+  <img alt="Typing intro" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=700&amp;size=18&amp;duration=2400&amp;pause=750&amp;color=00E5FF&amp;center=true&amp;vCenter=true&amp;width=900&amp;lines=Internal+AI+%2B+external+agent+systems;Advanced+Electronics+%2B+IoT;Robotics+software+intern+%40+KABAM;AI+systems+for+physical+hardware" />
 </p>
 
 ---
@@ -19,27 +19,28 @@
 
 I am an **NUS Computer Engineering student** (**AI Minor, Advanced Electronics & IoT**) focused on building AI systems that interface directly with physical hardware.
 
-My work connects high-level AI abstractions with low-level hardware constraints across two abstraction layers:
+Education: **NUS Computer Engineering**, **AI Minor**, **Advanced Electronics & IoT**.
+
+My work is organized around an internal/external AI split, grounded in hardware systems:
 
 <table>
   <tr>
-    <td width="34%" valign="top">
-      <strong>Education</strong><br />
-      NUS Computer Engineering<br />
-      AI Minor<br />
-      Advanced Electronics + IoT
-    </td>
     <td width="33%" valign="top">
-      <strong>AI / Agent Abstraction Layer</strong><br />
+      <strong>Internal AI / Model Layer</strong><br />
       Applied ML, computer vision, local inference<br />
-      autonomous agent architectures<br />
-      memory, tool runtimes, CLI/workspace workflows
+      training, evaluation, model behavior<br />
+      perception and adaptation
+    </td>
+    <td width="34%" valign="top">
+      <strong>External Agent / Workspace Layer</strong><br />
+      prompts, roles, skills, memory, tool runtimes<br />
+      CLI agents, Telegram/Discord surfaces, phone and workspace workflows<br />
+      modular behavior across agents and runtimes
     </td>
     <td width="33%" valign="top">
       <strong>Hardware / Systems Layer</strong><br />
-      Robotics, embedded systems<br />
-      C/C++, assembly<br />
-      latency-aware programming
+      Robotics, embedded systems, C/C++, assembly<br />
+      ROS 2, sensors, control loops, latency-aware programming
     </td>
   </tr>
 </table>

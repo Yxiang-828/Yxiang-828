@@ -46,14 +46,14 @@
     </g>
 
     <g transform="translate(696 92)">
-      <text x="0" y="0" fill="#00e5ff" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="16" font-weight="700" letter-spacing="2">AI / AGENT ABSTRACTION</text>
-      <text x="0" y="34" fill="#f0f0f0" fill-opacity="0.76" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">ML, vision, local inference, agent architectures</text>
+      <text x="0" y="0" fill="#00e5ff" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="16" font-weight="700" letter-spacing="2">INTERNAL AI / MODEL</text>
+      <text x="0" y="34" fill="#f0f0f0" fill-opacity="0.76" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">ML, CV, local inference, model behavior</text>
 
-      <text x="0" y="92" fill="#00e5ff" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="16" font-weight="700" letter-spacing="2">HARDWARE / SYSTEMS</text>
-      <text x="0" y="126" fill="#f0f0f0" fill-opacity="0.76" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">robotics, embedded systems, C/C++, assembly</text>
+      <text x="0" y="92" fill="#00e5ff" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="16" font-weight="700" letter-spacing="2">EXTERNAL AGENT / WORKSPACE</text>
+      <text x="0" y="126" fill="#f0f0f0" fill-opacity="0.76" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">prompts, roles, skills, tools, CLI workflows</text>
 
-      <text x="0" y="184" fill="#00e5ff" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="16" font-weight="700" letter-spacing="2">CURRENT FOCUS</text>
-      <text x="0" y="218" fill="#f0f0f0" fill-opacity="0.76" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">AI systems for real-world hardware</text>
+      <text x="0" y="184" fill="#00e5ff" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="16" font-weight="700" letter-spacing="2">HARDWARE / SYSTEMS</text>
+      <text x="0" y="218" fill="#f0f0f0" fill-opacity="0.76" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">robotics, embedded systems, C/C++, latency</text>
     </g>
 
     <rect x="-180" y="316" width="240" height="2" fill="url(#rule)" opacity="0.85">
