@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Yao Xiang - From silicon to systems</title>
+  <desc id="desc">Dark cinematic GitHub profile banner for a computer engineering student building AI agents, robotics, and full-stack systems.</desc>
+  <defs>
+    <linearGradient id="heroBg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#07111f"/>
+      <stop offset="48%" stop-color="#101826"/>
+      <stop offset="100%" stop-color="#0d1220"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0%" stop-color="#56d6e9">
+        <animate attributeName="stop-color" values="#56d6e9;#2f80ed;#56d6e9" dur="7s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="55%" stop-color="#2f80ed"/>
+      <stop offset="100%" stop-color="#ff4f6d">
+        <animate attributeName="stop-color" values="#ff4f6d;#56d6e9;#ff4f6d" dur="7s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#56d6e9" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#56d6e9" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#ff4f6d" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="orbGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#56d6e9" stop-opacity="0.85"/>
+      <stop offset="42%" stop-color="#2f80ed" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#0b111d" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#79e2f2" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+    <clipPath id="heroClip">
+      <rect width="1200" height="360" rx="22"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#heroClip)">
+    <rect width="1200" height="360" fill="url(#heroBg)"/>
+    <rect width="1200" height="360" fill="url(#grid)"/>
+
+    <path d="M0 73 C210 108 335 78 520 100 C725 124 882 58 1200 83 L1200 0 L0 0 Z" fill="url(#accent)" opacity="0.82"/>
+    <path d="M0 314 C238 340 393 328 548 315 C783 295 949 312 1200 286 L1200 360 L0 360 Z" fill="url(#accent)" opacity="0.72"/>
+    <path d="M0 94 C202 119 361 102 548 108 C766 116 935 82 1200 107" fill="none" stroke="#03101c" stroke-opacity="0.65" stroke-width="8"/>
+    <path d="M0 295 C247 324 407 321 590 305 C809 286 945 294 1200 268" fill="none" stroke="#03101c" stroke-opacity="0.58" stroke-width="8"/>
+
+    <circle cx="934" cy="181" r="112" fill="url(#orbGlow)" filter="url(#softGlow)">
+      <animate attributeName="r" values="102;116;102" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="934" cy="181" r="72" fill="none" stroke="#56d6e9" stroke-opacity="0.56" stroke-width="2">
+      <animate attributeName="r" values="64;86;64" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-opacity" values="0.2;0.65;0.2" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="934" cy="181" r="46" fill="none" stroke="#ff4f6d" stroke-opacity="0.58" stroke-width="2">
+      <animate attributeName="r" values="40;54;40" dur="4.2s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-opacity" values="0.6;0.22;0.6" dur="4.2s" repeatCount="indefinite"/>
+    </circle>
+
+    <g opacity="0.78">
+      <path d="M842 181 H1025" stroke="url(#lineGrad)" stroke-width="2"/>
+      <path d="M934 89 V274" stroke="url(#lineGrad)" stroke-width="2"/>
+      <circle cx="934" cy="181" r="6" fill="#e6fbff"/>
+      <circle cx="934" cy="181" r="16" fill="none" stroke="#e6fbff" stroke-opacity="0.25"/>
+    </g>
+
+    <g transform="translate(78 111)">
+      <rect x="0" y="-40" width="294" height="32" rx="16" fill="#101a2b" stroke="#365168" stroke-opacity="0.8"/>
+      <circle cx="18" cy="-24" r="5" fill="#56d6e9"/>
+      <text x="34" y="-19" fill="#b7c8d8" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.4">NUS CEG + AI MINOR</text>
+
+      <text x="0" y="37" fill="#f4fbff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="800" letter-spacing="0">Yao Xiang</text>
+      <text x="2" y="82" fill="#56d6e9" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="27" font-weight="700" letter-spacing="1.8">FROM SILICON TO SYSTEMS</text>
+      <text x="2" y="122" fill="#b7c8d8" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="19" font-weight="500">AI agents · robotics · local-first software · full-stack product engineering</text>
+    </g>
+
+    <g transform="translate(79 264)" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="13" font-weight="700">
+      <rect x="0" y="0" width="174" height="34" rx="17" fill="#102236" stroke="#56d6e9" stroke-opacity="0.45"/>
+      <text x="18" y="22" fill="#def8ff">KABAM ROBOTICS</text>
+
+      <rect x="190" y="0" width="116" height="34" rx="17" fill="#231624" stroke="#ff4f6d" stroke-opacity="0.44"/>
+      <text x="208" y="22" fill="#ffe8ee">CS2113 TA</text>
+
+      <rect x="322" y="0" width="176" height="34" rx="17" fill="#102236" stroke="#56d6e9" stroke-opacity="0.45"/>
+      <text x="340" y="22" fill="#def8ff">DSTA FINALIST</text>
+
+      <rect x="514" y="0" width="132" height="34" rx="17" fill="#231624" stroke="#ff4f6d" stroke-opacity="0.44"/>
+      <text x="532" y="22" fill="#ffe8ee">7 HACKS</text>
+    </g>
+
+    <rect x="-220" y="176" width="260" height="3" fill="url(#lineGrad)" opacity="0.9">
+      <animate attributeName="x" values="-260;1240" dur="5.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.9;0" dur="5.8s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+</svg>
