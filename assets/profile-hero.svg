@@ -46,14 +46,14 @@
     </g>
 
     <g transform="translate(696 92)">
-      <text x="0" y="0" fill="#00e5ff" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="16" font-weight="700" letter-spacing="2">AI INTEGRATION</text>
-      <text x="0" y="34" fill="#f0f0f0" fill-opacity="0.76" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">ML pipelines, local inference, product AI</text>
+      <text x="0" y="0" fill="#00e5ff" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="16" font-weight="700" letter-spacing="2">INTELLIGENCE LAYER</text>
+      <text x="0" y="34" fill="#f0f0f0" fill-opacity="0.76" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">ML, vision, local inference, agent architectures</text>
 
-      <text x="0" y="92" fill="#00e5ff" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="16" font-weight="700" letter-spacing="2">AGENT HARNESSING</text>
-      <text x="0" y="126" fill="#f0f0f0" fill-opacity="0.76" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">skills, roles, tools, CLI workflows, workspace integrations</text>
+      <text x="0" y="92" fill="#00e5ff" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="16" font-weight="700" letter-spacing="2">HARDWARE LAYER</text>
+      <text x="0" y="126" fill="#f0f0f0" fill-opacity="0.76" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">robotics, embedded systems, C/C++, assembly</text>
 
-      <text x="0" y="184" fill="#00e5ff" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="16" font-weight="700" letter-spacing="2">ROBOTICS + LOW LEVEL</text>
-      <text x="0" y="218" fill="#f0f0f0" fill-opacity="0.76" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">Advanced Electronics, IoT, ROS 2, C/C++, assembly</text>
+      <text x="0" y="184" fill="#00e5ff" font-family="JetBrains Mono, Cascadia Code, Consolas, monospace" font-size="16" font-weight="700" letter-spacing="2">CURRENT FOCUS</text>
+      <text x="0" y="218" fill="#f0f0f0" fill-opacity="0.76" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">AI systems for real-world hardware</text>
     </g>
 
     <rect x="-180" y="316" width="240" height="2" fill="url(#rule)" opacity="0.85">

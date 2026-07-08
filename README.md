@@ -10,49 +10,43 @@
 </p>
 
 <p align="center">
-  <img alt="Typing intro" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=700&amp;size=18&amp;duration=2400&amp;pause=750&amp;color=00E5FF&amp;center=true&amp;vCenter=true&amp;width=900&amp;lines=Applied+AI+%2B+agent+harnessing;Advanced+Electronics+%2B+IoT;Robotics+software+intern+%40+KABAM;ML+systems+%2B+hardware-facing+software" />
+  <img alt="Typing intro" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=700&amp;size=18&amp;duration=2400&amp;pause=750&amp;color=00E5FF&amp;center=true&amp;vCenter=true&amp;width=900&amp;lines=Intelligence+Layer+%2B+Hardware+Layer;Advanced+Electronics+%2B+IoT;Robotics+software+intern+%40+KABAM;AI+systems+for+physical+hardware" />
 </p>
 
 ---
 
 ## About
 
-I am a **Computer Engineering + AI Minor student at NUS**, currently taking a double specialisation in **Advanced Electronics** and **IoT**.
+I am an **NUS Computer Engineering student** (**AI Minor, Advanced Electronics & IoT**) focused on building AI systems that interface directly with physical hardware.
 
-My direction is AI-integrated engineering. I work on the model-facing side through applied ML, computer vision, speech, multimodal workflows, local inference, and product AI. I also work on the agent-facing side: skills, roles, memory, tool runtimes, CLI-agent workflows, Telegram/Discord surfaces, mobile controls, and workspace integrations.
-
-The systems side matters to me just as much. I keep building depth in robotics, C/C++, assembly, embedded systems, hardware-facing code, and latency-aware programming, because the most interesting AI work for me is where intelligent software has to operate against real constraints.
+My work connects high-level intelligence with low-level constraints across two main layers:
 
 <table>
   <tr>
-    <td width="25%" valign="top">
+    <td width="34%" valign="top">
       <strong>Education</strong><br />
       NUS Computer Engineering<br />
       AI Minor<br />
       Advanced Electronics + IoT
     </td>
-    <td width="25%" valign="top">
-      <strong>Applied AI</strong><br />
-      ML, CV, speech, multimodal flows<br />
-      local inference and product workflows<br />
-      SEA-LION, MERaLiON, MediaPipe, PyTorch
+    <td width="33%" valign="top">
+      <strong>The Intelligence Layer</strong><br />
+      Applied ML, computer vision, local inference<br />
+      autonomous agent architectures<br />
+      memory, tool runtimes, CLI/workspace workflows
     </td>
-    <td width="25%" valign="top">
-      <strong>Agent Harnessing</strong><br />
-      skills, roles, memory, tool runtimes<br />
-      CLI agents, Telegram, Discord, workspace integrations<br />
-      local daemons and long-running workers
-    </td>
-    <td width="25%" valign="top">
-      <strong>Robotics + Low Level</strong><br />
-      ROS 2, Jetson, Nav2, MQTT<br />
-      C/C++, assembly, embedded systems<br />
-      latency, control, hardware constraints
+    <td width="33%" valign="top">
+      <strong>The Hardware Layer</strong><br />
+      Robotics, embedded systems<br />
+      C/C++, assembly<br />
+      latency-aware programming
     </td>
   </tr>
 </table>
 
-Currently: **Robotics Software Intern at KABAM Robotics**, building on the Matrix-4 autonomous delivery robot stack across ROS 2, MQTT, Docker, Jetson Orin AGX, SAM3, Nav2, C++ and Python. I also teach **CS2113 Software Engineering & OOP** at NUS.
+I am driven to build end-to-end systems where AI does not just process data, but physically interacts with and controls real-world hardware.
+
+Currently: **Robotics Software Intern at KABAM Robotics**, building on the Matrix-4 autonomous delivery robot stack across ROS 2, MQTT, Docker, Jetson Orin AGX, SAM3, Nav2, C++ and Python. Previously taught **CS2113 Software Engineering & OOP** at NUS.
 
 ---
 
@@ -212,31 +206,6 @@ Currently: **Robotics Software Intern at KABAM Robotics**, building on the Matri
 | 2026 | VibeWithSG | Simulation and public-service AI workflow |
 | 2026 | Hack4Good | Social-impact product build |
 | 2025 | HacX CS7 | AV sensor disruption / security research |
-
----
-
-## Public Work
-
-<table>
-  <tr>
-    <td width="33%" valign="top">
-      <strong>Agent systems</strong><br />
-      <a href="https://yxiang-828.github.io/projects/aiko.html">Aiko case study</a><br />
-      local daemon, phone app, Telegram bridge, memory, tools
-    </td>
-    <td width="33%" valign="top">
-      <strong>Applied AI products</strong><br />
-      <a href="https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge">Mera</a> ·
-      <a href="https://yxiang-828.github.io/projects/planai.html">PLAN.AI</a><br />
-      multimodal health companion and cited research planner
-    </td>
-    <td width="33%" valign="top">
-      <strong>Robotics / systems</strong><br />
-      <a href="https://yxiang-828.github.io/projects/kampung-kaki.html">Kampung Kaki</a><br />
-      real-time coordination, maps, MQTT, AI-assisted workflows
-    </td>
-  </tr>
-</table>
 
 <p align="center">
   <strong>Open to internships and collaboration across applied AI, agent infrastructure, robotics, and full-stack systems.</strong>
