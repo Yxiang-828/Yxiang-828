@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img alt="Typing intro" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=700&amp;size=18&amp;duration=2400&amp;pause=750&amp;color=00E5FF&amp;center=true&amp;vCenter=true&amp;width=900&amp;lines=Applied+AI+%2B+agent+harnessing;Advanced+Electronics+%2B+IoT;Robotics+software+intern+%40+KABAM;Low-level+systems+to+AI-enabled+robots" />
+  <img alt="Typing intro" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=700&amp;size=18&amp;duration=2400&amp;pause=750&amp;color=00E5FF&amp;center=true&amp;vCenter=true&amp;width=900&amp;lines=Applied+AI+%2B+agent+harnessing;Advanced+Electronics+%2B+IoT;Robotics+software+intern+%40+KABAM;ML+systems+%2B+hardware-facing+software" />
 </p>
 
 ---
@@ -19,9 +19,9 @@
 
 I am a **Computer Engineering + AI Minor student at NUS**, currently taking a double specialisation in **Advanced Electronics** and **IoT**.
 
-My direction is AI-integrated engineering. On one end, I work with applied ML, computer vision, speech, multimodal workflows, local inference, and product-facing AI systems. On the other end, I equip agents with skills, roles, memory, tool runtimes, CLI-agent workflows, Telegram/Discord surfaces, mobile controls, and workspace integrations.
+My direction is AI-integrated engineering. I work on the model-facing side through applied ML, computer vision, speech, multimodal workflows, local inference, and product AI. I also work on the agent-facing side: skills, roles, memory, tool runtimes, CLI-agent workflows, Telegram/Discord surfaces, mobile controls, and workspace integrations.
 
-I do not want AI to float above the machine. I keep grounding the work in robotics, C/C++, assembly, embedded systems, hardware-facing code, and latency-aware programming. The long-term arc is to merge both ends: AI systems that can reason, act, and operate close to real hardware.
+The systems side matters to me just as much. I keep building depth in robotics, C/C++, assembly, embedded systems, hardware-facing code, and latency-aware programming, because the most interesting AI work for me is where intelligent software has to operate against real constraints.
 
 <table>
   <tr>
@@ -215,16 +215,28 @@ Currently: **Robotics Software Intern at KABAM Robotics**, building on the Matri
 
 ---
 
-## GitHub Stats
+## Public Work
 
-<p align="center">
-  <img height="165" alt="GitHub stats" src="https://github-readme-stats.vercel.app/api?username=Yxiang-828&amp;show_icons=true&amp;theme=github_dark&amp;hide_border=true&amp;rank_icon=github&amp;include_all_commits=true" />
-  <img height="165" alt="Top languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Yxiang-828&amp;layout=compact&amp;theme=github_dark&amp;hide_border=true&amp;langs_count=8" />
-</p>
-
-<p align="center">
-  <img alt="Contribution streak" src="https://streak-stats.demolab.com?user=Yxiang-828&amp;theme=github-dark-blue&amp;hide_border=true" />
-</p>
+<table>
+  <tr>
+    <td width="33%" valign="top">
+      <strong>Agent systems</strong><br />
+      <a href="https://yxiang-828.github.io/projects/aiko.html">Aiko case study</a><br />
+      local daemon, phone app, Telegram bridge, memory, tools
+    </td>
+    <td width="33%" valign="top">
+      <strong>Applied AI products</strong><br />
+      <a href="https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge">Mera</a> ·
+      <a href="https://yxiang-828.github.io/projects/planai.html">PLAN.AI</a><br />
+      multimodal health companion and cited research planner
+    </td>
+    <td width="33%" valign="top">
+      <strong>Robotics / systems</strong><br />
+      <a href="https://yxiang-828.github.io/projects/kampung-kaki.html">Kampung Kaki</a><br />
+      real-time coordination, maps, MQTT, AI-assisted workflows
+    </td>
+  </tr>
+</table>
 
 <p align="center">
   <strong>Open to internships and collaboration across applied AI, agent infrastructure, robotics, and full-stack systems.</strong>
