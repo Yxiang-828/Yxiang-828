@@ -204,7 +204,7 @@ Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** · 
 | --- | --- | --- |
 | 2026 | **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** | Marsham Edge |
 | 2026 | **DSTA BrainHack CODE_EXP — Open Finalist** | Kampung Kaki |
-| 2026 | **Vibe For Good — Semi-Finalist** | — |
+| 2026 | **Vibe For Good — Semi-Finalist** | VibeCheck |
 | 2026 | AI-Engineer Hackathon | PLAN.AI |
 | 2026 | Synapxe x IMDA AI Innovation Challenge | Mera |
 | 2026 | TinyFish SG Hackathon | Shoppo |
