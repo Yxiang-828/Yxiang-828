@@ -49,6 +49,8 @@ I am driven to build end-to-end systems where AI does not just process data, but
 
 Currently: **Robotics Software Intern at KABAM Robotics**, building on the Matrix-4 autonomous delivery robot stack across ROS 2, MQTT, Docker, Jetson Orin AGX, SAM3, Nav2, C++ and Python. Previously taught **CS2113 Software Engineering & OOP** at NUS.
 
+Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** · **DSTA BrainHack CODE_EXP — Open Finalist** · **Vibe For Good — Semi-Finalist**.
+
 ---
 
 ## Tech Stack
@@ -200,7 +202,9 @@ Currently: **Robotics Software Intern at KABAM Robotics**, building on the Matri
 
 | Year | Hackathon | Project |
 | --- | --- | --- |
-| 2026 | DSTA BrainHack CODE_EXP Open Finalist | Kampung Kaki |
+| 2026 | **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** | Marsham Edge |
+| 2026 | **DSTA BrainHack CODE_EXP — Open Finalist** | Kampung Kaki |
+| 2026 | **Vibe For Good — Semi-Finalist** | — |
 | 2026 | AI-Engineer Hackathon | PLAN.AI |
 | 2026 | Synapxe x IMDA AI Innovation Challenge | Mera |
 | 2026 | TinyFish SG Hackathon | Shoppo |
