@@ -184,7 +184,7 @@
    "bullets": [
     {
      "id": "E1a",
-     "text": "Accelerated SAM3 (Segment Anything Model) vision pipeline on the robot's Jetson Orin AGX with TensorRT, integrated with RTSP video streams and YOLOv8 spatial overlays."
+     "text": "Accelerated SAM3 (Segment Anything Model) vision pipeline on the robot's Jetson Orin AGX with TensorRT, integrated with RTSP video streams and YOLO11 spatial overlays."
     },
     {
      "id": "E1b",
@@ -204,7 +204,7 @@
     "Jetson Orin AGX",
     "TensorRT",
     "SAM3",
-    "YOLOv8",
+    "YOLO11",
     "FFmpeg",
     "CAN bus",
     "LiDAR",
