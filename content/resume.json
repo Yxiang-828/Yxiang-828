@@ -34,7 +34,8 @@
       "{{hackathons.list.7.name}}",
       "{{hackathons.list.6.name}}",
       "{{hackathons.list.9.name}}",
-      "{{hackathons.list.10.name}}"
+      "{{hackathons.list.10.name}}",
+      "{{hackathons.list.11.name}}"
     ]
   },
   "experience": {

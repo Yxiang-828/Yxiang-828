@@ -214,6 +214,7 @@ Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6, LOTR track*
 | 2025 | HacX CS7 | Dual-Mode AV Disruptor |
 | 2026 | Tencent Cloud Age Well Social Good Challenge | AnAn |
 | 2026 | Huawei Tech4City | Replay |
+| 2026 | SUP Buildathon | Agora |
 
 <p align="center">
   <strong>Open to internships from Jan 2027 in AI and agent engineering, software and systems, or edge AI and robotics.</strong>

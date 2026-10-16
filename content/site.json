@@ -74,13 +74,13 @@
      "year": "2026",
      "name": "{{hackathons.list.2.name}}",
      "result": "{{hackathons.list.2.result}}",
-     "note": "VibeCheck, AI venture co-builder & creator social platform (Sep 2026)",
+     "note": "VibeCheck, AI venture co-builder & creator social platform; {{hackathons.list.2.role}}, team of {{hackathons.list.2.team}} (Sep 2026)",
      "project": null
     }
    ],
    "also": {
     "id": "A4",
-    "text": "All {{hackathons.count_2026}} in 2026: {{hackathons.list.0.name}} (Top 6), {{hackathons.list.1.name}} ({{hackathons.list.1.result}}), {{hackathons.list.2.name}} ({{hackathons.list.2.result}}), {{hackathons.list.3.name}} ({{hackathons.list.3.project}}), {{hackathons.list.4.name}} ({{hackathons.list.4.project}}), {{hackathons.list.5.name}} ({{hackathons.list.5.project}}), {{hackathons.list.6.name}} ({{hackathons.list.6.project}}), {{hackathons.list.7.name}} ({{hackathons.list.7.project}}), {{hackathons.list.9.name}} ({{hackathons.list.9.project}}), {{hackathons.list.10.name}} ({{hackathons.list.10.project}}). In 2025: {{hackathons.list.8.name}} ({{hackathons.list.8.project}})."
+    "text": "All {{hackathons.count_2026}} in 2026: {{hackathons.list.0.name}} (Top 6), {{hackathons.list.1.name}} ({{hackathons.list.1.result}}), {{hackathons.list.2.name}} ({{hackathons.list.2.result}}), {{hackathons.list.3.name}} ({{hackathons.list.3.project}}), {{hackathons.list.4.name}} ({{hackathons.list.4.project}}), {{hackathons.list.5.name}} ({{hackathons.list.5.project}}), {{hackathons.list.6.name}} ({{hackathons.list.6.project}}), {{hackathons.list.7.name}} ({{hackathons.list.7.project}}), {{hackathons.list.9.name}} ({{hackathons.list.9.project}}), {{hackathons.list.10.name}} ({{hackathons.list.10.project}}), {{hackathons.list.11.name}} ({{hackathons.list.11.project}}). In 2025: {{hackathons.list.8.name}} ({{hackathons.list.8.project}})."
    },
    "certs": [
     {
@@ -516,7 +516,7 @@
    "bullets": [
     {
      "id": "P4a",
-     "text": "{{projects.kampung.role}}: designed and built the whole system, {{projects.kampung.result}} at {{projects.kampung.event}}."
+     "text": "{{projects.kampung.role}} in the finals: entered with a team that dropped out after selection, then designed, built and presented the whole system alone; {{projects.kampung.result}} at {{projects.kampung.event}}."
     },
     {
      "id": "P4b",

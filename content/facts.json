@@ -49,12 +49,12 @@
     "areas": "AI and agent engineering, software and systems, or edge AI and robotics"
   },
   "projects": {
-    "_note": "role: Solo Developer for his own projects, Lead Developer for every team project (owner, telegram/168). team: people on the team, only where known. Roles, teams, events and his part are the owner's own answers, 16 Oct: to Aiko (her room events 452-486, ~/dinosaur/aiko-agy/room/runtime/presence/unified/inbox.sqlite3) and to Aedrion (room/4408); read those before asking him again. Dates: first to last commit of the project's repo unless noted; event and result as the organiser or his certificate names them.",
+    "_note": "role: Solo Developer for his own projects, Lead Developer for every team project (owner, telegram/168). team: people on the team, only where known. Roles, teams, events and his part are the owner's own answers, 16 Oct: to Aiko (her room events 452-486, ~/dinosaur/aiko-agy/room/runtime/presence/unified/inbox.sqlite3) and to Aedrion (room/4408, room/4414); read those before asking him again. Dates: first to last commit of the project's repo unless noted; event and result as the organiser or his certificate names them.",
     "aiko": { "title": "Aiko", "role": "Solo Developer", "start": "2026-04", "page": "/projects/aiko.html" },
     "agora": { "title": "Agora", "role": "Lead Developer", "team": "3", "event": "SUP Buildathon", "start": "2026-06", "end": "2026-10", "page": "/projects/agora.html", "demo": "https://www.youtube.com/watch?v=Ebdzk12RYUU" },
     "replay": { "title": "Replay", "role": "Solo Developer", "event": "Huawei Tech4City 2026", "start": "2026-07", "end": "2026-08", "page": "/projects/replay.html" },
     "anan": { "title": "AnAn", "role": "Solo Developer", "event": "Tencent Cloud Age Well Social Good Challenge", "start": "2026-08", "page": "/projects/anan.html", "live": "https://yxiang-828.github.io/anan/", "demo": "https://www.youtube.com/watch?v=wId_GYlmgmU" },
-    "kampung": { "title": "Kampung Kaki", "role": "Solo Developer", "event": "DSTA BrainHack CODE_EXP 2026", "result": "Open Finalist", "start": "2026-05", "end": "2026-06", "page": "/projects/kampung-kaki.html", "demo": "https://www.youtube.com/watch?v=bHklSnSBJrQ" },
+    "kampung": { "title": "Kampung Kaki", "role": "Solo Developer", "team_note": "entered with a team; after the team was selected for the finals the others dropped out, so he built and presented the finals alone", "event": "DSTA BrainHack CODE_EXP 2026", "result": "Open Finalist", "start": "2026-05", "end": "2026-06", "page": "/projects/kampung-kaki.html", "demo": "https://www.youtube.com/watch?v=bHklSnSBJrQ" },
     "marsham": { "title": "Marsham Edge", "role": "Lead Developer", "team": "5", "result": "Top 6 / 800 participants (LOTR track)", "event": "Singapore Defence Tech Hackathon", "start": "2026-09", "page": "/#P6" },
     "planai": { "title": "PLAN.AI", "role": "Solo Developer", "event": "AI Engineer Hackathon", "start": "2026-05", "page": "/projects/planai.html" },
     "mera": { "title": "Mera", "role": "Lead Developer", "team": "4", "event": "NUS × Synapxe × IMDA AI Innovation Challenge", "start": "2026-02", "end": "2026-03", "page": "/projects/mera.html", "try": "https://t.me/Meramerarabot", "code": "https://github.com/Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge" },
@@ -62,20 +62,21 @@
     "wingman": { "title": "Wingman", "role": "Lead Developer", "team": "2", "event": "NUS Orbital, Apollo", "start": "2025-05", "end": "2025-08", "page": "/projects/wingman.html", "code": "https://github.com/Yxiang-828/Wingman" }
   },
   "hackathons": {
-    "count_2026": "10",
-    "count_total": "11",
+    "count_2026": "11",
+    "count_total": "12",
     "list": [
       { "year": "2026", "name": "Singapore Defence Tech Hackathon", "result": "Finalist, Top 6, LOTR track", "project": "Marsham Edge" },
       { "year": "2026", "name": "DSTA BrainHack CODE_EXP", "result": "Open Finalist", "project": "Kampung Kaki" },
-      { "year": "2026", "name": "Vibe For Good", "result": "Semi-Finalist", "project": "VibeCheck" },
+      { "year": "2026", "name": "Vibe For Good", "result": "Semi-Finalist", "project": "VibeCheck", "role": "Lead Developer", "team": "3", "part": "wrote all the code" },
       { "year": "2026", "name": "AI Engineer Hackathon", "project": "PLAN.AI" },
       { "year": "2026", "name": "NUS × Synapxe × IMDA AI Innovation Challenge", "project": "Mera" },
       { "year": "2026", "name": "TinyFish SG Hackathon", "project": "Shoppo" },
       { "year": "2026", "name": "VibeWithSG × Duality AI", "project": "off-road terrain segmentation, solo, test mIoU 0.42" },
-      { "year": "2026", "name": "Hack4Good", "project": "Care Guardian System" },
+      { "year": "2026", "name": "Hack4Good", "project": "Care Guardian System", "role": "Lead Developer", "team": "4" },
       { "year": "2025", "name": "HacX CS7", "project": "Dual-Mode AV Disruptor", "team": "5" },
       { "year": "2026", "name": "Tencent Cloud Age Well Social Good Challenge", "project": "AnAn" },
-      { "year": "2026", "name": "Huawei Tech4City", "project": "Replay" }
+      { "year": "2026", "name": "Huawei Tech4City", "project": "Replay" },
+      { "year": "2026", "name": "SUP Buildathon", "project": "Agora" }
     ]
   },
   "certs": [
