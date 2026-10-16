@@ -55,16 +55,16 @@
     {
      "id": "A1",
      "year": "2026",
-     "name": "Singapore Defence Tech Hackathon",
-     "result": "Top 6 (LOTR Track) / 800 participants",
+     "name": "{{hackathons.list.0.name}}",
+     "result": "{{projects.marsham.result}}",
      "note": "Marsham Edge, deterministic counter-drone decision console & 6-sensor async simulation (Sep 2026)",
      "project": "P6"
     },
     {
      "id": "A2",
      "year": "2026",
-     "name": "DSTA BrainHack CODE_EXP",
-     "result": "Open Finalist",
+     "name": "{{hackathons.list.1.name}}",
+     "result": "{{hackathons.list.1.result}}",
      "proof": "/images/awards/dsta-brainhack-code-exp-finalist-2026.jpeg",
      "note": "Kampung Kaki, community emergency response platform (Jun 2026)",
      "project": "P4"
@@ -72,15 +72,15 @@
     {
      "id": "A3",
      "year": "2026",
-     "name": "Vibe For Good",
-     "result": "Semi-Finalist",
+     "name": "{{hackathons.list.2.name}}",
+     "result": "{{hackathons.list.2.result}}",
      "note": "VibeCheck, AI venture co-builder & creator social platform (Sep 2026)",
      "project": null
     }
    ],
    "also": {
     "id": "A4",
-    "text": "Full 2026 Hackathon Cadence: Singapore Defence Tech Hackathon (Top 6), DSTA BrainHack CODE_EXP (Finalist), VibeForGood (Semi-Finalist), NUS-SYNAPXE-IMDA AI Innovation Challenge, AI Engineer Hackathon, Tinyfish-SG-Hackathon, Hack4Good, VibeWithSG."
+    "text": "All {{hackathons.count_2026}} in 2026: {{hackathons.list.0.name}} (Top 6), {{hackathons.list.1.name}} ({{hackathons.list.1.result}}), {{hackathons.list.2.name}} ({{hackathons.list.2.result}}), {{hackathons.list.3.name}} ({{hackathons.list.3.project}}), {{hackathons.list.4.name}} ({{hackathons.list.4.project}}), {{hackathons.list.5.name}} ({{hackathons.list.5.project}}), {{hackathons.list.6.name}} ({{hackathons.list.6.project}}), {{hackathons.list.7.name}} ({{hackathons.list.7.project}}). In 2025: {{hackathons.list.8.name}} ({{hackathons.list.8.project}})."
    },
    "certs": [
     {
@@ -262,7 +262,7 @@
   {
    "id": "P1",
    "title": "Aiko",
-   "tag": "Personal OS Agent Runtime · {{projects.aiko.start|mon}} – Pres.",
+   "tag": "Personal OS Agent Runtime · {{projects.aiko.role}} · {{projects.aiko.start|mon}} – Pres.",
    "what": {
     "id": "P1w",
     "text": "An autonomous personal OS agent runtime that persists across machines, self-heals across model failures, and manages daily engineering workflows."
@@ -333,7 +333,7 @@
   {
    "id": "P2",
    "title": "Agora",
-   "tag": "Collaborative Multi-Agent IDE · {{projects.agora.role}}, {{projects.agora.start|m}} – {{projects.agora.end|mon}}",
+   "tag": "Collaborative Multi-Agent IDE · {{projects.agora.role}}, team of {{projects.agora.team}} · {{projects.agora.start|m}} – {{projects.agora.end|mon}}",
    "what": {
     "id": "P2w",
     "text": "A collaborative development environment where multiple AI coding agents and human developers co-edit one codebase concurrently."
@@ -389,7 +389,7 @@
   {
    "id": "P5",
    "title": "Replay",
-   "tag": "Multiplayer pixel game · {{projects.replay.start|m}} – {{projects.replay.end|mon}}",
+   "tag": "Multiplayer pixel game · {{projects.replay.role}} · {{projects.replay.start|m}} – {{projects.replay.end|mon}}",
    "what": {
     "id": "P5w",
     "text": "A multiplayer AI simulation for practising scam and safety scenarios, where each player sees different evidence."
@@ -405,13 +405,13 @@
     }
    ],
    "stack": [
-    "React",
-    "Vite",
-    "Node.js",
-    "Vercel",
+    "Python",
+    "WebSockets",
+    "Phaser 4",
+    "esbuild",
+    "NVIDIA Nemotron",
     "Render",
-    "OpenAI",
-    "SQLite"
+    "Playwright"
    ],
    "page": "/projects/replay.html",
    "links": [],
@@ -441,7 +441,7 @@
   {
    "id": "P3",
    "title": "AnAn",
-   "tag": "Elderly Care Fall & Inactivity Companion · {{projects.anan.role}}, {{projects.anan.event}} ({{projects.anan.start|mon}})",
+   "tag": "Elderly Care Fall & Inactivity Companion · {{projects.anan.role}} · {{projects.anan.event}} · {{projects.anan.start|mon}}",
    "what": {
     "id": "P3w",
     "text": "An on-device AI companion for elderly care providing non-intrusive fall and inactivity monitoring while preserving total household privacy."
@@ -457,7 +457,7 @@
     },
     {
      "id": "P3c",
-     "text": "Camera screening runs in the browser on the device itself (MediaPipe, WASM), alongside a local voice."
+     "text": "When she goes quiet past her usual window, AnAn walks the family contact tree on Telegram, one person at a time (daughter, son, neighbour), until one of them calls back."
     }
    ],
    "stack": [
@@ -466,7 +466,7 @@
     "React",
     "WASM",
     "MediaPipe",
-    "SEA-LION",
+    "Nemotron",
     "Qwen3-TTS",
     "MapLibre GL",
     "SQLite"
@@ -508,7 +508,7 @@
   {
    "id": "P4",
    "title": "Kampung Kaki",
-   "tag": "Community Emergency Response & Aid Platform · {{projects.kampung.role}}, {{projects.kampung.result}} ({{projects.kampung.start|m}} – {{projects.kampung.end|mon}})",
+   "tag": "Community Emergency Response & Aid Platform · {{projects.kampung.role}} · {{projects.kampung.result}}, {{projects.kampung.event}} · {{projects.kampung.start|m}} – {{projects.kampung.end|mon}}",
    "what": {
     "id": "P4w",
     "text": "A real-time emergency coordination platform connecting vulnerable citizens with nearby grassroots responders during neighborhood crises."
@@ -516,18 +516,18 @@
    "bullets": [
     {
      "id": "P4a",
-     "text": "Solo Developer: Designed and implemented the complete architecture from scratch, placing as an Open Finalist at DSTA BrainHack CODE_EXP 2026."
+     "text": "{{projects.kampung.role}}: designed and built the whole system, {{projects.kampung.result}} at {{projects.kampung.event}}."
     },
     {
      "id": "P4b",
-     "text": "Built reliable pub/sub event pipeline using MQTT 5 (QoS 1) and Redis Streams to sync live incident ledgers across MapLibre GL and OneMap SG."
+     "text": "Every incident travels as a retained MQTT 5 message (QoS 1), so a late joiner still gets the current picture; Redis holds the shared state behind the MapLibre GL and OneMap SG views."
     }
    ],
    "stack": [
     "Python",
     "FastAPI",
     "MQTT 5",
-    "Redis Streams",
+    "Redis",
     "MapLibre GL",
     "OneMap SG",
     "React",
@@ -566,10 +566,10 @@
   {
    "id": "P6",
    "title": "Marsham Edge",
-   "tag": "Counter-Drone Decision Console · {{projects.marsham.result}}, {{projects.marsham.event}} ({{projects.marsham.start|mon}})",
+   "tag": "Counter-Drone Decision Console · {{projects.marsham.role}} · {{projects.marsham.result}}, {{projects.marsham.event}} · {{projects.marsham.start|mon}}",
    "what": {
     "id": "P6w",
-    "text": "A deterministic counter-drone decision console and 6-sensor asynchronous simulation built at the Singapore Defence Tech Hackathon 2026 (Top 6 placement out of 800 participants)."
+    "text": "A deterministic counter-drone decision console and 6-sensor asynchronous simulation built at the {{projects.marsham.event}} 2026."
    },
    "bullets": [
     {
@@ -611,7 +611,7 @@
   {
    "id": "P7",
    "title": "PLAN.AI",
-   "tag": "AI Engineer Hackathon · deep-research planner",
+   "tag": "Deep-Research Planner · {{projects.planai.role}} · {{projects.planai.event}} · {{projects.planai.start|mon}}",
    "what": {
     "id": "C04w",
     "text": "A deep-research planner: it searches papers, repos, forums and the web in parallel, then writes a cited 22-section technical blueprint with C4 diagrams."
@@ -647,7 +647,7 @@
   {
    "id": "P8",
    "title": "Mera",
-   "tag": "NUS × Synapxe × IMDA AI Innovation Challenge · team lead",
+   "tag": "Telegram Health Companion · {{projects.mera.role}} · {{projects.mera.event}} · {{projects.mera.start|m}} – {{projects.mera.end|mon}}",
    "what": {
     "id": "C06w",
     "text": "A Telegram health companion for chronic patients, with three camera checks (heart rate, smile, mobility) that run on the phone."
@@ -693,7 +693,7 @@
   {
    "id": "P9",
    "title": "Shoppo",
-   "tag": "TinyFish SG Hackathon · Telegram shopping agent",
+   "tag": "Telegram Shopping Agent · {{projects.shoppo.role}} · {{projects.shoppo.event}} · {{projects.shoppo.start|mon}}",
    "what": {
     "id": "C05w",
     "text": "A Telegram shopping agent: it turns a vague request into searches across several marketplaces and returns a ranked shortlist with its reasons."
@@ -733,7 +733,7 @@
   {
    "id": "P10",
    "title": "Wingman",
-   "tag": "NUS Orbital · Apollo",
+   "tag": "Local AI Desktop Assistant · {{projects.wingman.role}}, team of {{projects.wingman.team}} · {{projects.wingman.event}} · {{projects.wingman.start|m}} – {{projects.wingman.end|mon}}",
    "what": {
     "id": "C07w",
     "text": "A desktop personal assistant with tasks, calendar, diary and an AI chat that runs locally on Ollama."

@@ -11,28 +11,28 @@
     "detail": "{{education.degree}} &bull; Specialization: <strong>{{education.specialisation}}</strong> &bull; Minor: <strong>{{education.minor}}</strong>",
     "honors": [
       {
-        "text": "<strong>Singapore Defence Tech Hackathon (SDTH)</strong>: Top 6 out of 800 participants (LOTR 2-day track, Sep 2026) <span class=\"tag\">Top 0.75%</span>",
+        "text": "<strong>{{projects.marsham.event}} (SDTH)</strong>: {{projects.marsham.result}}, {{projects.marsham.start|mon}}",
         "metric": "Marsham Edge"
       },
       {
-        "text": "<strong>DSTA BrainHack CODE_EXP 2026</strong>: Open Category Finalist (out of 4,500+ participants across tracks, Jun 2026)",
+        "text": "<strong>{{projects.kampung.event}}</strong>: {{projects.kampung.result}} (4,500+ students across all BrainHack tracks, Jun 2026)",
         "metric": "Kampung Kaki"
       },
       {
-        "text": "<strong>Vibe For Good 2026</strong>: Semi-Finalist (AI venture co-builder & creator platform, Sep 2026)",
+        "text": "<strong>{{hackathons.list.2.name}} 2026</strong>: {{hackathons.list.2.result}} (AI venture co-builder & creator platform, Sep 2026)",
         "metric": "VibeCheck"
       }
     ],
     "roster_label": "2026 Hackathons ({{hackathons.count_2026}} Competitions):",
     "roster": [
-      "<strong>Singapore Defence Tech Hackathon</strong> (Finalist, Top 6 LOTR)",
-      "<strong>DSTA | Brainhack CODE_EXP 2026</strong> (Finalist)",
-      "<strong>VibeForGood 2026</strong> (Semi-Finalist)",
-      "NUS-SYNAPXE-IMDA AI Innovation Challenge 2026",
-      "AI Engineer Hackathon 2026",
-      "Tinyfish-SG-Hackathon 2026",
-      "Hack4Good 2026",
-      "VibeWithSG 2026"
+      "<strong>{{hackathons.list.0.name}}</strong> ({{hackathons.list.0.result}})",
+      "<strong>{{hackathons.list.1.name}}</strong> ({{hackathons.list.1.result}})",
+      "<strong>{{hackathons.list.2.name}}</strong> ({{hackathons.list.2.result}})",
+      "{{hackathons.list.4.name}}",
+      "{{hackathons.list.3.name}}",
+      "{{hackathons.list.5.name}}",
+      "{{hackathons.list.7.name}}",
+      "{{hackathons.list.6.name}}"
     ]
   },
   "experience": {
@@ -45,7 +45,7 @@
         "stack": "Jetson Orin AGX, TensorRT, SAM3, YOLOv8, FFmpeg, ROS 2, LiDAR SLAM, Nav2 MPPI, CAN bus, MWAN3, Docker",
         "bullets": [
           "<strong>Sole On-Site Deployment:</strong> Conducted first ever SG field PoC ({{roles.kabam.field_start|m}} &ndash; {{roles.kabam.field_end|mon}}) as solo on-site robotics engineer for KABAM’s {{roles.kabam.robot}} model; diagnosed LiDAR SLAM drift, Nav2 MPPI trajectory tracking, autonomous docking, and MWAN3 multi-WAN networking alongside remote engineers.",
-          "<strong>Edge CV Acceleration:</strong> Optimized Segment Anything Model (SAM3) vision-language inference on Jetson Orin AGX with TensorRT; piped real-time RTSP/FFmpeg video streams with YOLOv8 perception overlays for sub-100ms situational awareness.",
+          "<strong>Edge CV Acceleration:</strong> Optimized Segment Anything Model (SAM3) vision-language inference on Jetson Orin AGX with TensorRT; piped real-time RTSP/FFmpeg video streams with YOLOv8 perception overlays.",
           "<strong>Diagnostic & Mission Tooling:</strong> Shipped cross-platform desktop ROS 2 diagnostics and mobile mission-control tools featuring hardware emergency-stop overrides, CAN bus telemetry decoders, and live LiDAR/occupancy grid streaming."
         ]
       },
@@ -65,8 +65,8 @@
       {
         "href": "{{person.site}}{{projects.marsham.page}}",
         "name": "{{projects.marsham.title}}",
-        "role": "Counter-Drone Decision Console & Simulation (Lead Systems Dev)",
-        "tag": "Top 6 / 800 SDTH",
+        "role": "Counter-Drone Decision Console & Simulation ({{projects.marsham.role}})",
+        "tag": "Top 6, SDTH",
         "date": "{{projects.marsham.start|mon}}",
         "stack": "Python, WebSockets, WGS84 Geodesic Transforms, Pytest (236 unit tests), HTML5 Canvas Replay Engine",
         "bullets": [
@@ -77,7 +77,7 @@
       {
         "href": "{{person.site}}{{projects.aiko.page}}",
         "name": "{{projects.aiko.title}}",
-        "role": "Autonomous Personal OS Agent Runtime (Solo Developer)",
+        "role": "Autonomous Personal OS Agent Runtime ({{projects.aiko.role}})",
         "date": "{{projects.aiko.start|mon}} &ndash; Present",
         "stack": "TypeScript, Node.js, SQLite, React Native, Tailscale, Ollama, OpenRouter, Qwen3-TTS",
         "bullets": [
@@ -88,7 +88,7 @@
       {
         "href": "{{person.site}}{{projects.agora.page}}",
         "name": "{{projects.agora.title}}",
-        "role": "Collaborative Multi-Agent IDE & Dev Environment (Lead Developer, Team of 3)",
+        "role": "Collaborative Multi-Agent IDE & Dev Environment ({{projects.agora.role}}, team of {{projects.agora.team}})",
         "date": "{{projects.agora.start|mon}} &ndash; {{projects.agora.end|mon}}",
         "stack": "TypeScript, VS Code Core Fork, Mattermost Mod, WebSockets, Node.js, Docker",
         "bullets": [
@@ -99,22 +99,22 @@
       {
         "href": "{{person.site}}{{projects.kampung.page}}",
         "name": "{{projects.kampung.title}}",
-        "role": "Community Emergency Response & Aid Platform (Solo Developer)",
-        "tag": "Finalist, DSTA BrainHack",
+        "role": "Community Emergency Response & Aid Platform ({{projects.kampung.role}})",
+        "tag": "{{projects.kampung.result}}, CODE_EXP",
         "date": "{{projects.kampung.start|mon}} &ndash; {{projects.kampung.end|mon}}",
-        "stack": "Python, FastAPI, MQTT 5 QoS 1, Redis Streams, MapLibre GL, OneMap SG GIS, React, Docker",
+        "stack": "Python, FastAPI, MQTT 5 QoS 1, Redis, MapLibre GL, OneMap SG GIS, React, Docker",
         "bullets": [
-          "Architected distributed event-driven emergency dispatch system; implemented MQTT 5 QoS 1 broker and Redis Streams ingest pipeline delivering sub-second real-time event dissemination between citizens and first responders.",
+          "Architected distributed event-driven emergency dispatch system; every incident travels as a retained MQTT 5 QoS 1 message with Redis as the shared state, so citizens and first responders, late joiners included, see the same picture.",
           "Integrated Singapore OneMap GIS APIs and MapLibre GL vector tiles for dynamic role-segregated tactical operation views."
         ]
       },
       {
         "href": "{{projects.anan.live}}",
         "name": "{{projects.anan.title}}",
-        "role": "Elderly Care Fall & Inactivity Monitoring Companion (Solo Developer)",
-        "tag": "Tencent Age Well Challenge",
+        "role": "Elderly Care Fall & Inactivity Monitoring Companion ({{projects.anan.role}})",
+        "tag": "{{projects.anan.event}}",
         "date": "{{projects.anan.start|mon}}",
-        "stack": "Python, FastAPI, MediaPipe, WebAssembly (WASM), SEA-LION, React, SQLite",
+        "stack": "Python, FastAPI, MediaPipe, WebAssembly (WASM), Nemotron, Qwen3-TTS, SQLite",
         "bullets": [
           "Constructed 7-stage deterministic safety kernel with state revalidation and permission gating prior to automated emergency alerts.",
           "Built client-side browser computer vision using MediaPipe/WASM for fall and inactivity detection—guaranteeing <strong>0 raw video frames</strong> leave the user's local device for absolute privacy compliance."
@@ -135,7 +135,7 @@
       },
       {
         "label": "Robotics & Systems:",
-        "vals": "ROS 2 (Jazzy), Nav2 MPPI, LiDAR SLAM, Jetson Orin AGX, CAN bus, Docker, Linux, MQTT 5, Redis Streams, WebSockets, MWAN3"
+        "vals": "ROS 2 (Jazzy), Nav2 MPPI, LiDAR SLAM, Jetson Orin AGX, CAN bus, Docker, Linux, MQTT 5, Redis, WebSockets, MWAN3"
       },
       {
         "label": "Certifications:",

@@ -163,7 +163,7 @@ Recognition: **{{hackathons.list.0.name}} — {{hackathons.list.0.result}}** · 
       <p><strong>Digital Health Companion</strong></p>
       <p>Telegram-native health companion with Singapore AI models, multimodal voice/vision flows, and on-device clinical mini-apps.</p>
       <p>
-        <img alt="Team lead" src="https://img.shields.io/badge/Team_Lead-FF1E56?style=flat-square" />
+        <img alt="Lead Developer" src="https://img.shields.io/badge/Lead_Developer-FF1E56?style=flat-square" />
         <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=flat-square&amp;logo=python&amp;logoColor=white" />
         <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&amp;logo=fastapi&amp;logoColor=white" />
         <img alt="SEA-LION" src="https://img.shields.io/badge/SEA--LION-FF1E56?style=flat-square" />
@@ -204,7 +204,7 @@ Recognition: **{{hackathons.list.0.name}} — {{hackathons.list.0.result}}** · 
 <!-- hackathons: rows from content/facts.json hackathons.list -->
 
 <p align="center">
-  <strong>Open to internships and collaboration across applied AI, agent infrastructure, robotics, and full-stack systems.</strong>
+  <strong>Open to internships from {{seeking.start|mon}} in {{seeking.areas}}.</strong>
 </p>
 
 ---

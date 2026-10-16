@@ -29,7 +29,7 @@
       "id": "F5",
       "to": "hackathons",
       "title": "Hackathons",
-      "text": "Hackathons: {{hackathons.count_2026}} hackathons in 2026, {{hackathons.count_total}} total (including HacX 2025). Top honors: Top 6 (LOTR Track) out of 800 participants at the Singapore Defence Tech Hackathon (Marsham Edge, Sep 2026), Open Finalist at DSTA BrainHack CODE_EXP 2026 (Kampung Kaki, Jun 2026), Semi-Finalist at Vibe For Good 2026 (VibeCheck, Sep 2026). Also participated in NUS-SYNAPXE-IMDA AI Challenge, AI Engineer Hackathon, Tinyfish-SG-Hackathon, Hack4Good, and VibeWithSG. AnAn is for Tencent Age Well Social Good Challenge SG."
+      "text": "Hackathons: {{hackathons.count_2026}} in 2026, {{hackathons.count_total}} in all (with HacX in 2025). Placed: {{projects.marsham.result}} at the {{projects.marsham.event}} (Marsham Edge, team project, {{projects.marsham.start|mon}}); {{projects.kampung.result}} at {{projects.kampung.event}} (Kampung Kaki, {{projects.kampung.start|m}} – {{projects.kampung.end|mon}}); {{hackathons.list.2.result}} at {{hackathons.list.2.name}} 2026 (VibeCheck). Took part, no placing: {{hackathons.list.3.name}} ({{hackathons.list.3.project}}), {{hackathons.list.4.name}} ({{hackathons.list.4.project}}), {{hackathons.list.5.name}} ({{hackathons.list.5.project}}), {{hackathons.list.6.name}} ({{hackathons.list.6.project}}), {{hackathons.list.7.name}} ({{hackathons.list.7.project}}); in 2025 {{hackathons.list.8.name}} ({{hackathons.list.8.project}}). AnAn was his solo entry to the {{projects.anan.event}} ({{projects.anan.start|mon}}), which is not counted among the hackathons."
     },
     {
       "id": "F6",

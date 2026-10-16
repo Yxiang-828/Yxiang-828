@@ -50,7 +50,7 @@ I am driven to build end-to-end systems where AI does not just process data, but
 
 Currently: **Software Robotics Engineer (Solo On-Site Deployment) at KABAM Robotics**, internship May 2026 – Dec 2026. From Jul 2026 to Oct 2026 I ran its first Singapore field PoC of the latest patrol robot model as the solo on-site engineer, across ROS 2, MQTT, Docker, Jetson Orin AGX, SAM3, Nav2, C++ and Python. Previously taught **CS2113 Software Engineering & OOP** at NUS.
 
-Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** · **DSTA BrainHack CODE_EXP — Open Finalist** · **Vibe For Good — Semi-Finalist**.
+Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6, LOTR track** · **DSTA BrainHack CODE_EXP — Open Finalist** · **Vibe For Good — Semi-Finalist**.
 
 ---
 
@@ -163,7 +163,7 @@ Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** · 
       <p><strong>Digital Health Companion</strong></p>
       <p>Telegram-native health companion with Singapore AI models, multimodal voice/vision flows, and on-device clinical mini-apps.</p>
       <p>
-        <img alt="Team lead" src="https://img.shields.io/badge/Team_Lead-FF1E56?style=flat-square" />
+        <img alt="Lead Developer" src="https://img.shields.io/badge/Lead_Developer-FF1E56?style=flat-square" />
         <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=flat-square&amp;logo=python&amp;logoColor=white" />
         <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&amp;logo=fastapi&amp;logoColor=white" />
         <img alt="SEA-LION" src="https://img.shields.io/badge/SEA--LION-FF1E56?style=flat-square" />
@@ -203,18 +203,18 @@ Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** · 
 
 | Year | Hackathon | Project |
 | --- | --- | --- |
-| 2026 | **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** | Marsham Edge |
+| 2026 | **Singapore Defence Tech Hackathon — Finalist, Top 6, LOTR track** | Marsham Edge |
 | 2026 | **DSTA BrainHack CODE_EXP — Open Finalist** | Kampung Kaki |
 | 2026 | **Vibe For Good — Semi-Finalist** | VibeCheck |
 | 2026 | AI Engineer Hackathon | PLAN.AI |
 | 2026 | NUS × Synapxe × IMDA AI Innovation Challenge | Mera |
 | 2026 | TinyFish SG Hackathon | Shoppo |
-| 2026 | VibeWithSG | Simulation and public-service AI workflow |
-| 2026 | Hack4Good | Social-impact product build |
-| 2025 | HacX CS7 | AV sensor disruption / security research |
+| 2026 | VibeWithSG × Duality AI | off-road terrain segmentation, solo, test mIoU 0.42 |
+| 2026 | Hack4Good | Care Guardian System |
+| 2025 | HacX CS7 | Dual-Mode AV Disruptor |
 
 <p align="center">
-  <strong>Open to internships and collaboration across applied AI, agent infrastructure, robotics, and full-stack systems.</strong>
+  <strong>Open to internships from Jan 2027 in AI and agent engineering, software and systems, or edge AI and robotics.</strong>
 </p>
 
 ---
