@@ -1,0 +1,146 @@
+{
+  "_note": "The General Résumé (resume.html and its PDFs), written by resume/build.py. Text may hold <strong>; shared facts (dates, links, titles) are paths into facts.json in double braces.",
+  "title": "Yao Xiang - Resume | Software, AI & Robotics Engineer",
+  "toolbar": "Generalist Resume (AI Agents, SWE Systems, Robotics)",
+  "summary": "NUS Computer Engineering undergraduate (Minor in AI) combining autonomous multi-model agent systems, real-time distributed backends, and accelerated edge AI for robotics. Experienced leading technical teams, architecting fault-tolerant async pipelines, and deploying mission-critical systems solo on-site.",
+  "education": {
+    "heading": "Education & Competitive Hackathons",
+    "sub": "Verified Denominators",
+    "school": "{{education.school}}",
+    "date": "{{education.start|mon}} &ndash; {{education.end|mon}} (Projected)",
+    "detail": "{{education.degree}} &bull; Specialization: <strong>{{education.specialisation}}</strong> &bull; Minor: <strong>{{education.minor}}</strong>",
+    "honors": [
+      {
+        "text": "<strong>Singapore Defence Tech Hackathon (SDTH)</strong>: Top 6 out of 800 participants (LOTR 2-day track, Sep 2026) <span class=\"tag\">Top 0.75%</span>",
+        "metric": "Marsham Edge"
+      },
+      {
+        "text": "<strong>DSTA BrainHack CODE_EXP 2026</strong>: Open Category Finalist (out of 4,500+ participants across tracks, Jun 2026)",
+        "metric": "Kampung Kaki"
+      },
+      {
+        "text": "<strong>Vibe For Good 2026</strong>: Semi-Finalist (AI venture co-builder & creator platform, Sep 2026)",
+        "metric": "VibeCheck"
+      }
+    ],
+    "roster_label": "2026 Hackathons ({{hackathons.count_2026}} Competitions):",
+    "roster": [
+      "<strong>Singapore Defence Tech Hackathon</strong> (Finalist, Top 6 LOTR)",
+      "<strong>DSTA | Brainhack CODE_EXP 2026</strong> (Finalist)",
+      "<strong>VibeForGood 2026</strong> (Semi-Finalist)",
+      "NUS-SYNAPXE-IMDA AI Innovation Challenge 2026",
+      "AI Engineer Hackathon 2026",
+      "Tinyfish-SG-Hackathon 2026",
+      "Hack4Good 2026",
+      "VibeWithSG 2026"
+    ]
+  },
+  "experience": {
+    "heading": "Work Experience",
+    "items": [
+      {
+        "name": "{{roles.kabam.org}}",
+        "role": "{{roles.kabam.title}} ({{roles.kabam.mode}})",
+        "date": "{{roles.kabam.start|mon}} &ndash; Present (until {{roles.kabam.end|mon}})",
+        "stack": "Jetson Orin AGX, TensorRT, SAM3, YOLOv8, FFmpeg, ROS 2, LiDAR SLAM, Nav2 MPPI, CAN bus, MWAN3, Docker",
+        "bullets": [
+          "<strong>Sole On-Site Deployment:</strong> Conducted first ever SG field PoC ({{roles.kabam.field_start|m}} &ndash; {{roles.kabam.field_end|mon}}) as solo on-site robotics engineer for KABAM’s {{roles.kabam.robot}} model; diagnosed LiDAR SLAM drift, Nav2 MPPI trajectory tracking, autonomous docking, and MWAN3 multi-WAN networking alongside remote engineers.",
+          "<strong>Edge CV Acceleration:</strong> Optimized Segment Anything Model (SAM3) vision-language inference on Jetson Orin AGX with TensorRT; piped real-time RTSP/FFmpeg video streams with YOLOv8 perception overlays for sub-100ms situational awareness.",
+          "<strong>Diagnostic & Mission Tooling:</strong> Shipped cross-platform desktop ROS 2 diagnostics and mobile mission-control tools featuring hardware emergency-stop overrides, CAN bus telemetry decoders, and live LiDAR/occupancy grid streaming."
+        ]
+      },
+      {
+        "name": "National University of Singapore",
+        "role": "{{roles.ta.title}} (CS2113 Software Engineering & OOP)",
+        "date": "{{roles.ta.start|mon}} &ndash; {{roles.ta.end|mon}}",
+        "bullets": [
+          "Mentored undergraduate teams on Java object-oriented architecture, JUnit test-driven design, Git collaboration, and CI/CD pipelines."
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "heading": "Featured Engineering Projects",
+    "items": [
+      {
+        "href": "{{person.site}}{{projects.marsham.page}}",
+        "name": "{{projects.marsham.title}}",
+        "role": "Counter-Drone Decision Console & Simulation (Lead Systems Dev)",
+        "tag": "Top 6 / 800 SDTH",
+        "date": "{{projects.marsham.start|mon}}",
+        "stack": "Python, WebSockets, WGS84 Geodesic Transforms, Pytest (236 unit tests), HTML5 Canvas Replay Engine",
+        "bullets": [
+          "Engineered 6-sensor asynchronous pipeline (Radar, Acoustic, RF, IFF transponder, EO, OSINT) across 6 independent clock domains with physical measurement uncertainty bounds and SHA-256 emitter provenance validation.",
+          "Built zero-RNG deterministic truth engine and operator replay console with WGS84-to-local coordinate transformations; validated system reliability with <strong>236 automated unit tests</strong> under adversarial drone swarm scenarios."
+        ]
+      },
+      {
+        "href": "{{person.site}}{{projects.aiko.page}}",
+        "name": "{{projects.aiko.title}}",
+        "role": "Autonomous Personal OS Agent Runtime (Solo Developer)",
+        "date": "{{projects.aiko.start|mon}} &ndash; Present",
+        "stack": "TypeScript, Node.js, SQLite, React Native, Tailscale, Ollama, OpenRouter, Qwen3-TTS",
+        "bullets": [
+          "Designed 5-tier persistent agent memory architecture with hybrid BM25 and vector embeddings unified via Reciprocal Rank Fusion (RRF); <strong>reduced prompt token payload by 69%</strong> (109 KB to 34 KB) while preserving long-term temporal grounding.",
+          "Engineered autonomous multi-model runtime with automatic provider failover, process watchdog supervision, self-healing diagnostic loops, local GPU Qwen3-TTS voice synthesis, and sandboxed event execution."
+        ]
+      },
+      {
+        "href": "{{person.site}}{{projects.agora.page}}",
+        "name": "{{projects.agora.title}}",
+        "role": "Collaborative Multi-Agent IDE & Dev Environment (Lead Developer, Team of 3)",
+        "date": "{{projects.agora.start|mon}} &ndash; {{projects.agora.end|mon}}",
+        "stack": "TypeScript, VS Code Core Fork, Mattermost Mod, WebSockets, Node.js, Docker",
+        "bullets": [
+          "Led 3-man development team; architected parallel AI coding agent orchestrator with AST-level Git 3-way merge conflict resolution.",
+          "Constructed custom Mattermost extension, CLI/API agent harness, and WebSocket state synchronization protocol coordinating concurrent agent modifications within containerized workspaces."
+        ]
+      },
+      {
+        "href": "{{person.site}}{{projects.kampung.page}}",
+        "name": "{{projects.kampung.title}}",
+        "role": "Community Emergency Response & Aid Platform (Solo Developer)",
+        "tag": "Finalist, DSTA BrainHack",
+        "date": "{{projects.kampung.start|mon}} &ndash; {{projects.kampung.end|mon}}",
+        "stack": "Python, FastAPI, MQTT 5 QoS 1, Redis Streams, MapLibre GL, OneMap SG GIS, React, Docker",
+        "bullets": [
+          "Architected distributed event-driven emergency dispatch system; implemented MQTT 5 QoS 1 broker and Redis Streams ingest pipeline delivering sub-second real-time event dissemination between citizens and first responders.",
+          "Integrated Singapore OneMap GIS APIs and MapLibre GL vector tiles for dynamic role-segregated tactical operation views."
+        ]
+      },
+      {
+        "href": "{{projects.anan.live}}",
+        "name": "{{projects.anan.title}}",
+        "role": "Elderly Care Fall & Inactivity Monitoring Companion (Solo Developer)",
+        "tag": "Tencent Age Well Challenge",
+        "date": "{{projects.anan.start|mon}}",
+        "stack": "Python, FastAPI, MediaPipe, WebAssembly (WASM), SEA-LION, React, SQLite",
+        "bullets": [
+          "Constructed 7-stage deterministic safety kernel with state revalidation and permission gating prior to automated emergency alerts.",
+          "Built client-side browser computer vision using MediaPipe/WASM for fall and inactivity detection—guaranteeing <strong>0 raw video frames</strong> leave the user's local device for absolute privacy compliance."
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "heading": "Technical Skills & Certifications",
+    "rows": [
+      {
+        "label": "Languages:",
+        "vals": "Python, C/C++, TypeScript, JavaScript, Java, SQL, Rust, Bash, HTML/CSS"
+      },
+      {
+        "label": "AI & Edge Perception:",
+        "vals": "TensorRT, PyTorch, SAM3, YOLOv8, MediaPipe (WASM), Hybrid Retrieval (BM25 + Vector RRF), Local LLMs (Ollama), Qwen3-TTS"
+      },
+      {
+        "label": "Robotics & Systems:",
+        "vals": "ROS 2 (Jazzy), Nav2 MPPI, LiDAR SLAM, Jetson Orin AGX, CAN bus, Docker, Linux, MQTT 5, Redis Streams, WebSockets, MWAN3"
+      },
+      {
+        "label": "Certifications:",
+        "vals": "Google AI Professional Certificate (2026) &bull; Deep Learning Engineering Specialization (Coursera, 2026)"
+      }
+    ]
+  }
+}

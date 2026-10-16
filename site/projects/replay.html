@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!--NO-SPLASH-INJECTED-->
+<script>(function(){function k(){if(!document.body)return;document.body.classList.remove('preload');var l=document.getElementById('loader');if(l)l.remove();var h=document.getElementById('holo-container');if(h){h.classList.remove('holo-splash-center','talking');h.removeAttribute('style');h.style.display='block';h.style.animation='none';}var t=document.getElementById('holo-text');if(t)t.innerText='';window.holoCanNavigate=true;sessionStorage.setItem('visited','true');var ov=document.querySelector('.page-transition-overlay');if(ov)ov.classList.remove('active');}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',k);}else{k();}window.addEventListener('pageshow',k);})();</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Replay — Multiplayer Family Rehearsal | Yao Xiang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        body.preload { visibility: hidden !important }
+        body.preload #loader, body.preload #holo-container { visibility: visible !important }
+    </style>
+
+    <style>
+    /* ── Replay ────────────────────────────────────────────────────────────
+       The subject is a 240x160 pixel game, so the page is built out of the
+       game's own furniture: the dialogue box, the choice menu, the week/turn
+       header, the console screen. Palette lifted from the actual scene art
+       (deep navy room, teal window, bone text, amber choice), not from the
+       portfolio default — a page that could belong to an unrelated project is
+       the failure mode.
+
+       Written mobile-first: the base rules ARE the phone, and the desktop
+       layout is the enhancement at 760px. Nothing here reveals on scroll —
+       a flick moves a viewport per frame, so scroll-reveals arrive late and
+       read as flashing rather than motion.                                 */
+    .rp {
+      --ink:    #0A101A;   /* the room at night          */
+      --panel:  #10202E;   /* dialogue box fill          */
+      --panel2: #16293A;
+      --line:   #2C5468;   /* window frame               */
+      --bone:   #E9EFF4;   /* the game's text            */
+      --dim:    #9DB0C0;   /* AA on --ink                */
+      --amber:  #E8B166;   /* the choice colour          */
+      --teal:   #79D2C0;
+      --rose:   #E0687A;
+
+      --s1: 8px;  --s2: 14px; --s3: 22px; --s4: 34px; --s5: 48px;
+
+      --pixel: 'Press Start 2P', ui-monospace, monospace;
+      --mono:  ui-monospace, 'SF Mono', Menlo, monospace;
+
+      position: relative; z-index: 2;
+      background: var(--ink); color: var(--bone);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.68;
+      overflow-x: clip;
+    }
+    .rp-wrap { max-width: 1060px; margin: 0 auto; padding: 0 18px; }
+
+    /* the CRT it is played on — static, never animated */
+    .rp-scan {
+      position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: .28;
+      background: repeating-linear-gradient(180deg,
+        rgba(0,0,0,.28) 0 1px, rgba(0,0,0,0) 1px 3px);
+    }
+    .rp > * { position: relative; z-index: 2; }
+
+    /* ── the week/turn header: the game's own section marker ─────────── */
+    .rp-week {
+      display: flex; align-items: center; gap: 9px; flex-wrap: nowrap;
+      font-family: var(--pixel); font-size: 8px; line-height: 1.9;
+      color: var(--amber); text-transform: uppercase;
+      margin-bottom: var(--s3); white-space: nowrap;
+    }
+    .rp-week i { font-style: normal; color: var(--dim); }
+    .rp-week em { font-style: normal; color: var(--dim); }
+    /* must be allowed to SHRINK, or it pushes the turn counter onto its own
+       line and renders as a stray full-width rule */
+    .rp-week hr {
+      flex: 1 1 12px; min-width: 12px; height: 0; border: 0;
+      border-top: 1px dashed var(--line); margin: 0;
+    }
+
+    /* ── the dialogue box: this page's signature element ─────────────── */
+    .rp-say { margin: var(--s3) 0 var(--s4); }
+    .rp-who {
+      display: inline-block; font-family: var(--pixel); font-size: 9px;
+      color: var(--bone); background: var(--ink);
+      padding: 0 8px 4px 2px; letter-spacing: .04em;
+    }
+    .rp-box {
+      border: 2px solid var(--bone); border-radius: 2px;
+      background: rgba(16,32,46,.94);
+      padding: 18px 16px 20px;
+      box-shadow: inset 0 0 0 2px var(--panel), 0 10px 30px rgba(0,0,0,.5);
+      font-size: 17px; color: var(--bone);
+    }
+    .rp-box b { color: var(--amber); font-weight: 600; }
+    .rp-box .rp-caret {
+      display: block; text-align: right; color: var(--bone);
+      font-size: 11px; margin-top: 10px; opacity: .75;
+    }
+
+    /* ── the choice menu ─────────────────────────────────────────────── */
+    .rp-choices { list-style: none; margin: var(--s3) 0 0; padding: 0; }
+    .rp-choice {
+      display: grid; grid-template-columns: 22px 1fr; gap: 10px;
+      padding: 14px 12px; border: 1px solid var(--line);
+      background: rgba(22,41,58,.55); margin-bottom: 10px;
+      font-size: 16px; color: var(--bone);
+    }
+    .rp-choice::before {
+      content: '▶'; color: var(--amber); font-size: 12px; line-height: 1.6;
+    }
+    .rp-choice b { display: block; color: var(--amber); font-weight: 600;
+                   font-family: var(--mono); font-size: 13px; letter-spacing: .06em;
+                   text-transform: uppercase; margin-bottom: 4px; }
+
+    /* ── sections ────────────────────────────────────────────────────── */
+    .rp-sec { padding: var(--s5) 0; }
+    .rp-sec.alt { background: #080D15; border-top: 1px solid var(--line);
+                  border-bottom: 1px solid var(--line); }
+    .rp-h2 {
+      font-family: var(--pixel); font-size: 17px; line-height: 1.62;
+      color: var(--bone); margin: 0 0 var(--s2); letter-spacing: 0;
+    }
+    .rp-p { font-size: 16.5px; color: #C3D0DC; margin: 0 0 var(--s2); }
+    .rp-p b { color: var(--bone); font-weight: 600; }
+
+    /* ── hero ────────────────────────────────────────────────────────── */
+    .rp-hero { padding: 120px 0 var(--s5); }
+    .rp-title {
+      font-family: var(--pixel); font-size: clamp(30px, 11vw, 62px);
+      line-height: 1.34; color: var(--bone); margin: 0 0 var(--s3);
+      text-shadow: 0 0 22px rgba(121,210,192,.22);
+    }
+    .rp-kicker { font-family: var(--pixel); font-size: 9px; color: var(--teal);
+                 margin-bottom: var(--s3); line-height: 2; }
+    .rp-lede { font-size: 18px; color: #C9D6E2; }
+    .rp-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: var(--s3) 0 0;
+               font-family: var(--mono); font-size: 12.5px; color: var(--dim);
+               letter-spacing: .06em; text-transform: uppercase; }
+
+    /* ── the GBA screen frame ────────────────────────────────────────── */
+    .rp-screen { margin: var(--s4) 0 0; }
+    .rp-screen a { display: block; border: 2px solid var(--line);
+                   background: #06090F; padding: 8px; text-decoration: none; }
+    .rp-screen img {
+      /* height:auto is load-bearing. The width/height ATTRIBUTES arrive as CSS
+         presentational hints; overriding only the width leaves the height
+         pinned and the picture stretched. Keep the attributes — they are what
+         reserves the box and holds CLS at zero — and release the height. */
+      width: 100%; height: auto; display: block;
+      image-rendering: pixelated;          /* it is pixel art; do not smooth it */
+    }
+    .rp-screen figcaption {
+      display: flex; flex-wrap: wrap; gap: 4px 12px; justify-content: space-between;
+      font-family: var(--mono); font-size: 12.5px; color: var(--dim);
+      margin-top: 10px; line-height: 1.6;
+    }
+    .rp-screen figcaption em { font-style: normal; color: var(--amber); }
+
+    /* ── stat plates ─────────────────────────────────────────────────── */
+    .rp-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+                margin: var(--s4) 0 0; }
+    .rp-stat { border: 1px solid var(--line); background: rgba(16,32,46,.6);
+               padding: 14px 14px 16px; }
+    .rp-stat b { display: block; font-family: var(--pixel); font-size: 18px;
+                 color: var(--amber); line-height: 1.5; }
+    .rp-stat span { display: block; font-size: 13px; color: var(--dim); margin-top: 8px;
+                    line-height: 1.55; }
+
+    /* ── the layer law ───────────────────────────────────────────────── */
+    .rp-stack { margin: var(--s3) 0 0; border: 1px solid var(--line); }
+    /* Block flow on a phone, on purpose. A grid here would need its column
+       count to match its child count, and the moment it does not, the last
+       child lands in the 44px gutter and wraps one word per line. */
+    .rp-layer { display: block; padding: 13px 12px;
+                border-bottom: 1px solid var(--line);
+                background: rgba(16,32,46,.4); }
+    .rp-layer i, .rp-layer b { display: inline; vertical-align: baseline; }
+    .rp-layer i { margin-right: 10px; }
+    .rp-layer:last-child { border-bottom: 0; }
+    .rp-layer i { font-style: normal; font-family: var(--pixel); font-size: 9px;
+                  color: var(--teal); line-height: 2; }
+    .rp-layer b { display: block; font-family: var(--mono); font-size: 13.5px;
+                  color: var(--bone); letter-spacing: .06em; text-transform: uppercase; }
+    .rp-layer span { display: block; font-size: 14.5px; color: #B4C2D0; margin-top: 3px; }
+    .rp-law { font-family: var(--mono); font-size: 13px; color: var(--amber);
+              margin: var(--s2) 0 0; letter-spacing: .04em; }
+
+    /* ── timeline ────────────────────────────────────────────────────── */
+    .rp-time { list-style: none; margin: var(--s3) 0 0; padding: 0 0 0 20px;
+               border-left: 2px solid var(--line); }
+    .rp-t { position: relative; padding: 0 0 var(--s3) 16px; }
+    .rp-t::before { content: ''; position: absolute; left: -27px; top: 8px;
+                    width: 10px; height: 10px; background: var(--amber); }
+    .rp-t b { display: block; font-family: var(--mono); font-size: 14px;
+              color: var(--bone); letter-spacing: .05em; text-transform: uppercase;
+              margin-bottom: 5px; }
+    .rp-t span { display: block; font-size: 15.5px; color: #B4C2D0; }
+
+    /* ── link directory ──────────────────────────────────────────────── */
+    .rp-links { display: grid; gap: 10px; margin: var(--s3) 0 0; }
+    .rp-link {
+      display: block; text-decoration: none; border: 1px solid var(--line);
+      background: rgba(16,32,46,.6); padding: 16px 16px 18px;
+      min-height: 44px;
+    }
+    .rp-link i { font-style: normal; display: block; font-family: var(--pixel);
+                 font-size: 8px; color: var(--teal); line-height: 2.2; }
+    .rp-link b { display: block; color: var(--bone); font-size: 16.5px; margin: 4px 0 4px; }
+    .rp-link span { display: block; color: var(--dim); font-size: 14px; line-height: 1.55; }
+    .rp-back { display: inline-block; margin-top: var(--s4); padding: 12px 0;
+               color: var(--dim); text-decoration: none; font-family: var(--mono);
+               font-size: 14px; }
+
+    /* hover only where a pointer can hover; press feedback everywhere */
+    @media (hover: hover) and (pointer: fine) {
+      .rp-link:hover, .rp-screen a:hover { border-color: var(--amber); }
+      .rp-back:hover { color: var(--amber); }
+      .rp-choice:hover { background: rgba(232,177,102,.07); }
+    }
+    .rp-link:active, .rp-screen a:active { transform: scale(.99); }
+
+    /* ── desktop is the enhancement, not the baseline ────────────────── */
+    @media (min-width: 760px) {
+      .rp-wrap { padding: 0 28px; }
+      .rp-hero { padding: 180px 0 72px; }
+      .rp-sec  { padding: 78px 0; }
+      .rp-week { font-size: 10px; }
+      .rp-h2   { font-size: 22px; line-height: 1.55; }
+      .rp-box  { padding: 26px 26px 28px; font-size: 18px; }
+      .rp-stats{ grid-template-columns: repeat(4, 1fr); gap: 14px; }
+      .rp-links{ grid-template-columns: 1fr 1fr; gap: 14px; }
+      .rp-layer{ display: grid; grid-template-columns: 52px 190px 1fr; gap: 12px;
+                 align-items: baseline; }
+      .rp-layer i, .rp-layer b { display: block; margin-right: 0; }
+      .rp-layer span { margin-top: 0; }
+      .rp-week { font-size: 10px; gap: 14px; }
+      .rp-two  { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rp-link, .rp-screen a, .rp-back, .rp-choice { transition: none; }
+      .rp-scan { display: none; }
+    }
+    </style>
+</head>
+
+<body class="preload">
+    <div id="scene-3d">
+        <div id="cinematic-bg"></div>
+        <div id="bg-vignette"></div>
+    </div>
+    <div id="cursor-glow"></div>
+    <div id="loader" aria-hidden="true">
+        <p id="loader-credit"> </p>
+    </div>
+    <div id="holo-container" onclick="holoInteract(this)">
+        <div class="holo-dialog-box">
+            <p id="holo-text">Welcome.</p>
+        </div><img src="../images/holo.png" alt="Holo" class="holo-sprite">
+    </div>
+
+    <header class="glass-nav">
+        <nav>
+            <div class="nav-container">
+                <h1 class="brand-heading">YAO XIANG</h1>
+                <ul>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#experience">Experience</a></li>
+                    <li><a href="../index.html#skills">Skills</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="scroll-progress-bar"></div>
+    </header>
+
+    <main class="rp">
+        <div class="rp-scan" aria-hidden="true"></div>
+
+        <!-- ── hero ─────────────────────────────────────────────────── -->
+        <section class="rp-hero checkpoint" id="top">
+            <div class="rp-wrap">
+                <p class="rp-kicker">240 &times; 160 &middot; MULTIPLAYER &middot; NO INSTALL</p>
+                <h1 class="rp-title">REPLAY</h1>
+                <p class="rp-lede">A cooperative family scenario game about online harm, where
+                    every player is deliberately given a <b>different, incomplete</b> view of the
+                    same incident &mdash; and the credits turn what they missed into a conversation.</p>
+                <p class="rp-meta"><span>Jul&ndash;Aug 2026</span><span>&middot;</span>
+                    <span>Python engine &middot; Phaser 4 client</span><span>&middot;</span>
+                    <span>Authoritative WebSocket rooms</span></p>
+
+                <figure class="rp-screen">
+                    <a href="../images/replay/scene.webp" target="_blank" rel="noopener">
+                        <img src="../images/replay/scene.webp" width="1400" height="995"
+                             alt="Replay scene: the caregiver notices light under a bedroom door, week 1, turn 1">
+                    </a>
+                    <figcaption><span>Week 1 &middot; The Alert &mdash; the caregiver's view</span>
+                        <em>tap to open full size &nearr;</em></figcaption>
+                </figure>
+
+                <div class="rp-stats">
+                    <div class="rp-stat"><b>84%</b><span>of Singapore residents have met harmful
+                        online content (MDDI, 2025)</span></div>
+                    <div class="rp-stat"><b>8%</b><span>of bullied youths told a parent
+                        (MCI, 2024) &mdash; the gap this is built for</span></div>
+                    <div class="rp-stat"><b>32,768</b><span>decision paths checked exhaustively,
+                        not sampled</span></div>
+                    <div class="rp-stat"><b>0</b><span>cross-role information leaks across live
+                        one-to-four-seat tests</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── the problem ──────────────────────────────────────────── -->
+        <section class="rp-sec alt checkpoint" id="problem">
+            <div class="rp-wrap">
+                <p class="rp-week">WEEK 1<i>&middot;</i>THE PROBLEM<hr>turn 1</p>
+                <h2 class="rp-h2">Everyone sees a<br>different fragment.</h2>
+
+                <div class="rp-say">
+                    <span class="rp-who">CAREGIVER</span>
+                    <div class="rp-box">
+                        A young person sees the message. A caregiver notices changed behaviour.
+                        A friend sees what is circulating at school. Ordinary single-player
+                        training collapses those views into <b>one all-knowing screen</b> — and
+                        so it trains a conversation nobody actually has.
+                        <span class="rp-caret">&#9660;</span>
+                    </div>
+                </div>
+
+                <p class="rp-p">Replay keeps the information gap instead of closing it. Each role
+                    receives only what that person could realistically know, and chooses privately.
+                    The awkwardness of the real conversation is the mechanic, not a bug to design
+                    away.</p>
+                <p class="rp-p">There is no score and no correct answer. Both choices carry costs.
+                    The learning is in comparing perspectives afterwards.</p>
+            </div>
+        </section>
+
+        <!-- ── how it plays ─────────────────────────────────────────── -->
+        <section class="rp-sec checkpoint" id="design">
+            <div class="rp-wrap">
+                <p class="rp-week">WEEK 2<i>&middot;</i>THE DESIGN<hr>turn 2</p>
+                <h2 class="rp-h2">Six steps, one room code.</h2>
+                <p class="rp-p">No account, no install, no app store. A host opens a room; everyone
+                    else joins from their own browser with six characters.</p>
+
+                <ol class="rp-choices">
+                    <li class="rp-choice"><span><b>01 · Host</b>Pick a source-grounded local case,
+                        or ask the AI authoring lane for a fresh one.</span></li>
+                    <li class="rp-choice"><span><b>02 · Join</b>Players enter a six-character code
+                        from their own device and take distinct roles.</span></li>
+                    <li class="rp-choice"><span><b>03 · Know</b>Each role is dealt only the
+                        information that person could realistically hold.</span></li>
+                    <li class="rp-choice"><span><b>04 · Choose</b>Everyone decides privately. Nobody
+                        can outvote the young person the incident targets.</span></li>
+                    <li class="rp-choice"><span><b>05 · Resolve</b>Deterministic code combines the
+                        decisions and plays out the consequence.</span></li>
+                    <li class="rp-choice"><span><b>06 · Debrief</b>The credits reveal the real case,
+                        what each role missed, and genuine help routes.</span></li>
+                </ol>
+
+                <div class="rp-say">
+                    <span class="rp-who">DESIGN NOTE</span>
+                    <div class="rp-box">
+                        The credits are not decoration after the lesson — they are the
+                        <b>re-enactment engine</b>. While the case is still emotionally present,
+                        the family swaps roles and replays it to test whether holding someone
+                        else's information changes what they would do.
+                        <span class="rp-caret">&#9660;</span>
+                    </div>
+                </div>
+
+                <figure class="rp-screen">
+                    <a href="../images/replay/choice.webp" target="_blank" rel="noopener">
+                        <img src="../images/replay/choice.webp" width="1400" height="875"
+                             alt="The private choice menu: save the message, or ask the classmate who sent it">
+                    </a>
+                    <figcaption><span>A private choice. The other seats never see this menu.</span>
+                        <em>tap to open full size &nearr;</em></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ── architecture ─────────────────────────────────────────── -->
+        <section class="rp-sec alt checkpoint" id="architecture">
+            <div class="rp-wrap">
+                <p class="rp-week">WEEK 3<i>&middot;</i>THE MACHINE<hr>turn 3</p>
+                <h2 class="rp-h2">Seven layers.<br>Facts flow up only.</h2>
+                <p class="rp-p">The generative part authors <b>stories</b>; it never authors
+                    <b>truth</b>. Evidence sits at the bottom, source-locked and PII-scrubbed, and
+                    every layer above may only read downward. The engine is deterministic Python
+                    with no I/O at all, which is what makes 32,768 paths checkable rather than
+                    merely testable.</p>
+
+                <div class="rp-stack">
+                    <div class="rp-layer"><i>L0</i><b>Evidence</b>
+                        <span>Source-locked capsules, PII scrubbed.</span></div>
+                    <div class="rp-layer"><i>L1</i><b>Scenario</b>
+                        <span>Pure data graphs — one authored, the rest generated.</span></div>
+                    <div class="rp-layer"><i>L2</i><b>Engine</b>
+                        <span>Deterministic Python. No I/O, no clock, no network.</span></div>
+                    <div class="rp-layer"><i>L3</i><b>Server</b>
+                        <span>Authoritative rooms over WebSocket.</span></div>
+                    <div class="rp-layer"><i>L4</i><b>Client</b>
+                        <span>DOM lobby plus a Phaser 4 story at 240&times;160.</span></div>
+                    <div class="rp-layer"><i>L5</i><b>Debrief</b>
+                        <span>Engine-derived; it cannot invent what happened.</span></div>
+                    <div class="rp-layer"><i>L6</i><b>Art &amp; audio</b>
+                        <span>16-colour cells, synthesised effects.</span></div>
+                </div>
+                <p class="rp-law">L2 never reads L3 &nbsp;·&nbsp; L4 never computes truth</p>
+
+                <div class="rp-say">
+                    <span class="rp-who">THE GATE</span>
+                    <div class="rp-box">
+                        Generated scenarios face deterministic gates before anyone can play them.
+                        A story is refused for unsupported facts, fake choices, spectator roles,
+                        privacy leaks or unreachable endings. <b>A beautiful, non-branching story
+                        was rejected</b> — that refusal is on the demo reel deliberately.
+                        <span class="rp-caret">&#9660;</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── media ────────────────────────────────────────────────── -->
+        <section class="rp-sec checkpoint" id="media">
+            <div class="rp-wrap">
+                <p class="rp-week">SCREENS<i>&middot;</i>THE BUILD<hr>live</p>
+                <h2 class="rp-h2">Running, not mocked.</h2>
+                <p class="rp-p">Every frame below is the working browser prototype.</p>
+
+                <div class="rp-two">
+                    <figure class="rp-screen">
+                        <a href="../images/replay/lobby.webp" target="_blank" rel="noopener">
+                            <img src="../images/replay/lobby.webp" width="1400" height="875"
+                                 alt="The lobby room where players gather before the scenario starts">
+                        </a>
+                        <figcaption><span>The room, before anyone has chosen anything.</span>
+                            <em>tap &nearr;</em></figcaption>
+                    </figure>
+                    <figure class="rp-screen">
+                        <a href="../images/replay/outcome.webp" target="_blank" rel="noopener">
+                            <img src="../images/replay/outcome.webp" width="1200" height="800"
+                                 alt="The outcome screen after the server resolves everyone's private choices">
+                        </a>
+                        <figcaption><span>The resolution, once the server has combined the seats.</span>
+                            <em>tap &nearr;</em></figcaption>
+                    </figure>
+                </div>
+
+                <figure class="rp-screen">
+                    <a href="../images/replay/debrief.webp" target="_blank" rel="noopener">
+                        <img src="../images/replay/debrief.webp" width="1400" height="875"
+                             alt="The five-page debrief reconstructing the real case and each role's decisions">
+                    </a>
+                    <figcaption><span>The debrief — the real case, what each seat knew, what it
+                        missed, and where to get help.</span>
+                        <em>tap to open full size &nearr;</em></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ── journey ──────────────────────────────────────────────── -->
+        <section class="rp-sec alt checkpoint" id="journey">
+            <div class="rp-wrap">
+                <p class="rp-week">WEEK 4<i>&middot;</i>THE JOURNEY<hr>turn 4</p>
+                <h2 class="rp-h2">What the build actually cost.</h2>
+
+                <ol class="rp-time">
+                    <li class="rp-t"><b>The three-player assumption</b>
+                        <span>"Three players" was never engine law. N is whatever roles the
+                        scenario file declares — any literal 3 outside a scenario is a bug, and
+                        several were.</span></li>
+                    <li class="rp-t"><b>Private state, honestly</b>
+                        <span>Per-role point-of-view had to hold under reconnects and refreshes.
+                        Live tests across one to four seats found zero cross-role leaks.</span></li>
+                    <li class="rp-t"><b>The gate earned its keep</b>
+                        <span>The AI lane produced a genuinely good-looking scenario that had no
+                        real branching. The gate refused it. Keeping that refusal visible was
+                        worth more than a cleaner reel.</span></li>
+                    <li class="rp-t"><b>Handover</b>
+                        <span>Built inside an agent fleet, then handed over with the engine and
+                        server frozen at working and the client slated for teardown.</span></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ── links ────────────────────────────────────────────────── -->
+        <section class="rp-sec checkpoint" id="demo">
+            <div class="rp-wrap">
+                <p class="rp-week">DIRECTORY<i>&middot;</i>SEE IT<hr>end</p>
+                <h2 class="rp-h2">Watch the proof.</h2>
+
+                <div class="rp-links">
+                    <a class="rp-link" href="https://drive.google.com/file/d/1J57qoLA4Y5vnq7vnEx73chCva_GDCh-m/view?usp=drive_link"
+                       target="_blank" rel="noopener">
+                        <i>VIDEO</i><b>Full three-player walkthrough</b>
+                        <span>One host, two joining tabs — private choices, outcome, credits and
+                        debrief, end to end.</span></a>
+                    <a class="rp-link" href="https://drive.google.com/file/d/1nqVC5xh2BdSM0iWKFTIf4lPpbIvxPyt5/view?usp=drive_link"
+                       target="_blank" rel="noopener">
+                        <i>VIDEO</i><b>AI generation, and a real refusal</b>
+                        <span>Fresh-source retrieval, generation, deterministic auditing, and why
+                        a beautiful story was rejected.</span></a>
+                    <a class="rp-link" href="https://github.com/Yxiang-828/Replay" target="_blank" rel="noopener">
+                        <i>CODE</i><b>The repository</b>
+                        <span>Engine, server, scenarios, gates and the layer law.</span></a>
+                    <a class="rp-link" href="../index.html#projects">
+                        <i>BACK</i><b>All projects</b>
+                        <span>The rest of the work.</span></a>
+                </div>
+
+                <a class="rp-back" href="../index.html#projects">&larr; Back to projects</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="body-inter"
+            style="font-size:0.78rem;text-align:center;padding:36px 0;opacity:0.3;letter-spacing:1px;">© 2026 YAO XIANG
+            · EVERY PIXEL INTENTIONAL</p>
+    </footer>
+    <div class="page-transition-overlay">
+        <h2 class="transition-logo">Portifolio</h2>
+    </div>
+    <script src="../script.js"></script>
+    <script>(function () { const e = document.getElementById("loader"), t = document.getElementById("holo-container"), n = document.getElementById("holo-text"), o = performance.getEntriesByType("navigation"), a = o.length > 0 && "reload" === o[0].type; if (!a && (sessionStorage.getItem("visited") || window.location.hash)) { e && e.remove(), document.body.classList.remove("preload"), window.holoCanNavigate = !0, sessionStorage.setItem("visited", "true"); if (t) { t.style.display = "block", t.classList.remove("holo-splash-center"); } if (n) n.innerText = "Welcome back."; if (window.location.hash) setTimeout((() => { const e = document.querySelector(window.location.hash); e && e.scrollIntoView({ behavior: "smooth", block: "start" }) }), 60); return } if (!e) return; window.holoCanNavigate = !false; const r = document.createElement("div"); r.className = "cover-reveal-overlay", e.appendChild(r); const i = () => { if (e.classList.contains("sequence-started")) return; e.classList.add("sequence-started"), setTimeout((() => { const o = document.createElement("div"); o.className = "begin-prompt", o.innerHTML = "Click anywhere to enter", e.appendChild(o), e.addEventListener("click", (() => { o.remove(), e.style.pointerEvents = "none", e.style.opacity = "0", t.classList.add("holo-splash-center"), t.style.display = "block", t.style.opacity = "0", t.style.transform = "translate(-50%,-50%) scale(0)", void t.offsetWidth, t.style.transition = "opacity 0.5s, transform 0.5s cubic-bezier(0.175,0.885,0.32,1.275)", t.style.opacity = "1", t.style.transform = "translate(-50%,-50%) scale(1)", n.innerText = "Ready?", t.classList.add("talking"), t.style.animation = "holoFloat 2s ease-in-out infinite, pulseGlow 1.5s ease-in-out infinite", "function" == typeof playSound && playSound("pop", .8) }), { once: true }) }), 1500) }; "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", i) : i(), setTimeout((() => { e.classList.contains("loaded") || (e.style.opacity = "0", e.style.pointerEvents = "none", document.body.classList.remove("preload"), window.holoCanNavigate = !0) }), 8e3) })();</script>
+</body>
+
+</html>

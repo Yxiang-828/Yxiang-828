@@ -1,0 +1,77 @@
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/fraunces/wght-italic.css';
+@import '@fontsource-variable/dm-sans';
+@import '@fontsource/dm-mono/400.css';
+@import '@fontsource/dm-mono/500.css';
+
+/* Six colours, three type roles (owner's Ripple deck standard: Fraunces
+   titles, DM Mono labels; DM Sans for reading). Red only marks "now". */
+:root,
+[data-theme='dark'] {
+  --bg: #08070d;
+  --text: #f4f2fa;
+  --muted: #9c98ae;
+  --accent: #a78bfa;
+  --on-accent: #0b0a12;
+  --red: #ff5a5f;
+  --line: #2a2638;
+  --chip: #1a1726;
+  --panel: rgba(13, 11, 22, 0.94);
+  --tile: #14121d;
+  --dot: #262236;
+  --dot-on: #a78bfa;
+  color-scheme: dark;
+}
+[data-theme='light'] {
+  --bg: #fafafc;
+  --text: #16131f;
+  --muted: #5f5b6e;
+  --accent: #6d28d9;
+  --on-accent: #ffffff;
+  --red: #d7263d;
+  --line: #e4e1ec;
+  --chip: #efedf5;
+  --panel: rgba(255, 255, 255, 0.95);
+  --tile: #efedf5;
+  --dot: #dcd8e6;
+  --dot-on: #6d28d9;
+  color-scheme: light;
+}
+:root {
+  --display: 'Fraunces Variable', Georgia, serif;
+  --body: 'DM Sans Variable', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+  --ease-out: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); }
+body { font: 400 16px/1.55 var(--body); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.label { font: 500 12px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.voice { font-family: var(--display); font-style: italic; font-variation-settings: 'opsz' 36, 'SOFT' 100; }
+.voice em { font-style: normal; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-radius: 999px;
+  border: 1px solid var(--line); background: transparent;
+  font: 500 14px/1 var(--body); text-decoration: none; white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), transform 120ms var(--ease-out);
+}
+.btn:hover { border-color: var(--accent); }
+.btn:active { transform: scale(0.97); }
+.btn.solid { background: var(--accent); color: var(--on-accent); border-color: var(--accent); font-weight: 600; }
+
+.chips { display: flex; gap: 6px; padding: 0; margin: 0; list-style: none; overflow-x: auto; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chips li { flex: none; font: 400 12px/1 var(--mono); padding: 6px 9px; border-radius: 6px; background: var(--chip); color: var(--text); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+}

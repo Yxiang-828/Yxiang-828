@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!--NO-SPLASH-INJECTED-->
+<script>(function(){function k(){if(!document.body)return;document.body.classList.remove('preload');var l=document.getElementById('loader');if(l)l.remove();var h=document.getElementById('holo-container');if(h){h.classList.remove('holo-splash-center','talking');h.removeAttribute('style');h.style.display='block';h.style.animation='none';}var t=document.getElementById('holo-text');if(t)t.innerText='';window.holoCanNavigate=true;sessionStorage.setItem('visited','true');var ov=document.querySelector('.page-transition-overlay');if(ov)ov.classList.remove('active');}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',k);}else{k();}window.addEventListener('pageshow',k);})();</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Video to GIF Converter - Yao Xiang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        body.preload { visibility: hidden !important; }
+        body.preload #loader, body.preload #holo-container { visibility: visible !important; }
+        .project-article { max-width: 1000px; margin: 150px auto 100px; padding: 50px; position: relative; z-index: 2; }
+        .back-link { display: inline-flex; position: relative; top: 0; left: 0; align-items: center; gap: 8px; margin-bottom: 30px; color: var(--accent-crimson, #ff4444); text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: .9rem; letter-spacing: 1px; text-transform: uppercase; transition: transform .3s; }
+        .back-link:hover { transform: translateX(-5px); }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 40px; }
+        .tech-badge { background: rgba(255, 68, 68, .1); border: 1px solid rgba(255, 68, 68, .3); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: .85rem; font-family: 'Inter', sans-serif; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin: 30px 0; }
+        .feature-box { padding: 25px; border-left: 3px solid var(--accent-crimson, #ff4444); border-radius: 10px; background: rgba(255, 68, 68, .05); transition: all .3s; }
+        .feature-box:hover { background: rgba(255, 68, 68, .1); transform: translateX(5px); }
+        .feature-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px; color: #fff; margin-bottom: 10px; }
+        .feature-box p, .body-inter, ul, ol, td { font-family: 'Inter', sans-serif; font-size: .95rem; color: rgba(255, 255, 255, .76); line-height: 1.7; }
+        .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 1px; color: #fff; margin: 60px 0 20px; border-bottom: 1px solid rgba(255, 255, 255, .1); padding-bottom: 15px; }
+        pre { background: rgba(0, 0, 0, .5); padding: 20px; border-radius: 10px; overflow-x: auto; border-left: 3px solid var(--accent-crimson, #ff4444); margin: 20px 0; }
+        code { font-family: 'Courier New', monospace; color: var(--accent-cyan, #00f0ff); font-size: .9rem; background: rgba(0, 0, 0, .3); padding: 2px 6px; border-radius: 4px; }
+        pre code { color: #e0e0e0; background: transparent; padding: 0; }
+        table { width: 100%; margin: 30px 0; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: .95rem; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, .05); }
+        th { color: var(--accent-crimson, #ff4444); font-weight: 600; background: rgba(255, 68, 68, .05); }
+        .callout { background: rgba(255, 215, 0, .06); border-left: 3px solid var(--accent-gold, #ffd700); padding: 20px; margin: 24px 0; border-radius: 0 12px 12px 0; }
+        .callout strong { color: var(--accent-gold, #ffd700); }
+/* -- MOBILE OVERRIDES -- */
+        @media (max-width: 768px) {
+            .container.project-article.glass-panel {
+                margin: 80px auto 40px !important;
+                padding: 18px !important;
+                border-radius: 14px !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            .back-link {
+                font-size: 0.72rem !important;
+                letter-spacing: 0.5px !important;
+                margin-bottom: 16px !important;
+                gap: 5px !important;
+            }
+            .cinematic-heading {
+                font-size: clamp(1.3rem, 5.5vw, 1.8rem) !important;
+                line-height: 1.1 !important;
+                word-break: break-word !important;
+            }
+            .section-title {
+                font-size: 1.4rem !important;
+                margin: 28px 0 12px !important;
+                padding-bottom: 10px !important;
+            }
+            .feature-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+            .feature-box { padding: 16px !important; }
+            .feature-box h3, .feature-box strong.title { font-size: 1.2rem !important; }
+            .feature-box p { font-size: 0.82rem !important; }
+            .tech-stack { gap: 6px !important; margin: 14px 0 24px !important; }
+            .tech-badge { font-size: 0.7rem !important; padding: 4px 10px !important; }
+            .body-inter { font-size: 0.85rem !important; line-height: 1.6 !important; }
+            h3 { font-size: 1.3rem !important; margin-top: 20px !important; }
+            .cta-button { font-size: 0.75rem !important; padding: 10px 16px !important; }
+            .stats-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+            .stat-card { padding: 12px !important; }
+            .stat-number { font-size: 1.6rem !important; }
+            .stat-label { font-size: 0.72rem !important; }
+            .alert-box { padding: 14px !important; }
+            .alert-box strong { font-size: 1.1rem !important; }
+            .alert-box p { font-size: 0.82rem !important; }
+            .mermaid-container { padding: 10px !important; margin: 14px 0 !important; overflow-x: auto !important; }
+            .game-card { padding: 14px !important; }
+            pre { padding: 12px !important; font-size: 0.75rem !important; overflow-x: auto !important; max-width: 100% !important; }
+            code { font-size: 0.74rem !important; }
+            table { font-size: 0.8rem !important; }
+            th, td { padding: 8px 6px !important; font-size: 0.78rem !important; }
+            .callout { padding: 12px !important; }
+            .theme-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+            .theme-box { padding: 14px !important; }
+            img { max-width: 100% !important; height: auto !important; }
+            /* Override inline style font-sizes */
+            [style*="font-size: 1.15rem"] { font-size: 0.92rem !important; }
+            [style*="margin-top: 50px"] { margin-top: 28px !important; }
+            [style*="margin-top: 60px"] { margin-top: 28px !important; }
+            [style*="padding: 40px"] { padding: 18px !important; }
+        }
+        @media (max-width: 420px) {
+            .container.project-article.glass-panel {
+                margin: 70px auto 24px !important;
+                padding: 12px !important;
+            }
+            .cinematic-heading { font-size: clamp(1.1rem, 5vw, 1.5rem) !important; }
+            .back-link { font-size: 0.62rem !important; }
+            .stats-grid { grid-template-columns: 1fr !important; }
+            .section-title { font-size: 1.2rem !important; }
+            h3 { font-size: 1.1rem !important; }
+        }
+    </style>
+</head>
+
+<body class="preload project-view-body">
+    <div id="scene-3d"><div id="cinematic-bg"></div><div id="bg-vignette"></div></div>
+    <div id="cursor-glow"></div>
+    <div id="loader" aria-hidden="true"><p id="loader-credit"></p></div>
+    <div id="holo-container" onclick="holoInteract(this)" style="display: none;">
+        <div class="holo-dialog-box"><p id="holo-text">Project page ready.</p></div>
+        <img src="../images/holo.png" alt="Holo" class="holo-sprite">
+    </div>
+
+    <header class="glass-nav">
+        <nav>
+            <div class="nav-container">
+                <h1 class="brand-heading">YAO XIANG</h1>
+                <ul>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#experience">Experience</a></li>
+                    <li><a href="../index.html#skills">Skills</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="scroll-progress-bar"></div>
+    </header>
+
+    <section class="reveal active">
+        <div class="container project-article glass-panel">
+            <a href="../index.html#projects" class="back-link">&larr; Back to Projects</a>
+            <h1 class="cinematic-heading">Video to GIF Converter</h1>
+            <p class="body-inter" style="color: var(--accent-cyan); font-style: italic;"><strong>Project Category:</strong> Individual Project (Helper Tools Collection)</p>
+
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">MoviePy</span>
+                <span class="tech-badge">Pillow</span>
+                <span class="tech-badge">CLI Tooling</span>
+                <span class="tech-badge">Batch Automation</span>
+            </div>
+
+            <p class="body-inter">This is one of those deceptively simple tools that becomes very useful once you actually need it. Converting a clip to GIF is easy in theory, but meeting exact size limits while preserving useful motion is where the real work begins. I built this to generate web-friendly GIFs with predictable output size and speed control instead of trial-and-error exporting.</p>
+
+            <div class="callout">
+                <p class="body-inter"><strong>Core value:</strong> the tool optimizes for constraints that matter in the real world, like a GIF needing to stay below a file-size ceiling for slides, web uploads, or messaging platforms.</p>
+            </div>
+
+            <h2 class="section-title">Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-box"><h3>Exact Size Targets</h3><p>Supports size limits from 1MB to 50MB, which makes the output usable for web, messaging, and presentation workflows.</p></div>
+                <div class="feature-box"><h3>Playback Control</h3><p>Adjust playback speed from 0.1x to 2.0x so the same clip can become a slow walkthrough or a compact highlight.</p></div>
+                <div class="feature-box"><h3>Automatic Scaling</h3><p>Reduces resolution and frame rate as needed to meet output limits instead of requiring manual tweaking.</p></div>
+                <div class="feature-box"><h3>Interactive Or CLI</h3><p>Can be used quickly through a batch launcher or called directly from the command line for repeat work.</p></div>
+            </div>
+
+            <h2 class="section-title">How It Works</h2>
+            <ol>
+                <li>Analyze the input video duration, resolution, frame rate, and overall size.</li>
+                <li>Estimate what resolution and frame-rate adjustments are needed to satisfy the requested size constraint.</li>
+                <li>Apply playback speed changes without turning the workflow into manual editing.</li>
+                <li>Generate the final GIF and validate it against the requested target.</li>
+            </ol>
+
+            <h2 class="section-title">Parameters</h2>
+            <table>
+                <thead><tr><th>Parameter</th><th>Meaning</th><th>Range</th><th>Example</th></tr></thead>
+                <tbody>
+                    <tr><td><code>-s</code> / <code>--size</code></td><td>Maximum output size in MB</td><td>1-50</td><td><code>-s 8</code></td></tr>
+                    <tr><td><code>-p</code> / <code>--speed</code></td><td>Playback speed ratio</td><td>0.1-2.0</td><td><code>-p 0.5</code></td></tr>
+                    <tr><td><code>-o</code> / <code>--output</code></td><td>Custom output path</td><td>Optional</td><td><code>-o demo.gif</code></td></tr>
+                </tbody>
+            </table>
+
+            <h2 class="section-title">Example Usage</h2>
+            <pre><code>advanced_converter.bat
+python converter.py "demo.mp4" -s 8 -p 1.0
+python converter.py "demo.mp4" -s 5 -p 0.5 -o "slow_demo.gif"
+python converter.py "demo.mp4" -s 3 -p 2.0 -o "fast_demo.gif"</code></pre>
+
+            <h2 class="section-title">Where It Fits In My Portfolio</h2>
+            <ul>
+                <li>It shows the same design instinct as my other tooling projects: solve a narrow problem well, and respect how people actually work.</li>
+                <li>It is not a glamorous AI demo, but it is the kind of utility that people keep using once it exists.</li>
+                <li>It demonstrates optimization around constraints rather than simply wrapping a library call.</li>
+            </ul>
+
+            <h2 class="section-title">Requirements</h2>
+            <ul>
+                <li>Python 3.7+</li>
+                <li><code>pip install moviepy pillow</code></li>
+                <li>Enough memory for larger or higher-resolution source videos</li>
+            </ul>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/Video_to_GIF_Converter" target="_blank" class="cta-button primary-accent">View Repo</a>
+            </div>
+        </div>
+    </section>
+
+    <footer><p class="body-inter" style="font-size:0.78rem;text-align:center;padding:36px 0;opacity:0.3;letter-spacing:1px;">&copy; 2026 YAO XIANG · PROJECT DOSSIER</p></footer>
+    <div class="page-transition-overlay"><h2 class="transition-logo">Portfolio</h2></div>
+
+    <script src="../script.js"></script>
+    <script>
+        (function () {
+            const loader = document.getElementById('loader');
+            const holoContainer = document.getElementById('holo-container');
+            const holoText = document.getElementById('holo-text');
+            const navEntries = performance.getEntriesByType('navigation');
+            const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
+            function finishEntry(message) {
+                document.body.classList.remove('preload');
+                window.holoCanNavigate = true;
+                sessionStorage.setItem('visited', 'true');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    loader.style.pointerEvents = 'none';
+                    setTimeout(() => loader.remove(), 500);
+                }
+                if (holoContainer) {
+                    holoContainer.style.display = 'flex';
+                    holoContainer.classList.remove('holo-splash-center');
+                }
+                if (holoText) holoText.innerText = message;
+                document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+            }
+            if (!isReload && (sessionStorage.getItem('visited') || window.location.hash)) {
+                finishEntry('Welcome back.');
+                return;
+            }
+            if (!loader) {
+                finishEntry('Project page ready.');
+                return;
+            }
+            window.addEventListener('load', () => {
+                const beginPrompt = document.createElement('div');
+                beginPrompt.innerHTML = 'Click anywhere to enter';
+                beginPrompt.className = 'begin-prompt';
+                loader.appendChild(beginPrompt);
+                loader.addEventListener('click', () => {
+                    beginPrompt.remove();
+                    if (typeof playSound === 'function') playSound('pop', 0.8);
+                    finishEntry('GIF workflow loaded.');
+                }, { once: true });
+            });
+            setTimeout(() => {
+                if (document.body.classList.contains('preload')) finishEntry('Project page ready.');
+            }, 7000);
+        })();
+    </script>
+</body>
+
+</html>

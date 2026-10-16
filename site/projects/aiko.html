@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aiko — Personal OS Agent · Yao Xiang</title>
+<meta name="description" content="Aiko, Yao Xiang's personal AI agent: a local daemon, phone app, Telegram bridge, desktop stage, tool runtime and memory system in one loop." />
+<link rel="icon" href="/v2media/holo.webp" />
+<!-- the saved theme before the first paint (src/theme.ts initTheme does the same later) -->
+<script>document.documentElement.dataset.theme = localStorage.getItem('yx-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')</script>
+</head>
+<body class="sub">
+<div class="field" id="field" aria-hidden="true"></div>
+
+<header class="top">
+  <a class="mark" href="/" title="Yao Xiang's home page">Yao Xiang</a>
+  <nav>
+    <a href="/#experience" title="Go to Experience on the home page">Experience</a>
+    <a href="/#P1" title="Go to Projects on the home page">Projects</a>
+    <a href="/#hackathons" title="Go to Hackathons on the home page">Hackathons</a>
+    <a href="/#contact" title="Go to Contact on the home page">Contact</a>
+    <button class="mode" id="mode" title="Switch light and dark mode · T">Theme</button>
+  </nav>
+</header>
+
+<main class="page">
+
+<section class="hero">
+  <div class="hero-copy">
+    <a class="back" href="/#P1" title="Back to Aiko on the home page">← All projects</a>
+    <p class="tag" data-fill="P1.tag">Personal OS Agent Runtime · Apr 2026 – Pres.</p>
+    <h1>Aiko — Personal OS Agent</h1>
+    <p class="lede">
+      Aiko is the agent layer I am building over my own machine: a local daemon, mobile app, Telegram bridge,
+      embodied desktop stage, tool runtime, and memory system wired into one loop. It gives me one interface for
+      files, shell, Git, Docker, calendar, web, voice, reading, image generation, and long-running build work.
+    </p>
+    <p class="aside"><span class="label">Under the hood</span>
+      The brain can move between local Ollama, MiniMax through OpenRouter,
+      Kimi through Moonshot, and a CLI-agent bench. A single persisted identity sits above the model, while
+      88 manifest-backed skills provide the hands.
+    </p>
+    <p class="aside"><span class="label">System shape</span>
+      Daemon, memory, tool runtime, phone surface, Telegram bridge, and factory orchestration are one loop.
+      The mothership layer is the Skill Graph below: the part that turns scattered builds into callable capability,
+      regardless of which model is active.
+    </p>
+  </div>
+  <figure class="hero-art">
+    <img src="/v2media/p/aiko-art.webp" alt="Aiko, her character art" width="784" height="584" vite-ignore />
+    <img class="badge" src="/v2media/p/aiko-icon.webp" alt="Aiko's app icon" width="171" height="180" vite-ignore />
+  </figure>
+</section>
+
+<section class="numbers" aria-label="At a glance">
+  <p class="label">At a glance · June 2026</p>
+  <dl>
+    <div><dt>Callable Skills (DAG)</dt><dd>88</dd></div>
+    <div><dt>Memory Tiers</dt><dd>5</dd></div>
+    <div><dt>Limbic Dimensions</dt><dd>6</dd></div>
+    <div><dt>Brain Routes</dt><dd>4</dd></div>
+    <div><dt>Retargeted Motion Clips</dt><dd>79</dd></div>
+  </dl>
+</section>
+
+<!-- October 2026; the cards are filled from content/site.json P1a-P1d (vite.config.ts fill) -->
+<section class="sect" id="now">
+  <p class="label">October 2026</p>
+  <h2>What changed <em>since June.</em></h2>
+  <div class="grid four">
+    <article class="card" data-id="P1a">
+      <h3>Context Engineering</h3>
+      <p>Cut prompt tokens by 69% (109KB to 34KB per turn) using schema virtualization, dynamic manifest projection, and state compression.</p>
+    </article>
+    <article class="card" data-id="P1b">
+      <h3>5-Tier Memory</h3>
+      <p>Scaled to 11,800+ facts combining episodic hindsight, SQLite FTS5 keyword indexing, and dense embeddings fused via Reciprocal Rank Fusion (RRF).</p>
+    </article>
+    <article class="card" data-id="P1c">
+      <h3>Autonomous Harness</h3>
+      <p>142 discrete skills executed through deterministic state machines; universal gateway orchestrating Claude Code, OpenAI Codex, Gemini CLI, and local models with automatic failover.</p>
+    </article>
+    <article class="card" data-id="P1d">
+      <h3>Local Multi-Modal Interface</h3>
+      <p>GPU-accelerated local voice (Qwen3-TTS, Whisper), 3D VRM embodiment in three.js, and offline manga indexing across 245,000+ pages.</p>
+    </article>
+  </div>
+</section>
+
+<section class="sect" id="composition">
+  <p class="label">The Composition</p>
+  <h2>Four <em>bodies.</em> One mothership.</h2>
+  <p class="lead-in">
+    Aiko is not a single binary. A TypeScript daemon holds the identity; a React Native phone app, Telegram bridge,
+    and desktop stage expose different ways to reach the same system. The body changes. The conversation and tools do not.
+  </p>
+  <div class="with-shot">
+    <div class="grid two">
+      <article class="card">
+        <p class="kicker">Core</p>
+        <h3>aiko-core daemon</h3>
+        <p>
+          The brain. A Linux background process that can hot-swap Ollama, OpenRouter / MiniMax, Moonshot / Kimi, and
+          CLI-agent providers without changing Aiko's identity. It owns memory, tools, proactive work, and event delivery.
+        </p>
+        <ul class="chips"><li>TypeScript</li><li>Node</li><li>SQLite WAL</li><li>Moonshot</li><li>OpenRouter</li></ul>
+      </article>
+      <article class="card">
+        <p class="kicker">Mobile</p>
+        <h3>aiko-app</h3>
+        <p>
+          Android (Expo / React Native) client. Reaches the daemon's <code>100.x.y.z:8080</code> Tailscale IP and opens
+          a long-lived WebSocket — zero public internet, zero cloud, encrypted end-to-end by WireGuard.
+        </p>
+        <ul class="chips"><li>React Native</li><li>Expo</li><li>Tailscale</li><li>WebSocket</li><li>MMKV</li></ul>
+      </article>
+      <article class="card">
+        <p class="kicker">Bridge</p>
+        <h3>Telegram bridge</h3>
+        <p>
+          A persistent Telegram bot for casual contact and on-the-go control. Destructive actions are gated behind a
+          TOTP challenge; the same shared logger streams ACK events back into the unified pipeline.
+        </p>
+        <ul class="chips"><li>Telegram Bot API</li><li>TOTP</li><li>Auth Gate</li><li>Persistent Session</li></ul>
+      </article>
+      <article class="card">
+        <p class="kicker">Presence</p>
+        <h3>Desktop stage</h3>
+        <p>
+          A movable VRM stage driven by Aiko's own stage directions. It connects live chat, Qwen3-TTS voice sync,
+          swappable skins, and 79 retargeted motion clips into a visible PC presence.
+        </p>
+        <ul class="chips"><li>Three.js</li><li>VRM</li><li>Qwen3-TTS</li><li>Kimodo Motion</li><li>X11</li></ul>
+      </article>
+    </div>
+    <figure class="shot">
+      <a href="/images/aiko_intro.png" title="Open the phone screenshot full size" vite-ignore>
+        <img src="/v2media/p/aiko-phone.webp" alt="Aiko mobile app — intro screen" width="565" height="1100" loading="lazy" vite-ignore />
+      </a>
+      <figcaption>aiko-app, the phone surface</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sect" id="architecture">
+  <p class="label">Every Turn</p>
+  <h2>The <em>conscious</em> pipeline.</h2>
+  <p class="lead-in">
+    Every inbound message — Telegram or mobile — runs through the same six-stage pipeline. Two of those stages
+    are fast pattern matchers that never touch the LLM. Two background ticks run in parallel: a 60-second decay
+    loop and a 3 AM distiller that compresses yesterday's diary into long-term facts.
+  </p>
+  <ol class="pipeline">
+    <li class="card fast"><p class="kicker">01 / Fast</p><h3>Appraisal</h3><p>Pattern matcher reads the user message and emits a limbic delta — no LLM call.</p></li>
+    <li class="card"><p class="kicker">02 / Stateful</p><h3>Limbic Update</h3><p>Delta applied to persisted state. Mood overlay derived for the system prompt.</p></li>
+    <li class="card"><p class="kicker">03 / LLM</p><h3>Brain Turn</h3><p>Dynamic 8-section system prompt assembled per turn; reply streamed back.</p></li>
+    <li class="card"><p class="kicker">04 / Agentic</p><h3>Tool Loop</h3><p>Structured tool calls are validated against skill manifests, executed, and fed back into the same turn.</p></li>
+    <li class="card"><p class="kicker">05 / Cost</p><h3>Response Appraisal</h3><p>Energy spent. Annoyance updated. Trust adjusted.</p></li>
+    <li class="card fast"><p class="kicker">06 / Persist</p><h3>Episodic Write</h3><p>Turn appended to today's diary. Event mirrored to mobile + dashboard.</p></li>
+  </ol>
+  <div class="grid two clocks">
+    <div class="card clock"><b>60s</b><p>Background tick — limbic decay applied, queued proactive messages delivered to whichever surface is connected.</p></div>
+    <div class="card clock"><b>3 AM</b><p>Nightly distillation — yesterday's diary read, compressed into a summary, relationship facts extracted and persisted to <code>facts.json</code>.</p></div>
+  </div>
+</section>
+
+<section class="sect" id="memory">
+  <p class="label">Memory Stack</p>
+  <h2>Five <em>tiers,</em> five lifetimes.</h2>
+  <p class="lead-in">
+    Memory in Aiko is not one bucket — it is a layered store, each tier with its own lifetime, write cadence, and
+    access pattern. Identity is permanent and read every session; relationship facts are extracted nightly;
+    episodic diaries grow append-only; working memory is per-session; world-state is live.
+  </p>
+  <ol class="grid five tiers">
+    <li class="card"><span class="n">01</span><h3>Identity</h3><p class="kicker">Lifetime · Permanent</p><p>Who Aiko is, who the user is, the relationship contract. <code>persona.md</code>, style doctrine, hard rules. Loaded every session.</p></li>
+    <li class="card"><span class="n">02</span><h3>Relationship</h3><p class="kicker">Lifetime · Long-Term</p><p>Preferences, habits, opinions, triggers. JSON key-value store extracted nightly by the distiller from raw diary text.</p></li>
+    <li class="card"><span class="n">03</span><h3>Episodic</h3><p class="kicker">Lifetime · Append-Only</p><p>Daily diary files at <code>episodic/YYYY/MM/DD.md</code>. Every turn appended. Summarized and compressed at 3 AM the following night.</p></li>
+    <li class="card"><span class="n">04</span><h3>Working</h3><p class="kicker">Lifetime · Session</p><p>Last 20 turns. What was just said. Cleared when the daemon restarts; reseeded from the diary on warm boot.</p></li>
+    <li class="card"><span class="n">05</span><h3>World State</h3><p class="kicker">Lifetime · Live</p><p>Machine state, time, environment, connected surfaces, currently-running skill jobs. JSON, rewritten on every tick.</p></li>
+  </ol>
+</section>
+
+<section class="sect" id="limbic">
+  <p class="label">Emotional Substrate</p>
+  <h2>The <em>limbic</em> layer.</h2>
+  <p class="lead-in">
+    Six dimensions. Each one persisted across restarts, mutated by the appraisal engine on every message, decayed
+    on a 60-second tick, and overlaid onto the system prompt as a mood directive. Baseline-locking means that if
+    affection and trust stay high for enough consecutive turns, the resting floor permanently rises.
+  </p>
+  <dl class="grid six dims">
+    <div class="card"><dt>Affection</dt><dd>−100 … +100</dd><dd class="decay">Decay starts 48 h · 1 pt/hr</dd></div>
+    <div class="card"><dt>Trust</dt><dd>−100 … +100</dd><dd class="decay">Decay starts 72 h · 0.5 pt/hr</dd></div>
+    <div class="card"><dt>Annoyance</dt><dd>−100 … +100</dd><dd class="decay">Decay starts 30 m · 10 pt/hr</dd></div>
+    <div class="card"><dt>Protectiveness</dt><dd>−100 … +100</dd><dd class="decay">Decay starts 24 h · 2 pt/hr</dd></div>
+    <div class="card"><dt>Curiosity</dt><dd>−100 … +100</dd><dd class="decay">Decay starts 15 m · 15 pt/hr</dd></div>
+    <div class="card"><dt>Energy</dt><dd>0 … 100</dd><dd class="decay">Recovers from 2 h · 5 pt/hr</dd></div>
+  </dl>
+  <p class="card note">
+    <b>Proactive engine.</b> Aiko can queue messages of its own. Four tiers — silent (A), queued (B), immediate push (C),
+    and check-in (D) — are gated by current annoyance and focus mode. The 60-second tick decides which queued messages
+    fire, and which surface they fire on. Late-night softness, post-silence check-ins, and focus-mode lockouts are
+    tactical shifts derived from this layer alone.
+  </p>
+</section>
+
+<section class="sect" id="skills">
+  <p class="label">Skill Graph</p>
+  <h2>88 hands. <em>One system.</em></h2>
+  <p class="lead-in">
+    The active registry has grown from 54 to 88 manifest-backed skills. Foundations such as file, shell, and process
+    access compose upward into library work, avatar control, diagnostics, media pipelines, and multi-agent pilots.
+    The nodes below are a selected map of the current registry, not a frozen catalogue.
+  </p>
+  <div class="card definition">
+    <p class="kicker">Mothership Definition</p>
+    <h3>Where abandoned projects become working limbs.</h3>
+    <p>
+      This is the mothership: not a folder of old repos, but a core that can wrap them, validate them, route them,
+      and let Aiko use them. A hackathon bot, a CLI utility, a media script, a model pipeline, or a weekend automation
+      stops being a dead project once it ships as a manifest-backed skill. The graph records its dependencies,
+      inputs, outputs, permissions, safety rules, and tier placement, so Aiko can compose it with everything else
+      instead of treating it as another isolated codebase.
+    </p>
+    <ol class="flow">
+      <li>repo → manifest</li><li>script → skill</li><li>skill → graph node</li><li>graph node → callable by Aiko</li><li>skills → composable workflows</li>
+    </ol>
+  </div>
+  <div class="skill-graph">
+    <div class="tier-row">
+      <p class="tier-name">Foundations<small>Primitives</small></p>
+      <ul class="chips wrap">
+        <li>shell-exec</li><li>file-read</li><li>file-write</li><li>file-find</li><li>file-move</li><li>file-delete</li><li>dir-list</li><li>process-list</li><li>network-status-get</li><li>system-info-get</li><li>power-set</li><li>service-set</li><li>log-read</li><li>totp-verify</li>
+      </ul>
+    </div>
+    <div class="tier-row">
+      <p class="tier-name">System<small>Control &amp; State</small></p>
+      <ul class="chips wrap">
+        <li>git-run</li><li>docker-run</li><li>docker-manage</li><li>deps-install</li><li>dependency-set</li><li>package-set</li><li>health-check</li><li>job-schedule</li><li>task-schedule</li><li>task-control</li><li>calendar-set</li><li>sandbox-run</li>
+      </ul>
+    </div>
+    <div class="tier-row">
+      <p class="tier-name">Mind + Media<small>Recall &amp; Creation</small></p>
+      <ul class="chips wrap">
+        <li>memory-save</li><li>memory-search</li><li>memory-decay</li><li>diary-write</li><li>knowledge-fetch</li><li>text-extract</li><li>text-summarize</li><li>generate-image</li><li>upscale-image</li><li>passport-photo</li><li>transcribe-audio</li><li>speech-say</li><li>deliver-media</li><li>reaction-gif</li><li>get-media-info</li><li>watch-video</li><li>weather-get</li><li>url-fetch</li><li>web-content-fetch</li><li>web-act</li><li>web-drive</li><li>consult-gemmy</li><li>cascade-bridge</li><li>code-analyze</li><li>problem-analyze</li><li>zoltraak-scan</li><li>self-bucket-list</li>
+      </ul>
+    </div>
+    <div class="tier-row">
+      <p class="tier-name">Growth<small>Recent Active Work</small></p>
+      <ul class="chips wrap">
+        <li class="hot">pilot</li><li>diagnose</li><li>self-diagnose</li><li>app-launch</li><li>monitor-control</li><li>power-usage</li><li>library-engine</li><li>library-acquire</li><li>library-operate</li><li>library-sync-plan</li><li>avatar</li><li>avatar-control</li><li>avatar-overlay</li><li>avatar-pilot</li><li>screen-record</li><li>audio-cleaning</li><li>comic-analyzer</li><li>read-manhwa</li><li>record-inner-audio</li><li>usb-vault-backup</li><li>media-validate</li><li>grok-image-gen</li><li>grok-video-gen</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sect" id="factory">
+  <p class="label">Build Factory</p>
+  <h2>From three lanes to a <em>pilot bench.</em></h2>
+  <p class="lead-in">
+    Aiko's first long-running build system used three Gemini lanes: Architect, Executor, and Auditor. The current
+    runner is broader: it can hand bounded work to Codex, Claude, Antigravity / Gemini,
+    or Cursor, while Aiko stays the front door and keeps each friend or pilot session separate from her own memory.
+  </p>
+  <div class="grid three">
+    <article class="card agent">
+      <p class="kicker">v1 Lane · Planner</p>
+      <h3>Architect</h3>
+      <p>The only agent that talks to me. Source code is read-only. Owns the canonical task plan (<code>CSOT.md</code>). Drives BRIEFING → ALIGNING → REVIEW phases.</p>
+      <dl class="meta"><dt>Phase</dt><dd>BRIEFING / ALIGNING / REVIEW</dd><dt>Time budget</dt><dd>Untimed</dd><dt>Source role</dt><dd>blueprints.ts (~12 KB)</dd></dl>
+    </article>
+    <article class="card agent">
+      <p class="kicker">v1 Lane · Implementer</p>
+      <h3>Executor</h3>
+      <p>Pure code implementer. Never plans, never talks to me. Full CRUD on source + tests. Stages clean commits in the <code>[AIKO:TASK]</code> format. Never touches <code>node_modules</code>, <code>.aiko/</code>, or <code>Aiko.md</code>.</p>
+      <dl class="meta"><dt>Phase</dt><dd>CODING</dd><dt>Time budget</dt><dd>15 min wall clock</dd><dt>Source role</dt><dd>blueprints.ts (~3.7 KB)</dd></dl>
+    </article>
+    <article class="card agent">
+      <p class="kicker">v1 Lane · Gatekeeper</p>
+      <h3>Auditor</h3>
+      <p>Verification gatekeeper. Read-only on source code, full write on tests. Never rewrites production code. Routes the FSM forward, back, or to BLOCKED.</p>
+      <dl class="meta"><dt>Phase</dt><dd>AUDITING</dd><dt>Time budget</dt><dd>5 min wall clock</dd><dt>Source role</dt><dd>blueprints.ts (~4.6 KB)</dd></dl>
+    </article>
+  </div>
+  <ol class="flow states">
+    <li>$build</li><li>BRIEFING</li><li>CODING</li><li>AUDITING</li><li>ALIGNING</li><li>REVIEW</li><li>DONE</li>
+  </ol>
+</section>
+
+<section class="sect film" id="demo">
+  <div class="film-copy">
+    <p class="label">Live System</p>
+    <h2>The first <em>checkpoint.</em></h2>
+    <p class="lead-in">
+      This first recording captures the mobile surface as it existed at the end of April. It stays here as the
+      original checkpoint, with the newer growth video below it.
+    </p>
+    <h3>Aiko v1 · Mobile Surface Walk-Through</h3>
+    <p class="when">Recorded 29 April 2026 — portrait capture from the React Native phone app over Tailscale.</p>
+    <ul class="chips"><li>9:16 portrait</li><li>09:22</li></ul>
+  </div>
+  <div class="film-frame">
+    <video controls preload="metadata" playsinline width="720" height="1280" poster="/images/aiko-demo-2026-04-29-poster.jpg" aria-label="Aiko v1 mobile walk-through, recorded 29 April 2026" vite-ignore>
+      <source src="/images/aiko-demo-2026-04-29.mp4" type="video/mp4" vite-ignore />
+    </video>
+  </div>
+</section>
+
+<section class="sect" id="growth">
+  <p class="label">Build Log · April to June 2026</p>
+  <h2>Not a redesign. <em>A growth record.</em></h2>
+  <p class="lead-in">
+    The project started as a private mobile interface to a Linux agent. Each checkpoint added another kind of
+    continuity: a place to read, a body on the desktop, more capable hands, and model-independent identity.
+  </p>
+  <ol class="timeline" aria-label="Aiko project growth timeline">
+    <li>
+      <time datetime="2026-04-29">29 Apr 2026<small>First checkpoint</small></time>
+      <article class="card">
+        <h3>A phone surface for one local agent</h3>
+        <p>The first version connected an Expo / React Native app to the Linux daemon over Tailscale, with Telegram as a second way to reach the same conversation, tools, and memory.</p>
+        <ul class="chips"><li>React Native</li><li>WebSocket</li><li>Tailscale</li></ul>
+      </article>
+    </li>
+    <li>
+      <time datetime="2026-05">May 2026<small>Reading became a place</small></time>
+      <article class="card">
+        <h3>The Library grew beyond a tab</h3>
+        <p>Source browsing, chapter downloads, comic and EPUB reading, resume state, narration, voice packs, and a navigable pixel room turned the app into a lived-in space rather than a chat client with extra screens.</p>
+        <ul class="chips"><li>Suwayomi</li><li>Offline reading</li><li>Voice packs</li><li>Pixel room</li></ul>
+      </article>
+    </li>
+    <li>
+      <time datetime="2026-06-13">13 Jun 2026<small>Embodiment prototype</small></time>
+      <article class="card">
+        <h3>From a sprite to a desktop presence</h3>
+        <p>The Agent Forge build connected Aiko's stage directions to a movable VRM stage, 79 retargeted motion clips, swappable skins, a read-only live chat tap, and Qwen3-TTS voice synchronization.</p>
+        <ul class="chips"><li>Three.js</li><li>VRM</li><li>Kimodo motion</li><li>Qwen3-TTS</li></ul>
+      </article>
+    </li>
+    <li>
+      <time datetime="2026-06-17">17 Jun 2026<small>One session, two devices</small></time>
+      <article class="card">
+        <h3>PC and phone started sharing the same moment</h3>
+        <p>The embodied experiment moved from isolated demos toward a live shared session: desktop presence, phone control, model and skin switching, and the motion pipeline shown as one evolving system.</p>
+        <ul class="chips"><li>PC + phone</li><li>Live session</li><li>Skins</li><li>Motion research</li></ul>
+      </article>
+    </li>
+    <li>
+      <time datetime="2026-06-22">22 Jun 2026<small>Current code</small></time>
+      <article class="card">
+        <h3>Identity separated from the brain underneath</h3>
+        <p>Aiko now has 88 active skills and can route between local Ollama, OpenRouter / MiniMax, Moonshot / Kimi, and CLI agents. Provider tags and isolated friend sessions make the system easier to inspect without fragmenting the one identity the user talks to.</p>
+        <ul class="chips"><li>88 skills</li><li>Kimi</li><li>CLI pilots</li><li>Provider attribution</li></ul>
+      </article>
+    </li>
+  </ol>
+  <figure class="film">
+    <figcaption class="film-copy">
+      <time class="label" datetime="2026-06-17">Video created · 17 June 2026</time>
+      <h3 class="big">Aiko, then and becoming.</h3>
+      <p class="lead-in">
+        A 93-second build diary: the pixel Library room, the first humanoid / VRM experiments, one live PC-and-phone
+        session, swappable model skins, and the motion research that is shaping the next body.
+      </p>
+      <ul class="chips"><li>9:16 portrait</li><li>01:33</li><li>H.264 + AAC</li></ul>
+    </figcaption>
+    <div class="film-frame">
+      <video controls preload="metadata" playsinline width="1080" height="1920" poster="/images/aiko-growth-2026-06-17-poster.jpg" aria-label="Aiko growth video recorded on 17 June 2026" vite-ignore>
+        <source src="/images/aiko-growth-2026-06-17.mp4" type="video/mp4" vite-ignore />
+      </video>
+    </div>
+  </figure>
+</section>
+
+</main>
+
+<footer class="foot">
+  <span>© 2026 Yao Xiang · Aiko is the mothership</span>
+  <a class="btn" href="/#P1" title="Back to Aiko on the home page">← All projects</a>
+</footer>
+
+<div id="holo-root"></div>
+<script type="module" src="/src/sub/aiko.tsx"></script>
+</body>
+</html>

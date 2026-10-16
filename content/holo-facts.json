@@ -1,0 +1,95 @@
+{
+  "_note": "Plain facts Holo may state that the page leaves implicit: what is current or finished, counts, who Holo is, how her chat works. The page's own lines (site.json) are the rest of what she knows. Every fact has an id; the prepared questions (holo-qa.json) and the answer trace point at ids.",
+  "facts": [
+    {
+      "id": "F1",
+      "to": "experience",
+      "title": "Now",
+      "text": "Right now {{person.called}} is a {{roles.kabam.title}} at {{roles.kabam.org}}, an {{roles.kabam.kind}} from {{roles.kabam.start|month}} until {{roles.kabam.end|month}}. This job is current. From {{roles.kabam.field_start|month}} to {{roles.kabam.field_end|month}} he is the solo on-site robotics engineer running KABAM’s first ever Singapore field proof of concept (PoC) for its {{roles.kabam.robot}}."
+    },
+    {
+      "id": "F2",
+      "to": "experience",
+      "title": "Teaching",
+      "text": "{{person.called}} was a {{roles.ta.title}} for NUS CS2113 (Software Engineering & Object-Oriented Programming) from {{roles.ta.start|month}} to {{roles.ta.end|month}}. That job is finished."
+    },
+    {
+      "id": "F3",
+      "to": "intro",
+      "title": "Study",
+      "text": "Xiang studies at the National University of Singapore (NUS): Bachelor of Engineering in Computer Engineering, specialising in Advanced Electronics & IoT, with a minor in AI. He started in {{education.start|month}}, is in his {{education.year}} year now, and is expected to graduate in {{education.end|month}}."
+    },
+    {
+      "id": "F4",
+      "to": "intro",
+      "title": "Looking for",
+      "text": "{{person.called}} is looking for internships starting {{seeking.start|month}}, in {{seeking.areas}}."
+    },
+    {
+      "id": "F5",
+      "to": "hackathons",
+      "title": "Hackathons",
+      "text": "Hackathons: {{hackathons.count_2026}} hackathons in 2026, {{hackathons.count_total}} total (including HacX 2025). Top honors: Top 6 (LOTR Track) out of 800 participants at the Singapore Defence Tech Hackathon (Marsham Edge, Sep 2026), Open Finalist at DSTA BrainHack CODE_EXP 2026 (Kampung Kaki, Jun 2026), Semi-Finalist at Vibe For Good 2026 (VibeCheck, Sep 2026). Also participated in NUS-SYNAPXE-IMDA AI Challenge, AI Engineer Hackathon, Tinyfish-SG-Hackathon, Hack4Good, and VibeWithSG. AnAn is for Tencent Age Well Social Good Challenge SG."
+    },
+    {
+      "id": "F6",
+      "to": "contact",
+      "title": "Contact",
+      "text": "To reach {{person.called}}: email {{person.email}} (the email button at the bottom of the page), GitHub {{person.github_label}}, LinkedIn {{person.linkedin_label}}."
+    },
+    {
+      "id": "F7",
+      "to": "contact",
+      "title": "Résumé",
+      "text": "Xiang's résumé is available as a single unified General Résumé (PDF download and interactive view), consolidating his Software Robotics engineering at KABAM, full-stack systems, {{hackathons.count_2026}}-hackathon cadence, and autonomous agent infrastructure."
+    },
+    {
+      "id": "F8",
+      "to": null,
+      "title": "Holo",
+      "text": "The wolf on the page is Holo, the Wisewolf of Yoitsu, from Spice and Wolf, a light novel series that was also made into an anime. She is Xiang's favourite character; on his site she guides visitors and answers their questions about his work."
+    },
+    {
+      "id": "F9",
+      "to": null,
+      "title": "This chat",
+      "text": "Holo's chat is an agent Xiang built for this site. For each question it finds the relevant facts from the site's own content by keyword (BM25) and by meaning (NVIDIA nemotron-3-embed-1b embeddings), fuses the rankings with Reciprocal Rank Fusion, and NVIDIA's Nemotron 3 Super model writes Holo's answer from only those facts. The steps and timings are shown under each answer. It knows only what is on this site."
+    },
+    {
+      "id": "F10",
+      "to": null,
+      "title": "This chat",
+      "text": "Questions asked in Holo's chat are sent to Xiang on Telegram, so he sees what visitors ask. Nothing else about the visitor is kept."
+    },
+    {
+      "id": "F11",
+      "to": "P1",
+      "title": "Projects",
+      "text": "The projects on the page, in order: Aiko, Agora, Replay, AnAn, Kampung Kaki, Marsham Edge, PLAN.AI, Mera, Shoppo, Wingman. Each has a button that opens its own page."
+    },
+    {
+      "id": "F12",
+      "to": null,
+      "title": "How Holo answers",
+      "text": "Holo is not just a chat model behind a prompt: Xiang built a retrieval (RAG) loop around the model. Every question first runs four searches over the site's facts: keyword (BM25), meaning (NVIDIA nemotron-3-embed-1b embeddings), meaning together with the visitor's previous question so a follow-up keeps its subject, and the nearest prepared questions. Reciprocal Rank Fusion merges the four rankings, and only the six best facts (plus, for a follow-up, the ones the last answer stood on) reach Nemotron 3 Super, which writes Holo's answer from them."
+    },
+    {
+      "id": "F13",
+      "to": null,
+      "title": "Holo's facts",
+      "text": "Holo's facts come from the same content file the page itself is drawn from, plus plain facts the page leaves implicit (what is current, counts, who Holo is), so the page and Holo cannot drift apart. Every fact has an id, and 'How I answered' under each answer shows the searches, the facts used and the model, with timings. Prepared questions are matched by meaning, never by hard-coded patterns or canned replies; Holo writes every answer fresh."
+    },
+    {
+      "id": "F14",
+      "to": null,
+      "title": "Testing Holo",
+      "text": "Holo was tested by asking the running agent a fixed set of visitor questions over real HTTP (follow-ups, attempts to override her rules, off-topic requests, questions that invite a 'no') and grading every answer by hand against the facts. A second model that checked each sentence against the facts was tried and switched off: on 23 hand-labelled answers it either cut true facts from 7 answers or caught none of the 4 slips, and it added 2 to 8 seconds."
+    },
+    {
+      "id": "F15",
+      "to": null,
+      "title": "Holo's service",
+      "text": "Holo's agent is one Python (FastAPI) service on Vercel, at the same address as the page, and it streams each step to the page as it finishes. If the model is down, the visitor still gets the best matching fact as plain text. Limits per visitor and per day keep it within NVIDIA's free tier."
+    }
+  ]
+}

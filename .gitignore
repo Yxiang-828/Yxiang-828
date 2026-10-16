@@ -1,0 +1,9 @@
+node_modules/
+dist/
+__pycache__/
+*.tsbuildinfo
+.vercel/
+.venv/
+agent/.env
+agent/runs/
+.DS_Store

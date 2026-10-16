@@ -1,0 +1,18 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "cd site && npm ci",
+  "buildCommand": "cd site && npm run build",
+  "outputDirectory": "site/dist",
+  "functions": {
+    "api/index.py": {
+      "maxDuration": 60,
+      "excludeFiles": "{site/**,profile/**,resume/**,docs/**,github-io/**,node_modules/**,agent/runs/**,agent/.venv/**,agent/eval*.py,README.md}"
+    }
+  },
+  "redirects": [
+    { "source": "/cv.html", "destination": "/resume.html", "permanent": true },
+    { "source": "/index_v1.html", "destination": "/", "permanent": true }
+  ],
+  "rewrites": [{ "source": "/api/(.*)", "destination": "/api/index" }]
+}

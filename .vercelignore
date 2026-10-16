@@ -1,0 +1,5 @@
+# Not part of the built page or Holo: kept in git, never uploaded to Vercel
+profile/
+docs/
+github-io/
+site/scripts/

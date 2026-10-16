@@ -1,0 +1,425 @@
+{
+  "_note": "Prepared visitor questions. Each has several phrasings (matched by meaning, never by pattern) and the ids of the facts that answer it (site.json lines, holo-facts.json). Holo still writes every answer herself from those facts. The first phrasing is the suggestion chip; `to` is the page stop where it is shown first.",
+  "qa": [
+    {
+      "id": "Q1",
+      "to": "intro",
+      "src": [
+        "F8"
+      ],
+      "q": [
+        "Who are you?",
+        "who's that avatar",
+        "who is the wolf girl in the corner",
+        "what anime is she from",
+        "why is there a wolf on his site"
+      ]
+    },
+    {
+      "id": "Q2",
+      "to": null,
+      "src": [
+        "F12",
+        "F9",
+        "F13"
+      ],
+      "q": [
+        "How does this chat work?",
+        "are you an AI",
+        "are you ChatGPT",
+        "what model runs you",
+        "how were you built",
+        "is this RAG",
+        "are you just an API with a prompt"
+      ]
+    },
+    {
+      "id": "Q3",
+      "to": "intro",
+      "src": [
+        "I2",
+        "I3",
+        "I4"
+      ],
+      "q": [
+        "Who is Xiang?",
+        "tell me about him",
+        "introduce yourself",
+        "who is Yao Xiang",
+        "give me the short version",
+        "what does he do"
+      ]
+    },
+    {
+      "id": "Q4",
+      "to": "intro",
+      "src": [
+        "F1",
+        "E1"
+      ],
+      "q": [
+        "Where does he work now?",
+        "what's his current job",
+        "is he employed",
+        "what is he doing these days"
+      ]
+    },
+    {
+      "id": "Q5",
+      "to": "intro",
+      "src": [
+        "F4",
+        "I5"
+      ],
+      "q": [
+        "Is he looking for an internship?",
+        "when is he available",
+        "what roles does he want",
+        "can we hire him",
+        "is he open to work"
+      ]
+    },
+    {
+      "id": "Q6",
+      "to": "experience",
+      "src": [
+        "E1a",
+        "E1b",
+        "E1c"
+      ],
+      "q": [
+        "What does he do at KABAM?",
+        "tell me about his robotics internship",
+        "what is the robot",
+        "what did he build for the robot"
+      ]
+    },
+    {
+      "id": "Q7",
+      "to": "experience",
+      "src": [
+        "E1b",
+        "E1c",
+        "E1"
+      ],
+      "q": [
+        "Does he know ROS 2?",
+        "has he worked with Nav2 or SLAM",
+        "robotics stack",
+        "does he do field testing"
+      ]
+    },
+    {
+      "id": "Q8",
+      "to": "experience",
+      "src": [
+        "E1a",
+        "P3c",
+        "C06w"
+      ],
+      "q": [
+        "Has he done computer vision?",
+        "TensorRT experience",
+        "edge AI on a Jetson",
+        "machine learning work"
+      ]
+    },
+    {
+      "id": "Q9",
+      "to": "experience",
+      "src": [
+        "F2",
+        "E2a"
+      ],
+      "q": [
+        "Was he a teaching assistant?",
+        "what did he teach",
+        "CS2113"
+      ]
+    },
+    {
+      "id": "Q10",
+      "to": "P1",
+      "src": [
+        "P1w",
+        "P1a",
+        "P1b",
+        "P1c"
+      ],
+      "q": [
+        "What does Aiko do?",
+        "what is Aiko",
+        "tell me about his personal agent"
+      ]
+    },
+    {
+      "id": "Q11",
+      "to": "P1",
+      "src": [
+        "P1b",
+        "P1a"
+      ],
+      "q": [
+        "How does Aiko remember things?",
+        "agent memory",
+        "retrieval in Aiko",
+        "context engineering"
+      ]
+    },
+    {
+      "id": "Q12",
+      "to": "P1",
+      "src": [
+        "P1e"
+      ],
+      "q": [
+        "What are Aedrion and Ariadne?",
+        "what is the agent fleet",
+        "does he run several agents"
+      ]
+    },
+    {
+      "id": "Q13",
+      "to": "P2",
+      "src": [
+        "P2w",
+        "P2a",
+        "P2b"
+      ],
+      "q": [
+        "What is Agora?",
+        "multi-agent coding",
+        "how do the agents avoid merge conflicts"
+      ]
+    },
+    {
+      "id": "Q14",
+      "to": "P5",
+      "src": [
+        "P5w",
+        "P5a",
+        "P5b"
+      ],
+      "q": [
+        "What is Replay?",
+        "the pixel game",
+        "multiplayer scam simulation"
+      ]
+    },
+    {
+      "id": "Q15",
+      "to": "P3",
+      "src": [
+        "P3w",
+        "P3a",
+        "P3b",
+        "P3c"
+      ],
+      "q": [
+        "What is AnAn?",
+        "elderly care companion",
+        "how does AnAn stay safe"
+      ]
+    },
+    {
+      "id": "Q16",
+      "to": "P4",
+      "src": [
+        "P4w",
+        "P4a",
+        "P4b",
+        "A2"
+      ],
+      "q": [
+        "What is Kampung Kaki?",
+        "the emergency map",
+        "CODE_EXP project"
+      ]
+    },
+    {
+      "id": "Q17",
+      "to": "P6",
+      "src": [
+        "P6w",
+        "P6a",
+        "P6b",
+        "P6c"
+      ],
+      "q": [
+        "What is Marsham Edge?",
+        "the counter-drone console",
+        "defence tech hackathon project",
+        "what was his part in Marsham Edge"
+      ]
+    },
+    {
+      "id": "Q18",
+      "to": "P7",
+      "src": [
+        "C04w"
+      ],
+      "q": [
+        "What is PLAN.AI?",
+        "the research planner"
+      ]
+    },
+    {
+      "id": "Q19",
+      "to": "P8",
+      "src": [
+        "C06w"
+      ],
+      "q": [
+        "What is Mera?",
+        "the health companion",
+        "heart rate from a camera"
+      ]
+    },
+    {
+      "id": "Q20",
+      "to": "P9",
+      "src": [
+        "C05w"
+      ],
+      "q": [
+        "What is Shoppo?",
+        "the shopping agent",
+        "TinyFish"
+      ]
+    },
+    {
+      "id": "Q21",
+      "to": "P10",
+      "src": [
+        "C07w"
+      ],
+      "q": [
+        "What is Wingman?",
+        "the desktop assistant",
+        "NUS Orbital project"
+      ]
+    },
+    {
+      "id": "Q22",
+      "to": "hackathons",
+      "src": [
+        "F5",
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "q": [
+        "Has he won any hackathons?",
+        "best hackathon result",
+        "awards",
+        "is he a finalist"
+      ]
+    },
+    {
+      "id": "Q23",
+      "to": "hackathons",
+      "src": [
+        "F5",
+        "A4"
+      ],
+      "q": [
+        "How many hackathons has he done?",
+        "which hackathons",
+        "list of hackathons"
+      ]
+    },
+    {
+      "id": "Q24",
+      "to": "hackathons",
+      "src": [
+        "C1",
+        "C2"
+      ],
+      "q": [
+        "Does he have certificates?",
+        "Coursera",
+        "Google AI certificate",
+        "deep learning course"
+      ]
+    },
+    {
+      "id": "Q25",
+      "to": "intro",
+      "src": [
+        "F3",
+        "I2"
+      ],
+      "q": [
+        "Where does he study?",
+        "what's his degree",
+        "when does he graduate",
+        "which year is he in"
+      ]
+    },
+    {
+      "id": "Q26",
+      "to": "contact",
+      "src": [
+        "F6"
+      ],
+      "q": [
+        "How do I contact him?",
+        "what's his email",
+        "LinkedIn",
+        "GitHub"
+      ]
+    },
+    {
+      "id": "Q27",
+      "to": "contact",
+      "src": [
+        "F7"
+      ],
+      "q": [
+        "Can I see his résumé?",
+        "download CV",
+        "resume pdf"
+      ]
+    },
+    {
+      "id": "Q28",
+      "to": null,
+      "src": [
+        "F11"
+      ],
+      "q": [
+        "What projects are on the page?",
+        "list his projects",
+        "what has he built"
+      ]
+    },
+    {
+      "id": "Q29",
+      "to": null,
+      "src": [
+        "F14",
+        "F12"
+      ],
+      "q": [
+        "How was Holo tested?",
+        "how do you avoid making things up",
+        "do you hallucinate",
+        "how do I know your answers are true"
+      ]
+    },
+    {
+      "id": "Q30",
+      "to": null,
+      "src": [
+        "F10",
+        "F15"
+      ],
+      "q": [
+        "Do you keep my questions?",
+        "privacy",
+        "what happens to what I type here",
+        "where does this chat run"
+      ]
+    }
+  ]
+}

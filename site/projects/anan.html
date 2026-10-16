@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!--NO-SPLASH-INJECTED-->
+<script>(function(){function k(){if(!document.body)return;document.body.classList.remove('preload');var l=document.getElementById('loader');if(l)l.remove();var h=document.getElementById('holo-container');if(h){h.classList.remove('holo-splash-center','talking');h.removeAttribute('style');h.style.display='block';h.style.animation='none';}var t=document.getElementById('holo-text');if(t)t.innerText='';window.holoCanNavigate=true;sessionStorage.setItem('visited','true');var ov=document.querySelector('.page-transition-overlay');if(ov)ov.classList.remove('active');}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',k);}else{k();}window.addEventListener('pageshow',k);})();</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>AnAn 安安 — Autonomous Senior Care Companion | Yao Xiang</title>
+    <meta name="description"
+        content="An autonomous care companion for seniors living alone, built on the premise that silence is an input. A seven-phase kernel writes an auditable receipt before every action.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        body.preload { visibility: hidden !important; }
+        body.preload #loader,
+        body.preload #holo-container,
+        body.preload #cursor-glow { visibility: visible !important; }
+    /* ── AnAn subpage ─────────────────────────────────────────────────────
+       Palette is AnAn's own (the deck's ink/amber), not the portfolio default,
+       so the page reads as the product rather than as a template slot.
+       Motion: custom ease-out only, transform+opacity only, everything gated
+       behind prefers-reduced-motion and (hover: hover).                      */
+    .anan {
+      --ink:      #14161A;   /* AnAn deck ground   */
+      --panel:    #1D2026;
+      --line:     #2C313A;
+      --paper:    #E8E4DA;
+      --paper-dim:#B9B4A6;
+      --mute:     #8E939D;   /* dimmest grey that passes AA on --ink */
+      --amber:    #FFD97D;   /* the receipt colour */
+      --amber-dk: #B8860B;
+      --red:      #EC5D62;   /* AA-safe on --panel (4.90:1) */
+      --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+      position: relative; z-index: 2;
+      background: var(--ink); color: var(--paper);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.65;
+    }
+    .an-wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+    /* scroll reveal — opacity+transform only, staggered by --d */
+    /* No CSS hides content here. Reveal is driven entirely by the Web Animations
+       API at the bottom of this file: JS sets the start state, so a page with no
+       JS — or a script that throws — is fully readable rather than blank. The
+       first build hid with CSS and revealed with JS, and shipped an empty page. */
+    /* No blanket will-change: 44 permanent compositor layers is a memory cost
+       paid for the whole page life to buy one 620ms animation. The motion layer
+       sets it immediately before animating and clears it on finish. */
+
+    /* ── hero ───────────────────────────────────────────────── */
+    .an-hero { position: relative; padding: 190px 0 96px; overflow: hidden; }
+    .an-hero-bg {
+      position: absolute; inset: -30% -10% auto; height: 150%;
+      background:
+        radial-gradient(46% 40% at 22% 24%, rgba(255,217,125,.11) 0%, rgba(20,22,26,0) 66%),
+        radial-gradient(40% 36% at 78% 62%, rgba(120,160,255,.07) 0%, rgba(20,22,26,0) 68%);
+      pointer-events: none;
+    }
+    .an-kicker { font-size: 12.5px; letter-spacing: .26em; text-transform: uppercase;
+                 color: var(--amber-dk); font-weight: 700; margin-bottom: 20px; }
+    .an-title { font-size: clamp(58px, 9vw, 118px); line-height: .95; letter-spacing: .02em;
+                font-weight: 800; color: #F7F3EA; margin: 0 0 6px; }
+    .an-title-en { display: inline-block; font-size: .42em; letter-spacing: .22em;
+                   color: var(--paper-dim); font-weight: 600; vertical-align: middle;
+                   margin-left: .5em; text-transform: uppercase; }
+    .an-thesis { font-family: Georgia, 'Times New Roman', serif; font-style: italic;
+                 font-size: clamp(26px, 3.6vw, 42px); color: var(--amber);
+                 margin: 10px 0 26px; letter-spacing: .01em; }
+    .an-lede { font-size: clamp(16px, 1.5vw, 19px); color: #C8D0DF; max-width: 720px; }
+    .an-lede b { color: var(--paper); font-weight: 600; }
+
+    .an-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 34px 0 46px; }
+    .an-btn {
+      display: inline-block; padding: 13px 24px; border-radius: 11px;
+      border: 1px solid var(--line); background: var(--panel);
+      color: var(--paper); text-decoration: none; font-size: 14.5px; font-weight: 600;
+      letter-spacing: .01em;
+      transition: transform .16s var(--ease-out), background-color .2s ease,
+                  border-color .2s ease, color .2s ease;
+    }
+    .an-btn.primary { background: var(--amber); border-color: var(--amber); color: #14161A; }
+    .an-btn.ghost { background: transparent; color: var(--paper-dim); }
+    @media (hover: hover) and (pointer: fine) {
+      .an-btn:hover { border-color: var(--amber); color: var(--amber); }
+      .an-btn.primary:hover { color: #14161A; filter: brightness(1.07); }
+    }
+    .an-btn:active { transform: scale(.97); }   /* the press must be felt */
+
+    .an-stat-row { display: flex; flex-wrap: wrap; gap: 14px; }
+    .an-stat { flex: 1 1 168px; border: 1px solid var(--line); border-radius: 12px;
+               background: rgba(29,32,38,.7); padding: 16px 18px; }
+    .an-stat b { display: block; font-size: 34px; line-height: 1; color: var(--amber);
+                 font-variant-numeric: tabular-nums; }
+    .an-stat span { display: block; font-size: 12.5px; color: var(--mute); margin-top: 8px;
+                    letter-spacing: .02em; }
+
+    .an-bird {
+      position: absolute; right: 5%; top: 165px; width: clamp(96px, 12vw, 168px);
+      image-rendering: pixelated; opacity: .95;
+      animation: anBob 3.4s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes anBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-11px); } }
+    /* both, or the shorthand from whichever rule comes last silently wins */
+    .an-bird.an-sprite {
+      animation: anBob 3.4s ease-in-out infinite,
+                 anFrames var(--bspeed, 1.15s) steps(4) infinite;
+    }
+
+
+    /* ── the bird actually animates ───────────────────────────────────────
+       Four-frame atlases (1024x256), stepped with the same frame maths AnAn's
+       own story site ships: background-size 400% and steps(4). Using a single
+       static crop of a six-state sprite sheet wasted the whole asset. */
+    .an-sprite {
+      display: inline-block; background-repeat: no-repeat; background-size: 400% 100%;
+      image-rendering: pixelated;
+      animation: anFrames var(--bspeed, 1.1s) steps(4) infinite;
+    }
+    @keyframes anFrames { to { background-position-x: 133.3333%; } }
+
+    .an-states { display: grid; grid-template-columns: repeat(auto-fit, minmax(122px, 1fr));
+                 gap: 14px; margin-top: 34px; }
+    .an-state { border: 1px solid var(--line); border-radius: 14px; background: var(--panel);
+                padding: 18px 10px 14px; text-align: center;
+                transition: transform .2s var(--ease-out), border-color .2s ease; }
+    .an-state .an-sprite { width: 92px; height: 92px; }
+    .an-state b { display: block; font-size: 15px; color: var(--paper); margin-top: 8px; }
+    .an-state span.lbl { display: block; font-size: 11.5px; color: var(--mute); margin-top: 4px;
+                     letter-spacing: .06em; text-transform: uppercase; }
+    @media (hover: hover) and (pointer: fine) {
+      .an-state:hover { border-color: var(--amber); transform: translateY(-3px); }
+    }
+    @media (prefers-reduced-motion: reduce) { .an-sprite { animation: none; } }
+
+    /* ── sections ───────────────────────────────────────────── */
+    .an-sec { padding: 96px 0; position: relative; }
+    .an-sec.alt { background: #101217; border-top: 1px solid var(--line);
+                  border-bottom: 1px solid var(--line); }
+    .an-eyebrow { font-size: 12px; letter-spacing: .28em; text-transform: uppercase;
+                  color: var(--mute); font-weight: 700; margin-bottom: 16px; }
+    .an-h2 { font-size: clamp(27px, 3.5vw, 44px); line-height: 1.18; color: #F7F3EA;
+             font-weight: 800; letter-spacing: -.01em; margin: 0 0 18px; max-width: 20ch; }
+    .an-sub { font-size: 17px; color: var(--paper-dim); max-width: 66ch; margin-bottom: 40px; }
+    .an-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+              gap: 34px; margin-top: 26px; }
+    .an-col p { color: #C0C8D6; margin-bottom: 16px; }
+    .an-pull { border-left: 2px solid var(--amber); padding-left: 20px; color: var(--paper) !important; }
+
+    /* ── the kernel list ────────────────────────────────────── */
+    .an-kernel { list-style: none; margin: 8px 0 46px; padding: 0;
+                 border-top: 1px solid var(--line); }
+    .an-phase { display: grid; grid-template-columns: 54px 132px 1fr; align-items: baseline;
+                gap: 10px 18px; padding: 20px 4px; border-bottom: 1px solid var(--line);
+                transition: background-color .2s ease; }
+    .an-phase .an-n { font-family: ui-monospace, 'SF Mono', monospace; font-size: 12.5px;
+                      color: var(--mute); letter-spacing: .16em; }
+    .an-phase b { font-family: ui-monospace, 'SF Mono', monospace; font-size: 16px;
+                  color: var(--paper); letter-spacing: .12em; }
+    .an-phase .an-cn { color: var(--amber); font-size: 20px; letter-spacing: .18em; }
+    .an-phase p { grid-column: 2 / -1; margin: 6px 0 0; color: #A9B2C2; font-size: 15px; }
+    .an-phase.gate b, .an-phase.gate .an-cn { color: var(--red); }
+    /* the phase the reader is currently inside — the page's own tick */
+    .an-phase { border-left: 2px solid transparent; padding-left: 14px;
+                transition: border-color .28s ease, background-color .28s ease; }
+    .an-phase.lit { border-left-color: var(--amber); background: rgba(255,217,125,.055); }
+    .an-phase.lit .an-n { color: var(--amber); }
+    .an-phase.gate.lit { border-left-color: var(--red); background: rgba(236,93,98,.06); }
+    @media (hover: hover) and (pointer: fine) {
+      .an-phase:hover { background: rgba(255,217,125,.045); }
+    }
+
+    /* ── figures: clip-path reveal, not a fade ──────────────── */
+    .an-fig { margin: 46px 0 0; }
+    .an-fig img, .an-shot img {
+      width: 100%; height: auto; display: block; border-radius: 14px; border: 1px solid var(--line);
+    }
+
+    .an-fig figcaption, .an-shot figcaption {
+      font-size: 13.5px; color: var(--mute); margin-top: 12px; line-height: 1.6; max-width: 74ch;
+    }
+    .an-shot figcaption b { color: var(--paper-dim); }
+
+    .an-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+                gap: 26px; margin-top: 34px; }
+    .an-shot.wide { grid-column: 1 / -1; }
+
+    /* ── cards / timeline / links ───────────────────────────── */
+    .an-grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+                gap: 18px; margin-top: 44px; }
+    .an-card { border: 1px solid var(--line); border-radius: 14px; background: var(--panel);
+               padding: 22px 24px; }
+    .an-card h3 { font-size: 16px; color: var(--amber); margin: 0 0 10px; letter-spacing: .01em; }
+    .an-card p { font-size: 14.5px; color: #A9B2C2; margin: 0; }
+
+    .an-time { list-style: none; margin: 34px 0 0; padding: 0 0 0 26px;
+               border-left: 1px solid var(--line); }
+    .an-t { position: relative; padding: 0 0 38px 26px; }
+    .an-t-dot { position: absolute; left: -33px; top: 7px; width: 13px; height: 13px;
+                border-radius: 50%; background: var(--ink); border: 2px solid var(--amber); }
+    .an-t h3 { font-size: 19px; color: #F7F3EA; margin: 0 0 8px; }
+    .an-t p { font-size: 15px; color: #A9B2C2; margin: 0; max-width: 72ch; }
+
+    .an-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+                gap: 16px; margin: 34px 0 30px; }
+    .an-link { display: block; text-decoration: none; border: 1px solid var(--line);
+               border-radius: 14px; background: var(--panel); padding: 22px 24px;
+               transition: transform .18s var(--ease-out), border-color .2s ease; }
+    .an-link .an-link-k { display: inline-block; font-size: 11px; letter-spacing: .24em;
+                          text-transform: uppercase; color: var(--amber-dk); font-weight: 700;
+                          margin-bottom: 10px; }
+    .an-link b { display: block; color: var(--paper); font-size: 17px; margin-bottom: 7px; }
+    .an-link .an-link-s { display: block; color: var(--mute); font-size: 13.5px; line-height: 1.55; }
+    @media (hover: hover) and (pointer: fine) {
+      .an-link:hover { border-color: var(--amber); transform: translateY(-2px); }
+    }
+    .an-link:active { transform: scale(.985); }
+
+    .an-stack { font-size: 13.5px; color: var(--mute); border-top: 1px solid var(--line);
+                padding-top: 22px; }
+    .an-stack b { color: var(--paper-dim); letter-spacing: .16em; text-transform: uppercase;
+                  font-size: 11.5px; margin-right: 10px; }
+    .an-back { display: inline-block; margin-top: 34px; color: var(--paper-dim);
+               text-decoration: none; font-size: 14.5px;
+               transition: transform .16s var(--ease-out), color .2s ease; }
+    @media (hover: hover) and (pointer: fine) {
+      .an-back:hover { color: var(--amber); transform: translateX(-3px); }
+    }
+
+    /* A 1400px capture in a 356px column renders its 13px text at ~3.5px: it
+       fits the layout perfectly and cannot be read. Two answers, by content —
+       a console gets a tap-to-open full size; a phone mockup floating on a wide
+       canvas gets cropped to the phone. Neither touches the asset. */
+    .an-zoom { display: block; }
+    .an-zoom-hint { display: none; }
+    @media (pointer: coarse) and (max-width: 820px) {
+      .an-zoom-hint { display: block; font-size: 12.5px; color: var(--amber);
+                      margin-top: 9px; letter-spacing: .04em; }
+      .an-subject { aspect-ratio: 9 / 16; object-fit: cover; object-position: center; }
+    }
+
+    @media (max-width: 720px) {
+      .an-hero { padding: 120px 0 56px; }
+      /* The bird sat at bottom-right of the hero, which on a phone is exactly
+         where the stats grid lands — it covered a card. Pin it beside the
+         kicker instead, and give the kicker room so they never collide. */
+      .an-bird { top: 104px; right: 14px; bottom: auto; width: 74px; }
+      .an-kicker { max-width: 62%; line-height: 1.5; }
+      .an-title { font-size: clamp(52px, 16vw, 82px); }
+      .an-title-en { display: block; margin: 10px 0 0; font-size: .32em; }
+      .an-thesis { font-size: clamp(24px, 7vw, 34px); }
+      .an-actions { gap: 10px; }
+      .an-actions .an-btn { flex: 1 1 calc(50% - 5px); text-align: center; padding: 13px 12px; }
+      .an-actions .an-btn:last-child { flex-basis: 100%; }
+      .an-stat-row { gap: 10px; }
+      .an-stat { flex: 1 1 calc(50% - 5px); padding: 14px 15px; }
+      .an-stat b { font-size: 29px; }
+
+      /* ── the kernel row ──────────────────────────────────────────────
+         This was the "weird big gaps" bug, and it was mine. A 2-column grid
+         with FOUR children auto-places .an-cn onto its own row inside the
+         40px column — so every phase rendered three rows tall, with the
+         amber character crushed into a 40px gutter and ~160px of dead space
+         between one phase's text and the next. Measured: 159px × 7.
+         A phone has one column. Stop pretending otherwise: header line,
+         then the sentence. No grid, no wrapping, no orphan row.          */
+      .an-phase { display: block; padding: 13px 0 15px 12px; }
+      .an-phase .an-n,
+      .an-phase b,
+      .an-phase .an-cn { display: inline; vertical-align: baseline; }
+      .an-phase .an-n  { margin-right: 9px; font-size: 11.5px; }
+      .an-phase b      { font-size: 14.5px; letter-spacing: .1em; }
+      .an-phase .an-cn { margin-left: 9px; font-size: 16px; letter-spacing: .1em; }
+      .an-phase p { margin-top: 5px; font-size: 14.5px; line-height: 1.58; }
+
+      /* ── vertical rhythm ─────────────────────────────────────────────
+         Desktop spacing scaled by viewport width alone leaves a phone with
+         100px+ voids between paragraphs. One scale, applied everywhere,
+         instead of per-block margins tuned on a 1440px screen.            */
+      .an-sec  { padding: 46px 0; }
+      .an-h2   { max-width: none; font-size: clamp(25px, 6.6vw, 32px); margin-bottom: 12px; }
+      .an-eyebrow { margin-bottom: 11px; font-size: 11px; letter-spacing: .22em; }
+      .an-sub  { font-size: 15.5px; margin-bottom: 22px; max-width: none; }
+      .an-wrap { padding: 0 20px; }
+
+      .an-kernel { margin: 4px 0 26px; }
+      .an-two    { gap: 20px; margin-top: 18px; }
+      .an-col p  { margin-bottom: 13px; font-size: 15px; }
+      .an-pull   { padding-left: 15px; }
+      .an-fig    { margin-top: 26px; }
+      .an-fig figcaption,
+      .an-shot figcaption { font-size: 13px; margin-top: 10px; }
+      .an-shots  { gap: 18px; margin-top: 20px; }
+      .an-grid3  { gap: 12px; margin-top: 24px; }
+      .an-card   { padding: 18px 19px; }
+      .an-links  { gap: 12px; margin: 22px 0 22px; }
+      .an-link   { padding: 18px 19px; }
+      .an-stack  { padding-top: 18px; }
+      .an-back   { margin-top: 26px; padding: 10px 0; }   /* 24px tall -> 44px */
+
+      .an-time { padding-left: 20px; margin-top: 22px; }
+      .an-t    { padding: 0 0 26px 20px; }
+      .an-t h3 { font-size: 17px; margin-bottom: 6px; }
+      .an-t p  { font-size: 14.5px; }
+      .an-t-dot { left: -27px; }
+    }
+
+    /* ── touch: no scroll-reveal ─────────────────────────────────────────
+       Belt to the JS brace. If a stylesheet ever loads without the script,
+       or the script errors before its early return, a coarse pointer still
+       gets a page that is simply present — never a page that flashes.     */
+    @media (pointer: coarse) {
+      .anan .rv { opacity: 1 !important; transform: none !important; }
+      .an-phase { transition: none; }
+    }
+
+    /* Motion sickness is real: keep the meaning, drop the movement. */
+    @media (prefers-reduced-motion: reduce) {
+      .anan .rv { opacity: 1 !important; transform: none !important; }
+      .an-bird { animation: none; }
+      .an-btn, .an-link, .an-back { transition: none; }
+    }
+
+    </style>
+</head>
+
+<body class="preload">
+
+    <div id="cursor-glow"></div>
+    <div id="loader" aria-hidden="true">
+        <p id="loader-credit"> </p>
+    </div>
+    <div id="holo-container" onclick="holoInteract(this)">
+        <div class="holo-dialog-box">
+            <p id="holo-text">Welcome.</p>
+        </div><img src="../images/holo.png" alt="Holo" class="holo-sprite">
+    </div>
+
+    <header class="glass-nav">
+        <nav>
+            <div class="nav-container">
+                <h1 class="brand-heading">YAO XIANG</h1>
+                <ul>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#experience">Experience</a></li>
+                    <li><a href="../index.html#skills">Skills</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="scroll-progress-bar"></div>
+    </header>
+
+    <main class="anan">
+
+        <!-- ── HERO ───────────────────────────────────────────────────── -->
+        <section class="an-hero checkpoint">
+            <div class="an-hero-bg" aria-hidden="true"></div>
+            <div class="an-wrap">
+                <p class="an-kicker rv" style="--d:0ms">Tencent Age Well Social Good Challenge &middot; Singapore</p>
+                <h1 class="an-title rv" style="--d:60ms">安安 <span class="an-title-en">AnAn</span></h1>
+                <p class="an-thesis rv" style="--d:120ms">Silence is an input.</p>
+                <p class="an-lede rv" style="--d:180ms">
+                    An autonomous care companion for a senior living alone. Not a chatbot waiting to be spoken to
+                    &mdash; an agent for whom <b>nothing happening</b> is itself the signal. When the morning
+                    check-in goes unanswered, it decides, escalates, and leaves a receipt for every step.
+                </p>
+                <div class="an-actions rv" style="--d:240ms">
+                    <a class="an-btn primary" href="https://anan-iax1.onrender.com" target="_blank" rel="noopener">Live demo</a>
+                    <a class="an-btn" href="#demo">Watch the film</a>
+                    <a class="an-btn ghost" href="https://yxiang-828.github.io/anan" target="_blank" rel="noopener">The full story</a>
+                </div>
+                <div class="an-stat-row rv" style="--d:300ms">
+                    <div class="an-stat"><b>7</b><span>phases per decision</span></div>
+                    <div class="an-stat"><b>9</b><span>skills, and only nine</span></div>
+                    <div class="an-stat"><b>3</b><span>tier permission envelope</span></div>
+                    <div class="an-stat"><b>0</b><span>camera frames leave the phone</span></div>
+                </div>
+            </div>
+            <span class="an-bird an-sprite" role="img" aria-label="AnAn — the bird companion, idling"
+                 style="background-image:url(../images/anan/idle-atlas.webp); --bspeed:1.15s"></span>
+        </section>
+
+        <!-- ── THE PITCH ──────────────────────────────────────────────── -->
+        <section class="an-sec checkpoint" id="pitch">
+            <div class="an-wrap">
+                <p class="an-eyebrow rv">01 &mdash; the problem</p>
+                <h2 class="an-h2 rv">A fall is not the emergency. The four hours after it are.</h2>
+                <div class="an-two">
+                    <div class="an-col rv">
+                        <p>Singapore is ageing faster than almost anywhere on earth, and the sharpest risk for a
+                            senior living alone is not a dramatic event. It is an ordinary morning where nobody
+                            notices that nothing happened.</p>
+                        <p>Every consumer answer to this is <em>reactive</em>: a button she has to press, an app she
+                            has to open, a call she has to make. Each assumes she is able to act at the exact moment
+                            she is least able to.</p>
+                    </div>
+                    <div class="an-col rv" style="--d:80ms">
+                        <p class="an-pull">So the design inverted the trigger. AnAn does not wait to be addressed.
+                            It holds a model of the day &mdash; medication at 08:00, a check-in at 07:30, a bulletin
+                            to family at 20:05 &mdash; and treats a missing response as evidence, not as nothing.</p>
+                        <p>What that buys is time. The escalation tree starts walking while she still only needs a
+                            neighbour, not an ambulance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── ARCHITECTURE ───────────────────────────────────────────── -->
+        <section class="an-sec alt checkpoint" id="architecture">
+            <div class="an-wrap">
+                <p class="an-eyebrow rv">02 &mdash; architecture</p>
+                <h2 class="an-h2 rv">Seven phases. Every one writes a receipt before the next may begin.</h2>
+                <p class="an-sub rv">Waking is not thinking, and thinking is not acting. The separation is the
+                    product: it is what makes the agent's autonomy auditable rather than asserted.</p>
+
+                <ol class="an-kernel">
+                    <li class="an-phase rv" style="--d:0ms"><span class="an-n">01</span><b>WAKE</b>
+                        <span class="an-cn">唤醒</span>
+                        <p>A trigger arrives &mdash; a cron, a silence deadline, a tap, a Telegram reply. It is only
+                            an opportunity to inspect the world, never a command.</p>
+                    </li>
+                    <li class="an-phase rv" style="--d:50ms"><span class="an-n">02</span><b>THINK</b>
+                        <span class="an-cn">思考</span>
+                        <p>The model chooses inside a bounded envelope. If it fails or takes too long, a
+                            deterministic floor decides instead &mdash; the loop never stalls on a provider.</p>
+                    </li>
+                    <li class="an-phase rv" style="--d:100ms"><span class="an-n">03</span><b>REVALIDATE</b>
+                        <span class="an-cn">复核</span>
+                        <p>A decision born from an old snapshot re-checks the world. A heartbeat that raced in kills
+                            the stale decision <em>before</em> anything external happens.</p>
+                    </li>
+                    <li class="an-phase rv gate" style="--d:150ms"><span class="an-n">04</span><b>GATE</b>
+                        <span class="an-cn">闸门</span>
+                        <p>Three tiers: autonomous, family-approval, never. Emergency calls, medical advice and
+                            anything financial are hard-wired to <em>never</em>. This phase is allowed to refuse.</p>
+                    </li>
+                    <li class="an-phase rv" style="--d:200ms"><span class="an-n">05</span><b>ACT</b>
+                        <span class="an-cn">行动</span>
+                        <p>The skill runs. Words are generated at the moment of speaking, never read from a script.</p>
+                    </li>
+                    <li class="an-phase rv" style="--d:250ms"><span class="an-n">06</span><b>RECEIPT</b>
+                        <span class="an-cn">收据</span>
+                        <p>What actually changed is recorded &mdash; delivery surface, message id, real effect.
+                            Never just a return code.</p>
+                    </li>
+                    <li class="an-phase rv" style="--d:300ms"><span class="an-n">07</span><b>COMMIT</b>
+                        <span class="an-cn">落账</span>
+                        <p>State commits. The judge of this decision is the receipt row, not the narration.</p>
+                    </li>
+                </ol>
+
+                <figure class="an-fig rv">
+                    <a class="an-zoom" href="../images/anan/stale.webp" target="_blank" rel="noopener"><img width="1400" height="788" src="../images/anan/stale.webp" alt="The console showing a stale decision refused at the gate" loading="lazy"></a><span class="an-zoom-hint">tap to open full size ↗</span>
+                    <figcaption>The moment the architecture earns itself: a decision made before a heartbeat arrived
+                        is revalidated, found stale, and refused &mdash; with the refusal written down.</figcaption>
+                </figure>
+
+                <div class="an-grid3">
+                    <div class="an-card rv"><h3>The silence FSM</h3>
+                        <p>Six states with windows in config, not code. CHECKIN_SENT → SILENCE_1 → SILENCE_2 →
+                            ESCALATING. A family can retune the patience without a deploy.</p>
+                    </div>
+                    <div class="an-card rv" style="--d:60ms"><h3>The contact tree</h3>
+                        <p>Daughter, then son, then neighbour &mdash; each hop an idempotent escalation id, each
+                            delivery its own receipt. Answering anywhere collapses the whole tree.</p>
+                    </div>
+                    <div class="an-card rv" style="--d:120ms"><h3>On-device screening</h3>
+                        <p>MediaPipe in WASM: rPPG heart rate, pose mobility, FAST facial symmetry. Only the score
+                            leaves the phone. Not one frame does.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── MEDIA ──────────────────────────────────────────────────── -->
+        <section class="an-sec checkpoint" id="media">
+            <div class="an-wrap">
+                <p class="an-eyebrow rv">03 &mdash; the surfaces</p>
+                <h2 class="an-h2 rv">Three people, three screens, one agent.</h2>
+                <div class="an-shots">
+                    <figure class="an-shot rv wide">
+                        <a class="an-zoom" href="../images/anan/console.webp" target="_blank" rel="noopener"><img width="1400" height="788" src="../images/anan/console.webp" alt="The AnAn operator console" loading="lazy"></a><span class="an-zoom-hint">tap to open full size ↗</span>
+                        <figcaption><b>The console.</b> Acts rail, the elder app embedded live, skill rack, plan
+                            line, receipt log and the family mirror &mdash; cause and effect on one screen.</figcaption>
+                    </figure>
+                    <figure class="an-shot rv" style="--d:70ms">
+                        <img class="an-subject" width="1400" height="788" src="../images/anan/ui_elder_home.webp" alt="The elder app home screen" loading="lazy">
+                        <figcaption><b>Hers.</b> One bird, one sentence, one button. The bird's state
+                            <em>is</em> the interface.</figcaption>
+                    </figure>
+                    <figure class="an-shot rv" style="--d:140ms">
+                        <img class="an-subject" width="1400" height="788" src="../images/anan/telegram.webp" alt="The family Telegram alert" loading="lazy">
+                        <figcaption><b>Theirs.</b> A bilingual alert to the guardian with a single tap that closes
+                            the loop &mdash; and logs that it closed.</figcaption>
+                    </figure>
+                </div>
+                <div class="an-states">
+                    <div class="an-state rv"><span class="an-sprite" role="img" aria-label="idle"
+                        style="background-image:url(../images/anan/idle-atlas.webp); --bspeed:1.2s"></span>
+                        <b>待命</b><span class="lbl">idle</span></div>
+                    <div class="an-state rv" style="--d:50ms"><span class="an-sprite" role="img" aria-label="talk"
+                        style="background-image:url(../images/anan/talk-atlas.webp); --bspeed:.62s"></span>
+                        <b>说话</b><span class="lbl">talk</span></div>
+                    <div class="an-state rv" style="--d:100ms"><span class="an-sprite" role="img" aria-label="think"
+                        style="background-image:url(../images/anan/think-atlas.webp); --bspeed:.9s"></span>
+                        <b>思考</b><span class="lbl">think</span></div>
+                    <div class="an-state rv" style="--d:150ms"><span class="an-sprite" role="img" aria-label="alert"
+                        style="background-image:url(../images/anan/alert-atlas.webp); --bspeed:.42s"></span>
+                        <b>事件到达</b><span class="lbl">alert</span></div>
+                    <div class="an-state rv" style="--d:200ms"><span class="an-sprite" role="img" aria-label="happy"
+                        style="background-image:url(../images/anan/happy-atlas.webp); --bspeed:.7s"></span>
+                        <b>开心</b><span class="lbl">happy</span></div>
+                    <div class="an-state rv" style="--d:250ms"><span class="an-sprite" role="img" aria-label="fly"
+                        style="background-image:url(../images/anan/fly-atlas.webp); --bspeed:.5s"></span>
+                        <b>飞行</b><span class="lbl">fly</span></div>
+                </div>
+                <p class="an-sub rv" style="margin-top:24px">Six of the ten states, running live &mdash; the same
+                    four-frame renderer the app ships, not a picture of one. She reads the bird before she reads the
+                    words, so alert beats faster than idle. That difference is the interface.</p>
+            </div>
+        </section>
+
+        <!-- ── JOURNEY ────────────────────────────────────────────────── -->
+        <section class="an-sec alt checkpoint" id="journey">
+            <div class="an-wrap">
+                <p class="an-eyebrow rv">04 &mdash; the journey</p>
+                <h2 class="an-h2 rv">Built vocabulary-first, then refused most of it.</h2>
+                <ol class="an-time">
+                    <li class="an-t rv"><span class="an-t-dot"></span>
+                        <h3>93 words before a line of code</h3>
+                        <p>What an ageing Singapore actually needs, scattered across three poles: what a family can
+                            already do, what a device can already do, and what only an agent can. We built only the
+                            third cluster. If a behaviour could not be named inside that polygon, it was not built.</p>
+                    </li>
+                    <li class="an-t rv" style="--d:70ms"><span class="an-t-dot"></span>
+                        <h3>Nine skills, and the three refusals</h3>
+                        <p>Each skill answers one named failure: silence, isolation, medication, wandering, invisible
+                            decline. We deliberately refused fall-detection hardware, medical advice, and dialling
+                            emergency services &mdash; a demo must not pretend it can.</p>
+                    </li>
+                    <li class="an-t rv" style="--d:140ms"><span class="an-t-dot"></span>
+                        <h3>The kernel, because a demo lies easily</h3>
+                        <p>Anything can look autonomous for ninety seconds. Seven receipt rows per decision is what
+                            makes it checkable afterwards &mdash; including the decisions the gate refused.</p>
+                    </li>
+                    <li class="an-t rv" style="--d:210ms"><span class="an-t-dot"></span>
+                        <h3>Degrade by declaration, never by silence</h3>
+                        <p>The full build wants a GPU: cloned family voices, local Whisper, a Gemini brain. The public
+                            demo runs on a free instance with none of it. Every lane announces what it can actually
+                            do at boot. What was cut is texture &mdash; the kernel and the receipts are identical.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ── DELIVERABLES ───────────────────────────────────────────── -->
+        <section class="an-sec checkpoint" id="demo">
+            <div class="an-wrap">
+                <p class="an-eyebrow rv">05 &mdash; see it</p>
+                <h2 class="an-h2 rv">Everything, in one place.</h2>
+                <div class="an-links">
+                    <a class="an-link rv" href="https://youtu.be/wId_GYlmgmU" target="_blank" rel="noopener">
+                        <span class="an-link-k">Film</span>
+                        <b>Demo video &mdash; five minutes, end to end</b>
+                        <span class="an-link-s">the whole loop: morning, silence, escalation, health check, the honest cut</span>
+                    </a>
+                    <a class="an-link rv" style="--d:60ms" href="https://anan-iax1.onrender.com" target="_blank" rel="noopener">
+                        <span class="an-link-k">Live</span>
+                        <b>The agent, running right now</b>
+                        <span class="an-link-s">inject time and scenarios only &mdash; never behaviour. Watch it decide.</span>
+                    </a>
+                    <a class="an-link rv" style="--d:120ms" href="https://yxiang-828.github.io/anan" target="_blank" rel="noopener">
+                        <span class="an-link-k">Story</span>
+                        <b>How it was built, scroll by scroll</b>
+                        <span class="an-link-s">thirteen chapters, from the 93-word polygon to the honesty layer</span>
+                    </a>
+                    <a class="an-link rv" style="--d:180ms" href="https://github.com/Yxiang-828/anan" target="_blank" rel="noopener">
+                        <span class="an-link-k">Source</span>
+                        <b>github.com/Yxiang-828/anan</b>
+                        <span class="an-link-s">kernel, skills, receipts, and the guards that refuse a bad build</span>
+                    </a>
+                </div>
+                <p class="an-stack rv"><b>Stack</b> &nbsp;Python &middot; FastAPI &middot; SQLite &middot; React &middot;
+                    MediaPipe (WASM) &middot; SEA-LION &middot; Qwen3-TTS &middot; MapLibre GL &middot; OneMap SG
+                    &middot; Telegram Bot API &middot; Docker &middot; Render</p>
+                <a class="an-back rv" href="../index.html#proj-anan">&larr; Back to all projects</a>
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p class="body-inter"
+            style="font-size:0.78rem;text-align:center;padding:36px 0;opacity:0.3;letter-spacing:1px;">© 2026 YAO XIANG
+            · EVERY PIXEL INTENTIONAL</p>
+    </footer>
+    <div class="page-transition-overlay">
+        <h2 class="transition-logo">Portifolio</h2>
+    </div>
+    <script>
+    /* ── AnAn subpage motion ────────────────────────────────────────────────
+       Driven by the Web Animations API rather than CSS classes: JS owns both
+       the start and end state, so nothing can hide content when the script
+       does not run. Hardware-accelerated (transform + opacity only), and every
+       effect is skipped wholesale under prefers-reduced-motion.
+
+       Emil's rules applied: custom ease-out (never ease-in), <300ms on anything
+       interactive, stagger 40-70ms, reveal once and stop observing.          */
+    (function () {
+      var REDUCED = window.matchMedia &&
+                    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var EASE = 'cubic-bezier(0.23, 1, 0.32, 1)';        // strong ease-out
+      var hasIO = 'IntersectionObserver' in window;
+      var hasWA = typeof Element !== 'undefined' && !!Element.prototype.animate;
+
+      var COARSE_EARLY = window.matchMedia &&
+                         window.matchMedia('(pointer: coarse)').matches;
+      // No scroll-reveal on touch. Staggered pop-ins during a fast flick read
+      // as flashing; smooth scrolling is worth more than the entrance.
+      if (REDUCED || COARSE_EARLY || !hasIO || !hasWA) return;
+
+      // ── generic reveal ────────────────────────────────────────────────
+      var targets = [].slice.call(document.querySelectorAll('.anan .rv'));
+      targets.forEach(function (el) {
+        el.style.opacity = '0';                            // JS hides, JS restores
+        el.style.transform = 'translateY(16px)';
+      });
+
+      var COARSE = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+
+      function reveal(el) {
+        var d = parseFloat((el.style.getPropertyValue('--d') || '0').replace('ms', '')) || 0;
+        el.style.willChange = 'opacity, transform';
+        el.animate(
+          [{ opacity: 0, transform: 'translateY(16px)' },
+           { opacity: 1, transform: 'translateY(0)' }],
+          { duration: 620, delay: d, easing: EASE, fill: 'forwards' }
+        ).onfinish = function () {
+          el.style.opacity = ''; el.style.transform = ''; el.style.willChange = '';
+        };
+      }
+
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          reveal(e.target); io.unobserve(e.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      targets.forEach(function (el) { io.observe(el); });
+
+      // Failsafe: if anything above wedges, show everything rather than nothing.
+      setTimeout(function () {
+        targets.forEach(function (el) {
+          if (el.style.opacity === '0') { el.style.opacity = ''; el.style.transform = ''; }
+        });
+      }, 6000);
+
+      // ── images wipe up instead of fading ──────────────────────────────
+      // A fade reads as "loading"; a wipe reads as "arriving". Same cost.
+      var figs = [].slice.call(document.querySelectorAll('.an-fig img, .an-shot img'));
+      figs.forEach(function (img) { img.style.clipPath = 'inset(0 0 100% 0)'; });
+      var ioFig = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var img = e.target;
+          img.animate([{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0 0)' }],
+                      { duration: 900, easing: 'cubic-bezier(0.77, 0, 0.175, 1)', fill: 'forwards' })
+             .onfinish = function () { img.style.clipPath = ''; };
+          ioFig.unobserve(img);
+        });
+      }, { threshold: 0.18 });
+      figs.forEach(function (i) { ioFig.observe(i); });
+
+      // ── the kernel reads itself as you scroll ─────────────────────────
+      // The seven phases are the argument of this page, so scrolling through
+      // them lights each one in turn — the reader's position IS the tick.
+      var phases = [].slice.call(document.querySelectorAll('.an-phase'));
+      if (phases.length) {
+        var ioPh = new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            e.target.classList.toggle('lit', e.isIntersecting &&
+              e.intersectionRatio > 0.55);
+          });
+        }, { threshold: [0, 0.55, 1], rootMargin: '-38% 0px -38% 0px' });
+        phases.forEach(function (p) { ioPh.observe(p); });
+      }
+
+      // ── stats count up once ───────────────────────────────────────────
+      var stats = [].slice.call(document.querySelectorAll('.an-stat b'));
+      var ioSt = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var el = e.target, target = parseInt(el.textContent, 10);
+          ioSt.unobserve(el);
+          if (isNaN(target)) return;
+          var t0 = null, DUR = 900;
+          requestAnimationFrame(function loop(now) {
+            if (t0 === null) t0 = now;
+            var k = Math.min(1, (now - t0) / DUR);
+            el.textContent = Math.round(target * (1 - Math.pow(1 - k, 3)));  // ease-out cubic
+            if (k < 1) requestAnimationFrame(loop);
+          });
+        });
+      }, { threshold: 0.6 });
+      stats.forEach(function (s) { ioSt.observe(s); });
+
+      // ── hero parallax, cheap and rAF-throttled ────────────────────────
+      var bird = document.querySelector('.an-bird');
+      var glow = null;                    // never parallax the big gradient layer
+      if (bird && !COARSE) {
+        var ticking = false;
+        window.addEventListener('scroll', function () {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(function () {
+            var y = window.scrollY;
+            if (y < 1400) {
+              if (bird) bird.style.transform = 'translateY(' + (y * 0.16) + 'px)';
+              if (glow) glow.style.transform = 'translateY(' + (y * -0.06) + 'px)';
+            }
+            ticking = false;
+          });
+        }, { passive: true });
+      }
+    })();
+    </script>
+    <script src="../script.js"></script>
+    <script>(function () { const e = document.getElementById("loader"), t = document.getElementById("holo-container"), n = document.getElementById("holo-text"), o = performance.getEntriesByType("navigation"), a = o.length > 0 && "reload" === o[0].type; if (!a && (sessionStorage.getItem("visited") || window.location.hash)) { e && e.remove(), document.body.classList.remove("preload"), window.holoCanNavigate = !0, sessionStorage.setItem("visited", "true"); if (t) { t.style.display = "block", t.classList.remove("holo-splash-center"); } if (n) n.innerText = "Welcome back."; if (window.location.hash) setTimeout((() => { const e = document.querySelector(window.location.hash); e && e.scrollIntoView({ behavior: "smooth", block: "start" }) }), 60); return } if (!e) return; window.holoCanNavigate = !false; const r = document.createElement("div"); r.className = "cover-reveal-overlay", e.appendChild(r); const i = () => { if (e.classList.contains("sequence-started")) return; e.classList.add("sequence-started"), setTimeout((() => { const o = document.createElement("div"); o.className = "begin-prompt", o.innerHTML = "Click anywhere to enter", e.appendChild(o), e.addEventListener("click", (() => { o.remove(), e.style.pointerEvents = "none", e.style.opacity = "0", t.classList.add("holo-splash-center"), t.style.display = "block", t.style.opacity = "0", t.style.transform = "translate(-50%,-50%) scale(0)", void t.offsetWidth, t.style.transition = "opacity 0.5s, transform 0.5s cubic-bezier(0.175,0.885,0.32,1.275)", t.style.opacity = "1", t.style.transform = "translate(-50%,-50%) scale(1)", n.innerText = "Ready?", t.classList.add("talking"), t.style.animation = "holoFloat 2s ease-in-out infinite, pulseGlow 1.5s ease-in-out infinite", "function" == typeof playSound && playSound("pop", .8) }), { once: true }) }), 1500) }; "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", i) : i(), setTimeout((() => { e.classList.contains("loaded") || (e.style.opacity = "0", e.style.pointerEvents = "none", document.body.classList.remove("preload"), window.holoCanNavigate = !0) }), 8e3) })();</script>
+</body>
+
+</html>

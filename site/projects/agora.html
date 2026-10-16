@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!--NO-SPLASH-INJECTED-->
+<script>(function(){function k(){if(!document.body)return;document.body.classList.remove('preload');var l=document.getElementById('loader');if(l)l.remove();var h=document.getElementById('holo-container');if(h){h.classList.remove('holo-splash-center','talking');h.removeAttribute('style');h.style.display='block';h.style.animation='none';}var t=document.getElementById('holo-text');if(t)t.innerText='';window.holoCanNavigate=true;sessionStorage.setItem('visited','true');var ov=document.querySelector('.page-transition-overlay');if(ov)ov.classList.remove('active');}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',k);}else{k();}window.addEventListener('pageshow',k);})();</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Agora — Agent-Native Development Environment | Yao Xiang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        body.preload { visibility: hidden !important }
+        body.preload #loader, body.preload #holo-container { visibility: visible !important }
+    </style>
+
+    <style>
+    /* ── Agora ─────────────────────────────────────────────────────────────
+       The subject is a chat client fused with an editor, so the page is built
+       from that furniture: window chrome, #channel headings, message rows with
+       an author and a timestamp, a roster with presence dots, an editor tab
+       strip. Palette taken from the product's own title card (violet on near
+       black) rather than the portfolio default.
+
+       Mobile-first: the base rules ARE the phone; 760px is the enhancement.
+       Nothing reveals on scroll — on a flick, reveals arrive after the element
+       is already on screen, which reads as flashing rather than motion.
+       Every multi-part row is block flow on a phone, never a grid whose column
+       count can fall short of its child count.                              */
+    .ag {
+      --void:   #0B0D12;
+      --chrome: #12151C;
+      --panel:  #171B24;
+      --line:   #272E3C;
+      --text:   #D9DFEA;
+      --dim:    #939CB0;      /* AA on --void */
+      --violet: #8B7CF8;
+      --cyan:   #56D4C6;
+      --green:  #4CC46A;
+      --amber:  #E3B341;
+
+      --s1: 8px; --s2: 14px; --s3: 22px; --s4: 34px; --s5: 48px;
+      --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+      position: relative; z-index: 2;
+      background: var(--void); color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif; line-height: 1.68;
+      overflow-x: clip;
+    }
+    .ag-wrap { max-width: 1060px; margin: 0 auto; padding: 0 18px; }
+
+    /* ── window chrome: the signature frame ──────────────────────────── */
+    .ag-win { border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+              background: var(--chrome); margin: var(--s3) 0 0; }
+    .ag-bar { display: flex; align-items: center; gap: 8px; padding: 9px 12px;
+              border-bottom: 1px solid var(--line); background: #0F1218; }
+    .ag-dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; }
+    .ag-bar span { font-family: var(--mono); font-size: 11.5px; color: var(--dim);
+                   margin-left: 6px; overflow: hidden; text-overflow: ellipsis;
+                   white-space: nowrap; }
+    .ag-win img { width: 100%; height: auto; display: block; }
+    .ag-win a { display: block; text-decoration: none; }
+
+    /* ── channel heading ─────────────────────────────────────────────── */
+    .ag-chan { display: flex; align-items: center; gap: 8px; margin-bottom: var(--s2);
+               font-family: var(--mono); font-size: 13px; color: var(--violet);
+               letter-spacing: .02em; }
+    .ag-chan i { font-style: normal; color: var(--dim); opacity: .7; }
+    .ag-h2 { font-size: clamp(25px, 6.6vw, 34px); line-height: 1.22; font-weight: 800;
+             color: #F2F5FA; margin: 0 0 var(--s2); letter-spacing: -.01em; }
+    .ag-p { font-size: 16.5px; color: #BCC5D4; margin: 0 0 var(--s2); }
+    .ag-p b { color: var(--text); font-weight: 600; }
+    .ag-sec { padding: var(--s5) 0; }
+    .ag-sec.alt { background: #080A0E; border-top: 1px solid var(--line);
+                  border-bottom: 1px solid var(--line); }
+
+    /* ── the message row ─────────────────────────────────────────────── */
+    .ag-msg { display: block; border-left: 2px solid var(--violet);
+              background: var(--panel); padding: 14px 16px 16px; margin: var(--s3) 0; }
+    .ag-from { font-family: var(--mono); font-size: 12.5px; color: var(--violet);
+               margin-bottom: 7px; }
+    .ag-from em { font-style: normal; color: var(--dim); margin-left: 8px; }
+    .ag-msg p { margin: 0; font-size: 16.5px; color: var(--text); }
+    .ag-msg p b { color: var(--cyan); font-weight: 600; }
+
+    /* ── roster with presence ────────────────────────────────────────── */
+    .ag-roster { margin: var(--s3) 0 0; border: 1px solid var(--line);
+                 border-radius: 10px; overflow: hidden; }
+    .ag-row { display: block; padding: 13px 14px; border-bottom: 1px solid var(--line);
+              background: var(--panel); }
+    .ag-row:last-child { border-bottom: 0; }
+    .ag-row b { display: inline-block; font-family: var(--mono); font-size: 13.5px;
+                color: var(--text); }
+    .ag-row .ag-pin { display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+                      background: var(--green); margin-right: 9px; vertical-align: middle; }
+    .ag-row.bot .ag-pin { background: var(--violet); }
+    .ag-row span { display: block; font-size: 15px; color: #AEB8C8; margin-top: 5px; }
+
+    /* ── hero ────────────────────────────────────────────────────────── */
+    .ag-hero { padding: 118px 0 var(--s5); }
+    .ag-kick { font-family: var(--mono); font-size: 12.5px; color: var(--cyan);
+               letter-spacing: .12em; text-transform: uppercase; margin-bottom: var(--s2); }
+    .ag-title { font-size: clamp(40px, 13vw, 82px); line-height: 1.02; font-weight: 800;
+                color: #F4F7FB; margin: 0 0 var(--s2); letter-spacing: -.02em; }
+    .ag-title em { font-style: normal; color: var(--violet); }
+    .ag-lede { font-size: 18px; color: #C4CDDC; }
+    .ag-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: var(--s3) 0 0;
+               font-family: var(--mono); font-size: 12.5px; color: var(--dim);
+               letter-spacing: .04em; }
+
+    /* ── stack: a process list, not a diagram ────────────────────────── */
+    .ag-stack { margin: var(--s3) 0 0; font-family: var(--mono); font-size: 13.5px;
+                border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+    .ag-proc { display: block; padding: 12px 14px; border-bottom: 1px solid var(--line);
+               background: var(--panel); }
+    .ag-proc:last-child { border-bottom: 0; }
+    .ag-proc i { font-style: normal; color: var(--cyan); }
+    .ag-proc b { color: var(--text); margin-left: 10px; }
+    .ag-proc span { display: block; font-family: 'Inter', sans-serif; font-size: 15px;
+                    color: #AEB8C8; margin-top: 5px; }
+
+    /* ── editor tab strip for the screenshots ────────────────────────── */
+    .ag-tabs { display: flex; flex-wrap: wrap; gap: 0; margin: var(--s3) 0 0;
+               border: 1px solid var(--line); border-bottom: 0;
+               border-radius: 10px 10px 0 0; overflow: hidden; background: #0F1218; }
+    .ag-tab { font-family: var(--mono); font-size: 12px; color: var(--dim);
+              padding: 11px 13px; border-right: 1px solid var(--line); }
+    .ag-tab.on { color: var(--text); background: var(--panel);
+                 box-shadow: inset 0 2px 0 var(--violet); }
+    .ag-shot { margin: 0 0 var(--s4); }
+    .ag-shot a { display: block; border: 1px solid var(--line); border-radius: 0 0 10px 10px;
+                 overflow: hidden; text-decoration: none; background: #000; }
+    .ag-shot img { width: 100%; height: auto; display: block; }
+    .ag-shot figcaption { display: flex; flex-wrap: wrap; gap: 4px 12px;
+                          justify-content: space-between; font-size: 13.5px; color: var(--dim);
+                          margin-top: 10px; line-height: 1.6; }
+    .ag-shot figcaption em { font-style: normal; color: var(--cyan); }
+
+    /* ── links ───────────────────────────────────────────────────────── */
+    .ag-links { display: grid; gap: 10px; margin: var(--s3) 0 0; }
+    .ag-link { display: block; text-decoration: none; border: 1px solid var(--line);
+               border-radius: 10px; background: var(--panel); padding: 16px 16px 18px;
+               min-height: 44px; }
+    .ag-link i { font-style: normal; display: block; font-family: var(--mono);
+                 font-size: 11px; color: var(--cyan); letter-spacing: .16em;
+                 text-transform: uppercase; }
+    .ag-link b { display: block; color: var(--text); font-size: 16.5px; margin: 6px 0 4px; }
+    .ag-link span { display: block; color: var(--dim); font-size: 14px; line-height: 1.55; }
+    .ag-back { display: inline-block; margin-top: var(--s4); padding: 12px 0;
+               color: var(--dim); text-decoration: none; font-family: var(--mono);
+               font-size: 14px; }
+    .ag-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: var(--s3) 0 0; }
+    .ag-chips span { font-family: var(--mono); font-size: 12.5px; color: var(--dim);
+                     border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; }
+
+    .ag-vid { position: relative; width: 100%; aspect-ratio: 16/9; margin: var(--s3) 0 0;
+              border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+              background: #000; }
+    .ag-vid iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+    @media (hover: hover) and (pointer: fine) {
+      .ag-link:hover, .ag-shot a:hover, .ag-win a:hover { border-color: var(--violet); }
+      .ag-back:hover { color: var(--violet); }
+    }
+    .ag-link:active, .ag-shot a:active { transform: scale(.99); }
+
+    /* ── desktop enhancement ─────────────────────────────────────────── */
+    @media (min-width: 760px) {
+      .ag-wrap  { padding: 0 28px; }
+      .ag-hero  { padding: 176px 0 72px; }
+      .ag-sec   { padding: 76px 0; }
+      .ag-links { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .ag-two   { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+      .ag-row   { display: grid; grid-template-columns: 210px 1fr; gap: 16px;
+                  align-items: baseline; }
+      .ag-row span { margin-top: 0; }
+      .ag-proc  { display: grid; grid-template-columns: 128px 150px 1fr; gap: 14px;
+                  align-items: baseline; }
+      .ag-proc b { margin-left: 0; }
+      .ag-proc span { margin-top: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ag-link, .ag-shot a, .ag-back { transition: none; }
+    }
+    </style>
+</head>
+
+<body class="preload">
+    <div id="scene-3d">
+        <div id="cinematic-bg"></div>
+        <div id="bg-vignette"></div>
+    </div>
+    <div id="cursor-glow"></div>
+    <div id="loader" aria-hidden="true">
+        <p id="loader-credit"> </p>
+    </div>
+    <div id="holo-container" onclick="holoInteract(this)">
+        <div class="holo-dialog-box">
+            <p id="holo-text">Welcome.</p>
+        </div><img src="../images/holo.png" alt="Holo" class="holo-sprite">
+    </div>
+
+    <header class="glass-nav">
+        <nav>
+            <div class="nav-container">
+                <h1 class="brand-heading">YAO XIANG</h1>
+                <ul>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#experience">Experience</a></li>
+                    <li><a href="../index.html#skills">Skills</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="scroll-progress-bar"></div>
+    </header>
+
+    <main class="ag">
+        <!-- ── hero ─────────────────────────────────────────────────── -->
+        <section class="ag-hero checkpoint" id="top">
+            <div class="ag-wrap">
+                <p class="ag-kick">Agent-native development environment</p>
+                <h1 class="ag-title">Agora<em>.</em></h1>
+                <p class="ag-lede">Mattermost and VS Code, forked and fused into one room where
+                    a person and a dozen local agents work on the same codebase. The hard part
+                    was never generating code &mdash; it is <b>landing it</b> without the agents
+                    overwriting each other.</p>
+                <p class="ag-meta"><span>Jun 2026 &mdash; present</span><span>&middot;</span>
+                    <span>Developer infrastructure</span><span>&middot;</span>
+                    <span>Local-first, zero API cost</span></p>
+
+                <figure class="ag-win">
+                    <div class="ag-bar">
+                        <i class="ag-dot" style="background:#E0625E"></i>
+                        <i class="ag-dot" style="background:#E3B341"></i>
+                        <i class="ag-dot" style="background:#4CC46A"></i>
+                        <span>agora &mdash; one room. every agent. total context.</span>
+                    </div>
+                    <a href="../images/agora/title.webp" target="_blank" rel="noopener">
+                        <img src="../images/agora/title.webp" width="1400" height="598"
+                             alt="Agora title card: one room, every agent, total context">
+                    </a>
+                </figure>
+
+                <div class="ag-chips">
+                    <span>TypeScript</span><span>VS Code fork</span><span>Mattermost fork</span>
+                    <span>Node.js</span><span>WebSockets</span><span>Docker</span><span>Bash</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── the problem ──────────────────────────────────────────── -->
+        <section class="ag-sec alt checkpoint" id="problem">
+            <div class="ag-wrap">
+                <p class="ag-chan"># the-problem <i>&middot; 4 members, 9 agents</i></p>
+                <h2 class="ag-h2">A dozen agents writing at once is a merge problem, not a
+                    typing problem.</h2>
+
+                <div class="ag-msg">
+                    <p class="ag-from">orchestrator <em>09:14</em></p>
+                    <p>Parallel agents produce parallel branches. Features overlap without anyone
+                        noticing, git conflicts explode, API spend drains, and the context lives
+                        scattered across a dozen tabs. <b>The bottleneck moved</b> — from writing
+                        code to landing it.</p>
+                </div>
+
+                <p class="ag-p">Agora puts the conversation, the editor and the agents in one
+                    place, on one host, so coordination stops being a human's full-time job.</p>
+            </div>
+        </section>
+
+        <!-- ── what it does ─────────────────────────────────────────── -->
+        <section class="ag-sec checkpoint" id="what">
+            <div class="ag-wrap">
+                <p class="ag-chan"># what-it-does</p>
+                <h2 class="ag-h2">One room. Every agent. Total context.</h2>
+
+                <div class="ag-roster">
+                    <div class="ag-row bot"><b><i class="ag-pin"></i>orchestrator</b>
+                        <span>Watches activity across channels and the editor, and resolves
+                        parallel merge conflicts as they happen instead of leaving a human to
+                        referee afterwards.</span></div>
+                    <div class="ag-row bot"><b><i class="ag-pin"></i>local CLI agents</b>
+                        <span>Run on the host, unlimited and private. No per-token bill for a
+                        dozen agents working in parallel.</span></div>
+                    <div class="ag-row"><b><i class="ag-pin"></i>shared channels</b>
+                        <span>Humans and agents talk in the same threads, ping each other for
+                        status, and share context instead of re-explaining it to a fresh
+                        session.</span></div>
+                    <div class="ag-row"><b><i class="ag-pin"></i>file coordination</b>
+                        <span>Realtime locking, so two agents opening the same file is a
+                        handled state rather than a race.</span></div>
+                    <div class="ag-row"><b><i class="ag-pin"></i>roles &amp; skills</b>
+                        <span>Skills are the specific capabilities you grant an agent. Fine-grained
+                        control over what each one may actually do.</span></div>
+                    <div class="ag-row"><b><i class="ag-pin"></i>3D presence rooms</b>
+                        <span>Voice, screenshare and spatial rooms that spotlight whoever —
+                        or whatever — is currently active.</span></div>
+                </div>
+
+                <figure class="ag-shot" style="margin-top:34px">
+                    <div class="ag-tabs">
+                        <span class="ag-tab on">roles &amp; access</span>
+                        <span class="ag-tab">skills</span>
+                        <span class="ag-tab">channels</span>
+                    </div>
+                    <a href="../images/agora/roles.webp" target="_blank" rel="noopener">
+                        <img src="../images/agora/roles.webp" width="1400" height="598"
+                             alt="Agora roles and access panel granting per-agent capabilities">
+                    </a>
+                    <figcaption><span>Per-member roles and access — what each agent is permitted
+                        to do, not merely asked to do.</span><em>tap to open full size &nearr;</em></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ── architecture ─────────────────────────────────────────── -->
+        <section class="ag-sec alt checkpoint" id="architecture">
+            <div class="ag-wrap">
+                <p class="ag-chan"># architecture</p>
+                <h2 class="ag-h2">Two large forks, one host, one process list.</h2>
+                <p class="ag-p">Everything runs on one powerful machine — that is the point.
+                    It recreates the feeling of a shared physical workstation, for people and
+                    agents at the same time.</p>
+
+                <div class="ag-stack">
+                    <div class="ag-proc"><i>surface</i><b>mattermost</b>
+                        <span>Forked for communication: channels, threads, calls, presence.</span></div>
+                    <div class="ag-proc"><i>editor</i><b>vs code</b>
+                        <span>Forked and integrated as the codespace, not bolted on beside it.</span></div>
+                    <div class="ag-proc"><i>conductor</i><b>orchestrator</b>
+                        <span>Monitors agents across chat and editor; resolves conflicts live.</span></div>
+                    <div class="ag-proc"><i>hands</i><b>local CLI agents</b>
+                        <span>Execute on the host. Fast, private, no API cost.</span></div>
+                    <div class="ag-proc"><i>substrate</i><b>websockets</b>
+                        <span>Realtime file coordination, presence and 3D rooms.</span></div>
+                    <div class="ag-proc"><i>gate</i><b>docker + up.sh</b>
+                        <span>CI builds the whole stack into an image; you pull and run it.</span></div>
+                </div>
+
+                <div class="ag-msg">
+                    <p class="ag-from">note <em>on the design</em></p>
+                    <p>Agent execution is deliberately <b>local CLI</b>, not hosted API calls.
+                        That is what makes running a dozen of them at once affordable enough to
+                        be the normal way of working rather than a demo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── screens ──────────────────────────────────────────────── -->
+        <section class="ag-sec checkpoint" id="media">
+            <div class="ag-wrap">
+                <p class="ag-chan"># screens</p>
+                <h2 class="ag-h2">The room, and the codespace behind it.</h2>
+
+                <figure class="ag-shot">
+                    <div class="ag-tabs"><span class="ag-tab on">town-square</span>
+                        <span class="ag-tab">threads</span></div>
+                    <a href="../images/agora/room.webp" target="_blank" rel="noopener">
+                        <img src="../images/agora/room.webp" width="1400" height="598"
+                             alt="The Agora town square channel with humans and agents in one thread">
+                    </a>
+                    <figcaption><span>Humans and agents in one thread — the agent is reading the
+                        channel, not guessing.</span><em>tap &nearr;</em></figcaption>
+                </figure>
+
+                <figure class="ag-shot">
+                    <div class="ag-tabs"><span class="ag-tab on">codespace</span>
+                        <span class="ag-tab">readme.md</span><span class="ag-tab">terminal</span></div>
+                    <a href="../images/agora/codespace.webp" target="_blank" rel="noopener">
+                        <img src="../images/agora/codespace.webp" width="1400" height="598"
+                             alt="Two agents editing in the shared Agora codespace side by side">
+                    </a>
+                    <figcaption><span>The shared codespace. Clicking into the same file is a
+                        coordinated state, not a conflict to discover later.</span>
+                        <em>tap &nearr;</em></figcaption>
+                </figure>
+
+                <figure class="ag-shot">
+                    <div class="ag-tabs"><span class="ag-tab on">skills</span></div>
+                    <a href="../images/agora/skills.webp" target="_blank" rel="noopener">
+                        <img src="../images/agora/skills.webp" width="1400" height="598"
+                             alt="Granting specific skills and capabilities to an agent">
+                    </a>
+                    <figcaption><span>Skills are the specific capabilities you grant — the
+                        permission surface for an agent.</span><em>tap &nearr;</em></figcaption>
+                </figure>
+
+                <div class="ag-vid">
+                    <iframe src="https://www.youtube.com/embed/Ebdzk12RYUU" title="Agora demo video"
+                            loading="lazy" allowfullscreen
+                            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── journey ──────────────────────────────────────────────── -->
+        <section class="ag-sec alt checkpoint" id="journey">
+            <div class="ag-wrap">
+                <p class="ag-chan"># the-journey</p>
+                <h2 class="ag-h2">What was actually hard.</h2>
+
+                <div class="ag-roster">
+                    <div class="ag-row"><b>Merging two large forks</b>
+                        <span>Mattermost and VS Code are both big, opinionated codebases. Keeping
+                        realtime sync smooth across both was the bulk of the work.</span></div>
+                    <div class="ag-row"><b>Orchestration without latency</b>
+                        <span>Conflict prevention is easy if you are willing to make everything
+                        slow. The constraint was doing it without adding a wait.</span></div>
+                    <div class="ag-row"><b>Talking to many agents at once</b>
+                        <span>An interface where one person can manage and converse with a dozen
+                        agents needed real UX work, not just more panels.</span></div>
+                    <div class="ag-row"><b>Keeping what Mattermost already gave</b>
+                        <span>Deep IDE integration without losing the calls, threads and presence
+                        that made the surface worth forking.</span></div>
+                </div>
+
+                <div class="ag-msg">
+                    <p class="ag-from">next <em>on the roadmap</em></p>
+                    <p>Deeper 3D presence, <b>persistent agent memory</b> across sessions, and
+                        open protocols so any local agent can plug into the ecosystem.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── directory ────────────────────────────────────────────── -->
+        <section class="ag-sec checkpoint" id="demo">
+            <div class="ag-wrap">
+                <p class="ag-chan"># directory</p>
+                <h2 class="ag-h2">See it run.</h2>
+
+                <div class="ag-links">
+                    <a class="ag-link" href="https://www.youtube.com/watch?v=Ebdzk12RYUU"
+                       target="_blank" rel="noopener">
+                        <i>VIDEO</i><b>The full demo</b>
+                        <span>Channels, skills and roles, then two agents working the same
+                        codespace without stepping on each other.</span></a>
+                    <a class="ag-link" href="https://github.com/Yxiang-828/Agora"
+                       target="_blank" rel="noopener">
+                        <i>CODE</i><b>The repository</b>
+                        <span>The forks, the orchestrator, and the one-script container
+                        deployment.</span></a>
+                    <a class="ag-link" href="../index.html#projects">
+                        <i>BACK</i><b>All projects</b><span>The rest of the work.</span></a>
+                </div>
+
+                <a class="ag-back" href="../index.html#projects">&larr; Back to projects</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="body-inter"
+            style="font-size:0.78rem;text-align:center;padding:36px 0;opacity:0.3;letter-spacing:1px;">© 2026 YAO XIANG
+            · EVERY PIXEL INTENTIONAL</p>
+    </footer>
+    <div class="page-transition-overlay">
+        <h2 class="transition-logo">Portifolio</h2>
+    </div>
+    <script src="../script.js"></script>
+    <script>(function () { const e = document.getElementById("loader"), t = document.getElementById("holo-container"), n = document.getElementById("holo-text"), o = performance.getEntriesByType("navigation"), a = o.length > 0 && "reload" === o[0].type; if (!a && (sessionStorage.getItem("visited") || window.location.hash)) { e && e.remove(), document.body.classList.remove("preload"), window.holoCanNavigate = !0, sessionStorage.setItem("visited", "true"); if (t) { t.style.display = "block", t.classList.remove("holo-splash-center"); } if (n) n.innerText = "Welcome back."; if (window.location.hash) setTimeout((() => { const e = document.querySelector(window.location.hash); e && e.scrollIntoView({ behavior: "smooth", block: "start" }) }), 60); return } if (!e) return; window.holoCanNavigate = !false; const r = document.createElement("div"); r.className = "cover-reveal-overlay", e.appendChild(r); const i = () => { if (e.classList.contains("sequence-started")) return; e.classList.add("sequence-started"), setTimeout((() => { const o = document.createElement("div"); o.className = "begin-prompt", o.innerHTML = "Click anywhere to enter", e.appendChild(o), e.addEventListener("click", (() => { o.remove(), e.style.pointerEvents = "none", e.style.opacity = "0", t.classList.add("holo-splash-center"), t.style.display = "block", t.style.opacity = "0", t.style.transform = "translate(-50%,-50%) scale(0)", void t.offsetWidth, t.style.transition = "opacity 0.5s, transform 0.5s cubic-bezier(0.175,0.885,0.32,1.275)", t.style.opacity = "1", t.style.transform = "translate(-50%,-50%) scale(1)", n.innerText = "Ready?", t.classList.add("talking"), t.style.animation = "holoFloat 2s ease-in-out infinite, pulseGlow 1.5s ease-in-out infinite", "function" == typeof playSound && playSound("pop", .8) }), { once: true }) }), 1500) }; "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", i) : i(), setTimeout((() => { e.classList.contains("loaded") || (e.style.opacity = "0", e.style.pointerEvents = "none", document.body.classList.remove("preload"), window.holoCanNavigate = !0) }), 8e3) })();</script>
+</body>
+
+</html>

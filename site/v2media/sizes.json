@@ -1,0 +1,254 @@
+{
+ "/v2media/ring0/headshot.webp": [
+  735,
+  883
+ ],
+ "/v2media/ring2/aiko-intro.webp": [
+  565,
+  1100
+ ],
+ "/v2media/ring2/aiko-back.webp": [
+  784,
+  584
+ ],
+ "/v2media/ring2/aiko-chat.webp": [
+  619,
+  1100
+ ],
+ "/v2media/ring2/aiko-logs.webp": [
+  619,
+  1100
+ ],
+ "/v2media/ring2/agora-title.webp": [
+  1100,
+  470
+ ],
+ "/v2media/ring2/agora-codespace.webp": [
+  1100,
+  470
+ ],
+ "/v2media/ring2/agora-room.webp": [
+  1100,
+  470
+ ],
+ "/v2media/ring2/agora-roles.webp": [
+  1100,
+  470
+ ],
+ "/v2media/ring3/anan-home.webp": [
+  1100,
+  619
+ ],
+ "/v2media/ring3/anan-console.webp": [
+  1100,
+  619
+ ],
+ "/v2media/ring3/anan-dawn.webp": [
+  1100,
+  629
+ ],
+ "/v2media/ring3/kk-citizen.webp": [
+  1100,
+  619
+ ],
+ "/v2media/ring3/kk-ops.webp": [
+  1100,
+  619
+ ],
+ "/v2media/ring3/kk-responder.webp": [
+  1100,
+  619
+ ],
+ "/v2media/ring3/replay-lobby.webp": [
+  1100,
+  688
+ ],
+ "/v2media/ring3/replay-scene.webp": [
+  1100,
+  782
+ ],
+ "/v2media/ring4/dsta.webp": [
+  943,
+  668
+ ],
+ "/v2media/ring4/planai.webp": [
+  1100,
+  619
+ ],
+ "/v2media/ring4/mera.webp": [
+  512,
+  512
+ ],
+ "/v2media/ring4/shoppo.webp": [
+  1100,
+  819
+ ],
+ "/v2media/holo.webp": [
+  392,
+  276
+ ],
+ "/v2media/shots/drawn-profile.webp": [
+  800,
+  800
+ ],
+ "/v2media/shots/marsham-console.webp": [
+  1300,
+  731
+ ],
+ "/v2media/shots/marsham-pipeline.webp": [
+  990,
+  558
+ ],
+ "/v2media/shots/replay-debrief.webp": [
+  1100,
+  688
+ ],
+ "/v2media/shots/replay-choice.webp": [
+  1100,
+  688
+ ],
+ "/v2media/cards/planai.webp": [
+  800,
+  425
+ ],
+ "/v2media/cards/wingman.webp": [
+  566,
+  800
+ ],
+ "/v2media/cards/mera.webp": [
+  379,
+  800
+ ],
+ "/v2media/cards/notes2web.webp": [
+  800,
+  387
+ ],
+ "/v2media/cards/matrixsolver.webp": [
+  800,
+  357
+ ],
+ "/v2media/cards/upscaler.webp": [
+  800,
+  337
+ ],
+ "/v2media/cards/shoppo-loading.webp": [
+  372,
+  800
+ ],
+ "/v2media/p/aiko-art.webp": [
+  784,
+  584
+ ],
+ "/v2media/p/aiko-phone.webp": [
+  565,
+  1100
+ ],
+ "/v2media/p/aiko-icon.webp": [
+  171,
+  180
+ ],
+ "/v2media/p/agora-room.webp": [
+  1400,
+  598
+ ],
+ "/v2media/p/agora-codespace.webp": [
+  1400,
+  598
+ ],
+ "/v2media/p/agora-icon.webp": [
+  360,
+  360
+ ],
+ "/v2media/p/replay-lobby.webp": [
+  1400,
+  875
+ ],
+ "/v2media/p/replay-choice.webp": [
+  1400,
+  875
+ ],
+ "/v2media/p/replay-icon.webp": [
+  360,
+  360
+ ],
+ "/v2media/p/anan-console.webp": [
+  1700,
+  956
+ ],
+ "/v2media/p/anan-phone.webp": [
+  430,
+  880
+ ],
+ "/v2media/p/anan-bird.webp": [
+  256,
+  256
+ ],
+ "/v2media/p/kk-citizen.webp": [
+  1280,
+  720
+ ],
+ "/v2media/p/kk-ops.webp": [
+  1280,
+  720
+ ],
+ "/v2media/p/kk-logo.webp": [
+  349,
+  520
+ ],
+ "/v2media/p/marsham-console.webp": [
+  1300,
+  731
+ ],
+ "/v2media/p/planai-floor.webp": [
+  1700,
+  903
+ ],
+ "/v2media/p/planai-research.webp": [
+  1500,
+  799
+ ],
+ "/v2media/p/mera-pose.webp": [
+  521,
+  1100
+ ],
+ "/v2media/p/mera-chat.webp": [
+  435,
+  933
+ ],
+ "/v2media/p/mera-sketch.webp": [
+  420,
+  420
+ ],
+ "/v2media/p/shoppo-report.webp": [
+  1600,
+  1191
+ ],
+ "/v2media/p/shoppo-loading.webp": [
+  1200,
+  1075
+ ],
+ "/v2media/p/shoppo-cart.webp": [
+  420,
+  420
+ ],
+ "/v2media/p/wingman-poster.webp": [
+  1061,
+  1500
+ ],
+ "/v2media/p/wingman-dark.webp": [
+  1500,
+  875
+ ],
+ "/v2media/p/wingman-tsundere.webp": [
+  1500,
+  871
+ ],
+ "/v2media/certs/google-ai.webp": [
+  1042,
+  834
+ ],
+ "/v2media/certs/deep-learning.webp": [
+  1046,
+  836
+ ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "yxiang-828-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "media": "node scripts/v2-media.mjs",
+    "dev": "vite",
+    "build": "vite build && node ../lib/check.mjs",
+    "preview": "vite preview --host 127.0.0.1 --port 4871 --strictPort"
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource/dm-mono": "^5.3.0",
+    "motion": "^14.2.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "sharp": "^0.34.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4"
+  }
+}

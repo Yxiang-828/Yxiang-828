@@ -1,0 +1,367 @@
+{
+ "note": "Source image -> web copy in v2media/. Optional crop {left,top,width,height} in source pixels, then long side capped at max px, WebP at quality q (default 78). Rebuild: npm run media",
+ "items": [
+  {
+   "out": "ring0/headshot",
+   "src": "images/headshot.png",
+   "max": 1000
+  },
+  {
+   "out": "ring2/aiko-intro",
+   "src": "images/aiko_intro.png",
+   "max": 1100
+  },
+  {
+   "out": "ring2/aiko-back",
+   "src": "images/aiko_back.png",
+   "max": 1000
+  },
+  {
+   "out": "ring2/aiko-chat",
+   "src": "scripts/v2-frames/aiko-demo-90.jpg",
+   "max": 1100
+  },
+  {
+   "out": "ring2/aiko-logs",
+   "src": "scripts/v2-frames/aiko-demo-20.jpg",
+   "max": 1100
+  },
+  {
+   "out": "ring2/agora-title",
+   "src": "images/agora/title.webp",
+   "max": 1100
+  },
+  {
+   "out": "ring2/agora-codespace",
+   "src": "images/agora/codespace.webp",
+   "max": 1100
+  },
+  {
+   "out": "ring2/agora-room",
+   "src": "images/agora/room.webp",
+   "max": 1100
+  },
+  {
+   "out": "ring2/agora-roles",
+   "src": "images/agora/roles.webp",
+   "max": 1100
+  },
+  {
+   "out": "ring3/anan-home",
+   "src": "images/anan/ui_elder_home.png",
+   "max": 1100
+  },
+  {
+   "out": "ring3/anan-console",
+   "src": "images/anan/console.png",
+   "max": 1100
+  },
+  {
+   "out": "ring3/anan-dawn",
+   "src": "images/anan/hero_dawn.jpg",
+   "max": 1100
+  },
+  {
+   "out": "ring3/kk-citizen",
+   "src": "images/kampung-kaki/citizen-map.png",
+   "max": 1100
+  },
+  {
+   "out": "ring3/kk-ops",
+   "src": "images/kampung-kaki/ops-console.png",
+   "max": 1100
+  },
+  {
+   "out": "ring3/kk-responder",
+   "src": "images/kampung-kaki/responder-map.png",
+   "max": 1100
+  },
+  {
+   "out": "ring3/replay-lobby",
+   "src": "images/replay/lobby.webp",
+   "max": 1100
+  },
+  {
+   "out": "ring3/replay-scene",
+   "src": "images/replay/scene.webp",
+   "max": 1100
+  },
+  {
+   "out": "ring4/dsta",
+   "src": "images/awards/dsta-brainhack-code-exp-finalist-2026.jpeg",
+   "max": 1000
+  },
+  {
+   "out": "ring4/planai",
+   "src": "scripts/v2-frames/planai-demo-30.jpg",
+   "max": 1100
+  },
+  {
+   "out": "ring4/mera",
+   "src": "images/mera_circular.png",
+   "max": 700
+  },
+  {
+   "out": "ring4/shoppo",
+   "src": "images/tinyfish/shoppo_fulleval.png",
+   "max": 1100
+  },
+  {
+   "out": "holo",
+   "src": "images/holo.png",
+   "max": 400
+  },
+  {
+   "out": "shots/drawn-profile",
+   "src": "images/drawn_profile.png",
+   "max": 900
+  },
+  {
+   "out": "shots/marsham-console",
+   "src": "images/marsham-edge/console.jpg",
+   "max": 1300
+  },
+  {
+   "out": "shots/marsham-pipeline",
+   "src": "images/marsham-edge/pipeline.png",
+   "max": 1000
+  },
+  {
+   "out": "shots/replay-debrief",
+   "src": "images/replay/debrief.webp",
+   "max": 1100
+  },
+  {
+   "out": "shots/replay-choice",
+   "src": "images/replay/choice.webp",
+   "max": 1100
+  },
+  {
+   "out": "cards/planai",
+   "src": "images/planai-hero-01.png",
+   "max": 800
+  },
+  {
+   "out": "cards/wingman",
+   "src": "images/7409.png",
+   "max": 800
+  },
+  {
+   "out": "cards/mera",
+   "src": "images/front.png",
+   "max": 800
+  },
+  {
+   "out": "cards/notes2web",
+   "src": "images/demo_dark.png",
+   "max": 800
+  },
+  {
+   "out": "cards/matrixsolver",
+   "src": "images/matrixsolver/SurfaceVisualisation.png",
+   "max": 800
+  },
+  {
+   "out": "cards/upscaler",
+   "src": "images/realesrgan_1.png",
+   "max": 800
+  },
+  {
+   "out": "cards/shoppo-loading",
+   "src": "images/tinyfish/shoppo_summarisedeval.png",
+   "max": 800
+  },
+  {
+   "out": "p/aiko-art",
+   "src": "images/aiko_back.png",
+   "max": 1400,
+   "q": 86
+  },
+  {
+   "out": "p/aiko-phone",
+   "src": "images/aiko_intro.png",
+   "max": 1100,
+   "q": 86
+  },
+  {
+   "out": "p/aiko-icon",
+   "src": "images/aiko_appicon.png",
+   "max": 360,
+   "q": 86
+  },
+  {
+   "out": "p/agora-room",
+   "src": "images/agora/room.webp",
+   "max": 1600,
+   "q": 86
+  },
+  {
+   "out": "p/agora-codespace",
+   "src": "images/agora/codespace.webp",
+   "max": 1600,
+   "q": 86
+  },
+  {
+   "out": "p/agora-icon",
+   "src": "images/agora/icon.png",
+   "max": 360,
+   "q": 86
+  },
+  {
+   "out": "p/replay-lobby",
+   "src": "images/replay/lobby.webp",
+   "max": 1600,
+   "q": 86
+  },
+  {
+   "out": "p/replay-choice",
+   "src": "images/replay/choice.webp",
+   "max": 1400,
+   "q": 86
+  },
+  {
+   "out": "p/replay-icon",
+   "src": "images/replay/icon.png",
+   "max": 360,
+   "q": 86
+  },
+  {
+   "out": "p/anan-console",
+   "src": "images/anan/telegram.png",
+   "max": 1700,
+   "q": 86
+  },
+  {
+   "out": "p/anan-phone",
+   "src": "images/anan/ui_elder_home.png",
+   "max": 900,
+   "q": 86,
+   "crop": {
+    "left": 750,
+    "top": 110,
+    "width": 430,
+    "height": 880
+   }
+  },
+  {
+   "out": "p/anan-bird",
+   "src": "images/anan/bird.png",
+   "max": 360,
+   "q": 86
+  },
+  {
+   "out": "p/kk-citizen",
+   "src": "images/kampung-kaki/citizen-map.png",
+   "max": 1600,
+   "q": 86
+  },
+  {
+   "out": "p/kk-ops",
+   "src": "images/kampung-kaki/ops-console.png",
+   "max": 1400,
+   "q": 86
+  },
+  {
+   "out": "p/kk-logo",
+   "src": "images/kampung-kaki/logo.png",
+   "max": 520,
+   "q": 86
+  },
+  {
+   "out": "p/marsham-console",
+   "src": "v2media/shots/marsham-console.webp",
+   "max": 1600,
+   "q": 86
+  },
+  {
+   "out": "p/planai-floor",
+   "src": "images/planai-hero-01.png",
+   "max": 1700,
+   "q": 86
+  },
+  {
+   "out": "p/planai-research",
+   "src": "images/planai-hero-02.png",
+   "max": 1500,
+   "q": 86
+  },
+  {
+   "out": "p/mera-pose",
+   "src": "images/front.png",
+   "max": 1100,
+   "q": 86
+  },
+  {
+   "out": "p/mera-chat",
+   "src": "images/CasualChat.png",
+   "max": 1000,
+   "q": 86
+  },
+  {
+   "out": "p/mera-sketch",
+   "src": "images/mera_circular.png",
+   "max": 420,
+   "q": 86
+  },
+  {
+   "out": "p/shoppo-report",
+   "src": "images/tinyfish/shoppo_fulleval.png",
+   "max": 1600,
+   "q": 86
+  },
+  {
+   "out": "p/shoppo-loading",
+   "src": "images/tinyfish/shoppo_fullloading.png",
+   "max": 1200,
+   "q": 86
+  },
+  {
+   "out": "p/shoppo-cart",
+   "src": "images/tinyfish/shoppo_icon.png",
+   "max": 420,
+   "q": 86
+  },
+  {
+   "out": "p/wingman-poster",
+   "src": "images/7409.png",
+   "max": 1500,
+   "q": 86
+  },
+  {
+   "out": "p/wingman-dark",
+   "src": "images/wingman/dark-theme.png",
+   "max": 1500,
+   "q": 86
+  },
+  {
+   "out": "p/wingman-tsundere",
+   "src": "images/wingman/tsundere-theme.png",
+   "max": 1500,
+   "q": 86
+  },
+  {
+   "out": "certs/google-ai",
+   "src": "images/awards/google-ai-professional-certificate-2026.png",
+   "max": 1100,
+   "q": 86,
+   "crop": {
+    "left": 2,
+    "top": 2,
+    "width": 1042,
+    "height": 834
+   }
+  },
+  {
+   "out": "certs/deep-learning",
+   "src": "images/awards/deep-learning-engineering-specialization-2026.png",
+   "max": 1100,
+   "q": 86,
+   "crop": {
+    "left": 2,
+    "top": 13,
+    "width": 1046,
+    "height": 836
+   }
+  }
+ ]
+}

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!--NO-SPLASH-INJECTED-->
+<script>(function(){function k(){if(!document.body)return;document.body.classList.remove('preload');var l=document.getElementById('loader');if(l)l.remove();var h=document.getElementById('holo-container');if(h){h.classList.remove('holo-splash-center','talking');h.removeAttribute('style');h.style.display='block';h.style.animation='none';}var t=document.getElementById('holo-text');if(t)t.innerText='';window.holoCanNavigate=true;sessionStorage.setItem('visited','true');var ov=document.querySelector('.page-transition-overlay');if(ov)ov.classList.remove('active');}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',k);}else{k();}window.addEventListener('pageshow',k);})();</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Kampung Kaki — Civic Emergency Coordination | Yao Xiang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#ff4444',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#ff4444',
+                lineColor: '#ff4444',
+                secondaryColor: '#8b0000',
+                tertiaryColor: '#2b0000'
+            }
+        });
+    </script>
+    <style>
+        body.preload {
+            visibility: hidden !important
+        }
+
+        body.preload #loader,
+        body.preload #holo-container {
+            visibility: visible !important
+        }
+
+        .project-article {
+            max-width: 1000px;
+            margin: 150px auto 100px;
+            padding: 50px;
+            position: relative;
+            z-index: 2
+        }
+
+        .back-link {
+            display: inline-flex;
+            position: relative;
+            /* OVERRIDES the fixed position */
+            top: 0;
+            left: 0;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            color: var(--accent-crimson, #ff4444);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: .9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform .3s
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px)
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0 40px
+        }
+
+        .tech-badge {
+            background: rgba(255, 68, 68, .1);
+            border: 1px solid rgba(255, 68, 68, .3);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: .85rem;
+            font-family: 'Inter', sans-serif
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0
+        }
+
+        .feature-box {
+            padding: 25px;
+            border-left: 3px solid var(--accent-crimson, #ff4444);
+            border-radius: 10px;
+            background: rgba(255, 68, 68, .05);
+            transition: all .3s
+        }
+
+        .feature-box:hover {
+            background: rgba(255, 68, 68, .1);
+            transform: translateX(5px)
+        }
+
+        .feature-box h3,
+        .feature-box strong {
+            display: block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            color: #fff;
+            margin-bottom: 10px;
+            margin-top: 0
+        }
+
+        .feature-box p {
+            font-family: 'Inter', sans-serif;
+            font-size: .95rem;
+            color: rgba(255, 255, 255, .7);
+            line-height: 1.6;
+            margin: 0
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            color: #fff;
+            margin: 60px 0 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            padding-bottom: 15px
+        }
+
+        .section-title span {
+            color: var(--accent-crimson, #ff4444)
+        }
+
+        pre {
+            background: rgba(0, 0, 0, .5);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            border-left: 3px solid var(--accent-crimson, #ff4444);
+            margin: 20px 0
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-cyan, #00f0ff);
+            font-size: .9rem;
+            background: rgba(0, 0, 0, .3);
+            padding: 2px 6px;
+            border-radius: 4px
+        }
+
+        pre code {
+            color: #e0e0e0;
+            background: 0 0;
+            padding: 0
+        }
+
+        .alert-box {
+            background: rgba(255, 68, 68, .05);
+            border-left: 3px solid var(--accent-crimson, #ff4444);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0
+        }
+
+        .body-inter {
+            font-family: 'Inter', sans-serif;
+            color: rgba(255, 255, 255, .7);
+            line-height: 1.7;
+            margin-bottom: 15px
+        }
+
+        .mermaid-container {
+            background: rgba(0, 0, 0, .3);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, .05);
+            text-align: center;
+            overflow-x: auto
+        }
+
+        .comparison-grid,
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0
+        }
+
+        .screenshot-box {
+            background: rgba(255, 68, 68, .05);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 68, 68, .1);
+            transition: all .3s
+        }
+
+        .screenshot-box img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+            border: 1px solid rgba(255, 255, 255, .1);
+            margin-bottom: 15px
+        }
+
+        h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            color: #fff;
+            margin-bottom: 10px;
+            margin-top: 30px
+        }
+    </style>
+
+    <style>
+      /* page-scoped: signature element + article rhythm. Tokens come from styles.css. */
+      .proj-meta{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:6px 0 22px;font-size:.82rem;
+        letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
+      .proj-actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 10px}
+      .proj-actions a{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;
+        border:1px solid var(--glass-border);background:var(--glass-surface);color:var(--text-primary);
+        text-decoration:none;font-size:.86rem;letter-spacing:.04em;
+        transition:transform .18s cubic-bezier(.4,0,.2,1),border-color .18s,background .18s}
+      .proj-actions a:hover{transform:translateY(-2px);border-color:var(--accent-cyan);background:rgba(0,229,255,.07)}
+      .proj-actions a.primary{border-color:var(--accent-crimson);background:rgba(255,30,86,.10)}
+      .proj-actions a:focus-visible{outline:2px solid var(--accent-cyan);outline-offset:3px}
+      .proj-award{display:inline-block;margin:0 0 18px;padding:7px 14px;border-radius:999px;
+        border:1px solid rgba(255,215,0,.34);background:rgba(255,215,0,.07);color:var(--accent-gold);
+        font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+      .kernel{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px;counter-reset:k}
+      .kernel span{position:relative;flex:1 1 118px;padding:14px 12px 12px;border-radius:10px;
+        border:1px solid var(--glass-border);background:var(--glass-surface);font-size:.78rem;
+        letter-spacing:.07em;text-transform:uppercase;color:var(--text-primary)}
+      .kernel span::before{counter-increment:k;content:counter(k,decimal-leading-zero);display:block;
+        font-size:.66rem;color:var(--accent-cyan);margin-bottom:6px;opacity:.85}
+      .kernel span:last-child{border-color:rgba(255,30,86,.36)}
+      .split{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:18px 0}
+      .split div{padding:18px;border-radius:12px;border:1px solid var(--glass-border);background:var(--glass-surface)}
+      .split h4{font-family:'Bebas Neue',sans-serif;letter-spacing:.09em;font-size:1.18rem;margin:0 0 8px;
+        color:var(--accent-cyan)}
+      .vid{position:relative;width:100%;aspect-ratio:16/9;margin:26px 0;border-radius:12px;overflow:hidden;
+        border:1px solid var(--glass-border);background:#000}
+      .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+      .proj-article h2{font-family:'Bebas Neue',sans-serif;letter-spacing:.08em;font-size:1.7rem;
+        margin:44px 0 4px;color:var(--text-primary)}
+      .proj-article h2 + p{margin-top:6px}
+      .proj-article ul{margin:14px 0 0;padding-left:20px}
+      .proj-article li{margin:0 0 12px;line-height:1.72}
+      @media (prefers-reduced-motion:reduce){.proj-actions a{transition:none}.proj-actions a:hover{transform:none}}
+      @media (max-width:640px){.kernel span{flex:1 1 100%}}
+    </style>
+</head>
+
+<body class="preload">
+    <div id="scene-3d">
+        <div id="cinematic-bg"></div>
+        <div id="bg-vignette"></div>
+    </div>
+    <div id="cursor-glow"></div>
+    <div id="loader" aria-hidden="true">
+        <p id="loader-credit"> </p>
+    </div>
+    <div id="holo-container" onclick="holoInteract(this)">
+        <div class="holo-dialog-box">
+            <p id="holo-text">Welcome.</p>
+        </div><img src="../images/holo.png" alt="Holo" class="holo-sprite">
+    </div>
+
+    <header class="glass-nav">
+        <nav>
+            <div class="nav-container">
+                <h1 class="brand-heading">YAO XIANG</h1>
+                <ul>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#experience">Experience</a></li>
+                    <li><a href="../index.html#skills">Skills</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="scroll-progress-bar"></div>
+    </header>
+
+    <section class="checkpoint reveal">
+        <div class="container project-article glass-panel">
+            <a href="../index.html#projects" class="back-link">&larr; Back to Projects</a>
+
+            <div class="proj-award">DSTA Brainhack Open Finalist</div>
+            <h1 class="cinematic-heading">Kampung Kaki &mdash; Civic Emergency Coordination</h1>
+
+            <div class="proj-meta"><span>May 2026 &mdash; Jun 2026</span><span>&middot;</span><span>Distributed coordination system</span></div>
+
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">MQTT 5</span>
+                <span class="tech-badge">Redis Streams</span>
+                <span class="tech-badge">MapLibre GL</span>
+                <span class="tech-badge">OneMap SG</span>
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">Docker</span>
+            </div>
+
+            <p class="body-inter" style="font-size:1.12rem;margin:26px 0 0;">One emergency, three audiences who each need a different map of it, and a single canonical state underneath so they never disagree about what is happening.</p>
+
+            <div class="proj-actions">
+                <a href="https://www.youtube.com/watch?v=bHklSnSBJrQ" target="_blank" rel="noopener">Watch the demo</a>
+                <a href="https://github.com/Yxiang-828/CODEEXP" target="_blank" rel="noopener">Repository</a>
+                <a href="../resume.html">Full resume</a>
+            </div>
+
+            <h2>One state, three views</h2>
+            <p class="body-inter">Citizens, responders and ops teams read the same retained message stream. The map changes per role; the truth does not.</p>
+            <div class="split"><div><h4>Citizen</h4><p class="body-inter">Report, follow, and see only what is safe to publish.</p></div><div><h4>Responder</h4><p class="body-inter">Task-level detail and routing on the ground.</p></div><div><h4>Ops</h4><p class="body-inter">The whole operational picture, assembled from one stream.</p></div></div>
+
+            <h2>What it does</h2>
+            <ul class="body-inter">
+                <li>Delivered a unified operational picture for citizens, responders and ops teams from a single canonical state.</li>
+                <li>Used retained MQTT 5 QoS 1 messaging with Redis Streams so a client joining late still receives the current picture.</li>
+                <li>Wired FastAPI and OneMap SG APIs behind a role-aware MapLibre GL front end.</li>
+            </ul>
+            <div class="vid"><iframe src="https://www.youtube.com/embed/bHklSnSBJrQ" title="Kampung Kaki demo video" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p class="body-inter"
+            style="font-size:0.78rem;text-align:center;padding:36px 0;opacity:0.3;letter-spacing:1px;">© 2026 YAO XIANG
+            · EVERY PIXEL INTENTIONAL</p>
+    </footer>
+    <div class="page-transition-overlay">
+        <h2 class="transition-logo">Portifolio</h2>
+    </div>
+    <script src="../script.js"></script>
+    <script>(function () { const e = document.getElementById("loader"), t = document.getElementById("holo-container"), n = document.getElementById("holo-text"), o = performance.getEntriesByType("navigation"), a = o.length > 0 && "reload" === o[0].type; if (!a && (sessionStorage.getItem("visited") || window.location.hash)) { e && e.remove(), document.body.classList.remove("preload"), window.holoCanNavigate = !0, sessionStorage.setItem("visited", "true"); if (t) { t.style.display = "block", t.classList.remove("holo-splash-center"); } if (n) n.innerText = "Welcome back."; if (window.location.hash) setTimeout((() => { const e = document.querySelector(window.location.hash); e && e.scrollIntoView({ behavior: "smooth", block: "start" }) }), 60); return } if (!e) return; window.holoCanNavigate = !false; const r = document.createElement("div"); r.className = "cover-reveal-overlay", e.appendChild(r); const i = () => { if (e.classList.contains("sequence-started")) return; e.classList.add("sequence-started"), setTimeout((() => { const o = document.createElement("div"); o.className = "begin-prompt", o.innerHTML = "Click anywhere to enter", e.appendChild(o), e.addEventListener("click", (() => { o.remove(), e.style.pointerEvents = "none", e.style.opacity = "0", t.classList.add("holo-splash-center"), t.style.display = "block", t.style.opacity = "0", t.style.transform = "translate(-50%,-50%) scale(0)", void t.offsetWidth, t.style.transition = "opacity 0.5s, transform 0.5s cubic-bezier(0.175,0.885,0.32,1.275)", t.style.opacity = "1", t.style.transform = "translate(-50%,-50%) scale(1)", n.innerText = "Ready?", t.classList.add("talking"), t.style.animation = "holoFloat 2s ease-in-out infinite, pulseGlow 1.5s ease-in-out infinite", "function" == typeof playSound && playSound("pop", .8) }), { once: true }) }), 1500) }; "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", i) : i(), setTimeout((() => { e.classList.contains("loaded") || (e.style.opacity = "0", e.style.pointerEvents = "none", document.body.classList.remove("preload"), window.holoCanNavigate = !0) }), 8e3) })();</script>
+</body>
+
+</html>

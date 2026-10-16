@@ -1,0 +1,780 @@
+{
+ "meta": {
+  "draft": 5,
+  "date": "2026-10-15",
+  "facts": "resume_data.json for the résumé lines; every project line from its own repo (README, SSOT, commits), read 15 Oct 2026. Aiko from aiko-core SSOT.md and commits on the Mac mini.",
+  "status": "Owner approved draft 2's words (room/3961). Draft 4 (room/3980): projects = his old site's nine + Marsham Edge; Holo's lines H0–H10 rewritten for his audit."
+ },
+ "identity": {
+  "name": "Yao Xiang",
+  "email": "{{person.email}}",
+  "github": "{{person.github}}",
+  "linkedin": "{{person.linkedin}}",
+  "portrait": {
+   "src": "/v2media/shots/drawn-profile.webp",
+   "alt": "A drawing of Yao Xiang"
+  },
+  "resumes": [
+   {
+    "id": "R1",
+    "text": "General Résumé",
+    "file": "{{person.resume_pdf}}"
+   }
+  ]
+ },
+ "nav": [
+  {
+   "id": "N1",
+   "text": "Experience",
+   "to": "experience"
+  },
+  {
+   "id": "N2",
+   "text": "Projects",
+   "to": "P1"
+  },
+  {
+   "id": "N3",
+   "text": "Hackathons",
+   "to": "hackathons"
+  },
+  {
+   "id": "N4",
+   "text": "Contact",
+   "to": "contact"
+  }
+ ],
+ "sections": {
+  "hackathons": {
+   "id": "hackathons",
+   "head": {
+    "id": "S4",
+    "text": "Hackathons and certificates"
+   },
+   "results": [
+    {
+     "id": "A1",
+     "year": "2026",
+     "name": "Singapore Defence Tech Hackathon",
+     "result": "Top 6 (LOTR Track) / 800 participants",
+     "note": "Marsham Edge, deterministic counter-drone decision console & 6-sensor async simulation (Sep 2026)",
+     "project": "P6"
+    },
+    {
+     "id": "A2",
+     "year": "2026",
+     "name": "DSTA BrainHack CODE_EXP",
+     "result": "Open Finalist",
+     "proof": "/images/awards/dsta-brainhack-code-exp-finalist-2026.jpeg",
+     "note": "Kampung Kaki, community emergency response platform (Jun 2026)",
+     "project": "P4"
+    },
+    {
+     "id": "A3",
+     "year": "2026",
+     "name": "Vibe For Good",
+     "result": "Semi-Finalist",
+     "note": "VibeCheck, AI venture co-builder & creator social platform (Sep 2026)",
+     "project": null
+    }
+   ],
+   "also": {
+    "id": "A4",
+    "text": "Full 2026 Hackathon Cadence: Singapore Defence Tech Hackathon (Top 6), DSTA BrainHack CODE_EXP (Finalist), VibeForGood (Semi-Finalist), NUS-SYNAPXE-IMDA AI Innovation Challenge, AI Engineer Hackathon, Tinyfish-SG-Hackathon, Hack4Good, VibeWithSG."
+   },
+   "certs": [
+    {
+     "id": "C1",
+     "name": "Google AI Professional Certificate",
+     "year": "2026",
+     "verify": "https://coursera.org/verify/professional-cert/BA97QEZUXUI0",
+     "img": "/v2media/certs/google-ai.webp"
+    },
+    {
+     "id": "C2",
+     "name": "Deep Learning Engineering Specialization",
+     "year": "2026",
+     "verify": "https://coursera.org/verify/specialization/825X9V0AV0UZ",
+     "img": "/v2media/certs/deep-learning.webp"
+    }
+   ],
+   "holo": {
+    "id": "H4",
+    "text": "{{hackathons.count_2026}} hackathons in 2026 ({{hackathons.count_total}} total), with three top competitive honors: Top 6 at the Defence Tech Hackathon, Open Finalist at BrainHack, and Semi-Finalist at Vibe For Good."
+   }
+  },
+  "contact": {
+   "id": "contact",
+   "head": {
+    "id": "S5",
+    "text": "Contact"
+   },
+   "holo": {
+    "id": "H5",
+    "text": "Well? If he's worth your time, write to him."
+   }
+  }
+ },
+ "legacy": {
+  "_note": "v1 page anchors (the project pages link back to ../index.html#<anchor>) -> where they land on v2; proj-2 .. proj-8 are older projects v2 leaves out, so they land on the first project",
+  "about": "intro",
+  "experience": "experience",
+  "projects": "P1",
+  "skills": "P1",
+  "hacks": "hackathons",
+  "proj-aiko": "P1",
+  "proj-agora": "P2",
+  "proj-replay": "P5",
+  "proj-anan": "P3",
+  "proj-kampung": "P4",
+  "proj-planai": "P7",
+  "proj-0": "P8",
+  "proj-shoppo": "P9",
+  "proj-1": "P10",
+  "proj-vibewithsg": "hackathons",
+  "proj-9": "P9",
+  "proj-2": "P1",
+  "proj-4": "P1",
+  "proj-5": "P1",
+  "proj-6": "P1",
+  "proj-7": "P1",
+  "proj-8": "P1"
+ },
+ "intro": {
+  "id": "intro",
+  "label": "Start",
+  "intro": [
+   {
+    "id": "I1",
+    "text": "Hi, I'm {{person.name}}."
+   },
+   {
+    "id": "I2",
+    "text": "I'm in my {{education.year}} year of Computer Engineering at NUS, specialising in {{education.specialisation}}, with a minor in AI. I graduate in {{education.end|y}}."
+   },
+   {
+    "id": "I3",
+    "text": "Since {{roles.kabam.start|mon}} I've been a software robotics intern at {{roles.kabam.org}}, until {{roles.kabam.end|mm}}. From {{roles.kabam.field_start|mm}} to {{roles.kabam.field_end|mm}} I'm the solo on-site engineer deploying their latest autonomous patrol robot."
+   },
+   {
+    "id": "I4",
+    "text": "I build AI agents and robot software: agent memory and runtimes, vision models on a Jetson, and the tools we use to debug a robot in the field."
+   },
+   {
+    "id": "I5",
+    "text": "I'm looking for internships from {{seeking.start|month}}, in {{seeking.areas}}."
+   }
+  ],
+  "holo": {
+   "id": "H0",
+   "text": "I'm Holo. Scroll and I'll point out what matters, or click me and ask."
+  }
+ },
+ "experience": {
+  "id": "experience",
+  "label": "KABAM",
+  "head": {
+   "id": "S1",
+   "text": "Experience"
+  },
+  "kabam": {
+   "id": "E1",
+   "title": "{{roles.kabam.title}} ({{roles.kabam.mode}}) · {{roles.kabam.org}}",
+   "when": "{{roles.kabam.start|mon}} – now, until {{roles.kabam.end|mon}}",
+   "bullets": [
+    {
+     "id": "E1a",
+     "text": "Accelerated SAM3 (Segment Anything Model) vision pipeline on the robot's Jetson Orin AGX with TensorRT, integrated with RTSP video streams and YOLOv8 spatial overlays."
+    },
+    {
+     "id": "E1b",
+     "text": "Conducted first ever SG field PoC ({{roles.kabam.field_start|m}} – {{roles.kabam.field_end|mon}}) as solo on-site robotics engineer for KABAM’s {{roles.kabam.robot}} model, diagnosing LiDAR SLAM drift, Nav2 MPPI trajectory planning, precision docking, and MWAN3 multi-WAN bonding alongside remote firmware/hardware teams."
+    },
+    {
+     "id": "E1c",
+     "text": "Architected ROS 2 diagnostics console and mobile mission-control interface: real-time telemetry inspection, manual safety override, LiDAR/costmap visualization, and CAN-bus system health."
+    }
+   ],
+   "stack": [
+    "Python",
+    "C++",
+    "ROS 2",
+    "Docker",
+    "Linux",
+    "Jetson Orin AGX",
+    "TensorRT",
+    "SAM3",
+    "YOLOv8",
+    "FFmpeg",
+    "CAN bus",
+    "LiDAR",
+    "Nav2 MPPI"
+   ]
+  },
+  "ta": {
+   "id": "E2",
+   "title": "Teaching Assistant · NUS CS2113 Software Engineering & OOP",
+   "when": "{{roles.ta.start|m}} – {{roles.ta.end|mon}}",
+   "bullets": [
+    {
+     "id": "E2a",
+     "text": "Taught student teams Java object-oriented design, JUnit testing, Git and code review, and CI/CD."
+    }
+   ],
+   "stack": [
+    "Java",
+    "JUnit",
+    "Git",
+    "CI/CD"
+   ]
+  },
+  "scenes": [
+   {
+    "id": "chip",
+    "label": "Jetson Orin",
+    "bullet": "E1a",
+    "holo": {
+     "id": "H1a",
+     "text": "The Jetson Orin inside the patrol robot. He got SAM3 running faster on it with TensorRT."
+    }
+   },
+   {
+    "id": "robot",
+    "label": "Patrol Robot",
+    "bullet": "E1c",
+    "holo": {
+     "id": "H1b",
+     "text": "The latest autonomous patrol robot he's deployed on site for KABAM since {{roles.kabam.field_start|m}}. The diagnostics and mobile mission-control app are his."
+    }
+   },
+   {
+    "id": "route",
+    "label": "In the field",
+    "bullet": "E1b",
+    "holo": {
+     "id": "H1c",
+     "text": "He ran its Singapore proof of concept on site by himself; the other engineers were remote."
+    }
+   }
+  ]
+ },
+ "projects": [
+  {
+   "id": "P1",
+   "title": "Aiko",
+   "tag": "Personal OS Agent Runtime · {{projects.aiko.start|mon}} – Pres.",
+   "what": {
+    "id": "P1w",
+    "text": "An autonomous personal OS agent runtime that persists across machines, self-heals across model failures, and manages daily engineering workflows."
+   },
+   "bullets": [
+    {
+     "id": "P1a",
+     "text": "Context Engineering: Cut prompt tokens by 69% (109KB to 34KB per turn) using schema virtualization, dynamic manifest projection, and state compression."
+    }
+   ],
+   "fleet": {
+    "id": "P1e",
+    "text": "Aedrion, Ariadne and aiko-agy are her development fleet: features are built and proven in them first, then Aiko adopts them."
+   },
+   "stack": [
+    "TypeScript",
+    "Node.js",
+    "Python",
+    "SQLite",
+    "Postgres",
+    "Docker",
+    "Ollama",
+    "Qwen3-TTS",
+    "Whisper",
+    "three.js",
+    "React Native",
+    "Tailscale"
+   ],
+   "page": "/projects/aiko.html",
+   "links": [],
+   "cta": "Open the Aiko page",
+   "pics": [
+    {
+     "img": "/v2media/p/aiko-art.webp",
+     "alt": "Aiko, her character art",
+     "role": "main"
+    },
+    {
+     "img": "/v2media/p/aiko-phone.webp",
+     "alt": "Aiko's phone app: her intro screen",
+     "role": "side"
+    },
+    {
+     "img": "/v2media/p/aiko-icon.webp",
+     "alt": "Aiko's app icon",
+     "role": "badge"
+    }
+   ],
+   "holo": {
+    "id": "H2",
+    "text": "Aiko is his own agent. That −69% is how much less she now sends a model each turn."
+   },
+   "more": [
+    {
+     "id": "P1b",
+     "text": "5-Tier Memory: Scaled to 11,800+ facts combining episodic hindsight, SQLite FTS5 keyword indexing, and dense embeddings fused via Reciprocal Rank Fusion (RRF)."
+    },
+    {
+     "id": "P1c",
+     "text": "Autonomous Harness: 142 discrete skills executed through deterministic state machines; universal gateway orchestrating Claude Code, OpenAI Codex, Gemini CLI, and local models with automatic failover."
+    },
+    {
+     "id": "P1d",
+     "text": "Local Multi-Modal Interface: GPU-accelerated local voice (Qwen3-TTS, Whisper), 3D VRM embodiment in three.js, and offline manga indexing across 245,000+ pages."
+    }
+   ]
+  },
+  {
+   "id": "P2",
+   "title": "Agora",
+   "tag": "Collaborative Multi-Agent IDE · {{projects.agora.role}}, {{projects.agora.start|m}} – {{projects.agora.end|mon}}",
+   "what": {
+    "id": "P2w",
+    "text": "A collaborative development environment where multiple AI coding agents and human developers co-edit one codebase concurrently."
+   },
+   "bullets": [
+    {
+     "id": "P2a",
+     "text": "Lead Developer: Built the core CLI/API agent execution harness, WebSocket synchronization protocol, and Mattermost bot integration for a 3-engineer team."
+    },
+    {
+     "id": "P2b",
+     "text": "Engineered real-time Git AST merge-conflict resolution daemon that detects conflicting agent code edits early and serializes patches safely."
+    }
+   ],
+   "stack": [
+    "TypeScript",
+    "VS Code fork",
+    "Mattermost",
+    "Node.js",
+    "WebSockets",
+    "Docker"
+   ],
+   "page": "/projects/agora.html",
+   "links": [
+    {
+     "text": "Video demo",
+     "href": "https://www.youtube.com/watch?v=Ebdzk12RYUU"
+    }
+   ],
+   "cta": "Open the Agora page",
+   "pics": [
+    {
+     "img": "/v2media/p/agora-room.webp",
+     "alt": "Agora: a team room where people and their AI agents talk",
+     "role": "main"
+    },
+    {
+     "img": "/v2media/p/agora-codespace.webp",
+     "alt": "Agora: the shared codespace with its terminal",
+     "role": "side"
+    },
+    {
+     "img": "/v2media/p/agora-icon.webp",
+     "alt": "Agora's icon",
+     "role": "badge"
+    }
+   ],
+   "holo": {
+    "id": "H2b",
+    "text": "Several coding agents in one codebase at once. The hard part is merge conflicts; it settles them as they happen."
+   }
+  },
+  {
+   "id": "P5",
+   "title": "Replay",
+   "tag": "Multiplayer pixel game · {{projects.replay.start|m}} – {{projects.replay.end|mon}}",
+   "what": {
+    "id": "P5w",
+    "text": "A multiplayer AI simulation for practising scam and safety scenarios, where each player sees different evidence."
+   },
+   "bullets": [
+    {
+     "id": "P5a",
+     "text": "One server owns the game: it keeps each role's state private and syncs each player's own view of the evidence across browsers."
+    },
+    {
+     "id": "P5b",
+     "text": "The AI writes the story only from locked source material, then gives a structured debrief right after the game."
+    }
+   ],
+   "stack": [
+    "React",
+    "Vite",
+    "Node.js",
+    "Vercel",
+    "Render",
+    "OpenAI",
+    "SQLite"
+   ],
+   "page": "/projects/replay.html",
+   "links": [],
+   "cta": "Open the Replay page",
+   "pics": [
+    {
+     "img": "/v2media/p/replay-lobby.webp",
+     "alt": "Replay: choosing a case in the lobby",
+     "role": "main"
+    },
+    {
+     "img": "/v2media/p/replay-choice.webp",
+     "alt": "Replay: a choice in the pixel story",
+     "role": "side"
+    },
+    {
+     "img": "/v2media/p/replay-icon.webp",
+     "alt": "Replay's icon",
+     "role": "badge"
+    }
+   ],
+   "holo": {
+    "id": "H3a",
+    "text": "Each player sees different evidence, so nobody holds the whole story. The AI writes only from locked material."
+   }
+  },
+  {
+   "id": "P3",
+   "title": "AnAn",
+   "tag": "Elderly Care Fall & Inactivity Companion · {{projects.anan.role}}, {{projects.anan.event}} ({{projects.anan.start|mon}})",
+   "what": {
+    "id": "P3w",
+    "text": "An on-device AI companion for elderly care providing non-intrusive fall and inactivity monitoring while preserving total household privacy."
+   },
+   "bullets": [
+    {
+     "id": "P3a",
+     "text": "Implemented on-device computer vision using MediaPipe and WASM in the browser, analyzing activity posture locally with zero raw camera frames leaving the device."
+    },
+    {
+     "id": "P3b",
+     "text": "Built a 7-stage deterministic safety pipeline that validates all agent actions, verifies context freshness, and routes emergency alerts via a tiered state machine."
+    },
+    {
+     "id": "P3c",
+     "text": "Camera screening runs in the browser on the device itself (MediaPipe, WASM), alongside a local voice."
+    }
+   ],
+   "stack": [
+    "Python",
+    "FastAPI",
+    "React",
+    "WASM",
+    "MediaPipe",
+    "SEA-LION",
+    "Qwen3-TTS",
+    "MapLibre GL",
+    "SQLite"
+   ],
+   "page": "/projects/anan.html",
+   "links": [
+    {
+     "text": "Project page",
+     "href": "{{projects.anan.live}}"
+    },
+    {
+     "text": "Video demo",
+     "href": "https://www.youtube.com/watch?v=wId_GYlmgmU"
+    }
+   ],
+   "cta": "Open the AnAn page",
+   "pics": [
+    {
+     "img": "/v2media/p/anan-console.webp",
+     "alt": "AnAn's demo: the elder's screen beside the family's Telegram",
+     "role": "main"
+    },
+    {
+     "img": "/v2media/p/anan-phone.webp",
+     "alt": "AnAn on the elder's phone: the morning check-in",
+     "role": "side"
+    },
+    {
+     "img": "/v2media/p/anan-bird.webp",
+     "alt": "AnAn's bird",
+     "role": "badge"
+    }
+   ],
+   "holo": {
+    "id": "H3b",
+    "text": "Every action AnAn takes passes a seven-stage safety check first. Tencent's challenge is still running."
+   }
+  },
+  {
+   "id": "P4",
+   "title": "Kampung Kaki",
+   "tag": "Community Emergency Response & Aid Platform · {{projects.kampung.role}}, {{projects.kampung.result}} ({{projects.kampung.start|m}} – {{projects.kampung.end|mon}})",
+   "what": {
+    "id": "P4w",
+    "text": "A real-time emergency coordination platform connecting vulnerable citizens with nearby grassroots responders during neighborhood crises."
+   },
+   "bullets": [
+    {
+     "id": "P4a",
+     "text": "Solo Developer: Designed and implemented the complete architecture from scratch, placing as an Open Finalist at DSTA BrainHack CODE_EXP 2026."
+    },
+    {
+     "id": "P4b",
+     "text": "Built reliable pub/sub event pipeline using MQTT 5 (QoS 1) and Redis Streams to sync live incident ledgers across MapLibre GL and OneMap SG."
+    }
+   ],
+   "stack": [
+    "Python",
+    "FastAPI",
+    "MQTT 5",
+    "Redis Streams",
+    "MapLibre GL",
+    "OneMap SG",
+    "React",
+    "Docker"
+   ],
+   "page": "/projects/kampung-kaki.html",
+   "links": [
+    {
+     "text": "Video demo",
+     "href": "https://www.youtube.com/watch?v=bHklSnSBJrQ"
+    }
+   ],
+   "cta": "Open the Kampung Kaki page",
+   "pics": [
+    {
+     "img": "/v2media/p/kk-citizen.webp",
+     "alt": "Kampung Kaki: the citizens' live map",
+     "role": "main"
+    },
+    {
+     "img": "/v2media/p/kk-ops.webp",
+     "alt": "Kampung Kaki: the responders' console",
+     "role": "side"
+    },
+    {
+     "img": "/v2media/p/kk-logo.webp",
+     "alt": "Kampung Kaki's logo",
+     "role": "badge"
+    }
+   ],
+   "holo": {
+    "id": "H3c",
+    "text": "Citizens and responders work from the same incident record, each with their own view. Open Finalist at CODE_EXP."
+   }
+  },
+  {
+   "id": "P6",
+   "title": "Marsham Edge",
+   "tag": "Counter-Drone Decision Console · {{projects.marsham.result}}, {{projects.marsham.event}} ({{projects.marsham.start|mon}})",
+   "what": {
+    "id": "P6w",
+    "text": "A deterministic counter-drone decision console and 6-sensor asynchronous simulation built at the Singapore Defence Tech Hackathon 2026 (Top 6 placement out of 800 participants)."
+   },
+   "bullets": [
+    {
+     "id": "P6a",
+     "text": "Engineered a deterministic counter-drone decision engine fusing 6 asynchronous sensor streams into prioritized threat tracks with verifiable rule receipts (monitor, jam, or intercept)."
+    },
+    {
+     "id": "P6b",
+     "text": "Architected operator run-and-verify console with mandatory human-in-the-loop override safety rails; all decisions logged deterministically with zero autonomous weapon firing."
+    },
+    {
+     "id": "P6c",
+     "text": "Migrated telemetry to a canonical sensor producer, unified THALES WGS84 to local Cartesian projection, and backed the system with 236 automated unit and pipeline tests."
+    }
+   ],
+   "stack": [
+    "Python",
+    "NumPy",
+    "SciPy",
+    "React",
+    "Motion",
+    "React Bits"
+   ],
+   "page": "/v2media/p/marsham-console.webp",
+   "links": [],
+   "cta": "See the console full size",
+   "pics": [
+    {
+     "img": "/v2media/p/marsham-console.webp",
+     "alt": "Marsham Edge: the operator's console with ranked tracks",
+     "role": "main"
+    }
+   ],
+   "holo": {
+    "id": "H6",
+    "text": "Top 6 at the Defence Tech Hackathon. The console recommends; the operator always makes the call."
+   }
+  },
+  {
+   "id": "P7",
+   "title": "PLAN.AI",
+   "tag": "AI Engineer Hackathon · deep-research planner",
+   "what": {
+    "id": "C04w",
+    "text": "A deep-research planner: it searches papers, repos, forums and the web in parallel, then writes a cited 22-section technical blueprint with C4 diagrams."
+   },
+   "stack": [
+    "React",
+    "Vite",
+    "TypeScript",
+    "Vercel",
+    "Tavily",
+    "Firecrawl"
+   ],
+   "page": "/projects/planai.html",
+   "links": [],
+   "cta": "Open the PLAN.AI page",
+   "pics": [
+    {
+     "img": "/v2media/p/planai-floor.webp",
+     "alt": "PLAN.AI: its agents at work on the shipping floor",
+     "role": "main"
+    },
+    {
+     "img": "/v2media/p/planai-research.webp",
+     "alt": "PLAN.AI: research papers beside the blueprint graph",
+     "role": "side"
+    }
+   ],
+   "holo": {
+    "id": "H7",
+    "text": "It searches papers, repos and forums at once, then writes a 22-section blueprint with every source cited."
+   }
+  },
+  {
+   "id": "P8",
+   "title": "Mera",
+   "tag": "NUS × Synapxe × IMDA AI Innovation Challenge · team lead",
+   "what": {
+    "id": "C06w",
+    "text": "A Telegram health companion for chronic patients, with three camera checks (heart rate, smile, mobility) that run on the phone."
+   },
+   "stack": [
+    "Python",
+    "Telegram",
+    "SEA-LION",
+    "MERaLiON",
+    "MediaPipe",
+    "WASM"
+   ],
+   "page": "/projects/mera.html",
+   "links": [
+    {
+     "text": "Try it",
+     "href": "https://t.me/Meramerarabot"
+    }
+   ],
+   "cta": "Open the Mera page",
+   "pics": [
+    {
+     "img": "/v2media/p/mera-pose.webp",
+     "alt": "Mera: the sit-and-stand test with pose tracking",
+     "role": "main"
+    },
+    {
+     "img": "/v2media/p/mera-chat.webp",
+     "alt": "Mera: a check-in message in Telegram",
+     "role": "side"
+    },
+    {
+     "img": "/v2media/p/mera-sketch.webp",
+     "alt": "Mera's sketch",
+     "role": "badge"
+    }
+   ],
+   "holo": {
+    "id": "H8",
+    "text": "Heart rate, smile and mobility, read by the phone's camera on the phone itself. Want to try it? The bot is linked."
+   }
+  },
+  {
+   "id": "P9",
+   "title": "Shoppo",
+   "tag": "TinyFish SG Hackathon · Telegram shopping agent",
+   "what": {
+    "id": "C05w",
+    "text": "A Telegram shopping agent: it turns a vague request into searches across several marketplaces and returns a ranked shortlist with its reasons."
+   },
+   "stack": [
+    "Python",
+    "FastAPI",
+    "SQLAlchemy",
+    "Telegram",
+    "TinyFish"
+   ],
+   "page": "/projects/tinyfish.html",
+   "links": [],
+   "cta": "Open the Shoppo page",
+   "pics": [
+    {
+     "img": "/v2media/p/shoppo-report.webp",
+     "alt": "Shoppo's scout report: the best fit and why",
+     "role": "main"
+    },
+    {
+     "img": "/v2media/p/shoppo-loading.webp",
+     "alt": "Shoppo while it scouts the marketplaces",
+     "role": "side"
+    },
+    {
+     "img": "/v2media/p/shoppo-cart.webp",
+     "alt": "Shoppo's cart",
+     "role": "badge"
+    }
+   ],
+   "holo": {
+    "id": "H9",
+    "text": "Ask it for something vague; it searches several marketplaces and comes back with a ranked shortlist and its reasons."
+   }
+  },
+  {
+   "id": "P10",
+   "title": "Wingman",
+   "tag": "NUS Orbital · Apollo",
+   "what": {
+    "id": "C07w",
+    "text": "A desktop personal assistant with tasks, calendar, diary and an AI chat that runs locally on Ollama."
+   },
+   "stack": [
+    "React",
+    "TypeScript",
+    "Electron",
+    "Python",
+    "SQLite",
+    "Ollama"
+   ],
+   "page": "/projects/wingman.html",
+   "links": [
+    {
+     "text": "Code",
+     "href": "https://github.com/Yxiang-828/Wingman"
+    }
+   ],
+   "cta": "Open the Wingman page",
+   "pics": [
+    {
+     "img": "/v2media/p/wingman-poster.webp",
+     "alt": "Wingman's poster: themes, models, calendar, diary",
+     "role": "main"
+    },
+    {
+     "img": "/v2media/p/wingman-dark.webp",
+     "alt": "Wingman's dark theme",
+     "role": "side"
+    },
+    {
+     "img": "/v2media/p/wingman-tsundere.webp",
+     "alt": "Wingman's tsundere theme",
+     "role": "side2"
+    }
+   ],
+   "holo": {
+    "id": "H10",
+    "text": "One of his older ones: a desktop assistant whose AI runs locally on Ollama."
+   }
+  }
+ ]
+}

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!--NO-SPLASH-INJECTED-->
+<script>(function(){function k(){if(!document.body)return;document.body.classList.remove('preload');var l=document.getElementById('loader');if(l)l.remove();var h=document.getElementById('holo-container');if(h){h.classList.remove('holo-splash-center','talking');h.removeAttribute('style');h.style.display='block';h.style.animation='none';}var t=document.getElementById('holo-text');if(t)t.innerText='';window.holoCanNavigate=true;sessionStorage.setItem('visited','true');var ov=document.querySelector('.page-transition-overlay');if(ov)ov.classList.remove('active');}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',k);}else{k();}window.addEventListener('pageshow',k);})();</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Video Upscaler - Yao Xiang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        body.preload { visibility: hidden !important; }
+        body.preload #loader, body.preload #holo-container { visibility: visible !important; }
+        .project-article { max-width: 1000px; margin: 150px auto 100px; padding: 50px; position: relative; z-index: 2; }
+        .back-link { display: inline-flex; position: relative; top: 0; left: 0; align-items: center; gap: 8px; margin-bottom: 30px; color: var(--accent-crimson, #ff4444); text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: .9rem; letter-spacing: 1px; text-transform: uppercase; transition: transform .3s; }
+        .back-link:hover { transform: translateX(-5px); }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 40px; }
+        .tech-badge { background: rgba(255, 68, 68, .1); border: 1px solid rgba(255, 68, 68, .3); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: .85rem; font-family: 'Inter', sans-serif; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin: 30px 0; }
+        .feature-box { padding: 25px; border-left: 3px solid var(--accent-crimson, #ff4444); border-radius: 10px; background: rgba(255, 68, 68, .05); transition: all .3s; }
+        .feature-box:hover { background: rgba(255, 68, 68, .1); transform: translateX(5px); }
+        .feature-box h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px; color: #fff; margin-bottom: 10px; }
+        .feature-box p, .body-inter, ul, ol, td { font-family: 'Inter', sans-serif; font-size: .95rem; color: rgba(255, 255, 255, .76); line-height: 1.7; }
+        .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 1px; color: #fff; margin: 60px 0 20px; border-bottom: 1px solid rgba(255, 255, 255, .1); padding-bottom: 15px; }
+        pre { background: rgba(0, 0, 0, .5); padding: 20px; border-radius: 10px; overflow-x: auto; border-left: 3px solid var(--accent-crimson, #ff4444); margin: 20px 0; }
+        code { font-family: 'Courier New', monospace; color: var(--accent-cyan, #00f0ff); font-size: .9rem; background: rgba(0, 0, 0, .3); padding: 2px 6px; border-radius: 4px; }
+        pre code { color: #e0e0e0; background: transparent; padding: 0; }
+        table { width: 100%; margin: 30px 0; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: .95rem; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, .05); }
+        th { color: var(--accent-crimson, #ff4444); font-weight: 600; background: rgba(255, 68, 68, .05); }
+        .callout { background: rgba(0, 229, 255, .06); border-left: 3px solid var(--accent-cyan, #00e5ff); padding: 20px; margin: 24px 0; border-radius: 0 12px 12px 0; }
+        .callout strong { color: var(--accent-cyan, #00e5ff); }
+/* -- MOBILE OVERRIDES -- */
+        @media (max-width: 768px) {
+            .container.project-article.glass-panel {
+                margin: 80px auto 40px !important;
+                padding: 18px !important;
+                border-radius: 14px !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            .back-link {
+                font-size: 0.72rem !important;
+                letter-spacing: 0.5px !important;
+                margin-bottom: 16px !important;
+                gap: 5px !important;
+            }
+            .cinematic-heading {
+                font-size: clamp(1.3rem, 5.5vw, 1.8rem) !important;
+                line-height: 1.1 !important;
+                word-break: break-word !important;
+            }
+            .section-title {
+                font-size: 1.4rem !important;
+                margin: 28px 0 12px !important;
+                padding-bottom: 10px !important;
+            }
+            .feature-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+            .feature-box { padding: 16px !important; }
+            .feature-box h3, .feature-box strong.title { font-size: 1.2rem !important; }
+            .feature-box p { font-size: 0.82rem !important; }
+            .tech-stack { gap: 6px !important; margin: 14px 0 24px !important; }
+            .tech-badge { font-size: 0.7rem !important; padding: 4px 10px !important; }
+            .body-inter { font-size: 0.85rem !important; line-height: 1.6 !important; }
+            h3 { font-size: 1.3rem !important; margin-top: 20px !important; }
+            .cta-button { font-size: 0.75rem !important; padding: 10px 16px !important; }
+            .stats-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+            .stat-card { padding: 12px !important; }
+            .stat-number { font-size: 1.6rem !important; }
+            .stat-label { font-size: 0.72rem !important; }
+            .alert-box { padding: 14px !important; }
+            .alert-box strong { font-size: 1.1rem !important; }
+            .alert-box p { font-size: 0.82rem !important; }
+            .mermaid-container { padding: 10px !important; margin: 14px 0 !important; overflow-x: auto !important; }
+            .game-card { padding: 14px !important; }
+            pre { padding: 12px !important; font-size: 0.75rem !important; overflow-x: auto !important; max-width: 100% !important; }
+            code { font-size: 0.74rem !important; }
+            table { font-size: 0.8rem !important; }
+            th, td { padding: 8px 6px !important; font-size: 0.78rem !important; }
+            .callout { padding: 12px !important; }
+            .theme-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+            .theme-box { padding: 14px !important; }
+            img { max-width: 100% !important; height: auto !important; }
+            /* Override inline style font-sizes */
+            [style*="font-size: 1.15rem"] { font-size: 0.92rem !important; }
+            [style*="margin-top: 50px"] { margin-top: 28px !important; }
+            [style*="margin-top: 60px"] { margin-top: 28px !important; }
+            [style*="padding: 40px"] { padding: 18px !important; }
+        }
+        @media (max-width: 420px) {
+            .container.project-article.glass-panel {
+                margin: 70px auto 24px !important;
+                padding: 12px !important;
+            }
+            .cinematic-heading { font-size: clamp(1.1rem, 5vw, 1.5rem) !important; }
+            .back-link { font-size: 0.62rem !important; }
+            .stats-grid { grid-template-columns: 1fr !important; }
+            .section-title { font-size: 1.2rem !important; }
+            h3 { font-size: 1.1rem !important; }
+        }
+    </style>
+</head>
+
+<body class="preload project-view-body">
+    <div id="scene-3d"><div id="cinematic-bg"></div><div id="bg-vignette"></div></div>
+    <div id="cursor-glow"></div>
+    <div id="loader" aria-hidden="true"><p id="loader-credit"></p></div>
+    <div id="holo-container" onclick="holoInteract(this)" style="display: none;">
+        <div class="holo-dialog-box"><p id="holo-text">Project page ready.</p></div>
+        <img src="../images/holo.png" alt="Holo" class="holo-sprite">
+    </div>
+
+    <header class="glass-nav">
+        <nav>
+            <div class="nav-container">
+                <h1 class="brand-heading">YAO XIANG</h1>
+                <ul>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#experience">Experience</a></li>
+                    <li><a href="../index.html#skills">Skills</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="scroll-progress-bar"></div>
+    </header>
+
+    <section class="reveal active">
+        <div class="container project-article glass-panel">
+            <a href="../index.html#projects" class="back-link">&larr; Back to Projects</a>
+            <h1 class="cinematic-heading">Video Upscaler</h1>
+            <p class="body-inter" style="color: var(--accent-cyan); font-style: italic;"><strong>Project Category:</strong> Individual Project (Helper Tools Collection)</p>
+
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">FFmpeg</span>
+                <span class="tech-badge">Real-ESRGAN</span>
+                <span class="tech-badge">Vulkan</span>
+                <span class="tech-badge">AMD AMF</span>
+                <span class="tech-badge">Windows CLI</span>
+            </div>
+
+            <p class="body-inter">This tool exists because image upscaling is easy to demo, but video upscaling is where the workflow becomes real. Videos are larger, slower, and much more sensitive to bad tradeoffs. I built this to support both high-quality AI upscaling and faster classical scaling while staying practical on my own Windows + AMD GPU setup.</p>
+
+            <div class="callout">
+                <p class="body-inter"><strong>What makes it useful:</strong> the project does not just call an AI model and hope for the best. It switches between quality-first and speed-first modes, preserves audio, supports MP4 or GIF output, and falls back to CPU encoding when hardware encoding becomes unreliable at high resolutions.</p>
+            </div>
+
+            <h2 class="section-title">Why It Matters</h2>
+            <div class="feature-grid">
+                <div class="feature-box"><h3>Dual Pipeline</h3><p>Choose between Real-ESRGAN frame-by-frame AI processing for best quality, or classical FFmpeg scaling for faster turnaround.</p></div>
+                <div class="feature-box"><h3>GPU-Aware</h3><p>Designed around AMD hardware, using AMF for encoding and Vulkan for AI acceleration where it helps.</p></div>
+                <div class="feature-box"><h3>Resilient Workflow</h3><p>High-resolution jobs can automatically fall back to CPU encoding so the tool finishes instead of failing halfway through.</p></div>
+                <div class="feature-box"><h3>Practical Outputs</h3><p>Supports MP4 output with audio preservation, plus GIF generation when the goal is sharing a clip instead of storing a full video.</p></div>
+            </div>
+
+            <h2 class="section-title">Processing Pipeline</h2>
+            <ol>
+                <li>Read the input video and choose the requested upscaling mode.</li>
+                <li>For AI mode, extract frames to disk and process them sequentially through Real-ESRGAN.</li>
+                <li>Validate processed frames and reassemble the video with the original audio track.</li>
+                <li>Use AMD hardware encoding where possible, with CPU fallback for oversized outputs or hardware failures.</li>
+            </ol>
+
+            <h2 class="section-title">Mode Comparison</h2>
+            <table>
+                <thead><tr><th>Mode</th><th>Best When</th><th>Strength</th><th>Tradeoff</th></tr></thead>
+                <tbody>
+                    <tr><td>Real-ESRGAN</td><td>Quality matters more than speed</td><td>Sharper details and stronger restoration</td><td>Much slower due to frame-by-frame processing</td></tr>
+                    <tr><td>FFmpeg / Classical</td><td>You need a faster result</td><td>Good throughput with simpler scaling</td><td>Less detail recovery than AI mode</td></tr>
+                    <tr><td>Extract / Process Existing</td><td>You want control over the pipeline</td><td>Lets you inspect or resume frame work</td><td>More manual workflow management</td></tr>
+                </tbody>
+            </table>
+
+            <h2 class="section-title">Example Usage</h2>
+            <pre><code>py video_upscaler.py input.mp4 --method realesrgan --scale 4
+py video_upscaler.py input.mp4 --method ffmpeg --scale 2
+py video_upscaler.py input.mp4 --method process_existing --format gif
+video_upscaler.bat</code></pre>
+
+            <h2 class="section-title">Implementation Notes</h2>
+            <ul>
+                <li>Supports 2x, 3x, and 4x scaling factors.</li>
+                <li>Uses frame-by-frame processing to avoid loading an entire video into memory at once.</li>
+                <li>Preserves audio during reassembly so the result is useful as a real video output.</li>
+                <li>Can produce GIFs when the goal is communication or quick sharing rather than archival quality.</li>
+            </ul>
+
+            <h2 class="section-title">Requirements</h2>
+            <ul>
+                <li>Python 3.13</li>
+                <li>FFmpeg available in PATH or bundled locally</li>
+                <li>Real-ESRGAN Vulkan executable for AI mode</li>
+                <li>AMD GPU recommended for the intended workflow</li>
+            </ul>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/video_upscaler" target="_blank" class="cta-button primary-accent">View Repo</a>
+            </div>
+        </div>
+    </section>
+
+    <footer><p class="body-inter" style="font-size:0.78rem;text-align:center;padding:36px 0;opacity:0.3;letter-spacing:1px;">&copy; 2026 YAO XIANG · PROJECT DOSSIER</p></footer>
+    <div class="page-transition-overlay"><h2 class="transition-logo">Portfolio</h2></div>
+
+    <script src="../script.js"></script>
+    <script>
+        (function () {
+            const loader = document.getElementById('loader');
+            const holoContainer = document.getElementById('holo-container');
+            const holoText = document.getElementById('holo-text');
+            const navEntries = performance.getEntriesByType('navigation');
+            const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
+            function finishEntry(message) {
+                document.body.classList.remove('preload');
+                window.holoCanNavigate = true;
+                sessionStorage.setItem('visited', 'true');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    loader.style.pointerEvents = 'none';
+                    setTimeout(() => loader.remove(), 500);
+                }
+                if (holoContainer) {
+                    holoContainer.style.display = 'flex';
+                    holoContainer.classList.remove('holo-splash-center');
+                }
+                if (holoText) holoText.innerText = message;
+                document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+            }
+            if (!isReload && (sessionStorage.getItem('visited') || window.location.hash)) {
+                finishEntry('Welcome back.');
+                return;
+            }
+            if (!loader) {
+                finishEntry('Project page ready.');
+                return;
+            }
+            window.addEventListener('load', () => {
+                const beginPrompt = document.createElement('div');
+                beginPrompt.innerHTML = 'Click anywhere to enter';
+                beginPrompt.className = 'begin-prompt';
+                loader.appendChild(beginPrompt);
+                loader.addEventListener('click', () => {
+                    beginPrompt.remove();
+                    if (typeof playSound === 'function') playSound('pop', 0.8);
+                    finishEntry('Project dossier loaded.');
+                }, { once: true });
+            });
+            setTimeout(() => {
+                if (document.body.classList.contains('preload')) finishEntry('Project page ready.');
+            }, 7000);
+        })();
+    </script>
+</body>
+
+</html>

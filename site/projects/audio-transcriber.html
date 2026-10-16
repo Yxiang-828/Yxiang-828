@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!--NO-SPLASH-INJECTED-->
+<script>(function(){function k(){if(!document.body)return;document.body.classList.remove('preload');var l=document.getElementById('loader');if(l)l.remove();var h=document.getElementById('holo-container');if(h){h.classList.remove('holo-splash-center','talking');h.removeAttribute('style');h.style.display='block';h.style.animation='none';}var t=document.getElementById('holo-text');if(t)t.innerText='';window.holoCanNavigate=true;sessionStorage.setItem('visited','true');var ov=document.querySelector('.page-transition-overlay');if(ov)ov.classList.remove('active');}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',k);}else{k();}window.addEventListener('pageshow',k);})();</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Audio Transcriber - Yao Xiang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        body.preload {
+            visibility: hidden !important
+        }
+
+        body.preload #loader,
+        body.preload #holo-container {
+            visibility: visible !important
+        }
+
+        .project-article {
+            max-width: 1000px;
+            margin: 150px auto 100px;
+            padding: 50px;
+            position: relative;
+            z-index: 2
+        }
+
+        .back-link {
+            display: inline-flex;
+            position: relative;
+            /* OVERRIDES the fixed position */
+            top: 0;
+            left: 0;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            color: var(--accent-crimson, #ff4444);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: .9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform .3s
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px)
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0 40px
+        }
+
+        .tech-badge {
+            background: rgba(255, 68, 68, .1);
+            border: 1px solid rgba(255, 68, 68, .3);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: .85rem;
+            font-family: 'Inter', sans-serif
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0
+        }
+
+        .feature-box {
+            padding: 25px;
+            border-left: 3px solid var(--accent-crimson, #ff4444);
+            border-radius: 10px;
+            background: rgba(255, 68, 68, .05);
+            transition: all .3s
+        }
+
+        .feature-box:hover {
+            background: rgba(255, 68, 68, .1);
+            transform: translateX(5px)
+        }
+
+        .feature-box h3,
+        .feature-box strong.title {
+            display: block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            color: #fff;
+            margin-bottom: 10px;
+            margin-top: 0
+        }
+
+        .feature-box p {
+            font-family: 'Inter', sans-serif;
+            font-size: .95rem;
+            color: rgba(255, 255, 255, .7);
+            line-height: 1.6;
+            margin: 0
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            color: #fff;
+            margin: 60px 0 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            padding-bottom: 15px
+        }
+
+        .section-title span {
+            color: var(--accent-crimson, #ff4444)
+        }
+
+        pre {
+            background: rgba(0, 0, 0, .5);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            border-left: 3px solid var(--accent-crimson, #ff4444);
+            margin: 20px 0
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-cyan, #00f0ff);
+            font-size: .9rem;
+            background: rgba(0, 0, 0, .3);
+            padding: 2px 6px;
+            border-radius: 4px
+        }
+
+        pre code {
+            color: #e0e0e0;
+            background: 0 0;
+            padding: 0
+        }
+
+        .perf-table,
+        .benchmark-table,
+        table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: .95rem
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+            color: rgba(255, 255, 255, .7)
+        }
+
+        th {
+            color: var(--accent-crimson, #ff4444);
+            font-weight: 600;
+            background: rgba(255, 68, 68, .05)
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, .02)
+        }
+
+        .alert-box {
+            background: rgba(255, 68, 68, .05);
+            border-left: 3px solid var(--accent-crimson, #ff4444);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0
+        }
+
+        .alert-box strong {
+            color: var(--accent-crimson, #ff4444);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 10px
+        }
+
+        .alert-box p {
+            font-family: 'Inter', sans-serif;
+            font-size: .95rem;
+            color: rgba(255, 255, 255, .7);
+            line-height: 1.6;
+            margin: 0
+        }
+
+        .body-inter {
+            font-family: 'Inter', sans-serif;
+            color: rgba(255, 255, 255, .7);
+            line-height: 1.7;
+            margin-bottom: 15px
+        }
+
+        ul,
+        ol {
+            color: rgba(255, 255, 255, .7);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding-left: 20px
+        }
+
+        h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            color: #fff;
+            margin-bottom: 10px;
+            margin-top: 30px
+        }
+/* -- MOBILE OVERRIDES -- */
+        @media (max-width: 768px) {
+            .container.project-article.glass-panel {
+                margin: 80px auto 40px !important;
+                padding: 18px !important;
+                border-radius: 14px !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            .back-link {
+                font-size: 0.72rem !important;
+                letter-spacing: 0.5px !important;
+                margin-bottom: 16px !important;
+                gap: 5px !important;
+            }
+            .cinematic-heading {
+                font-size: clamp(1.3rem, 5.5vw, 1.8rem) !important;
+                line-height: 1.1 !important;
+                word-break: break-word !important;
+            }
+            .section-title {
+                font-size: 1.4rem !important;
+                margin: 28px 0 12px !important;
+                padding-bottom: 10px !important;
+            }
+            .feature-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+            .feature-box { padding: 16px !important; }
+            .feature-box h3, .feature-box strong.title { font-size: 1.2rem !important; }
+            .feature-box p { font-size: 0.82rem !important; }
+            .tech-stack { gap: 6px !important; margin: 14px 0 24px !important; }
+            .tech-badge { font-size: 0.7rem !important; padding: 4px 10px !important; }
+            .body-inter { font-size: 0.85rem !important; line-height: 1.6 !important; }
+            h3 { font-size: 1.3rem !important; margin-top: 20px !important; }
+            .cta-button { font-size: 0.75rem !important; padding: 10px 16px !important; }
+            .stats-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+            .stat-card { padding: 12px !important; }
+            .stat-number { font-size: 1.6rem !important; }
+            .stat-label { font-size: 0.72rem !important; }
+            .alert-box { padding: 14px !important; }
+            .alert-box strong { font-size: 1.1rem !important; }
+            .alert-box p { font-size: 0.82rem !important; }
+            .mermaid-container { padding: 10px !important; margin: 14px 0 !important; overflow-x: auto !important; }
+            .game-card { padding: 14px !important; }
+            pre { padding: 12px !important; font-size: 0.75rem !important; overflow-x: auto !important; max-width: 100% !important; }
+            code { font-size: 0.74rem !important; }
+            table { font-size: 0.8rem !important; }
+            th, td { padding: 8px 6px !important; font-size: 0.78rem !important; }
+            .callout { padding: 12px !important; }
+            .theme-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+            .theme-box { padding: 14px !important; }
+            img { max-width: 100% !important; height: auto !important; }
+            /* Override inline style font-sizes */
+            [style*="font-size: 1.15rem"] { font-size: 0.92rem !important; }
+            [style*="margin-top: 50px"] { margin-top: 28px !important; }
+            [style*="margin-top: 60px"] { margin-top: 28px !important; }
+            [style*="padding: 40px"] { padding: 18px !important; }
+        }
+        @media (max-width: 420px) {
+            .container.project-article.glass-panel {
+                margin: 70px auto 24px !important;
+                padding: 12px !important;
+            }
+            .cinematic-heading { font-size: clamp(1.1rem, 5vw, 1.5rem) !important; }
+            .back-link { font-size: 0.62rem !important; }
+            .stats-grid { grid-template-columns: 1fr !important; }
+            .section-title { font-size: 1.2rem !important; }
+            h3 { font-size: 1.1rem !important; }
+        }
+    </style>
+</head>
+
+<body class="preload project-view-body">
+    <div id="scene-3d">
+        <div id="cinematic-bg"></div>
+        <div id="bg-vignette"></div>
+    </div>
+    <div id="cursor-glow"></div>
+    <div id="loader" aria-hidden="true">
+        <p id="loader-credit"> </p>
+    </div>
+    <div id="holo-container" onclick="holoInteract(this)">
+        <div class="holo-dialog-box">
+            <p id="holo-text">Welcome.</p>
+        </div><img src="../images/holo.png" alt="Holo" class="holo-sprite">
+    </div>
+
+    <header class="glass-nav">
+        <nav>
+            <div class="nav-container">
+                <h1 class="brand-heading">YAO XIANG</h1>
+                <ul>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#experience">Experience</a></li>
+                    <li><a href="../index.html#skills">Skills</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="scroll-progress-bar"></div>
+    </header>
+
+    <section class="checkpoint reveal">
+        <div class="container project-article glass-panel">
+            <a href="../index.html#proj-5" class="back-link">← Back to Projects</a>
+
+            <h1 class="cinematic-heading">🎤 Audio to Text Transcriber</h1>
+
+            <div class="tech-stack">
+                <span class="tech-badge">Whisper AI</span>
+                <span class="tech-badge">ONNX Runtime</span>
+                <span class="tech-badge">DirectML</span>
+                <span class="tech-badge">Python 3.13</span>
+                <span class="tech-badge">AMD GPU</span>
+                <span class="tech-badge">FFmpeg</span>
+            </div>
+
+            <p class="body-inter" style="color: var(--accent-cyan); font-style: italic;"><strong>Project
+                    Category:</strong> Individual Project (Personal Productivity Tool)</p>
+
+            <p class="body-inter" style="font-size: 1.15rem; margin: 30px 0;">
+                I built a custom Python pipeline that leverages Whisper AI with AMD GPU acceleration via DirectML. The
+                architecture is purposefully restrictive - targeting only AMD Radeon RX 6000/7000/8000 series GPUs on
+                Windows to maximize DirectML optimization. My implementation handles long-form audio (30+ minutes)
+                through intelligent chunking and achieves 3-5x speedup over CPU processing.
+            </p>
+
+            <h2 class="section-title">🧰 Technologies & Tools Used</h2>
+            <p class="body-inter">Understanding the core technologies behind this project:</p>
+
+            <h3>Whisper AI (OpenAI)</h3>
+            <p class="body-inter">A state-of-the-art speech recognition model trained on 680,000 hours of multilingual
+                data. Whisper uses a transformer architecture with encoder-decoder design, converting audio spectrograms
+                into text tokens. It supports 99 languages and handles background noise, accents, and technical
+                terminology remarkably well.</p>
+
+            <h3>DirectML (Microsoft)</h3>
+            <p class="body-inter">A low-level DirectX 12 API that provides GPU acceleration for machine learning
+                workloads on Windows. Unlike CUDA (NVIDIA-only) or ROCm (Linux AMD), DirectML is hardware-agnostic but
+                optimized for AMD GPUs on Windows. It enables neural network inference on consumer GPUs without
+                requiring specialized ML hardware.</p>
+
+            <h3>ONNX Runtime</h3>
+            <p class="body-inter">Open Neural Network Exchange (ONNX) runtime is a cross-platform inference engine that
+                executes machine learning models. It converts PyTorch/TensorFlow models to an optimized format, then
+                uses execution providers (like DirectML) for hardware acceleration. This conversion happens once and is
+                cached for subsequent runs.</p>
+
+            <h3>Librosa</h3>
+            <p class="body-inter">A Python library for audio analysis. I use it to load audio files, extract duration
+                metadata, and split long audio into 30-second chunks. Librosa handles sample rate conversion and audio
+                format normalization, ensuring consistent input for the Whisper model.</p>
+
+            <h2 class="section-title">🔧 My Implementation</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>Custom Chunking Pipeline</h3>
+                    <p>I engineered a 30-second audio segmentation system that overcomes Whisper's token limits,
+                        enabling full transcription of 20+ minute files</p>
+                </div>
+                <div class="feature-box">
+                    <h3>GPU Memory Management</h3>
+                    <p>I wrote explicit tensor-to-device transfers (<code>input_features.to(device)</code>) to force GPU
+                        utilization, reducing CPU load from 70% to 20-30%</p>
+                </div>
+                <div class="feature-box">
+                    <h3>ONNX Conversion Layer</h3>
+                    <p>My code automatically converts Whisper models to ONNX format on first run, then caches them for
+                        5-10x faster subsequent executions</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Real-Time Progress System</h3>
+                    <p>I built a custom progress bar with per-chunk timing analytics, displaying real-time factor and
+                        GPU confirmation</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Automated Setup Script</h3>
+                    <p>I created <code>setup.bat</code> that validates Python version, installs DirectML dependencies,
+                        and verifies GPU acceleration in one command</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Error Handling & Fallbacks</h3>
+                    <p>My pipeline gracefully handles missing GPUs, corrupted audio, and model download failures with
+                        detailed error messages</p>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <strong>⚠️ Design Decision: Hardware Restrictions</strong>
+                <p>
+                    I intentionally limited this tool to:<br>
+                    • AMD Radeon RX 6000/7000/8000 series GPUs only<br>
+                    • Windows 10/11 (native, no WSL/Linux/macOS)<br>
+                    • Python 3.13.x specifically<br><br>
+                    This restriction allows me to optimize exclusively for DirectML without maintaining CUDA/ROCm
+                    branches, resulting in cleaner code and better AMD performance.
+                </p>
+            </div>
+
+            <h2 class="section-title">📊 Performance Benchmarks (AMD RX 6800 XT)</h2>
+            <table class="perf-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>First Run</th>
+                        <th>Cached Runs</th>
+                        <th>VRAM Usage</th>
+                        <th>Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>tiny</strong></td>
+                        <td>5-10 sec</td>
+                        <td><strong>2-3 sec</strong></td>
+                        <td>~1GB</td>
+                        <td>Testing/fast transcription</td>
+                    </tr>
+                    <tr>
+                        <td><strong>base</strong></td>
+                        <td>10-20 sec</td>
+                        <td><strong>3-5 sec</strong></td>
+                        <td>~2GB</td>
+                        <td><span style="color: #ff4444;">Recommended</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>small</strong></td>
+                        <td>30-60 sec</td>
+                        <td>8-12 sec</td>
+                        <td>~4GB</td>
+                        <td>Better accuracy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>medium</strong></td>
+                        <td>2-3 min</td>
+                        <td>15-25 sec</td>
+                        <td>~8GB</td>
+                        <td>High accuracy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>large</strong></td>
+                        <td>3-5 min</td>
+                        <td>30-60 sec</td>
+                        <td>~16GB</td>
+                        <td>Best accuracy</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="body-inter" style="font-size: 0.85rem; font-style: italic;">Note: Times are for 30 seconds of
+                audio. First run includes ONNX conversion (one-time cost). Models cache automatically after first use.
+            </p>
+
+            <h2 class="section-title">🚀 Setup (One-Command)</h2>
+            <pre><code>cd "C:\Program Files (x86)\helper_tools\Audio_to_Text_Transcriber"
+setup.bat</code></pre>
+
+            <h3>What setup.bat does:</h3>
+            <ol>
+                <li>Verifies Python 3.13.x installation</li>
+                <li>Installs PyTorch (CPU version)</li>
+                <li>Installs ONNX Runtime DirectML (AMD GPU acceleration)</li>
+                <li>Installs Optimum (ONNX optimization)</li>
+                <li>Installs Librosa (audio processing)</li>
+                <li>Verifies DirectML GPU acceleration</li>
+                <li>Optional: Pre-downloads Whisper models</li>
+            </ol>
+
+            <h2 class="section-title">💻 Usage</h2>
+            <h3>Interactive Mode (Recommended)</h3>
+            <pre><code># From helper_tools root
+mp3-to-txt.bat "path/to/audio.mp3"</code></pre>
+
+            <h3>Command Line</h3>
+            <pre><code>py audio_to_text.py "audio.mp3" --model base --language en</code></pre>
+
+            <h3>Example Output</h3>
+            <pre><code>======================================================================
+✅ TRANSCRIPTION COMPLETE
+======================================================================
+Total time: 85.42s
+Audio duration: 1242.8s (20.7 minutes)
+Average per chunk: 2.03s
+Real-time factor: 0.07x (lower is faster)
+Total characters: 18547
+======================================================================</code></pre>
+
+            <h2 class="section-title">🔧 Engineering Evolution: v2.0 Rewrite</h2>
+
+            <h3>Problem I Solved: Token Limit Bottleneck</h3>
+            <p class="body-inter">Whisper's original implementation only processed the first 30 seconds of audio due to
+                token limits. I re-architected the entire pipeline to handle unlimited audio length:</p>
+            <ul>
+                <li><strong>My Solution:</strong> Built a chunking system using Librosa to split audio into 30-second
+                    segments</li>
+                <li><strong>Implementation:</strong> Process each chunk independently on GPU, then concatenate
+                    transcriptions</li>
+                <li><strong>Result:</strong> Now handles 20+ minute files that previously failed</li>
+            </ul>
+
+            <h3>My Custom Progress Bar System</h3>
+            <pre><code>[████████░░░░░░░░░░░░░░░░░░░░░░] 50.0% - Chunk 21/42 (30.0s audio)
+Processing time: 2.03s | GPU: DirectML (AMD Radeon RX 6800 XT)</code></pre>
+            <p class="body-inter">I wrote a real-time progress visualization that displays:</p>
+            <ul>
+                <li><strong>Visual Bar:</strong> Custom ASCII rendering with percentage calculation</li>
+                <li><strong>Chunk Counter:</strong> Current/total segments with timing per chunk</li>
+                <li><strong>GPU Confirmation:</strong> Device detection to verify DirectML is active</li>
+                <li><strong>Performance Metrics:</strong> Real-time factor calculation for speed analysis</li>
+            </ul>
+
+            <h3>GPU Optimization I Implemented</h3>
+            <p class="body-inter">I discovered that Whisper's default behavior processes features on CPU even with GPU
+                available. My fix:</p>
+            <pre><code># My explicit GPU transfer code
+input_features = processor(audio, return_tensors="pt").input_features
+input_features = input_features.to(device)  # Force DirectML device
+predicted_ids = model.generate(input_features)  # Now runs on GPU</code></pre>
+            <ul>
+                <li><strong>Before My Fix:</strong> CPU stuck at 70% usage, GPU idle</li>
+                <li><strong>After My Fix:</strong> CPU drops to 20-30%, GPU utilization 70-80%</li>
+                <li><strong>Performance Gain:</strong> ~15x real-time factor (2 seconds per 30-second chunk)</li>
+            </ul>
+
+            <h2 class="section-title">📁 Supported Formats</h2>
+            <ul>
+                <li><strong>Audio:</strong> mp3, wav, m4a, flac, ogg, aac</li>
+                <li><strong>Video:</strong> mp4, avi, mov, mkv (audio extracted automatically)</li>
+            </ul>
+
+            <h2 class="section-title">🔧 Troubleshooting</h2>
+
+            <h3>"DmlExecutionProvider not available"</h3>
+            <pre><code>py -m pip uninstall onnxruntime-directml -y
+py -m pip install onnxruntime-directml --force-reinstall</code></pre>
+
+            <h3>AMD GPU not detected</h3>
+            <ul>
+                <li>Update AMD drivers via AMD Adrenalin software</li>
+                <li>Ensure GPU is not in power-saving mode</li>
+                <li>Check Windows Device Manager for GPU status</li>
+            </ul>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/Audio_to_Text_Transcriber" target="_blank"
+                    class="cta-button primary-accent">View Repo</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="body-inter"
+            style="font-size:0.78rem;text-align:center;padding:36px 0;opacity:0.3;letter-spacing:1px;">© 2026 YAO XIANG
+            · EVERY PIXEL INTENTIONAL</p>
+    </footer>
+    <div class="page-transition-overlay">
+        <h2 class="transition-logo">Portifolio</h2>
+    </div>
+    <script src="../script.js"></script>
+    <script>(function () { const e = document.getElementById("loader"), t = document.getElementById("holo-container"), n = document.getElementById("holo-text"), o = performance.getEntriesByType("navigation"), a = o.length > 0 && "reload" === o[0].type; if (!a && (sessionStorage.getItem("visited") || window.location.hash)) { e && e.remove(), document.body.classList.remove("preload"), window.holoCanNavigate = !0, sessionStorage.setItem("visited", "true"); if (t) { t.style.display = "block", t.classList.remove("holo-splash-center"); } if (n) n.innerText = "Welcome back."; if (window.location.hash) setTimeout((() => { const e = document.querySelector(window.location.hash); e && e.scrollIntoView({ behavior: "smooth", block: "start" }) }), 60); return } if (!e) return; window.holoCanNavigate = !false; const r = document.createElement("div"); r.className = "cover-reveal-overlay", e.appendChild(r); const i = () => { if (e.classList.contains("sequence-started")) return; e.classList.add("sequence-started"), setTimeout((() => { const o = document.createElement("div"); o.className = "begin-prompt", o.innerHTML = "Click anywhere to enter", e.appendChild(o), e.addEventListener("click", (() => { o.remove(), e.style.pointerEvents = "none", e.style.opacity = "0", t.classList.add("holo-splash-center"), t.style.display = "block", t.style.opacity = "0", t.style.transform = "translate(-50%,-50%) scale(0)", void t.offsetWidth, t.style.transition = "opacity 0.5s, transform 0.5s cubic-bezier(0.175,0.885,0.32,1.275)", t.style.opacity = "1", t.style.transform = "translate(-50%,-50%) scale(1)", n.innerText = "Ready?", t.classList.add("talking"), t.style.animation = "holoFloat 2s ease-in-out infinite, pulseGlow 1.5s ease-in-out infinite", "function" == typeof playSound && playSound("pop", .8) }), { once: true }) }), 1500) }; "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", i) : i(), setTimeout((() => { e.classList.contains("loaded") || (e.style.opacity = "0", e.style.pointerEvents = "none", document.body.classList.remove("preload"), window.holoCanNavigate = !0) }), 8e3) })();</script>
+</body>
+
+</html>

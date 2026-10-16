@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--NO-SPLASH-INJECTED-->
+<script>(function(){function k(){if(!document.body)return;document.body.classList.remove('preload');var l=document.getElementById('loader');if(l)l.remove();var h=document.getElementById('holo-container');if(h){h.classList.remove('holo-splash-center','talking');h.removeAttribute('style');h.style.display='block';h.style.animation='none';}var t=document.getElementById('holo-text');if(t)t.innerText='';window.holoCanNavigate=true;sessionStorage.setItem('visited','true');var ov=document.querySelector('.page-transition-overlay');if(ov)ov.classList.remove('active');}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',k);}else{k();}window.addEventListener('pageshow',k);})();</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shoppo / TinyFish - Yao Xiang</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Fraunces:ital,wght@0,100;0,700;0,900;1,100;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #060608;
+    --surface: #0e0f14;
+    --border: #1c1f2e;
+    --accent: #c8fa5f;
+    --accent2: #5ff0c8;
+    --accent3: #fa5fc8;
+    --text: #e8eaf0;
+    --muted: #5a5e72;
+    --tg: #26a5e4;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.35;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,6,8,0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .brand-lockup {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .brand-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(200,250,95,0.25);
+    background: #fff;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.05),
+      0 10px 24px rgba(0,0,0,0.35),
+      0 0 22px rgba(38,165,228,0.14);
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: var(--accent);
+  }
+
+  .nav-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .nav-tag.nav-back {
+    text-decoration: none;
+    transition: color 0.24s ease, text-shadow 0.24s ease;
+  }
+
+  .nav-tag.nav-back:hover {
+    color: var(--accent);
+    text-shadow: 0 0 16px rgba(200,250,95,0.14);
+  }
+
+  /* HERO / PROBLEM PITCH */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,250,95,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,250,95,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridShift 20s linear infinite;
+  }
+
+  @keyframes gridShift {
+    from { transform: translateY(0); }
+    to { transform: translateY(60px); }
+  }
+
+  .hero-orb {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(38,165,228,0.08) 0%, transparent 70%); /* TG Blue glow */
+    right: -200px; top: -150px;
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(42px, 5.2vw, 78px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    animation: fadeUp 0.8s 0.1s ease both;
+    max-width: 11ch;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--tg);
+  }
+
+  .hero-sub {
+    font-size: clamp(14px, 1.5vw, 16px);
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-top: 24px;
+    font-weight: 300;
+    animation: fadeUp 0.8s 0.2s ease both;
+    transition: color 0.28s ease, text-shadow 0.28s ease;
+  }
+
+  .hero-sub:hover {
+    color: #eef2fb;
+    text-shadow: 0 0 18px rgba(255,255,255,0.18);
+  }
+
+  /* PAIN LIST */
+  .pain-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .pain-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    background: rgba(14, 15, 20, 0.6);
+    backdrop-filter: blur(8px);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted);
+    transition: all 0.3s;
+  }
+
+  .pain-item:hover {
+    border-color: rgba(38,165,228,0.4);
+    color: var(--text);
+    text-shadow: 0 0 16px rgba(255,255,255,0.16);
+    transform: translateX(4px);
+  }
+
+  .pain-item::before {
+    content: '✕';
+    color: #ff5f57;
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* DEMO SECTION */
+  .demo-section {
+    min-height: 100vh;
+    padding: 110px 48px 70px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .video-section {
+    min-height: 100vh;
+    padding: 110px 48px 70px;
+    background:
+      radial-gradient(circle at top right, rgba(38,165,228,0.09), transparent 34%),
+      radial-gradient(circle at bottom left, rgba(200,250,95,0.08), transparent 30%),
+      var(--bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .video-wrap {
+    max-width: 1380px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .video-head {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .video-head h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(40px, 4.8vw, 72px);
+    font-weight: 900;
+    line-height: 0.96;
+    margin-bottom: 16px;
+  }
+
+  .video-sub {
+    max-width: 760px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--muted);
+    transition: color 0.28s ease, text-shadow 0.28s ease;
+  }
+
+  .video-sub:hover {
+    color: #eef2fb;
+    text-shadow: 0 0 18px rgba(255,255,255,0.18);
+  }
+
+  .pitch-wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .pitch-hero {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .pitch-icon-shell {
+    width: 230px;
+    height: 230px;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle, rgba(200,250,95,0.14) 0%, rgba(38,165,228,0.11) 46%, transparent 74%);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.05),
+      0 28px 70px rgba(0,0,0,0.4),
+      0 0 54px rgba(95,240,200,0.12);
+  }
+
+  .pitch-icon-shell img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff;
+    border: 1px solid rgba(255,255,255,0.16);
+  }
+
+  .pitch-copy h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(38px, 4.2vw, 64px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -1.5px;
+    margin-bottom: 18px;
+  }
+
+  .pitch-copy h2 em {
+    color: var(--accent2);
+    font-style: italic;
+  }
+
+  .pitch-sub {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.9;
+    max-width: 760px;
+    transition: color 0.28s ease, text-shadow 0.28s ease;
+  }
+
+  .pitch-sub:hover {
+    color: #eef2fb;
+    text-shadow: 0 0 18px rgba(255,255,255,0.18);
+  }
+
+  .pitch-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .pitch-card {
+    padding: 24px;
+    border: 1px solid var(--border);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)),
+      rgba(14,15,20,0.72);
+    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+  }
+
+  .pitch-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(95,240,200,0.28);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.26);
+  }
+
+  .pitch-card-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .pitch-card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.24);
+    flex-shrink: 0;
+  }
+
+  .pitch-card-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .pitch-card-icon.tinyfish {
+    background: #f8d295;
+  }
+
+  .pitch-card-icon.shoppo {
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .pitch-card-kicker {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .pitch-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--text);
+  }
+
+  .pitch-card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    transition: color 0.28s ease, text-shadow 0.28s ease;
+  }
+
+  .pitch-card:hover p {
+    color: #eef2fb;
+    text-shadow: 0 0 16px rgba(255,255,255,0.16);
+  }
+
+  .pitch-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .pitch-node {
+    padding: 10px 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(10,11,15,0.82);
+    color: var(--text);
+    font-size: 10px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+  }
+
+  .pitch-arrow {
+    color: var(--accent2);
+    font-size: 16px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .section-label::before { content: '//'; color: var(--muted); }
+
+  .demo-section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 900;
+    margin-bottom: 48px;
+  }
+
+  /* VIDEO PLACEHOLDER */
+  .video-container {
+    position: relative;
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    background: #0a0b0f;
+    border: 1px dashed var(--muted);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--muted);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(200,250,95,0.05);
+    transition: all 0.3s;
+    min-height: min(72vh, 820px);
+  }
+
+  .video-container:hover {
+    border-color: var(--accent);
+    background: #0d0f14;
+  }
+
+  .video-player {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 4px;
+    background: #000;
+    object-fit: contain;
+  }
+
+  .play-btn {
+    width: 96px; height: 96px;
+    border-radius: 50%;
+    background: rgba(200,250,95,0.05);
+    border: 1px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 38px;
+    margin-bottom: 24px;
+    padding-left: 6px;
+  }
+
+  /* ALGO / UNDER THE HOOD SECTION */
+  .algo-section {
+    padding: 120px 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .algo-header {
+    margin-bottom: 72px;
+  }
+
+  .algo-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -1px;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .step {
+    background: var(--bg);
+    padding: 40px 32px;
+    position: relative;
+    transition: all 0.3s;
+    overflow: hidden;
+  }
+
+  .step:hover {
+    background: var(--surface);
+  }
+
+  .step::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .step:hover::after { transform: scaleX(1); }
+
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    position: absolute;
+    top: 16px; right: 20px;
+  }
+
+  .step-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--accent);
+  }
+
+  .step-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .step-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    transition: color 0.28s ease, text-shadow 0.28s ease;
+  }
+
+  .step:hover .step-desc {
+    color: #eef2fb;
+    text-shadow: 0 0 16px rgba(255,255,255,0.16);
+  }
+
+  .concept-section {
+    min-height: 100vh;
+    padding: 110px 48px 70px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:
+      radial-gradient(circle at top left, rgba(38,165,228,0.06), transparent 32%),
+      radial-gradient(circle at bottom right, rgba(200,250,95,0.06), transparent 28%),
+      var(--surface);
+  }
+
+  .concept-section.alt {
+    background:
+      radial-gradient(circle at top right, rgba(250,95,200,0.06), transparent 30%),
+      radial-gradient(circle at bottom left, rgba(95,240,200,0.06), transparent 28%),
+      var(--bg);
+  }
+
+  .concept-wrap {
+    max-width: 1360px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .concept-hero {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 42px;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+
+  .concept-copy h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(40px, 4.5vw, 68px);
+    font-weight: 900;
+    line-height: 0.96;
+    letter-spacing: -1.4px;
+    margin-bottom: 18px;
+    max-width: 12ch;
+  }
+
+  .concept-copy p {
+    max-width: 720px;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--muted);
+    transition: color 0.28s ease, text-shadow 0.28s ease;
+  }
+
+  .concept-copy p:hover {
+    color: #eef2fb;
+    text-shadow: 0 0 18px rgba(255,255,255,0.18);
+  }
+
+  .concept-visual-stack {
+    display: grid;
+    gap: 16px;
+  }
+
+  .concept-visual-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)),
+      rgba(14,15,20,0.74);
+    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+  }
+
+  .concept-visual-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(95,240,200,0.28);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.26);
+  }
+
+  .concept-badge {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.24);
+    flex-shrink: 0;
+  }
+
+  .concept-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .concept-badge.round {
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .concept-badge.tinyfish {
+    background: #f8d295;
+  }
+
+  .concept-visual-card h3,
+  .concept-grid-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .concept-visual-card p,
+  .concept-grid-card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    transition: color 0.28s ease, text-shadow 0.28s ease;
+  }
+
+  .concept-visual-card:hover p,
+  .concept-grid-card:hover p {
+    color: #eef2fb;
+    text-shadow: 0 0 16px rgba(255,255,255,0.16);
+  }
+
+  .concept-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .concept-grid-card {
+    padding: 24px;
+    border: 1px solid var(--border);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)),
+      rgba(10,11,15,0.78);
+    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+  }
+
+  .concept-grid-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(200,250,95,0.28);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+  }
+
+  .concept-diagram {
+    margin-top: 32px;
+    margin-bottom: 28px;
+    padding: 28px;
+    border: 1px solid var(--border);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)),
+      rgba(10,11,15,0.82);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+  }
+
+  .diagram-ribbon {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .diagram-pill {
+    padding: 10px 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(14,15,20,0.8);
+    color: var(--text);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .diagram-flow {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 54px minmax(0,1fr) 54px minmax(0,1fr);
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .diagram-flow.wide {
+    grid-template-columns: minmax(0,1fr) 48px minmax(0,1.2fr) 48px minmax(0,1fr) 48px minmax(0,1fr);
+  }
+
+  .diagram-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent2);
+    font-size: 28px;
+    letter-spacing: 2px;
+    opacity: 0.95;
+  }
+
+  .diagram-card {
+    padding: 22px;
+    border: 1px solid var(--border);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)),
+      rgba(14,15,20,0.74);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 220px;
+    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+  }
+
+  .diagram-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(95,240,200,0.28);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.28);
+  }
+
+  .diagram-card-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .diagram-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.24);
+    flex-shrink: 0;
+  }
+
+  .diagram-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .diagram-icon.round {
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .diagram-icon.tinyfish {
+    background: #f8d295;
+  }
+
+  .diagram-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--text);
+  }
+
+  .diagram-card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    transition: color 0.28s ease, text-shadow 0.28s ease;
+  }
+
+  .diagram-card:hover p {
+    color: #eef2fb;
+    text-shadow: 0 0 16px rgba(255,255,255,0.16);
+  }
+
+  .mini-cluster {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: auto;
+  }
+
+  .mini-chip {
+    padding: 8px 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(6,6,8,0.8);
+    color: var(--text);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .output-cluster {
+    display: grid;
+    gap: 8px;
+    margin-top: auto;
+  }
+
+  .output-chip {
+    padding: 10px 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(6,6,8,0.8);
+    color: var(--text);
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface);
+  }
+
+  footer span {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    transition: color 0.28s ease, text-shadow 0.28s ease;
+  }
+
+  footer span:hover {
+    color: #eef2fb;
+    text-shadow: 0 0 16px rgba(255,255,255,0.16);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1000px) {
+    .hero-content { grid-template-columns: 1fr; gap: 48px; }
+    .pitch-hero { grid-template-columns: 1fr; gap: 24px; text-align: center; }
+    .pitch-sub { margin: 0 auto; }
+    .pitch-grid { grid-template-columns: 1fr; }
+    .concept-hero { grid-template-columns: 1fr; gap: 24px; }
+    .concept-copy h2 { max-width: none; }
+    .concept-grid { grid-template-columns: 1fr; }
+    .diagram-flow,
+    .diagram-flow.wide { grid-template-columns: 1fr; }
+    .diagram-arrow { min-height: 24px; }
+    .video-container { min-height: auto; }
+    .steps { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 16px 24px; }
+    .brand-icon { width: 36px; height: 36px; }
+    .nav-tag { display: none; }
+    .hero { padding: 110px 24px 56px; }
+    .demo-section, .video-section, .algo-section, .concept-section { padding: 88px 24px 56px; }
+    h1 { font-size: clamp(38px, 12vw, 60px); max-width: none; }
+    .pitch-icon-shell { width: 180px; height: 180px; }
+    .pitch-icon-shell img { width: 118px; height: 118px; }
+    .concept-badge { width: 52px; height: 52px; }
+    .diagram-icon { width: 52px; height: 52px; }
+    .concept-diagram { padding: 20px; }
+    .steps { grid-template-columns: 1fr; }
+    footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+
+  /* ── Touch device cursor fix ─────────────────────────────── */
+  @media (pointer: coarse) {
+    body { cursor: auto; }
+    a, button { cursor: pointer; }
+  }
+
+  /* ── Tighter mobile nav & back link ──────────────────────── */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .logo { font-size: 20px; letter-spacing: 2px; }
+    .brand-icon { width: 34px; height: 34px; }
+    .nav-tag.nav-back { font-size: 8px; letter-spacing: 2px; }
+    .hero { min-height: auto; padding: 100px 20px 40px; }
+    .hero-sub { font-size: 13px; }
+    .pain-item { font-size: 12px; padding: 14px; }
+    .pitch-card p, .step-desc, .concept-copy p, .diagram-card p { font-size: 11px; }
+    .pitch-card h3, .step-title, .concept-visual-card h3, .concept-grid-card h3, .diagram-card h3 { font-size: 18px; }
+    .section-label { font-size: 9px; letter-spacing: 3px; }
+    .mini-chip, .pitch-node, .diagram-pill, .output-chip { font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand-lockup" href="../index.html#proj-9">
+    <img class="brand-icon" src="../images/tinyfish/shoppo_icon.png" alt="Shoppo icon">
+    <div class="logo">SHOPPO</div>
+  </a>
+  <a class="nav-tag nav-back" href="../index.html#proj-9">Back to Portfolio</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+
+  <div class="hero-content">
+    <div>
+      <div class="eyebrow">The Problem</div>
+      <h1>Online shopping isn't shopping anymore.<br>It's a <em>scavenger hunt.</em></h1>
+      <p class="hero-sub">
+        Finding the best-value item online today is inefficient and fragmented. You jump between Shopee, Lazada, Amazon, and Carousell like a man possessed, opening tabs, guessing keywords, and second-guessing yourself.
+      </p>
+    </div>
+
+    <ul class="pain-list">
+      <li class="pain-item">You are forced to manually search across multiple platforms, jumping between digital islands just to compare prices.</li>
+      <li class="pain-item">You repeatedly refine queries and guess keywords, never fully sure if you searched correctly.</li>
+      <li class="pain-item">You waste time drowning in browser tabs trying to filter out the noise while still missing optimal deals.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="demo-section">
+  <div class="section-label" style="color:var(--accent2);">The Solution</div>
+  <div class="pitch-wrap">
+    <div class="pitch-hero">
+      <div class="pitch-icon-shell">
+        <img src="../images/tinyfish/shoppo_icon.png" alt="Shoppo circular icon">
+      </div>
+
+      <div class="pitch-copy">
+        <h2>Meet <em>Shoppo.</em></h2>
+        <p class="pitch-sub">
+          Shoppo is a Telegram-native intelligent shopping agent. Users can start with messy intent like text, a budget, or a product image inside one chat thread. Shoppo clarifies what they actually want, uses TinyFish to fan search across marketplaces, and returns a ranked shortlist with evidence instead of making users manually hunt across tabs.
+        </p>
+      </div>
+    </div>
+
+    <div class="pitch-grid">
+      <div class="pitch-card">
+        <div class="pitch-card-head">
+          <div class="pitch-card-icon">
+            <img src="../images/tinyfish/telegram.png" alt="Telegram logo">
+          </div>
+          <div>
+            <div class="pitch-card-kicker">User Surface</div>
+            <h3>Telegram Native</h3>
+          </div>
+        </div>
+        <p>Everything stays in one familiar chat. Users can send rough requests, photos, clarifications, and follow-up constraints without jumping into another app or portal.</p>
+      </div>
+
+      <div class="pitch-card">
+        <div class="pitch-card-head">
+          <div class="pitch-card-icon tinyfish">
+            <img src="../images/tinyfish/tinyfish.png" alt="TinyFish icon">
+          </div>
+          <div>
+            <div class="pitch-card-kicker">Execution Layer</div>
+            <h3>TinyFish Powered</h3>
+          </div>
+        </div>
+        <p>Once the brief is ready, TinyFish runs the search across marketplaces in parallel, preserving search coverage, raw evidence, and execution transparency.</p>
+      </div>
+
+      <div class="pitch-card">
+        <div class="pitch-card-head">
+          <div class="pitch-card-icon shoppo">
+            <img src="../images/tinyfish/shoppo_icon.png" alt="Shoppo icon">
+          </div>
+          <div>
+            <div class="pitch-card-kicker">Outcome</div>
+            <h3>Decision Support</h3>
+          </div>
+        </div>
+        <p>Shoppo does not just retrieve listings. It helps users decide by surfacing the strongest candidates, trade-offs, and best-value options in a clearer final shortlist.</p>
+      </div>
+    </div>
+
+    <div class="pitch-flow">
+      <span class="pitch-node">Text / Photo / Budget</span>
+      <span class="pitch-arrow">-></span>
+      <span class="pitch-node">Telegram Chat</span>
+      <span class="pitch-arrow">-></span>
+      <span class="pitch-node">Shoppo Agent</span>
+      <span class="pitch-arrow">-></span>
+      <span class="pitch-node">TinyFish Search Fan-out</span>
+      <span class="pitch-arrow">-></span>
+      <span class="pitch-node">Ranked Shortlist</span>
+    </div>
+
+  </div>
+</section>
+
+<section class="video-section" id="demo">
+  <div class="video-wrap">
+    <div class="video-head">
+      <div class="section-label" style="color:var(--tg);">Live Demonstration</div>
+      <h2>Watch Shoppo in Action</h2>
+      <p class="video-sub">
+        This is the end-to-end moment: messy user intent goes into Telegram, TinyFish fans search out across marketplaces, and Shoppo returns a clearer shortlist instead of a tab jungle.
+      </p>
+    </div>
+
+    <div class="video-container">
+      <video class="video-player" controls preload="metadata" playsinline>
+        <source src="../media/tinyfish/shoppo_demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="algo-section">
+  <div class="algo-header">
+    <div class="section-label" style="justify-content:flex-start; color:var(--accent3);">How It Works</div>
+    <h2>How Shoppo actually resolves the hunt.</h2>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">01</span>
+      <div class="step-icon">🔍</div>
+      <div class="step-title">Cross-Platform</div>
+      <p class="step-desc">Shoppo automatically searches across all major platforms simultaneously. No more tab-hopping or repeating the exact same search.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <div class="step-icon">🧠</div>
+      <div class="step-title">Query Optimization</div>
+      <p class="step-desc">Most users start with a messy, vague idea. Our agent actively guides you to clarify your intent and translates it into the optimal search query.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <div class="step-icon">📊</div>
+      <div class="step-title">Logical Ranking</div>
+      <p class="step-desc">We don't just dump raw links. Our decision engine evaluates the results and ranks the absolute best candidates based on price, value, and relevance.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">04</span>
+      <div class="step-icon">🤖</div>
+      <div class="step-title">Telegram Native</div>
+      <p class="step-desc">Absolutely zero friction. This entire pipeline operates completely inside a single Telegram bot. No new apps to download, no messy web portals.</p>
+    </div>
+  </div>
+</section>
+
+<section class="concept-section">
+  <div class="concept-wrap">
+    <div class="section-label" style="justify-content:flex-start; color:var(--tg);">Core Concept 01</div>
+
+    <div class="concept-copy">
+      <h2>Conversation is the right front door.</h2>
+      <p>
+        The first core idea is that shopping intent begins messy. Users do not start with the exact keyword a
+        marketplace expects. They start with fragments. This slide diagrams why Telegram plus clarification is
+        the right intake surface before the system ever spends search effort.
+      </p>
+    </div>
+
+    <div class="concept-diagram">
+      <div class="diagram-ribbon">
+        <span class="diagram-pill">Text Request</span>
+        <span class="diagram-pill">Reference Photo</span>
+        <span class="diagram-pill">Budget Range</span>
+        <span class="diagram-pill">Follow-up Clarification</span>
+      </div>
+
+      <div class="diagram-flow">
+        <div class="diagram-card">
+          <div class="diagram-card-top">
+            <div class="diagram-icon">
+              <img src="../images/tinyfish/telegram.png" alt="Telegram logo">
+            </div>
+            <div>
+              <div class="pitch-card-kicker">User Surface</div>
+              <h3>Telegram Thread</h3>
+            </div>
+          </div>
+          <p>All messy intent starts in one familiar place instead of forcing the shopper into a rigid search form or another portal.</p>
+        </div>
+
+        <div class="diagram-arrow">-&gt;</div>
+
+        <div class="diagram-card">
+          <div class="diagram-card-top">
+            <div class="diagram-icon round">
+              <img src="../images/tinyfish/shoppo_icon.png" alt="Shoppo icon">
+            </div>
+            <div>
+              <div class="pitch-card-kicker">Agent Layer</div>
+              <h3>Shoppo Clarifies</h3>
+            </div>
+          </div>
+          <p>The agent resolves ambiguity, asks for the missing detail, and turns a vague request into something precise enough to search well.</p>
+        </div>
+
+        <div class="diagram-arrow">-&gt;</div>
+
+        <div class="diagram-card">
+          <div class="diagram-card-top">
+            <div class="diagram-icon round">
+              <img src="../images/tinyfish/shoppo_icon.png" alt="Shoppo icon">
+            </div>
+            <div>
+              <div class="pitch-card-kicker">Search Input</div>
+              <h3>Structured Brief</h3>
+            </div>
+          </div>
+          <p>The output of conversation is not more chat. It is a clarified sourcing brief that can now drive deterministic and grounded search.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-grid">
+      <div class="concept-grid-card">
+        <div class="pitch-card-kicker">Principle</div>
+        <h3>Natural Input</h3>
+        <p>The user should be allowed to describe the product the way people actually think, not the way search engines expect.</p>
+      </div>
+
+      <div class="concept-grid-card">
+        <div class="pitch-card-kicker">Principle</div>
+        <h3>Context Preservation</h3>
+        <p>Because the workflow stays in one Telegram thread, every clarification, image, and constraint remains part of the same search context.</p>
+      </div>
+
+      <div class="concept-grid-card">
+        <div class="pitch-card-kicker">Principle</div>
+        <h3>Zero Friction</h3>
+        <p>The shopper does not need a new app, a new portal, or a new behavior. They just chat the way they already do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="concept-section alt">
+  <div class="concept-wrap">
+    <div class="section-label" style="justify-content:flex-start; color:var(--accent);">Core Concept 02</div>
+
+    <div class="concept-copy">
+      <h2>The product is confidence, not more links.</h2>
+      <p>
+        The second core idea is that retrieval is not the end product. Confidence is. This diagram shows the
+        pipeline that creates that confidence: marketplace fan-out through TinyFish, preserved evidence, and a
+        final decision layer that turns raw search output into a trustworthy shortlist.
+      </p>
+    </div>
+
+    <div class="concept-diagram">
+      <div class="diagram-flow wide">
+        <div class="diagram-card">
+          <div class="diagram-card-top">
+            <div class="diagram-icon tinyfish">
+              <img src="../images/tinyfish/tinyfish.png" alt="TinyFish icon">
+            </div>
+            <div>
+              <div class="pitch-card-kicker">Execution Layer</div>
+              <h3>TinyFish Orchestrator</h3>
+            </div>
+          </div>
+          <p>TinyFish is what turns one user request into real multi-marketplace execution rather than a single brittle search attempt.</p>
+        </div>
+
+        <div class="diagram-arrow">-&gt;</div>
+
+        <div class="diagram-card">
+          <div class="diagram-card-top">
+            <div class="diagram-icon">
+              <img src="../images/tinyfish/telegram.png" alt="Marketplace cluster visual">
+            </div>
+            <div>
+              <div class="pitch-card-kicker">Coverage</div>
+              <h3>Marketplace Fan-out</h3>
+            </div>
+          </div>
+          <p>Search is broadened across marketplaces so the shopper is not left repeating the same manual comparison work tab by tab.</p>
+          <div class="mini-cluster">
+            <span class="mini-chip">Carousell</span>
+            <span class="mini-chip">Lazada</span>
+            <span class="mini-chip">Amazon SG</span>
+            <span class="mini-chip">Alibaba</span>
+          </div>
+        </div>
+
+        <div class="diagram-arrow">-&gt;</div>
+
+        <div class="diagram-card">
+          <div class="diagram-card-top">
+            <div class="diagram-icon round">
+              <img src="../images/tinyfish/shoppo_icon.png" alt="Shoppo icon">
+            </div>
+            <div>
+              <div class="pitch-card-kicker">Decision Layer</div>
+              <h3>Evidence + Ranking</h3>
+            </div>
+          </div>
+          <p>Shoppo preserves evidence, compares trade-offs, and ranks the strongest candidates so the answer is explainable instead of opaque.</p>
+        </div>
+
+        <div class="diagram-arrow">-&gt;</div>
+
+        <div class="diagram-card">
+          <div class="diagram-card-top">
+            <div class="diagram-icon round">
+              <img src="../images/tinyfish/shoppo_icon.png" alt="Shoppo icon">
+            </div>
+            <div>
+              <div class="pitch-card-kicker">User Outcome</div>
+              <h3>Confident Output</h3>
+            </div>
+          </div>
+          <p>The shopper receives something actionable and trustworthy, not just another list of raw links.</p>
+          <div class="output-cluster">
+            <span class="output-chip">Telegram Shortlist</span>
+            <span class="output-chip">Live Evidence Report</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-grid">
+      <div class="concept-grid-card">
+        <div class="pitch-card-kicker">Principle</div>
+        <h3>Coverage</h3>
+        <p>The system should broaden the search space for the user, not leave them repeating manual searches across disconnected platforms.</p>
+      </div>
+
+      <div class="concept-grid-card">
+        <div class="pitch-card-kicker">Principle</div>
+        <h3>Transparency</h3>
+        <p>Confidence comes from preserved evidence, visible trade-offs, and a workflow that does not feel like an opaque black box.</p>
+      </div>
+
+      <div class="concept-grid-card">
+        <div class="pitch-card-kicker">Principle</div>
+        <h3>Decision Support</h3>
+        <p>The final output should help the user choose, not just click. That is why Shoppo ranks, explains, and narrows the shortlist.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="logo" style="font-size:20px; letter-spacing:3px; color:var(--muted);">SHOPPO</span>
+  <span>Built with FastAPI, SQLite, and TinyFish Orchestration.</span>
+  <span>Singapore Hackathon 2026</span>
+</footer>
+
+</body>
+</html>

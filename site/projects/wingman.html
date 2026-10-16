@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!--NO-SPLASH-INJECTED-->
+<script>(function(){function k(){if(!document.body)return;document.body.classList.remove('preload');var l=document.getElementById('loader');if(l)l.remove();var h=document.getElementById('holo-container');if(h){h.classList.remove('holo-splash-center','talking');h.removeAttribute('style');h.style.display='block';h.style.animation='none';}var t=document.getElementById('holo-text');if(t)t.innerText='';window.holoCanNavigate=true;sessionStorage.setItem('visited','true');var ov=document.querySelector('.page-transition-overlay');if(ov)ov.classList.remove('active');}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',k);}else{k();}window.addEventListener('pageshow',k);})();</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Wingman - Yao Xiang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            themeVariables: { primaryColor: '#ff4444', primaryTextColor: '#fff', primaryBorderColor: '#ff4444', lineColor: '#ff4444', secondaryColor: '#8b0000', tertiaryColor: '#2b0000' }
+        });
+    </script>
+    <style>
+        body.preload {
+            visibility: hidden !important
+        }
+
+        body.preload #loader,
+        body.preload #holo-container {
+            visibility: visible !important
+        }
+
+        .project-article {
+            max-width: 1000px;
+            margin: 150px auto 100px;
+            padding: 50px;
+            position: relative;
+            z-index: 2
+        }
+
+        .back-link {
+            display: inline-flex;
+            position: relative;
+            /* OVERRIDES the fixed position */
+            top: 0;
+            left: 0;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            color: var(--accent-crimson, #ff4444);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: .9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform .3s
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px)
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0 40px
+        }
+
+        .tech-badge {
+            background: rgba(255, 68, 68, .1);
+            border: 1px solid rgba(255, 68, 68, .3);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: .85rem;
+            font-family: 'Inter', sans-serif
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0
+        }
+
+        .feature-box {
+            padding: 25px;
+            border-left: 3px solid var(--accent-crimson, #ff4444);
+            border-radius: 10px;
+            background: rgba(255, 68, 68, .05);
+            transition: all .3s
+        }
+
+        .feature-box:hover {
+            background: rgba(255, 68, 68, .1);
+            transform: translateX(5px)
+        }
+
+        .feature-box h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            color: #fff;
+            margin-bottom: 10px;
+            margin-top: 0
+        }
+
+        .feature-box p {
+            font-family: 'Inter', sans-serif;
+            font-size: .95rem;
+            color: rgba(255, 255, 255, .7);
+            line-height: 1.6;
+            margin: 0
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            color: #fff;
+            margin: 60px 0 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+            padding-bottom: 15px
+        }
+
+        pre {
+            background: rgba(0, 0, 0, .5);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            border-left: 3px solid var(--accent-crimson, #ff4444);
+            margin: 20px 0
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-cyan, #00f0ff);
+            font-size: .9rem;
+            background: rgba(0, 0, 0, .3);
+            padding: 2px 6px;
+            border-radius: 4px
+        }
+
+        pre code {
+            color: #e0e0e0;
+            background: 0 0;
+            padding: 0
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            width: 100%;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: .95rem
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+            color: rgba(255, 255, 255, .7)
+        }
+
+        th {
+            color: var(--accent-crimson, #ff4444);
+            font-weight: 600;
+            background: rgba(255, 68, 68, .05)
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, .02)
+        }
+
+        .personality-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .alert-box {
+            background: rgba(255, 68, 68, .05);
+            border-left: 3px solid var(--accent-crimson, #ff4444);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0
+        }
+
+        .alert-box h3 {
+            margin-top: 0;
+        }
+
+        .body-inter {
+            font-family: 'Inter', sans-serif;
+            color: rgba(255, 255, 255, .7);
+            line-height: 1.7;
+            margin-bottom: 15px
+        }
+
+        ul,
+        ol {
+            color: rgba(255, 255, 255, .7);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding-left: 20px
+        }
+
+        .mermaid-container {
+            background: rgba(0, 0, 0, .3);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, .05);
+            text-align: center;
+            overflow-x: auto
+        }
+
+        h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            color: #fff;
+            margin-bottom: 10px;
+            margin-top: 30px
+        }
+
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .theme-box {
+            background: rgba(255, 68, 68, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 68, 68, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .theme-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .theme-box img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(255, 68, 68, 0.2);
+        }
+/* -- MOBILE OVERRIDES -- */
+        @media (max-width: 768px) {
+            .container.project-article.glass-panel {
+                margin: 80px auto 40px !important;
+                padding: 18px !important;
+                border-radius: 14px !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            .back-link {
+                font-size: 0.72rem !important;
+                letter-spacing: 0.5px !important;
+                margin-bottom: 16px !important;
+                gap: 5px !important;
+            }
+            .cinematic-heading {
+                font-size: clamp(1.3rem, 5.5vw, 1.8rem) !important;
+                line-height: 1.1 !important;
+                word-break: break-word !important;
+            }
+            .section-title {
+                font-size: 1.4rem !important;
+                margin: 28px 0 12px !important;
+                padding-bottom: 10px !important;
+            }
+            .feature-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+            .feature-box { padding: 16px !important; }
+            .feature-box h3, .feature-box strong.title { font-size: 1.2rem !important; }
+            .feature-box p { font-size: 0.82rem !important; }
+            .tech-stack { gap: 6px !important; margin: 14px 0 24px !important; }
+            .tech-badge { font-size: 0.7rem !important; padding: 4px 10px !important; }
+            .body-inter { font-size: 0.85rem !important; line-height: 1.6 !important; }
+            h3 { font-size: 1.3rem !important; margin-top: 20px !important; }
+            .cta-button { font-size: 0.75rem !important; padding: 10px 16px !important; }
+            .stats-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+            .stat-card { padding: 12px !important; }
+            .stat-number { font-size: 1.6rem !important; }
+            .stat-label { font-size: 0.72rem !important; }
+            .alert-box { padding: 14px !important; }
+            .alert-box strong { font-size: 1.1rem !important; }
+            .alert-box p { font-size: 0.82rem !important; }
+            .mermaid-container { padding: 10px !important; margin: 14px 0 !important; overflow-x: auto !important; }
+            .game-card { padding: 14px !important; }
+            pre { padding: 12px !important; font-size: 0.75rem !important; overflow-x: auto !important; max-width: 100% !important; }
+            code { font-size: 0.74rem !important; }
+            table { font-size: 0.8rem !important; }
+            th, td { padding: 8px 6px !important; font-size: 0.78rem !important; }
+            .callout { padding: 12px !important; }
+            .theme-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+            .theme-box { padding: 14px !important; }
+            img { max-width: 100% !important; height: auto !important; }
+            /* Override inline style font-sizes */
+            [style*="font-size: 1.15rem"] { font-size: 0.92rem !important; }
+            [style*="margin-top: 50px"] { margin-top: 28px !important; }
+            [style*="margin-top: 60px"] { margin-top: 28px !important; }
+            [style*="padding: 40px"] { padding: 18px !important; }
+        }
+        @media (max-width: 420px) {
+            .container.project-article.glass-panel {
+                margin: 70px auto 24px !important;
+                padding: 12px !important;
+            }
+            .cinematic-heading { font-size: clamp(1.1rem, 5vw, 1.5rem) !important; }
+            .back-link { font-size: 0.62rem !important; }
+            .stats-grid { grid-template-columns: 1fr !important; }
+            .section-title { font-size: 1.2rem !important; }
+            h3 { font-size: 1.1rem !important; }
+        }
+    </style>
+</head>
+
+<body class="preload project-view-body">
+    <div id="scene-3d">
+        <div id="cinematic-bg"></div>
+        <div id="bg-vignette"></div>
+    </div>
+    <div id="cursor-glow"></div>
+    <div id="loader" aria-hidden="true">
+        <p id="loader-credit"> </p>
+    </div>
+    <div id="holo-container" onclick="holoInteract(this)">
+        <div class="holo-dialog-box">
+            <p id="holo-text">Welcome.</p>
+        </div><img src="../images/holo.png" alt="Holo" class="holo-sprite">
+    </div>
+
+    <header class="glass-nav">
+        <nav>
+            <div class="nav-container">
+                <h1 class="brand-heading">YAO XIANG</h1>
+                <ul>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#experience">Experience</a></li>
+                    <li><a href="../index.html#skills">Skills</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="scroll-progress-bar"></div>
+    </header>
+
+    <section class="checkpoint reveal">
+        <div class="container project-article glass-panel">
+            <a href="../index.html#proj-1" class="back-link">← Back to Projects</a>
+
+            <div style="display:flex;align-items:center;gap:15px;margin-bottom:10px;">
+                <span style="font-size: 2.5rem; flex-shrink:0;">🤖</span>
+                <h1 class="cinematic-heading" style="margin:0;">Wingman</h1>
+            </div>
+
+            <p class="body-inter" style="font-size: 0.95rem; margin-bottom: 20px;"><strong>Project Category:</strong>
+                Team Project (NUS Orbital Apollo 2025)</p>
+
+            <div class="tech-stack">
+                <span class="tech-badge">React 18</span>
+                <span class="tech-badge">TypeScript 5.2</span>
+                <span class="tech-badge">Electron</span>
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">Supabase</span>
+                <span class="tech-badge">Ollama</span>
+                <span class="tech-badge">SQLite</span>
+            </div>
+
+            <div style="margin-top: 20px; display: flex; gap: 15px; flex-wrap: wrap;">
+                <a href="https://github.com/Yxiang-828/Wingman" target="_blank" class="cta-button primary-accent">View
+                    Repo</a>
+                <a href="https://github.com/Yxiang-828/Wingman/releases" target="_blank"
+                    class="cta-button secondary-glass">Download Release ↗</a>
+            </div>
+
+            <p class="body-inter" style="font-size: 1.15rem; margin: 35px 0;">
+                Local-first desktop AI assistant built with modern web technologies. Features task management, calendar
+                integration, mood diary, and intelligent AI chat powered by Ollama. Cross-platform support with SQLite
+                persistence and Supabase authentication.
+            </p>
+
+            <h2 class="section-title">🖼️ Custom Themes (6 Available)</h2>
+            <p class="body-inter">Each theme provides a unique visual experience with a synchronized AI personality:</p>
+
+            <div class="theme-grid">
+                <div class="theme-box">
+                    <img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/dark-theme.png"
+                        alt="Dark Theme" loading="lazy">
+                    <strong
+                        style="color:#fff; font-family:'Bebas Neue', sans-serif; font-size:1.2rem; letter-spacing:1px;">🌙
+                        Dark</strong>
+                    <p style="color:rgba(255,255,255,0.7); font-size:0.85rem; margin-top:5px;">Professional</p>
+                </div>
+                <div class="theme-box">
+                    <img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/light-theme.png"
+                        alt="Light Theme" loading="lazy">
+                    <strong
+                        style="color:#fff; font-family:'Bebas Neue', sans-serif; font-size:1.2rem; letter-spacing:1px;">☀️
+                        Light</strong>
+                    <p style="color:rgba(255,255,255,0.7); font-size:0.85rem; margin-top:5px;">Encouraging</p>
+                </div>
+                <div class="theme-box">
+                    <img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/yandere-theme.png"
+                        alt="Yandere Theme" loading="lazy">
+                    <strong
+                        style="color:#fff; font-family:'Bebas Neue', sans-serif; font-size:1.2rem; letter-spacing:1px;">🌸
+                        Yandere</strong>
+                    <p style="color:rgba(255,255,255,0.7); font-size:0.85rem; margin-top:5px;">Devoted</p>
+                </div>
+                <div class="theme-box">
+                    <img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/kuudere-theme.png"
+                        alt="Kuudere Theme" loading="lazy">
+                    <strong
+                        style="color:#fff; font-family:'Bebas Neue', sans-serif; font-size:1.2rem; letter-spacing:1px;">❄️
+                        Kuudere</strong>
+                    <p style="color:rgba(255,255,255,0.7); font-size:0.85rem; margin-top:5px;">Logical</p>
+                </div>
+                <div class="theme-box">
+                    <img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/tsundere-theme.png"
+                        alt="Tsundere Theme" loading="lazy">
+                    <strong
+                        style="color:#fff; font-family:'Bebas Neue', sans-serif; font-size:1.2rem; letter-spacing:1px;">🧡
+                        Tsundere</strong>
+                    <p style="color:rgba(255,255,255,0.7); font-size:0.85rem; margin-top:5px;">Dynamic</p>
+                </div>
+                <div class="theme-box">
+                    <img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/dandere-theme.png"
+                        alt="Dandere Theme" loading="lazy">
+                    <strong
+                        style="color:#fff; font-family:'Bebas Neue', sans-serif; font-size:1.2rem; letter-spacing:1px;">💜
+                        Dandere</strong>
+                    <p style="color:rgba(255,255,255,0.7); font-size:0.85rem; margin-top:5px;">Gentle</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">🎭 AI Personality System</h2>
+            <p class="body-inter">Wingman features 6 distinct AI personalities that synchronize with your selected
+                theme. Each personality has unique traits, communication styles, and emoji preferences:</p>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+                    graph TD
+                    A[Theme Selection] --> B[Personality Sync]
+                    B --> C{Personality Type}
+                    C --> D[Lumen - Light]
+                    C --> E[Umbra - Dark]
+                    C --> F[Velvet - Yandere]
+                    C --> G[Frost - Kuudere]
+                    C --> H[Echo - Dandere]
+                    C --> I[Blaze - Tsundere]
+
+                    D --> J[Response Generation]
+                    E --> J
+                    F --> J
+                    G --> J
+                    H --> J
+                    I --> J
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Avatar</th>
+                            <th>Name</th>
+                            <th>Personality</th>
+                            <th>Traits</th>
+                            <th>Style</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/avatar/light.png"
+                                    alt="Lumen" class="personality-img"></td>
+                            <td><strong>Lumen</strong></td>
+                            <td>Supportive Buddy</td>
+                            <td>Optimistic, encouraging, warm</td>
+                            <td>Positive reinforcement ☀️✨</td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/avatar/dark.png"
+                                    alt="Umbra" class="personality-img"></td>
+                            <td><strong>Umbra</strong></td>
+                            <td>Strategic Advisor</td>
+                            <td>Analytical, direct, efficient</td>
+                            <td>Minimal but insightful 🌑⚡</td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/avatar/yandere.png"
+                                    alt="Velvet" class="personality-img"></td>
+                            <td><strong>Velvet</strong></td>
+                            <td>Devoted Companion</td>
+                            <td>Intensely loyal, protective</td>
+                            <td>Highly personalized 💖👁️</td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/avatar/kuudere.png"
+                                    alt="Frost" class="personality-img"></td>
+                            <td><strong>Frost</strong></td>
+                            <td>Professional Assistant</td>
+                            <td>Reserved, logical, professional</td>
+                            <td>Analytical with care ❄️📊</td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/avatar/dandere.png"
+                                    alt="Echo" class="personality-img"></td>
+                            <td><strong>Echo</strong></td>
+                            <td>Gentle Guide</td>
+                            <td>Shy, soft-spoken, caring</td>
+                            <td>Quiet encouragement 🌸💕</td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/avatar/tsundere.png"
+                                    alt="Blaze" class="personality-img"></td>
+                            <td><strong>Blaze</strong></td>
+                            <td>Dynamic Motivator</td>
+                            <td>Initially distant, caring</td>
+                            <td>Reluctant affection 😤💖</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 class="section-title">🤖 AI Communication Architecture</h2>
+            <p class="body-inter">Wingman uses a sophisticated dual-path architecture for handling both slash commands
+                and natural conversations:</p>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+                    sequenceDiagram
+                    participant U as User
+                    participant FE as React Frontend
+                    participant API as FastAPI
+                    participant CC as ChatCoordinator
+                    participant CP as CommandParser
+                    participant PM as PersonalityManager
+                    participant OS as Ollama LLM
+                    participant DB as SQLite
+
+                    U->>FE: Send Message
+                    FE->>API: POST /chat/
+                    API->>DB: Save Message
+
+                    alt Slash Command (/t /e /d /u)
+                    CC->>CP: Parse Command
+                    CP->>DB: Query Data
+                    CP->>PM: Add Personality
+                    PM->>API: Enhanced Response
+                    else Regular Conversation
+                    CC->>PM: Get Personality
+                    CC->>DB: Get Context
+                    CC->>OS: Send to LLM
+                    OS->>PM: AI Response
+                    PM->>API: Personality Response
+                    end
+
+                    API->>DB: Save Response
+                    API->>FE: JSON Response
+                    FE->>U: Display Message
+                </div>
+            </div>
+
+            <h2 class="section-title">🚀 Core Features</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>🤖 AI Chat Assistant</h3>
+                    <p>Intelligent conversations with personality-driven responses. Supports slash commands for instant
+                        data access (/t for tasks, /e for events, /d for diary, /u for users).</p>
+                </div>
+                <div class="feature-box">
+                    <h3>📅 Task Management</h3>
+                    <p>Complete task lifecycle with recurring tasks, priorities, and deadlines. Smart scheduling with
+                        AI-powered suggestions and automatic failure detection.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>📊 Mood Diary</h3>
+                    <p>Daily mood tracking with sentiment analysis. Visual charts and insights for mental wellness
+                        monitoring with privacy-first local storage.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🔔 Background Notifications</h3>
+                    <p>Smart notification system with 30-minute and 5-minute reminders. Continues running when app is
+                        minimized or closed using Electron's system tray.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🔒 Privacy-First</h3>
+                    <p>Local-first architecture with SQLite database. Optional Supabase sync for cross-device access.
+                        Your data stays completely private on your machine.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🎨 6 Custom Themes</h3>
+                    <p>Beautiful themes with unique personalities. Each theme has a synchronized AI personality, avatar,
+                        and custom color schemes with smooth transitions.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">🔔 Notification System Architecture</h2>
+            <p class="body-inter">Event-driven notification system with three complementary layers for reliable
+                reminders:</p>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+                    graph TD
+                    A[User Creates Task/Event] --> B[NotificationScheduler]
+                    B --> C[In-Memory Timers]
+                    C --> D[30min Reminder]
+                    C --> E[5min Reminder]
+                    C --> F[Due/Start Alert]
+
+                    G[App Minimized/Closed] --> H[BackgroundService]
+                    H --> I[Electron Main Process]
+                    I --> J[OS Notifications]
+
+                    K[Real-time Updates] --> L[DataContext Events]
+                    L --> M[Scheduler Updates]
+                    M --> N[Timer Recalculation]
+                </div>
+            </div>
+
+            <h2 class="section-title">⚡ Slash Commands</h2>
+            <p class="body-inter">Wingman supports instant data access through slash commands for quick information
+                retrieval:</p>
+            <pre><code>/t - Tasks        /e - Events       /d - Diary        /u - Users</code></pre>
+
+            <h3>Command Examples:</h3>
+            <ul>
+                <li><code>/t /date 2025-01-15</code> - View all tasks scheduled for January 15, 2025</li>
+                <li><code>/e /month jan</code> - Display all events happening in January</li>
+                <li><code>/d /mood happy</code> - Show diary entries where you felt happy</li>
+                <li><code>/u</code> - List all registered users in the system</li>
+                <li><code>/more</code> - Load additional results (pagination support)</li>
+            </ul>
+
+            <h2 class="section-title">🛠️ Technology Stack</h2>
+
+            <h3>Frontend (Electron + React)</h3>
+            <ul>
+                <li><strong>React 18:</strong> Modern component architecture with hooks and concurrent features</li>
+                <li><strong>TypeScript 5.2:</strong> Type-safe development with latest language features</li>
+                <li><strong>Electron:</strong> Cross-platform desktop app framework with native OS integration</li>
+                <li><strong>Tailwind CSS:</strong> Utility-first styling with custom theme system and dark mode support
+                </li>
+                <li><strong>Vite:</strong> Lightning-fast build tool with hot module replacement</li>
+            </ul>
+
+            <h3>Backend (FastAPI + Python)</h3>
+            <ul>
+                <li><strong>FastAPI:</strong> High-performance async web framework for AI processing</li>
+                <li><strong>Ollama Integration:</strong> Local LLM inference with automatic model management</li>
+                <li><strong>SQLite:</strong> Embedded database for local data persistence with zero configuration</li>
+                <li><strong>Supabase:</strong> Optional cloud sync with real-time subscriptions and authentication</li>
+                <li><strong>Uvicorn:</strong> Lightning-fast ASGI server for Python async frameworks</li>
+            </ul>
+
+            <h3>AI Models (Ollama)</h3>
+            <ul>
+                <li><strong>DeepSeek R1:</strong> 1.5B, 7B, 14B variants optimized for reasoning and logic tasks</li>
+                <li><strong>Llama 3.2:</strong> 1B, 3B, 8B variants for general-purpose conversations</li>
+                <li><strong>Mistral 7B:</strong> Multilingual support and instruction-following tasks</li>
+                <li><strong>Automatic Recommendations:</strong> RAM-based model suggestions for optimal performance</li>
+                <li><strong>Model Switching:</strong> Hot-swap models without restarting the application</li>
+            </ul>
+
+            <h2 class="section-title">🎯 My Contributions</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>AI Integration Pipeline</h3>
+                    <p>Architected the complete Ollama integration system with model switching, context management, and
+                        intelligent response parsing. Implemented automatic model recommendations based on system RAM.
+                    </p>
+                </div>
+                <div class="feature-box">
+                    <h3>Theme System Design</h3>
+                    <p>Created the comprehensive 6-theme system with CSS variables, smooth transitions, and theme
+                        persistence. Implemented dynamic theme switching with real-time UI updates.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Personality AI System</h3>
+                    <p>Built the personality-driven AI response engine with theme synchronization and context-aware
+                        interactions. Each personality has unique traits and emoji preferences.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Notification Architecture</h3>
+                    <p>Designed the event-driven background notification system with smart timing (30min, 5min
+                        reminders) and cross-platform OS integration using Electron's system tray.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Task Management Logic</h3>
+                    <p>Built the core task scheduling algorithm with priority queuing, deadline tracking, recurring task
+                        support, and automatic failure detection for overdue tasks.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Cross-Platform Packaging</h3>
+                    <p>Set up Electron Builder configuration for Windows, macOS, and Linux distributions. Implemented
+                        auto-updating capabilities and portable executable generation.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">📊 Project Metrics</h2>
+            <ul>
+                <li><strong>Team Size:</strong> 2 developers (NUS Orbital Apollo 2025)</li>
+                <li><strong>Project Duration:</strong> 4 months (May 2025 - August 2025)</li>
+                <li><strong>Tech Stack:</strong> 7 major technologies integrated (React, TypeScript, Electron, FastAPI,
+                    Ollama, SQLite, Supabase)</li>
+                <li><strong>Features:</strong> 15+ core functionalities implemented</li>
+                <li><strong>Themes:</strong> 6 custom UI themes with unique personalities and animations</li>
+                <li><strong>AI Personalities:</strong> 6 distinct personality types with synchronized avatars</li>
+                <li><strong>Platforms:</strong> Windows, macOS, Linux support with native installers</li>
+                <li><strong>Database:</strong> SQLite with local-first architecture and optional cloud sync</li>
+                <li><strong>Code Quality:</strong> TypeScript strict mode, ESLint, Prettier integration</li>
+            </ul>
+
+            <h2 class="section-title">🚀 Getting Started</h2>
+            <h3>Prerequisites</h3>
+            <ul>
+                <li>Node.js 18+ and npm (or yarn)</li>
+                <li>Python 3.8+ with pip</li>
+                <li>Ollama installed and running (automatic installation supported)</li>
+                <li>Git for version control</li>
+                <li>Windows 10+, macOS 10.13+, or Linux (Ubuntu 18.04+)</li>
+            </ul>
+
+            <h3>Quick Start</h3>
+            <pre><code># Clone the repository
+git clone https://github.com/Yxiang-828/Wingman.git
+cd Wingman
+
+# Install dependencies
+npm install
+pip install -r requirements.txt
+
+# Start Ollama service
+ollama serve
+
+# Run in development mode
+npm run dev:electron</code></pre>
+
+            <h3>Production Build</h3>
+            <pre><code># One-command complete build (Windows)
+.\complete-build.bat
+
+# Manual build steps
+npm run build
+npm run dist</code></pre>
+
+            <h2 class="section-title">💻 Development Setup</h2>
+            <h3>Development Mode</h3>
+            <pre><code>npm run dev:electron    # Starts Vite dev server + Electron + FastAPI backend</code></pre>
+
+            <h3>Available Scripts</h3>
+            <ul>
+                <li><code>npm run dev</code> - Frontend only development with Vite HMR</li>
+                <li><code>npm run dev:electron</code> - Full stack development (Frontend + Backend + Electron)</li>
+                <li><code>npm run build</code> - Production build for all platforms</li>
+                <li><code>npm run package</code> - Package for current platform only</li>
+                <li><code>npm run dist</code> - Build distributables for all platforms</li>
+                <li><code>npm run lint</code> - Run ESLint for code quality checks</li>
+            </ul>
+
+            <h2 class="section-title">🔧 Supported AI Models</h2>
+            <div class="alert-box" style="margin-top: 20px;">
+                <h3>📋 Model Recommendations by RAM:</h3>
+                <ul style="margin-bottom: 0;">
+                    <li><strong>≥12GB RAM:</strong> DeepSeek R1 14B (Logic Master) - Best reasoning capabilities</li>
+                    <li><strong>≥8GB RAM:</strong> DeepSeek R1 7B (Reasoning Pro) - <em>Recommended</em></li>
+                    <li><strong>≥4GB RAM:</strong> Llama 3.2 3B (Balanced) - Good balance of speed and quality</li>
+                    <li><strong>&lt;4GB RAM:</strong> DeepSeek R1 1.5B (Ultra Fast) - Fastest responses</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">🔧 Troubleshooting</h2>
+            <h3>Ollama Not Found</h3>
+            <pre><code># Windows (PowerShell)
+winget install --id Ollama.Ollama
+
+# macOS
+brew install ollama
+
+# Linux
+curl https://ollama.ai/install.sh | sh</code></pre>
+
+            <h3>AI Model Download Issues</h3>
+            <pre><code># Check available models
+ollama list
+
+# Download model manually
+ollama run "deepseek-r1:7b"
+
+# Remove corrupted model
+ollama rm "model-name"
+
+# Then restart Wingman</code></pre>
+
+            <h3>Port Conflicts</h3>
+            <p class="body-inter">If port 8080 is busy, Wingman will automatically find an available port. You can also
+                manually set the port in the configuration file.</p>
+
+            <h3>Build Errors</h3>
+            <pre><code># Clear node modules and reinstall
+rm -rf node_modules package-lock.json
+npm install
+
+# Clear Python cache
+pip cache purge
+pip install -r requirements.txt --force-reinstall</code></pre>
+
+            <h2 class="section-title" style="margin-top: 60px;">✅ Final Evaluation - NUS Orbital Apollo 2025</h2>
+
+            <div class="alert-box" style="padding: 30px; border-width: 4px;">
+                <h3 style="color: #ff4444; font-size: 2rem;">All Features Accepted by Tutor</h3>
+                <p class="body-inter" style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong>Evaluator:</strong> Aakash S/O Rengarajan Ramaswamy (NUS Orbital Tutor)
+                </p>
+                <p class="body-inter">
+                    Our Wingman project successfully passed the final evaluation with <strong>all 8 core features
+                        accepted</strong>. The tutor praised the implementation quality, user experience, and technical
+                    execution across the entire application:
+                </p>
+
+                <div style="margin: 30px 0; background: rgba(0,0,0,0.5); border-radius: 10px; padding: 10px;">
+                    <img src="wingman-evaluation.png" alt="Wingman Final Evaluation - All Features Accepted"
+                        style="width: 100%; max-width: 800px; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); display: block; margin: 0 auto;">
+                </div>
+
+                <h4
+                    style="color: #ff4444; font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px; margin-top: 30px;">
+                    Evaluation Highlights:</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>✅ <strong>Feature 1 - Dashboard & Sidebar:</strong> "Really nice central hub that shows
+                        everything clearly. I like how you can complete tasks right from the dashboard without
+                        navigating elsewhere. Accepted."</li>
+                    <li>✅ <strong>Feature 2 - Task Management System:</strong> "The auto-fail mechanism is a clever way
+                        to encourage task completion. Notifications work as expected and creating tasks from different
+                        places feels intuitive. Accepted."</li>
+                    <li>✅ <strong>Feature 3 - Recurring Tasks:</strong> "Good implementation of the template system. The
+                        weekday selection works well and the algorithm you described makes sense. Accepted."</li>
+                    <li>✅ <strong>Feature 4 - Calendar Management:</strong> "The three view modes work smoothly and
+                        switching between them is seamless. Good integration with other features. Accepted."</li>
+                    <li>✅ <strong>Feature 5 - Diary & Journaling:</strong> "The mood tracking is a nice touch and the
+                        search functionality works well. The writing interface is clean and focused. Accepted."</li>
+                    <li>✅ <strong>Feature 6 - Background Notifications:</strong> "Notifications work properly even when
+                        the app is closed. The timing options cover practical use cases. Accepted."</li>
+                    <li>✅ <strong>Feature 7 - AI Chat Assistant:</strong> "Solid integration with local models and the
+                        personality system works as intended. Good fallback handling when AI isn't available. Accepted."
+                    </li>
+                    <li>✅ <strong>Feature 8 - Holistic Persona System:</strong> "This ties everything together nicely.
+                        The themes, avatars, and personalities feel consistent across the app. Accepted."</li>
+                </ul>
+
+                <p
+                    style="color: #ff4444; font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: bold; text-align: center; margin-top: 30px; padding: 20px; background: rgba(255, 68, 68, 0.1); border-radius: 10px; border: 1px solid rgba(255, 68, 68, 0.3);">
+                    🎉 Final Result: 8/8 Features Accepted - Project Evaluation Successful
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p class="body-inter"
+            style="font-size:0.78rem;text-align:center;padding:36px 0;opacity:0.3;letter-spacing:1px;">© 2026 YAO XIANG
+            · EVERY PIXEL INTENTIONAL</p>
+    </footer>
+    <div class="page-transition-overlay">
+        <h2 class="transition-logo">Portifolio</h2>
+    </div>
+    <script src="../script.js"></script>
+    <script>(function () { const e = document.getElementById("loader"), t = document.getElementById("holo-container"), n = document.getElementById("holo-text"), o = performance.getEntriesByType("navigation"), a = o.length > 0 && "reload" === o[0].type; if (!a && (sessionStorage.getItem("visited") || window.location.hash)) { e && e.remove(), document.body.classList.remove("preload"), window.holoCanNavigate = !0, sessionStorage.setItem("visited", "true"); if (t) { t.style.display = "block", t.classList.remove("holo-splash-center"); } if (n) n.innerText = "Welcome back."; if (window.location.hash) setTimeout((() => { const e = document.querySelector(window.location.hash); e && e.scrollIntoView({ behavior: "smooth", block: "start" }) }), 60); return } if (!e) return; window.holoCanNavigate = !false; const r = document.createElement("div"); r.className = "cover-reveal-overlay", e.appendChild(r); const i = () => { if (e.classList.contains("sequence-started")) return; e.classList.add("sequence-started"), setTimeout((() => { const o = document.createElement("div"); o.className = "begin-prompt", o.innerHTML = "Click anywhere to enter", e.appendChild(o), e.addEventListener("click", (() => { o.remove(), e.style.pointerEvents = "none", e.style.opacity = "0", t.classList.add("holo-splash-center"), t.style.display = "block", t.style.opacity = "0", t.style.transform = "translate(-50%,-50%) scale(0)", void t.offsetWidth, t.style.transition = "opacity 0.5s, transform 0.5s cubic-bezier(0.175,0.885,0.32,1.275)", t.style.opacity = "1", t.style.transform = "translate(-50%,-50%) scale(1)", n.innerText = "Ready?", t.classList.add("talking"), t.style.animation = "holoFloat 2s ease-in-out infinite, pulseGlow 1.5s ease-in-out infinite", "function" == typeof playSound && playSound("pop", .8) }), { once: true }) }), 1500) }; "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", i) : i(), setTimeout((() => { e.classList.contains("loaded") || (e.style.opacity = "0", e.style.pointerEvents = "none", document.body.classList.remove("preload"), window.holoCanNavigate = !0) }), 8e3) })();</script>
+</body>
+
+</html>

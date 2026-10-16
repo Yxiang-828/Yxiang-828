@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--NO-SPLASH-INJECTED-->
+<script>(function(){function k(){if(!document.body)return;document.body.classList.remove('preload');var l=document.getElementById('loader');if(l)l.remove();var h=document.getElementById('holo-container');if(h){h.classList.remove('holo-splash-center','talking');h.removeAttribute('style');h.style.display='block';h.style.animation='none';}var t=document.getElementById('holo-text');if(t)t.innerText='';window.holoCanNavigate=true;sessionStorage.setItem('visited','true');var ov=document.querySelector('.page-transition-overlay');if(ov)ov.classList.remove('active');}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',k);}else{k();}window.addEventListener('pageshow',k);})();</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLAN.AI — Deep-Research Architect Co-Pilot · Yao Xiang</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Fraunces:ital,wght@0,100;0,700;0,900;1,100;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  /* Project-page entry sequence */
+  body.preload { visibility: hidden !important; }
+  body.preload #loader,
+  body.preload #holo-container,
+  body.preload #cursor-glow { visibility: visible !important; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Architect's blueprint palette */
+    --bg: #060810;
+    --surface: #0c111c;
+    --surface-2: #131a28;
+    --border: #1f2c44;
+    --accent:  #5fa7ff;     /* blueprint blue */
+    --accent2: #7affc1;     /* synthesis green */
+    --accent3: #ff9a5f;     /* citation amber */
+    --accent4: #c89aff;     /* persona purple */
+    --text: #e6efff;
+    --muted: #8aa1c4;
+    --muted-strong: #b8c8e0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
+  }
+
+  /* Reveal-on-scroll */
+  .reveal {
+    opacity: 0.55;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  .reveal.in-view p,
+  .reveal.in-view .source-card p,
+  .reveal.in-view .depth p,
+  .reveal.in-view .floor-card p,
+  .reveal.in-view .feature p {
+    color: var(--muted-strong);
+  }
+
+  /* Blueprint grid backdrop */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(95,167,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(95,167,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.7;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: -20%;
+    background:
+      radial-gradient(closest-side at 20% 30%, rgba(95,167,255,0.12), transparent 65%),
+      radial-gradient(closest-side at 78% 22%, rgba(122,255,193,0.10), transparent 65%),
+      radial-gradient(closest-side at 60% 80%, rgba(200,154,255,0.10), transparent 65%);
+    filter: blur(70px);
+    z-index: -2;
+    pointer-events: none;
+    animation: drift 30s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    0%   { transform: translate(0, 0) scale(1);    }
+    100% { transform: translate(2%, -2%) scale(1.04); }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,8,16,0.78);
+    backdrop-filter: blur(14px);
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-decoration: none;
+    text-shadow: 0 0 18px rgba(95,167,255,0.34);
+  }
+  .nav-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.24s ease, text-shadow 0.24s ease;
+  }
+  .nav-tag:hover {
+    color: var(--accent);
+    text-shadow: 0 0 14px rgba(95,167,255,0.4);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+  }
+  .hero-content {
+    max-width: 1320px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 26px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+  h1.hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(46px, 5.6vw, 90px);
+    font-weight: 900;
+    line-height: 0.94;
+    letter-spacing: -2px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  h1.hero-title em {
+    font-style: italic;
+    background: linear-gradient(120deg, var(--accent) 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: clamp(14px, 1.45vw, 16px);
+    color: var(--muted-strong);
+    max-width: 580px;
+    line-height: 1.85;
+    margin-top: 26px;
+    font-weight: 300;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-meta {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-meta span {
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    background: rgba(12,17,28,0.65);
+    color: var(--text);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* HERO SCREENSHOT STACK — three real screenshots, parallax-tracked to scroll */
+  .shot-stack {
+    position: relative;
+    width: min(560px, 92vw);
+    aspect-ratio: 4 / 3.6;
+    margin: 0 auto;
+    animation: fadeUp 0.9s 0.4s ease both;
+  }
+  .shot {
+    position: absolute;
+    width: 78%;
+    border: 1px solid rgba(95,167,255,0.28);
+    border-radius: 6px;
+    overflow: hidden;
+    background: rgba(6,8,16,0.86);
+    box-shadow:
+      0 30px 80px rgba(0,0,0,0.55),
+      0 0 0 1px rgba(95,167,255,0.06),
+      inset 0 0 0 1px rgba(255,255,255,0.02);
+    transition: box-shadow 0.3s, border-color 0.3s;
+  }
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .shot::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(95,167,255,0.04), transparent 35%, transparent 70%, rgba(6,8,16,0.18));
+  }
+  .shot-1 {
+    top: 0;
+    left: 0;
+    transform: rotate(-3.4deg) translateZ(0);
+    z-index: 1;
+  }
+  .shot-2 {
+    top: 14%;
+    left: 22%;
+    transform: rotate(1.6deg) translateZ(0);
+    z-index: 2;
+    border-color: rgba(95,167,255,0.4);
+  }
+  .shot-3 {
+    top: 36%;
+    left: 6%;
+    transform: rotate(-1.2deg) translateZ(0);
+    z-index: 3;
+    border-color: rgba(122,255,193,0.32);
+  }
+  /* Caption strip under the stack */
+  .shot-caption {
+    position: absolute;
+    left: 0;
+    bottom: -28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 2.4px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .shot-caption b { color: var(--accent2); font-weight: 400; }
+
+  /* FULL DEMO at bottom */
+  .full-demo {
+    max-width: 1320px;
+    margin: 32px auto 0;
+    border: 1px solid var(--border);
+    background: rgba(6,8,16,0.86);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(95,167,255,0.06);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .full-demo:hover { border-color: var(--accent); box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(95,167,255,0.16); }
+  .full-demo video {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #000;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+  }
+  .full-demo .fd-meta {
+    padding: 18px 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .full-demo .fd-meta b { color: var(--accent2); font-weight: 400; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* NUMBERS */
+  .numbers {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 36px 48px;
+    background: rgba(12,17,28,0.5);
+    backdrop-filter: blur(8px);
+  }
+  .numbers-grid {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+  }
+  .num-cell {
+    text-align: center;
+    padding: 16px 10px;
+    border-left: 1px solid var(--border);
+  }
+  .num-cell:first-child { border-left: none; }
+  .num-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 4vw, 54px);
+    letter-spacing: 1.6px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .num-cell:nth-child(2) .num-value { color: var(--accent2); }
+  .num-cell:nth-child(3) .num-value { color: var(--accent3); }
+  .num-cell:nth-child(4) .num-value { color: var(--accent4); }
+  .num-cell:nth-child(5) .num-value { color: var(--accent); }
+  .num-cell:nth-child(6) .num-value { color: var(--accent2); }
+  .num-label {
+    margin-top: 10px;
+    font-size: 9.5px;
+    letter-spacing: 2.4px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 110px 48px 70px;
+    border-top: 1px solid var(--border);
+  }
+  .section-inner { max-width: 1320px; margin: 0 auto; }
+  .section-head {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before { content: '//'; color: var(--muted); }
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(38px, 4.6vw, 68px);
+    font-weight: 900;
+    line-height: 0.96;
+    letter-spacing: -1.2px;
+    margin-bottom: 16px;
+  }
+  .section-head h2 em {
+    font-style: italic;
+    background: linear-gradient(120deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .section-head p {
+    max-width: 760px;
+    margin: 0 auto;
+    color: var(--muted-strong);
+    line-height: 1.85;
+    font-size: 14px;
+  }
+
+  /* SOURCES (9 panels) */
+  .sources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .source-card {
+    padding: 22px 20px;
+    border: 1px solid var(--border);
+    background: rgba(12,17,28,0.7);
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .source-card:hover { border-color: var(--accent); }
+  .source-card .source-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .source-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .source-card p {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* DEPTHS */
+  .depths {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  .depth {
+    padding: 28px 24px;
+    border: 1px solid var(--border);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0)),
+      rgba(12,17,28,0.74);
+    position: relative;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+  .depth:hover { box-shadow: 0 22px 60px rgba(0,0,0,0.32); }
+  .depth.quick    { border-top: 3px solid var(--accent3); }
+  .depth.standard { border-top: 3px solid var(--accent); }
+  .depth.deep     { border-top: 3px solid var(--accent4); }
+  .depth-tag {
+    font-size: 9.5px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .depth h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .depth p {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.85;
+    margin-bottom: 14px;
+  }
+  .depth ul {
+    list-style: none;
+  }
+  .depth li {
+    font-size: 11.5px;
+    color: var(--text);
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .depth li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .depth.deep li::before { color: var(--accent4); }
+
+  .personas-strip {
+    margin-top: 30px;
+    padding: 24px 28px;
+    border: 1px dashed rgba(200,154,255,0.32);
+    background: rgba(12,17,28,0.5);
+  }
+  .personas-strip .pk-label {
+    font-size: 9.5px;
+    letter-spacing: 3px;
+    color: var(--accent4);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .persona-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  .persona {
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    background: rgba(6,8,16,0.6);
+  }
+  .persona .role {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--accent4);
+    margin-bottom: 6px;
+  }
+  .persona p {
+    font-size: 11px;
+    color: var(--muted-strong);
+    line-height: 1.65;
+  }
+
+  /* BLUEPRINT OUTPUT */
+  .blueprint-out {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .feature {
+    padding: 24px 22px;
+    border: 1px solid var(--border);
+    background: rgba(12,17,28,0.7);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .feature:hover { border-color: var(--accent); }
+  .feature .kicker {
+    font-size: 9.5px;
+    letter-spacing: 3px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .feature h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .feature p {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+
+  /* SHIPPING FLOOR */
+  .floor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  .floor-card {
+    padding: 24px 22px;
+    border: 1px solid var(--border);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0)),
+      rgba(12,17,28,0.74);
+    position: relative;
+    transition: transform 0.3s;
+  }
+  .floor-card.architect { border-top: 3px solid var(--accent); }
+  .floor-card.executor  { border-top: 3px solid var(--accent2); }
+  .floor-card.auditor   { border-top: 3px solid var(--accent3); }
+  .floor-card:hover { box-shadow: 0 22px 60px rgba(0,0,0,0.32); }
+  .floor-role {
+    font-size: 9.5px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .floor-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .floor-card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+
+  /* DEPLOY ROW */
+  .deploy-grid {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .deploy-cell {
+    padding: 20px 16px;
+    border: 1px solid var(--border);
+    background: rgba(12,17,28,0.6);
+    text-align: center;
+  }
+  .deploy-cell .dl-label {
+    font-size: 9px;
+    letter-spacing: 2.4px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .deploy-cell .dl-value {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* Holo dialog — colour overrides only; behaviour from styles.css */
+  .holo-dialog-box {
+    border-color: rgba(95,167,255,0.4) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 18px rgba(95,167,255,0.18) !important;
+  }
+  .holo-dialog-box p { color: var(--accent2) !important; }
+
+  /* Sample Output section */
+  .sample-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .sample-video, .sample-doc {
+    border: 1px solid var(--border);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0)),
+      rgba(12,17,28,0.74);
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .sample-video:hover, .sample-doc:hover {
+    border-color: var(--accent);
+    box-shadow: 0 22px 60px rgba(0,0,0,0.34);
+  }
+  .sample-kicker {
+    padding: 14px 22px 10px;
+    font-size: 9.5px;
+    letter-spacing: 3px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    border-bottom: 1px dashed rgba(122,255,193,0.2);
+  }
+  .sample-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #000;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+  }
+  .sample-video .sv-meta {
+    padding: 16px 22px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+  .sample-video .sv-meta b { color: var(--text); }
+
+  .sample-doc {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    position: relative;
+  }
+  .sample-doc .sd-body {
+    padding: 22px 24px 18px;
+    flex: 1;
+  }
+  .sample-doc h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .sample-doc p {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.85;
+    margin-bottom: 14px;
+  }
+  .sample-doc .sd-toc {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 14px;
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+  .sample-doc .sd-toc li {
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .sample-doc .sd-toc li::before {
+    content: counter(item, decimal-leading-zero);
+    counter-increment: item;
+    position: absolute;
+    left: 0;
+    color: var(--accent4);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    top: 2px;
+  }
+  .sample-doc .sd-toc { counter-reset: item; }
+  .sample-doc .sd-cta-row {
+    margin-top: auto;
+    padding: 14px 18px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .sd-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    background: rgba(7,5,12,0.6);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.25s, color 0.25s, border-color 0.25s;
+  }
+  .sd-btn:hover {
+    background: rgba(95,167,255,0.12);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .sd-btn-primary {
+    background: rgba(95,167,255,0.14);
+    color: #fff;
+    border-color: rgba(95,167,255,0.45);
+  }
+  .sd-btn-primary:hover {
+    background: rgba(95,167,255,0.28);
+  }
+  .sample-doc .sd-cta {
+    margin-top: auto;
+    padding: 14px 22px;
+    border-top: 1px solid var(--border);
+    background: rgba(95,167,255,0.06);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.3s, color 0.3s;
+  }
+  .sample-doc:hover .sd-cta {
+    background: rgba(95,167,255,0.16);
+    color: #fff;
+  }
+  .sample-doc .sd-cta .arr {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+  }
+  @media (max-width: 1100px) {
+    .sample-grid { grid-template-columns: 1fr; }
+    .sample-doc .sd-toc { grid-template-columns: 1fr; }
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 36px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(12,17,28,0.55);
+  }
+  footer span {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2.4px;
+  }
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    transition: text-shadow 0.24s ease;
+  }
+  footer a:hover { text-shadow: 0 0 12px rgba(95,167,255,0.45); }
+
+  /* RESPONSIVE */
+  @media (max-width: 1100px) {
+    .hero-content { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+    .hero-sub { margin-left: auto; margin-right: auto; }
+    .numbers-grid { grid-template-columns: repeat(3, 1fr); }
+    .sources-grid { grid-template-columns: 1fr 1fr; }
+    .depths { grid-template-columns: 1fr; }
+    .persona-row { grid-template-columns: 1fr; }
+    .blueprint-out { grid-template-columns: 1fr; }
+    .floor-grid { grid-template-columns: 1fr; }
+    .deploy-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 16px 22px; }
+    .nav-tag { display: none; }
+    .hero { padding: 110px 22px 56px; }
+    .section { padding: 80px 22px 50px; }
+    .numbers { padding: 24px 18px; }
+    .numbers-grid { grid-template-columns: 1fr 1fr; }
+    .num-cell { border-left: none; border-top: 1px solid var(--border); padding-top: 12px; }
+    .num-cell:nth-child(-n+2) { border-top: none; }
+    .sources-grid { grid-template-columns: 1fr; }
+    .deploy-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; padding: 24px; text-align: center; }
+  }
+</style>
+</head>
+<body class="preload">
+
+<div id="scene-3d">
+  <div id="cinematic-bg"></div>
+  <div id="bg-vignette"></div>
+</div>
+<div id="cursor-glow"></div>
+<div id="loader" aria-hidden="true">
+  <p id="loader-credit"> </p>
+</div>
+
+<nav>
+  <a class="logo" href="../index.html#proj-planai">PLAN.AI</a>
+  <a class="nav-tag" href="../index.html#proj-planai">← Back to Portfolio</a>
+</nav>
+
+<!-- ───────── HERO ───────── -->
+<section class="hero">
+  <div class="hero-content">
+    <div>
+      <div class="eyebrow">⌬ AI-ENGINEER HACKATHON · DEEP-RESEARCH PLANNER · APR 2026</div>
+      <h1 class="hero-title">The Architect's<br><em>co-pilot.</em></h1>
+      <p class="hero-sub">
+        PLAN.AI takes a one-line idea and returns a citation-grounded technical blueprint in 22 sections, a Mermaid C4
+        diagram, and a Shipping Floor that compiles the blueprint into Architect / Executor / Auditor tasks. Underneath:
+        nine source integrations, a three-depth research engine including a STORM-lite multi-persona orchestrator, and
+        a Vercel-ready deploy where every API key is supplied client-side.
+      </p>
+      <div class="hero-meta">
+        <span>React</span><span>Vite</span><span>TypeScript</span><span>Vercel Edge</span>
+        <span>OpenAI / OpenRouter</span><span>Tavily</span><span>Firecrawl</span><span>Mermaid C4</span>
+      </div>
+    </div>
+
+    <div class="shot-stack" id="shotStack">
+      <figure class="shot shot-1">
+        <img src="../images/planai-hero-01.png" alt="PLAN.AI workspace — idea intake" loading="eager">
+      </figure>
+      <figure class="shot shot-2">
+        <img src="../images/planai-hero-02.png" alt="PLAN.AI workspace — deep-research run" loading="eager">
+      </figure>
+      <figure class="shot shot-3">
+        <img src="../images/planai-hero-03.png" alt="PLAN.AI workspace — rendered blueprint" loading="eager">
+      </figure>
+      <div class="shot-caption">· <b>captured 10 May 2026</b> · unedited workspace screenshots</div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── NUMBERS ───────── -->
+<section class="numbers">
+  <div class="numbers-grid">
+    <div class="num-cell"><div class="num-value">9</div><div class="num-label">Source Integrations</div></div>
+    <div class="num-cell"><div class="num-value">3</div><div class="num-label">Research Depths</div></div>
+    <div class="num-cell"><div class="num-value">22</div><div class="num-label">Blueprint Sections</div></div>
+    <div class="num-cell"><div class="num-value">3</div><div class="num-label">Personas (STORM-lite)</div></div>
+    <div class="num-cell"><div class="num-value">6 — 9</div><div class="num-label">Parallel Fan-out Queries</div></div>
+    <div class="num-cell"><div class="num-value">0</div><div class="num-label">Embedded Secrets in Deploy</div></div>
+  </div>
+</section>
+
+<!-- ───────── 9 SOURCES ───────── -->
+<section class="section reveal" id="sources">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Source Coverage</div>
+      <h2>Nine <em>research surfaces.</em></h2>
+      <p>
+        Code, papers, threads, encyclopedias, and the open web — each surface is a separate integration with its own
+        rate-limit, ranking, and citation format. The synthesizer treats them as typed evidence and inlines source
+        anchors directly in the blueprint prose.
+      </p>
+    </div>
+
+    <div class="sources-grid">
+      <div class="source-card"><div class="source-icon">⚙</div><h4>GitHub</h4><p>Repo search, README extraction, language stats. Pulls real-world reference implementations into the synthesis.</p></div>
+      <div class="source-card"><div class="source-icon">📜</div><h4>arXiv</h4><p>Pre-print search by topic with abstract pull-through. Used as the primary academic substrate for novel methods.</p></div>
+      <div class="source-card"><div class="source-icon">🎓</div><h4>Semantic Scholar</h4><p>Citation graph + venue metadata. Disambiguates and ranks methods by influence.</p></div>
+      <div class="source-card"><div class="source-icon">💬</div><h4>Reddit</h4><p>Community signal — what practitioners actually deploy and where the sharp edges are.</p></div>
+      <div class="source-card"><div class="source-icon">⚡</div><h4>Stack Exchange</h4><p>High-precision technical answers. Tag-filtered, score-weighted.</p></div>
+      <div class="source-card"><div class="source-icon">📚</div><h4>Wikipedia</h4><p>Disambiguation + canonical-definition substrate. Anchors specialist terms before the synthesizer expands them.</p></div>
+      <div class="source-card"><div class="source-icon">📰</div><h4>Hacker News</h4><p>Fresh discourse on tooling, deployment, and infra trade-offs at the engineering tier.</p></div>
+      <div class="source-card"><div class="source-icon">🧭</div><h4>Tavily</h4><p>Search-grade web retrieval with answer extraction. The general-web fallback when the specialist sources go quiet.</p></div>
+      <div class="source-card"><div class="source-icon">🔥</div><h4>Firecrawl</h4><p>Structured page-to-markdown extraction for arbitrary URLs. Used when the user pastes a link directly into a workspace.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── DEPTHS ───────── -->
+<section class="section reveal" id="depths">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Research Depths</div>
+      <h2>Quick. Standard. <em>STORM.</em></h2>
+      <p>
+        Three depths, three different cost / quality trade-offs. Quick is cheap and fast for spike research. Standard is
+        the everyday one-call pipeline. Deep wakes up a STORM-lite orchestrator that recruits three personas and runs
+        them in parallel against the source surfaces.
+      </p>
+    </div>
+
+    <div class="depths">
+      <div class="depth quick">
+        <div class="depth-tag">Tier 01</div>
+        <h3>Quick</h3>
+        <p>Single LLM pass against a curated 2-source mix. Useful for "what is X, who works on it, where do I read more" briefs.</p>
+        <ul>
+          <li>~1 LLM call</li>
+          <li>2 source surfaces</li>
+          <li>Inline citations only</li>
+          <li>&lt; 30 s typical</li>
+        </ul>
+      </div>
+
+      <div class="depth standard">
+        <div class="depth-tag">Tier 02</div>
+        <h3>Standard</h3>
+        <p>Plan → fan-out → synthesize. The agent first decomposes the topic into 4 — 6 questions, fans out to all 9 sources, then synthesizes a 22-section blueprint with cited prose.</p>
+        <ul>
+          <li>4 — 6 fan-out queries</li>
+          <li>All 9 source surfaces</li>
+          <li>22-section blueprint</li>
+          <li>Mermaid C4 diagram inline</li>
+        </ul>
+      </div>
+
+      <div class="depth deep">
+        <div class="depth-tag">Tier 03</div>
+        <h3>STORM-lite Deep</h3>
+        <p>A multi-persona orchestrator (Engineer / PM / SRE) generates 6 — 9 parallel fan-out queries with role-specific framings, then a synthesizer reconciles the three perspectives into a single cited blueprint.</p>
+        <ul>
+          <li>6 — 9 fan-out queries</li>
+          <li>Three persona viewpoints</li>
+          <li>Cross-persona reconciliation</li>
+          <li>Workspace-branchable findings</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="personas-strip">
+      <div class="pk-label">⌬ STORM-lite personas</div>
+      <div class="persona-row">
+        <div class="persona">
+          <div class="role">ENGINEER</div>
+          <p>Asks how it's actually built. Pulls implementations, dependency graphs, perf trade-offs, gotchas.</p>
+        </div>
+        <div class="persona">
+          <div class="role">PRODUCT</div>
+          <p>Asks who pays for it. Pulls competitive landscape, user pain, pricing signals, adoption traction.</p>
+        </div>
+        <div class="persona">
+          <div class="role">SRE</div>
+          <p>Asks what breaks at 3 AM. Pulls deployment topology, observability requirements, failure modes, capacity planning.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── BLUEPRINT OUTPUT ───────── -->
+<section class="section reveal" id="blueprint">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">The Output</div>
+      <h2>22 sections. <em>One blueprint.</em></h2>
+      <p>
+        Every successful run produces a single artefact: a 22-section technical blueprint. Sections cover problem
+        framing, related work, system architecture, data layer, model layer, deployment, observability, threat model,
+        roll-out plan, and explicit risks. Every claim is anchored by an inline citation back to a source surface.
+      </p>
+    </div>
+
+    <div class="blueprint-out">
+      <div class="feature">
+        <div class="kicker">Block · Diagram</div>
+        <h4>Mermaid C4 inlined</h4>
+        <p>The blueprint embeds a Mermaid C4 system diagram with components, containers, and data-flow arrows. Renders client-side; users can fork-and-edit in place.</p>
+      </div>
+      <div class="feature">
+        <div class="kicker">Block · Citations</div>
+        <h4>Inline source anchors</h4>
+        <p>Every concrete claim points back to a numbered source from the run's evidence pool. No floating assertions; clicking a citation opens the underlying source in a side-pane.</p>
+      </div>
+      <div class="feature">
+        <div class="kicker">Block · Branching</div>
+        <h4>Workspace branching + merge</h4>
+        <p>Right-click any reference to spawn a sibling workspace explored independently, then fold its findings back into the parent blueprint with a merge action.</p>
+      </div>
+      <div class="feature">
+        <div class="kicker">Block · Topology</div>
+        <h4>React-Flow + dagre layout</h4>
+        <p>Workspace topology is rendered as a React-Flow graph with dagre auto-layout. The whole research session is itself a navigable, persistable structure.</p>
+      </div>
+      <div class="feature">
+        <div class="kicker">Block · Voice</div>
+        <h4>ElevenLabs narration</h4>
+        <p>Optional voice-over of any section via ElevenLabs. Useful for solo review on a walk; the blueprint reads itself back to you, citations included.</p>
+      </div>
+      <div class="feature">
+        <div class="kicker">Block · Persistence</div>
+        <h4>localStorage workspaces</h4>
+        <p>All workspaces and the current blueprint persist locally — no auth required, no server-side user data, no PII leaving the browser.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── SAMPLE OUTPUT (real artefacts) ───────── -->
+<section class="section reveal" id="sample">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Real Artefacts</div>
+      <h2>A <em>sample run</em> — GuardPilot.</h2>
+      <p>
+        These are unedited outputs from a real PLAN.AI run on 12–13 May 2026 — the topic was a 24-hour security-loop
+        hackathon idea (CCTV → YOLO tracking → simulated PTZ → OpenAI Vision verification → audit trail). The
+        diagram on the left is the live render of the system architecture; the document on the right is the full
+        22-section blueprint, served as a side artefact instead of being inlined into this page.
+      </p>
+    </div>
+
+    <div class="sample-grid">
+      <div class="game-card">
+        <h3>▶ Sample diagram · Mermaid C4 render</h3>
+        <video width="100%" controls preload="metadata" playsinline style="border-radius: 8px; border: 1px solid rgba(95,167,255,0.3);">
+          <source src="../images/junehack-2026-05-13_02.27.23.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="body-inter" style="margin-top: 10px; font-size: 0.85rem;"><b>Recorded 13 May 2026 · 02:27.</b> A live walkthrough of the rendered diagram and the planner UI — the same architecture that maps to the Architect / Executor / Auditor lanes in the Shipping Floor below.</p>
+      </div>
+
+      <div class="sample-doc">
+        <div class="sample-kicker">▤ Sample plan · 22 sections · 853 lines</div>
+        <div class="sd-body">
+          <h4>GuardPilot — 24-hour security-loop blueprint</h4>
+          <p>
+            STORM-lite depth, three personas, inline citations, embedded Mermaid C4. The unedited PLAN.AI
+            output — not a hand-curated demo. Preview the full rendered document in-browser with diagrams,
+            or download the raw markdown.
+          </p>
+          <ol class="sd-toc">
+            <li>Executive Summary</li>
+            <li>Context &amp; Problem</li>
+            <li>Goals</li>
+            <li>Non-Goals</li>
+            <li>Stakeholders &amp; Personas</li>
+            <li>Constraints</li>
+            <li>Solution Strategy</li>
+            <li>Architecture</li>
+            <li>Quality Attributes — NFRs</li>
+            <li>Cross-Cutting Concerns</li>
+            <li>Security Considerations</li>
+            <li>Operational Considerations</li>
+            <li>Stack Decisions — Mini-ADRs</li>
+            <li>Phased Rollout &amp; Milestones</li>
+            <li>Cost Estimate</li>
+            <li>Success Metrics</li>
+            <li>Risks &amp; Technical Debt</li>
+            <li>Open Questions</li>
+            <li>Alternatives Considered</li>
+            <li>ADR Log</li>
+            <li>Glossary</li>
+            <li>References</li>
+          </ol>
+        </div>
+        <div class="sd-cta-row">
+          <a class="sd-btn sd-btn-primary" href="plan-ai-blueprint.html">▤ Preview rendered →</a>
+          <a class="sd-btn" href="plan-ai-blueprint.html?dl=1">⬇ Download .md</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── SHIPPING FLOOR ───────── -->
+<section class="section reveal" id="floor">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">From Plan To Build</div>
+      <h2>The <em>Shipping Floor.</em></h2>
+      <p>
+        A blueprint is only useful if it ships. The Shipping Floor compiles every successful run into a three-lane
+        task list — Architect, Executor, Auditor — directly executable by an upstream agentic runner. The same
+        Architect / Executor / Auditor pattern Aiko's factory implements, here exposed as a planning artefact rather
+        than a runtime.
+      </p>
+    </div>
+
+    <div class="floor-grid">
+      <div class="floor-card architect">
+        <div class="floor-role">⌬ Lane 01 · Plan</div>
+        <h4>Architect</h4>
+        <p>Tasks that define and ratify scope: spec writing, interface contracts, decision records, Mermaid diagrams. The blueprint pre-populates this lane from sections 1 — 8.</p>
+      </div>
+      <div class="floor-card executor">
+        <div class="floor-role">⚙ Lane 02 · Build</div>
+        <h4>Executor</h4>
+        <p>Tasks that produce code: scaffold, implement, integrate, write fixtures. Pre-populated from sections 9 — 16 of the blueprint.</p>
+      </div>
+      <div class="floor-card auditor">
+        <div class="floor-role">⚖ Lane 03 · Verify</div>
+        <h4>Auditor</h4>
+        <p>Tasks that gate-keep delivery: tests, lint, security scan, deployment validation, observability check. Pre-populated from sections 17 — 22.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── DEPLOY ───────── -->
+<section class="section reveal" id="deploy">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Production Path</div>
+      <h2>Vite. Vercel. <em>Zero secrets.</em></h2>
+      <p>
+        The whole stack ships to Vercel as a static React build with a single serverless catch-all handler. No backend
+        DB, no auth, no embedded API keys — every key the user wants to use is entered client-side and persisted only
+        in localStorage. Public demos can be cloned and run with the cloner's own keys.
+      </p>
+    </div>
+
+    <div class="deploy-grid">
+      <div class="deploy-cell">
+        <div class="dl-label">Build</div>
+        <div class="dl-value">Vite + React + TypeScript</div>
+      </div>
+      <div class="deploy-cell">
+        <div class="dl-label">Dev Proxy</div>
+        <div class="dl-value">Vite proxy → /api</div>
+      </div>
+      <div class="deploy-cell">
+        <div class="dl-label">Edge Function</div>
+        <div class="dl-value">api/[...path].ts catch-all</div>
+      </div>
+      <div class="deploy-cell">
+        <div class="dl-label">State</div>
+        <div class="dl-value">localStorage only</div>
+      </div>
+      <div class="deploy-cell">
+        <div class="dl-label">Streaming</div>
+        <div class="dl-value">SSE markdown chat</div>
+      </div>
+      <div class="deploy-cell">
+        <div class="dl-label">Render</div>
+        <div class="dl-value">Block-memoized markdown</div>
+      </div>
+      <div class="deploy-cell">
+        <div class="dl-label">Voice</div>
+        <div class="dl-value">ElevenLabs (optional)</div>
+      </div>
+      <div class="deploy-cell">
+        <div class="dl-label">Embedded keys</div>
+        <div class="dl-value" style="color:var(--accent2);">None — client-supplied</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FULL DEMO ───────── -->
+<section class="section reveal" id="demo">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Full Walk-Through</div>
+      <h2>Watch the <em>full run.</em></h2>
+      <p>
+        Twelve minutes from one-line idea to a downloadable 22-section blueprint with rendered Mermaid C4. No cuts,
+        no edits — the same path the Shipping Floor consumes upstream.
+      </p>
+    </div>
+    <div class="game-card" style="max-width: 1180px; margin: 24px auto 0;">
+      <h3>▶ PLAN.AI · Full End-to-End Walk-Through</h3>
+      <video width="100%" controls preload="metadata" playsinline style="border-radius: 8px; border: 1px solid rgba(95,167,255,0.3);">
+        <source src="../images/planai-demo-2026-05-14.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p class="body-inter" style="margin-top: 10px; font-size: 0.85rem;">Recorded 14 May 2026 — unedited end-to-end run: idea → research → blueprint → diagram → shipping floor.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 YAO XIANG · AI-ENGINEER HACKATHON · APR 2026</span>
+  <a href="../index.html#proj-planai">← Back to Portfolio</a>
+</footer>
+
+<!-- Canonical Holo + page-transition + bootstrap -->
+<div id="holo-container" onclick="holoInteract(this)">
+  <div class="holo-dialog-box">
+    <p id="holo-text">Welcome.</p>
+  </div>
+  <img src="../images/holo.png" alt="Holo" class="holo-sprite">
+</div>
+<div class="page-transition-overlay">
+  <h2 class="transition-logo">Portifolio</h2>
+</div>
+
+<script>
+  // Reveal-on-scroll: brighten sections as they enter the viewport.
+  (function() {
+    const sections = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || !sections.length) {
+      sections.forEach(s => s.classList.add('in-view'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+    sections.forEach(s => io.observe(s));
+  })();
+</script>
+<script src="../script.js"></script>
+<script>(function () { const e = document.getElementById("loader"), t = document.getElementById("holo-container"), n = document.getElementById("holo-text"), o = performance.getEntriesByType("navigation"), a = o.length > 0 && "reload" === o[0].type; if (!a && (sessionStorage.getItem("visited") || window.location.hash)) { e && e.remove(), document.body.classList.remove("preload"), window.holoCanNavigate = !0, sessionStorage.setItem("visited", "true"); if (t) { t.style.display = "block", t.classList.remove("holo-splash-center"); } if (n) n.innerText = "Welcome back."; if (window.location.hash) setTimeout((() => { const e = document.querySelector(window.location.hash); e && e.scrollIntoView({ behavior: "smooth", block: "start" }) }), 60); return } if (!e) return; window.holoCanNavigate = !false; const r = document.createElement("div"); r.className = "cover-reveal-overlay", e.appendChild(r); const i = () => { if (e.classList.contains("sequence-started")) return; e.classList.add("sequence-started"), setTimeout((() => { const o = document.createElement("div"); o.className = "begin-prompt", o.innerHTML = "Click anywhere to enter", e.appendChild(o), e.addEventListener("click", (() => { o.remove(), e.style.pointerEvents = "none", e.style.opacity = "0", t.classList.add("holo-splash-center"), t.style.display = "block", t.style.opacity = "0", t.style.transform = "translate(-50%,-50%) scale(0)", void t.offsetWidth, t.style.transition = "opacity 0.5s, transform 0.5s cubic-bezier(0.175,0.885,0.32,1.275)", t.style.opacity = "1", t.style.transform = "translate(-50%,-50%) scale(1)", n.innerText = "Ready?", t.classList.add("talking"), t.style.animation = "holoFloat 2s ease-in-out infinite, pulseGlow 1.5s ease-in-out infinite", "function" == typeof playSound && playSound("pop", .8) }), { once: true }) }), 1500) }; "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", i) : i(), setTimeout((() => { e.classList.contains("loaded") || (e.style.opacity = "0", e.style.pointerEvents = "none", document.body.classList.remove("preload"), window.holoCanNavigate = !0) }), 8e3) })();</script>
+
+</body>
+</html>

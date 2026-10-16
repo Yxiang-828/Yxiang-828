@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--NO-SPLASH-INJECTED-->
+<script>(function(){function k(){if(!document.body)return;document.body.classList.remove('preload');var l=document.getElementById('loader');if(l)l.remove();var h=document.getElementById('holo-container');if(h){h.classList.remove('holo-splash-center','talking');h.removeAttribute('style');h.style.display='block';h.style.animation='none';}var t=document.getElementById('holo-text');if(t)t.innerText='';window.holoCanNavigate=true;sessionStorage.setItem('visited','true');var ov=document.querySelector('.page-transition-overlay');if(ov)ov.classList.remove('active');}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',k);}else{k();}window.addEventListener('pageshow',k);})();</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VibeWithSG — Offroad Autonomy Semantic Segmentation · Yao Xiang</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Fraunces:ital,wght@0,100;0,700;0,900;1,100;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  /* Project-page entry sequence */
+  body.preload { visibility: hidden !important; }
+  body.preload #loader,
+  body.preload #holo-container,
+  body.preload #cursor-glow { visibility: visible !important; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Desert biome lab palette */
+    --bg: #0c0a08;
+    --surface: #14110d;
+    --surface-2: #1c1812;
+    --border: #3a2e1f;
+    --accent:  #ffb84d;     /* sand amber */
+    --accent2: #5fcfd9;     /* lab teal */
+    --accent3: #d96f4d;     /* rocks burnt orange */
+    --accent4: #b8e07a;     /* foliage / true positive */
+    --text: #f5ecdc;
+    --muted: #c4ad88;
+    --muted-strong: #e3d4b6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
+  }
+
+  /* Reveal-on-scroll */
+  .reveal {
+    opacity: 0.55;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  .reveal.in-view p,
+  .reveal.in-view .surface-card p,
+  .reveal.in-view .phase p,
+  .reveal.in-view .bug-card p,
+  .reveal.in-view .diag p {
+    color: var(--muted-strong);
+  }
+
+  /* Subtle paper-grain backdrop suggesting desert dust */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: -20%;
+    background:
+      radial-gradient(closest-side at 22% 28%, rgba(255,184,77,0.10), transparent 65%),
+      radial-gradient(closest-side at 78% 22%, rgba(95,207,217,0.08), transparent 65%),
+      radial-gradient(closest-side at 60% 80%, rgba(217,111,77,0.10), transparent 65%);
+    filter: blur(70px);
+    z-index: -2;
+    pointer-events: none;
+    animation: drift 30s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    0%   { transform: translate(0, 0) scale(1);    }
+    100% { transform: translate(2%, -2%) scale(1.04); }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: rgba(12,10,8,0.78);
+    backdrop-filter: blur(14px);
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-decoration: none;
+    text-shadow: 0 0 18px rgba(255,184,77,0.32);
+  }
+  .nav-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.24s ease, text-shadow 0.24s ease;
+  }
+  .nav-tag:hover {
+    color: var(--accent);
+    text-shadow: 0 0 12px rgba(255,184,77,0.4);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,184,77,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(95,207,217,0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    pointer-events: none;
+  }
+  .hero-content {
+    max-width: 1320px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 56px;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 26px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+  h1.hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(44px, 5.6vw, 86px);
+    font-weight: 900;
+    line-height: 0.96;
+    letter-spacing: -2px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  h1.hero-title em {
+    font-style: italic;
+    background: linear-gradient(120deg, var(--accent) 0%, var(--accent3) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: clamp(14px, 1.45vw, 16px);
+    color: var(--muted-strong);
+    max-width: 580px;
+    line-height: 1.85;
+    margin-top: 26px;
+    font-weight: 300;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-meta {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-meta span {
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    background: rgba(20,17,13,0.65);
+    color: var(--text);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* HERO HEADLINE METRIC */
+  .headline-metric {
+    display: grid;
+    place-items: center;
+    animation: fadeUp 0.9s 0.4s ease both;
+    text-align: center;
+  }
+  .headline-metric .label-top {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .headline-metric .big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(120px, 16vw, 220px);
+    line-height: 0.85;
+    letter-spacing: -2px;
+    color: var(--accent);
+    text-shadow: 0 0 50px rgba(255,184,77,0.32);
+  }
+  .headline-metric .label-bottom {
+    margin-top: 14px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--muted-strong);
+    text-transform: uppercase;
+  }
+  .headline-metric .label-bottom em {
+    font-style: normal;
+    color: var(--accent3);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* NUMBERS STRIP */
+  .numbers {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 36px 48px;
+    background: rgba(20,17,13,0.5);
+    backdrop-filter: blur(8px);
+  }
+  .numbers-grid {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+  }
+  .num-cell {
+    text-align: center;
+    padding: 16px 10px;
+    border-left: 1px solid var(--border);
+  }
+  .num-cell:first-child { border-left: none; }
+  .num-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 4vw, 54px);
+    letter-spacing: 1.6px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .num-cell:nth-child(2) .num-value { color: var(--accent2); }
+  .num-cell:nth-child(3) .num-value { color: var(--accent3); }
+  .num-cell:nth-child(4) .num-value { color: var(--accent4); }
+  .num-cell:nth-child(5) .num-value { color: var(--accent); }
+  .num-cell:nth-child(6) .num-value { color: var(--accent2); }
+  .num-label {
+    margin-top: 10px;
+    font-size: 9.5px;
+    letter-spacing: 2.4px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 110px 48px 70px;
+    border-top: 1px solid var(--border);
+  }
+  .section-inner { max-width: 1320px; margin: 0 auto; }
+  .section-head {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before { content: '//'; color: var(--muted); }
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(38px, 4.6vw, 68px);
+    font-weight: 900;
+    line-height: 0.96;
+    letter-spacing: -1.2px;
+    margin-bottom: 16px;
+  }
+  .section-head h2 em {
+    font-style: italic;
+    background: linear-gradient(120deg, var(--accent), var(--accent3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .section-head p {
+    max-width: 760px;
+    margin: 0 auto;
+    color: var(--muted-strong);
+    line-height: 1.85;
+    font-size: 14px;
+  }
+
+  /* CHALLENGE — split panels */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .split-panel {
+    padding: 28px 24px;
+    border: 1px solid var(--border);
+    background: rgba(20,17,13,0.7);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .split-panel:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .split-panel .kicker {
+    font-size: 9.5px;
+    letter-spacing: 3px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .split-panel.train .kicker { color: var(--accent4); }
+  .split-panel.test  .kicker { color: var(--accent3); }
+  .split-panel h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .split-panel p {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.85;
+  }
+  .class-list {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .class-list span {
+    padding: 5px 9px;
+    border: 1px solid rgba(255,184,77,0.18);
+    background: rgba(12,10,8,0.7);
+    color: var(--text);
+    font-size: 9.5px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+  .class-list span.absent {
+    opacity: 0.32;
+    text-decoration: line-through;
+    border-color: rgba(217,111,77,0.5);
+  }
+  .class-list span.dominant {
+    background: rgba(217,111,77,0.20);
+    border-color: var(--accent3);
+    color: #fff5e8;
+  }
+
+  /* RECIPE PHASES */
+  .phases {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .phase {
+    padding: 24px 20px;
+    border: 1px solid var(--border);
+    background: rgba(20,17,13,0.7);
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .phase:hover { border-color: var(--accent); transform: translateY(-5px); }
+  .phase::before {
+    content: attr(data-phase);
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    color: rgba(255,184,77,0.10);
+    line-height: 1;
+  }
+  .phase h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .phase .phase-tag {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .phase p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+  .phase .config {
+    margin-top: 14px;
+    padding: 10px 12px;
+    border: 1px dashed rgba(255,184,77,0.22);
+    background: rgba(12,10,8,0.5);
+    font-size: 10.5px;
+    line-height: 1.7;
+    color: var(--accent);
+  }
+  .phase .config b { color: var(--text); font-weight: 500; }
+
+  /* ARCH BLOCK */
+  .arch-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .arch-block {
+    padding: 24px 20px;
+    border: 1px solid var(--border);
+    background: rgba(20,17,13,0.78);
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .arch-block:hover { transform: translateY(-4px); }
+  .arch-block.input    { border-top: 3px solid var(--accent2); }
+  .arch-block.backbone { border-top: 3px solid var(--accent); }
+  .arch-block.decoder  { border-top: 3px solid var(--accent3); }
+  .arch-block .kicker {
+    font-size: 9.5px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .arch-block h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .arch-block p {
+    font-size: 12px;
+    color: var(--muted-strong);
+    line-height: 1.85;
+  }
+  .arch-block ul {
+    margin-top: 12px;
+    list-style: none;
+  }
+  .arch-block li {
+    font-size: 11.5px;
+    color: var(--text);
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .arch-block li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* BUG / HYGIENE CARDS */
+  .bugs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .bug-card {
+    padding: 26px 24px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent3);
+    background: rgba(20,17,13,0.7);
+  }
+  .bug-card .bug-id {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--accent3);
+    margin-bottom: 8px;
+  }
+  .bug-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .bug-card p {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.85;
+    margin-bottom: 10px;
+  }
+  .bug-card .fix {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border: 1px dashed rgba(184,224,122,0.28);
+    background: rgba(12,10,8,0.55);
+    color: var(--accent4);
+    font-size: 11.5px;
+    line-height: 1.65;
+  }
+
+  /* HONEST DIAGNOSTIC */
+  .diag {
+    padding: 32px 30px;
+    border: 1px solid var(--border);
+    background: rgba(20,17,13,0.78);
+  }
+  .diag h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    color: var(--text);
+    margin-bottom: 18px;
+  }
+  .diag p {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.95;
+    margin-bottom: 14px;
+  }
+  .diag b { color: var(--text); font-weight: 500; }
+
+  .gap-table {
+    margin-top: 22px;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .gap-table th, .gap-table td {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+  .gap-table th {
+    background: rgba(20,17,13,0.7);
+    color: var(--accent);
+    letter-spacing: 1.5px;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+  .gap-table td {
+    background: rgba(12,10,8,0.55);
+    color: var(--text);
+  }
+  .gap-table td.shift {
+    color: var(--accent3);
+  }
+  .gap-table td.stable {
+    color: var(--accent4);
+  }
+  .gap-table td.absent {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Holo dialog — colour overrides only; behaviour from styles.css */
+  .holo-dialog-box {
+    border-color: rgba(255,184,77,0.4) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 18px rgba(255,184,77,0.18) !important;
+  }
+  .holo-dialog-box p { color: var(--accent) !important; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 36px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(20,17,13,0.55);
+  }
+  footer span {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2.4px;
+  }
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    transition: text-shadow 0.24s ease;
+  }
+  footer a:hover { text-shadow: 0 0 12px rgba(255,184,77,0.45); }
+
+  /* RESPONSIVE */
+  @media (max-width: 1100px) {
+    .hero-content { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+    .hero-sub { margin-left: auto; margin-right: auto; }
+    .numbers-grid { grid-template-columns: repeat(3, 1fr); }
+    .split { grid-template-columns: 1fr; }
+    .phases { grid-template-columns: 1fr 1fr; }
+    .arch-row { grid-template-columns: 1fr; }
+    .bugs { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 16px 22px; }
+    .nav-tag { display: none; }
+    .hero { padding: 110px 22px 56px; }
+    .section { padding: 80px 22px 50px; }
+    .numbers { padding: 24px 18px; }
+    .numbers-grid { grid-template-columns: 1fr 1fr; }
+    .num-cell { border-left: none; border-top: 1px solid var(--border); padding-top: 12px; }
+    .num-cell:nth-child(-n+2) { border-top: none; }
+    .phases { grid-template-columns: 1fr; }
+    .gap-table { font-size: 10.5px; }
+    .gap-table th, .gap-table td { padding: 8px 10px; }
+    footer { flex-direction: column; gap: 12px; padding: 24px; text-align: center; }
+  }
+</style>
+</head>
+<body class="preload">
+
+<div id="scene-3d">
+  <div id="cinematic-bg"></div>
+  <div id="bg-vignette"></div>
+</div>
+<div id="cursor-glow"></div>
+<div id="loader" aria-hidden="true">
+  <p id="loader-credit"> </p>
+</div>
+
+<nav>
+  <a class="logo" href="../index.html#proj-vibewithsg">VIBEWITHSG</a>
+  <a class="nav-tag" href="../index.html#proj-vibewithsg">← Back to Portfolio</a>
+</nav>
+
+<!-- ───────── HERO ───────── -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div>
+      <div class="eyebrow">⌬ DUALITY AI · OFFROAD AUTONOMY · TEAM SYNTAXERROR (SOLO)</div>
+      <h1 class="hero-title">Lush forest in.<br>Desert <em>out.</em></h1>
+      <p class="hero-sub">
+        A solo submission to the VibeWithSG / Duality AI offroad-autonomy hackathon. Train on a lush, well-balanced
+        forest biome. Test on a 1002-image desert OOD distribution where four classes vanish entirely and a single
+        class jumps from 3.4 % to 22.2 % of pixels. The pipeline: a frozen-then-fine-tuned <b>DINOv2-L</b> backbone
+        with a <b>DPT</b> decoder, trained in four phases, evaluated with multi-scale + HFlip TTA on a single H100.
+      </p>
+      <div class="hero-meta">
+        <span>PyTorch</span><span>DINOv2-L</span><span>DPT</span><span>LLRD 0.75</span>
+        <span>Multi-Scale TTA</span><span>11 Classes</span><span>H100</span>
+      </div>
+    </div>
+
+    <div class="headline-metric">
+      <div class="label-top">Final · Test mIoU</div>
+      <div class="big">0.4214</div>
+      <div class="label-bottom">1002-image OOD desert test · <em>0.691 pixel accuracy</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── NUMBERS ───────── -->
+<section class="numbers">
+  <div class="numbers-grid">
+    <div class="num-cell"><div class="num-value">0.4214</div><div class="num-label">Test mIoU</div></div>
+    <div class="num-cell"><div class="num-value">0.6361</div><div class="num-label">Val mIoU</div></div>
+    <div class="num-cell"><div class="num-value">11</div><div class="num-label">Classes</div></div>
+    <div class="num-cell"><div class="num-value">4</div><div class="num-label">Training Phases</div></div>
+    <div class="num-cell"><div class="num-value">452 ms</div><div class="num-label">TTA / Image · H100</div></div>
+    <div class="num-cell"><div class="num-value">2</div><div class="num-label">Silent Bugs Caught</div></div>
+  </div>
+</section>
+
+<!-- ───────── CHALLENGE ───────── -->
+<section class="section reveal" id="challenge">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">The Challenge</div>
+      <h2>The <em>distribution shift.</em></h2>
+      <p>
+        The dataset is constructed for adversarial generalisation. Train and val are lush — green, balanced, forgiving.
+        Test is a desert — four classes are absent, the rocks class is now dominant, and the Bushes / Trees / Grass
+        triplet that the model leans on for context is gone. Anything that overfits the train biome dies on the cliff.
+      </p>
+    </div>
+
+    <div class="split">
+      <div class="split-panel train">
+        <div class="kicker">▲ Train + Val</div>
+        <h3>Lush forest biome</h3>
+        <p>
+          Balanced 11-class split. Trees, bushes, grass, and flowers form a dense vegetation context that supports
+          ground-class disambiguation. Sky is cloudy; rocks are minor (~3.4 % of pixels).
+        </p>
+        <div class="class-list">
+          <span class="dominant">Trees</span>
+          <span>Bushes</span>
+          <span>Grass</span>
+          <span>Flowers</span>
+          <span>Mud</span>
+          <span>Path</span>
+          <span>Rocks</span>
+          <span>Landscape</span>
+          <span>Sky</span>
+          <span>Object</span>
+          <span>Background</span>
+        </div>
+      </div>
+
+      <div class="split-panel test">
+        <div class="kicker">▼ Test · OOD</div>
+        <h3>Desert biome</h3>
+        <p>
+          1002 images. Four classes vanish entirely (Trees, Bushes, Grass, Flowers). Rocks rebalances from 3.4 % up to
+          <b>22.2 %</b> of pixels. Sky is cleaner, Landscape is wider. The model must generalise sky/landscape/path/
+          rocks without leaning on vegetation context.
+        </p>
+        <div class="class-list">
+          <span class="absent">Trees</span>
+          <span class="absent">Bushes</span>
+          <span class="absent">Grass</span>
+          <span class="absent">Flowers</span>
+          <span>Mud</span>
+          <span>Path</span>
+          <span class="dominant">Rocks · 22.2 %</span>
+          <span>Landscape</span>
+          <span>Sky</span>
+          <span>Object</span>
+          <span>Background</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── ARCHITECTURE ───────── -->
+<section class="section reveal" id="architecture">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Architecture</div>
+      <h2>DINOv2-L. <em>DPT decoder.</em> Four feature stages.</h2>
+      <p>
+        A <b>DINOv2-L</b> ViT backbone (304 M parameters, self-supervised pretraining on ~142 M images) feeds a
+        <b>DPT</b> decoder that re-assembles four hierarchical feature stages into a dense per-pixel prediction.
+        The backbone is frozen for two phases, then unfrozen with layer-wise learning-rate decay (LLRD 0.75) for
+        the last 8 transformer blocks only.
+      </p>
+    </div>
+
+    <div class="arch-row">
+      <div class="arch-block input">
+        <div class="kicker">Stage A · Input</div>
+        <h4>Image stream</h4>
+        <p>Variable-resolution training schedule, normalised with ImageNet statistics, square-padded for ViT.</p>
+        <ul>
+          <li>Phase 1: 420 px (½ res warmup)</li>
+          <li>Phase 2 — 4: 644 px (full)</li>
+          <li>Photometric jitter + HFlip aug</li>
+        </ul>
+      </div>
+
+      <div class="arch-block backbone">
+        <div class="kicker">Stage B · Backbone</div>
+        <h4>DINOv2-Large ViT</h4>
+        <p>Patch size 14, 24 transformer blocks, 1024-dim hidden states. Four hook stages (6, 12, 18, 24) feed DPT.</p>
+        <ul>
+          <li>304 M parameters</li>
+          <li>Frozen → fine-tuned (last 8 blocks)</li>
+          <li>LLRD 0.75 across unfrozen blocks</li>
+        </ul>
+      </div>
+
+      <div class="arch-block decoder">
+        <div class="kicker">Stage C · Decoder</div>
+        <h4>DPT re-assembly</h4>
+        <p>Hierarchical fusion of the 4 ViT feature stages into progressively up-sampled prediction maps.</p>
+        <ul>
+          <li>11-class softmax head</li>
+          <li>Per-class + mIoU losses</li>
+          <li>Multi-scale + HFlip TTA at inference</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── RECIPE ───────── -->
+<section class="section reveal" id="recipe">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Training Recipe</div>
+      <h2>Four <em>phases.</em> One H100.</h2>
+      <p>
+        The recipe is engineered to be cheap, reproducible, and to back out cleanly if any phase regresses. Each phase
+        owns one variable: resolution, decoder weights, backbone unfreezing, and inference-time augmentation.
+      </p>
+    </div>
+
+    <div class="phases">
+      <div class="phase" data-phase="01">
+        <div class="phase-tag">Warmup</div>
+        <h4>Half-res warmup</h4>
+        <p>Train at 420 px to let the DPT decoder converge cheaply on the dominant scene structure before paying for full resolution.</p>
+        <div class="config">
+          <b>Res:</b> 420 px<br>
+          <b>Backbone:</b> Frozen<br>
+          <b>Decoder:</b> Init → trained
+        </div>
+      </div>
+
+      <div class="phase" data-phase="02">
+        <div class="phase-tag">Decoder Train</div>
+        <h4>Full-res decoder</h4>
+        <p>Resolution lift to 644 px. Backbone still frozen. Decoder learns to up-sample at the target inference scale and stops bottlenecking on aug.</p>
+        <div class="config">
+          <b>Res:</b> 644 px<br>
+          <b>Backbone:</b> Frozen<br>
+          <b>Val mIoU:</b> baseline locked
+        </div>
+      </div>
+
+      <div class="phase" data-phase="03">
+        <div class="phase-tag">LLRD Fine-Tune</div>
+        <h4>Backbone unfreezes</h4>
+        <p>Last 8 transformer blocks unfrozen with layer-wise LR decay 0.75. Earliest blocks stay frozen — they hold the SSL features that generalise across biomes. Only the high-level blocks adapt.</p>
+        <div class="config">
+          <b>Unfrozen:</b> Last 8 blocks<br>
+          <b>LLRD:</b> 0.75<br>
+          <b>Test mIoU:</b> +0.01 over frozen
+        </div>
+      </div>
+
+      <div class="phase" data-phase="04">
+        <div class="phase-tag">TTA Inference</div>
+        <h4>Multi-scale + HFlip</h4>
+        <p>Inference-time augmentation: 3 scales {420, 532, 644} averaged with horizontal-flip. ~452 ms per image on H100. No retraining cost.</p>
+        <div class="config">
+          <b>Scales:</b> 420 / 532 / 644<br>
+          <b>Aug:</b> HFlip<br>
+          <b>Latency:</b> 452 ms / image
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── DATA HYGIENE ───────── -->
+<section class="section reveal" id="hygiene">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Data Hygiene</div>
+      <h2>Two silent <em>dataset bugs.</em></h2>
+      <p>
+        Before any training run, I ran a class-distribution audit and a mask-integrity scan. Two silent bugs surfaced
+        — either alone would have collapsed the model's understanding of half the class space without raising any
+        loss-curve signal.
+      </p>
+    </div>
+
+    <div class="bugs">
+      <div class="bug-card">
+        <div class="bug-id">BUG · 01</div>
+        <h4>Missing <code>Flowers = 600</code> class</h4>
+        <p>
+          The provided class palette legend listed <code>Flowers = 600</code>, but the corresponding RGB triplet was
+          absent from every training mask. Models trained against this palette would silently never learn the class —
+          and would not be penalised by the val loss because the val masks shared the same gap.
+        </p>
+        <div class="fix">
+          <b>Fix:</b> Re-derived the palette from the actual mask RGB histogram, dropped the orphan class, and verified
+          11 active classes across train / val / test before any forward pass.
+        </div>
+      </div>
+
+      <div class="bug-card">
+        <div class="bug-id">BUG · 02</div>
+        <h4><code>I;16</code> mask saturation in PIL</h4>
+        <p>
+          Some masks were stored as 16-bit single-channel TIFF (<code>I;16</code> mode). PIL's default conversion path
+          clamped values &gt; 255 silently, fusing higher class indices into a single saturated label. A naïve
+          <code>.convert('L')</code> would have lost ~30 % of the high-index pixel-vote.
+        </p>
+        <div class="fix">
+          <b>Fix:</b> Bypassed PIL's mode coercion. Read the raw 16-bit array via <code>numpy.frombuffer</code>, mapped
+          known class IDs explicitly, asserted no truncation pre-train. Verified bit-exact round-trips on a 50-mask
+          held-out probe set.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── HONEST DIAGNOSTIC ───────── -->
+<section class="section reveal" id="diagnostic">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">The Honest Read</div>
+      <h2>Val 0.6361 → Test <em>0.4214.</em></h2>
+      <p>
+        The val/test gap is real. The honest read is that this is <b>not overfitting</b> in the classical sense — it
+        is pure distribution shift. The classes that survive the biome change (Sky, Landscape, Path) keep their IoUs
+        almost intact. The classes that vanish or rebalance dominate the drop.
+      </p>
+    </div>
+
+    <div class="diag">
+      <h3>Why the gap is structural, not overfitting</h3>
+      <p>
+        If the model were overfitting the train biome, every class — including the ones it knew well on val — would
+        regress on test. Instead, the IoU drop is concentrated in (a) classes that <b>do not appear on test at all</b>
+        (their IoU collapses to 0 by definition, dragging the mean), and (b) <b>Rocks</b>, where the test class is now
+        7× more frequent than what the model was trained on.
+      </p>
+
+      <table class="gap-table">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Val IoU</th>
+            <th>Test IoU</th>
+            <th>Behaviour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Sky</td>          <td>0.92</td><td>0.91</td><td class="stable">Stable across biomes</td></tr>
+          <tr><td>Landscape</td>    <td>0.78</td><td>0.74</td><td class="stable">Stable across biomes</td></tr>
+          <tr><td>Path</td>         <td>0.71</td><td>0.62</td><td class="stable">Mild degradation only</td></tr>
+          <tr><td>Rocks</td>        <td>0.42</td><td>0.31</td><td class="shift">Rebalanced 3.4 % → 22.2 %</td></tr>
+          <tr><td>Mud</td>          <td>0.55</td><td>0.34</td><td class="shift">Texture priors shift</td></tr>
+          <tr><td>Trees / Bushes / Grass / Flowers</td><td>0.62 — 0.79</td><td>—</td><td class="absent">Absent on test (drag mIoU mean)</td></tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top: 22px;">
+        Reading the per-class table this way is the difference between "<i>my model overfit, please throw the run
+        away</i>" and "<i>my model generalised the biome-stable classes correctly; the mean is dragged by structurally
+        absent labels</i>." The second framing is the one that holds up.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 YAO XIANG · TEAM SYNTAXERROR · DUALITY AI HACKATHON</span>
+  <a href="../index.html#proj-vibewithsg">← Back to Portfolio</a>
+</footer>
+
+<!-- Canonical Holo + page-transition + bootstrap -->
+<div id="holo-container" onclick="holoInteract(this)">
+  <div class="holo-dialog-box">
+    <p id="holo-text">Welcome.</p>
+  </div>
+  <img src="../images/holo.png" alt="Holo" class="holo-sprite">
+</div>
+<div class="page-transition-overlay">
+  <h2 class="transition-logo">Portifolio</h2>
+</div>
+
+<script>
+  // Reveal-on-scroll: brighten sections as they enter the viewport.
+  (function() {
+    const sections = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || !sections.length) {
+      sections.forEach(s => s.classList.add('in-view'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+    sections.forEach(s => io.observe(s));
+  })();
+</script>
+<script src="../script.js"></script>
+<script>(function () { const e = document.getElementById("loader"), t = document.getElementById("holo-container"), n = document.getElementById("holo-text"), o = performance.getEntriesByType("navigation"), a = o.length > 0 && "reload" === o[0].type; if (!a && (sessionStorage.getItem("visited") || window.location.hash)) { e && e.remove(), document.body.classList.remove("preload"), window.holoCanNavigate = !0, sessionStorage.setItem("visited", "true"); if (t) { t.style.display = "block", t.classList.remove("holo-splash-center"); } if (n) n.innerText = "Welcome back."; if (window.location.hash) setTimeout((() => { const e = document.querySelector(window.location.hash); e && e.scrollIntoView({ behavior: "smooth", block: "start" }) }), 60); return } if (!e) return; window.holoCanNavigate = !false; const r = document.createElement("div"); r.className = "cover-reveal-overlay", e.appendChild(r); const i = () => { if (e.classList.contains("sequence-started")) return; e.classList.add("sequence-started"), setTimeout((() => { const o = document.createElement("div"); o.className = "begin-prompt", o.innerHTML = "Click anywhere to enter", e.appendChild(o), e.addEventListener("click", (() => { o.remove(), e.style.pointerEvents = "none", e.style.opacity = "0", t.classList.add("holo-splash-center"), t.style.display = "block", t.style.opacity = "0", t.style.transform = "translate(-50%,-50%) scale(0)", void t.offsetWidth, t.style.transition = "opacity 0.5s, transform 0.5s cubic-bezier(0.175,0.885,0.32,1.275)", t.style.opacity = "1", t.style.transform = "translate(-50%,-50%) scale(1)", n.innerText = "Ready?", t.classList.add("talking"), t.style.animation = "holoFloat 2s ease-in-out infinite, pulseGlow 1.5s ease-in-out infinite", "function" == typeof playSound && playSound("pop", .8) }), { once: true }) }), 1500) }; "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", i) : i(), setTimeout((() => { e.classList.contains("loaded") || (e.style.opacity = "0", e.style.pointerEvents = "none", document.body.classList.remove("preload"), window.holoCanNavigate = !0) }), 8e3) })();</script>
+
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yao Xiang - Resume | Software, AI & Robotics Engineer</title>
+  <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #0284c7;
+      --text: #1e293b;
+      --text-muted: #475569;
+      --border: #cbd5e1;
+      --bg: #ffffff;
+      --tag-bg: #f1f5f9;
+      --highlight: #0369a1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: #f8fafc;
+      line-height: 1.26;
+      font-size: 8.8pt;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 820px;
+      margin: 20px auto;
+      background: var(--bg);
+      padding: 24px 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+    }
+
+    /* Print styling strictly tuned for single-page A4 */
+    @page {
+      size: A4;
+      margin: 5mm 9mm;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+      .page {
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+        max-width: 100%;
+      }
+      .no-print {
+        display: none !important;
+      }
+      a {
+        text-decoration: none !important;
+        color: var(--text) !important;
+      }
+      .print-link {
+        color: var(--accent) !important;
+      }
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      border-bottom: 1.5px solid var(--primary);
+      padding-bottom: 3.5px;
+      margin-bottom: 5px;
+    }
+
+    h1.name {
+      font-size: 16pt;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .contact-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 8.6pt;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+
+    .contact-bar a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-bar a:hover {
+      text-decoration: underline;
+    }
+
+    .summary-text {
+      font-size: 8.7pt;
+      color: var(--text-muted);
+      line-height: 1.26;
+      max-width: 98%;
+      margin: 0 auto;
+    }
+
+    /* Section Styling */
+    section {
+      margin-bottom: 4.5px;
+    }
+
+    .section-title {
+      font-size: 9.8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--primary);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      margin-bottom: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .section-title span.sub {
+      font-size: 8pt;
+      font-weight: 500;
+      text-transform: none;
+      color: var(--text-muted);
+      letter-spacing: 0;
+    }
+
+    /* Items */
+    .item {
+      margin-bottom: 3.5px;
+    }
+
+    .item:last-child {
+      margin-bottom: 2px;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 9.2pt;
+      margin-bottom: 1.5px;
+    }
+
+    .item-title {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .item-title a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .item-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .item-role {
+      font-weight: 600;
+      color: var(--highlight);
+    }
+
+    .item-date {
+      font-size: 8.4pt;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .item-stack {
+      font-size: 7.8pt;
+      color: var(--text-muted);
+      margin-bottom: 1.5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .item-stack strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* Bullets */
+    ul.bullets {
+      list-style-type: disc;
+      padding-left: 14px;
+    }
+
+    ul.bullets li {
+      font-size: 8.1pt;
+      line-height: 1.22;
+      color: var(--text);
+      margin-bottom: 1px;
+      text-align: justify;
+    }
+
+    ul.bullets li strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3px;
+      font-size: 8.0pt;
+      line-height: 1.22;
+    }
+
+    .skill-row {
+      display: flex;
+      line-height: 1.3;
+    }
+
+    .skill-label {
+      width: 140px;
+      font-weight: 700;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .skill-vals {
+      color: var(--text);
+    }
+
+    /* Honors & Badges */
+    .honors-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 8.0pt;
+      line-height: 1.22;
+    }
+
+    .honor-item {
+      display: flex;
+      justify-content: space-between;
+      line-height: 1.3;
+    }
+
+    .honor-title strong {
+      color: var(--primary);
+    }
+
+    .honor-metric {
+      font-weight: 700;
+      color: var(--highlight);
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 7.6pt;
+      font-weight: 600;
+      color: var(--accent);
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+
+
+    .hackathon-roster {
+      margin-top: 2px;
+      font-size: 7.9pt;
+      line-height: 1.24;
+      color: var(--text-muted);
+      border-top: 1px dashed var(--border);
+      padding-top: 2px;
+    }
+
+    .hackathon-roster strong {
+      color: var(--primary);
+    }
+
+    /* Interactive toolbar for screen viewing */
+    .toolbar {
+      max-width: 820px;
+      margin: 15px auto 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 14px;
+      background: #0f172a;
+      color: #fff;
+      border-radius: 6px;
+      font-size: 9pt;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 8.5pt;
+      transition: background 0.15s;
+    }
+
+    .btn:hover {
+      background: #026aa2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <span><strong>Yao Xiang</strong> — Generalist Resume (AI Agents, SWE Systems, Robotics)</span>
+    <div style="display: flex; gap: 8px;">
+      <button class="btn" onclick="window.print()">Print / Save as PDF (A4)</button>
+    </div>
+  </div>
+
+  <div class="page">
+    <!-- Header -->
+    <header>
+      <h1 class="name">Yao Xiang</h1>
+      <div class="contact-bar">
+        <span>Singapore</span>
+        <span>&bull;</span>
+        <a href="mailto:xiangyao888@gmail.com">xiangyao888@gmail.com</a>
+        <span>&bull;</span>
+        <a href="https://yxiang-828.vercel.app" target="_blank" class="print-link">yxiang-828.vercel.app</a>
+        <span>&bull;</span>
+        <a href="https://github.com/Yxiang-828" target="_blank" class="print-link">github.com/Yxiang-828</a>
+        <span>&bull;</span>
+        <a href="https://linkedin.com/in/yaoxiang-tech" target="_blank" class="print-link">linkedin.com/in/yaoxiang-tech</a>
+      </div>
+      <div class="summary-text">
+        NUS Computer Engineering undergraduate (Minor in AI) combining autonomous multi-model agent systems, real-time distributed backends, and accelerated edge AI for robotics. Experienced leading technical teams, architecting fault-tolerant async pipelines, and deploying mission-critical systems solo on-site.
+      </div>
+    </header>
+
+    <!-- Education & Verified Honors -->
+    <section>
+      <div class="section-title">
+        <span>Education & Competitive Hackathons</span>
+        <span class="sub">Verified Denominators</span>
+      </div>
+      <div class="item-header">
+        <span class="item-title">National University of Singapore (NUS)</span>
+        <span class="item-date">Aug 2024 &ndash; Aug 2028 (Projected)</span>
+      </div>
+      <div style="font-size: 8.6pt; color: var(--text-muted); margin-bottom: 5px;">
+        Bachelor of Engineering in Computer Engineering &bull; Specialization: <strong>Advanced Electronics & IoT</strong> &bull; Minor: <strong>Artificial Intelligence</strong>
+      </div>
+      <div class="honors-list">
+        <div class="honor-item">
+          <span class="honor-title">&bull; <strong>Singapore Defence Tech Hackathon (SDTH)</strong>: Top 6 out of 800 participants (LOTR 2-day track, Sep 2026) <span class="tag">Top 0.75%</span></span>
+          <span class="honor-metric">Marsham Edge</span>
+        </div>
+        <div class="honor-item">
+          <span class="honor-title">&bull; <strong>DSTA BrainHack CODE_EXP 2026</strong>: Open Category Finalist (out of 4,500+ participants across tracks, Jun 2026)</span>
+          <span class="honor-metric">Kampung Kaki</span>
+        </div>
+        <div class="honor-item">
+          <span class="honor-title">&bull; <strong>Vibe For Good 2026</strong>: Semi-Finalist (AI venture co-builder & creator platform, Sep 2026)</span>
+          <span class="honor-metric">VibeCheck</span>
+        </div>
+        <div class="hackathon-roster">
+          <span class="roster-label"><strong>2026 Hackathons (8 Competitions):</strong></span>
+          <span class="roster-items">
+            <strong>Singapore Defence Tech Hackathon</strong> (Finalist, Top 6 LOTR) &bull;
+            <strong>DSTA | Brainhack CODE_EXP 2026</strong> (Finalist) &bull;
+            <strong>VibeForGood 2026</strong> (Semi-Finalist) &bull;
+            NUS-SYNAPXE-IMDA AI Innovation Challenge 2026 &bull;
+            AI Engineer Hackathon 2026 &bull;
+            Tinyfish-SG-Hackathon 2026 &bull;
+            Hack4Good 2026 &bull;
+            VibeWithSG 2026
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section>
+      <div class="section-title">
+        <span>Work Experience</span>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div>
+            <span class="item-title">KABAM Robotics</span> &ndash; <span class="item-role">Software Robotics Engineer (Solo On-Site Deployment)</span>
+          </div>
+          <span class="item-date">May 2026 &ndash; Present (until Dec 2026)</span>
+        </div>
+        <div class="item-stack">
+          <strong>Stack:</strong> Jetson Orin AGX, TensorRT, SAM3, YOLOv8, FFmpeg, ROS 2, LiDAR SLAM, Nav2 MPPI, CAN bus, MWAN3, Docker
+        </div>
+        <ul class="bullets">
+          <li><strong>Sole On-Site Deployment:</strong> Conducted first ever SG field PoC (Jul &ndash; Oct 2026) as solo on-site robotics engineer for KABAM’s latest patrol robot model; diagnosed LiDAR SLAM drift, Nav2 MPPI trajectory tracking, autonomous docking, and MWAN3 multi-WAN networking alongside remote engineers.</li>
+          <li><strong>Edge CV Acceleration:</strong> Optimized Segment Anything Model (SAM3) vision-language inference on Jetson Orin AGX with TensorRT; piped real-time RTSP/FFmpeg video streams with YOLOv8 perception overlays for sub-100ms situational awareness.</li>
+          <li><strong>Diagnostic & Mission Tooling:</strong> Shipped cross-platform desktop ROS 2 diagnostics and mobile mission-control tools featuring hardware emergency-stop overrides, CAN bus telemetry decoders, and live LiDAR/occupancy grid streaming.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div>
+            <span class="item-title">National University of Singapore</span> &ndash; <span class="item-role">Teaching Assistant (CS2113 Software Engineering & OOP)</span>
+          </div>
+          <span class="item-date">Jan 2026 &ndash; May 2026</span>
+        </div>
+        <ul class="bullets">
+          <li>Mentored undergraduate teams on Java object-oriented architecture, JUnit test-driven design, Git collaboration, and CI/CD pipelines.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Key Engineering Projects -->
+    <section>
+      <div class="section-title">
+        <span>Featured Engineering Projects</span>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div>
+            <span class="item-title"><a href="https://yxiang-828.vercel.app/#P6" target="_blank">Marsham Edge</a></span> &ndash; <span class="item-role">Counter-Drone Decision Console & Simulation (Lead Systems Dev)</span> <span class="tag">Top 6 / 800 SDTH</span>
+          </div>
+          <span class="item-date">Sep 2026</span>
+        </div>
+        <div class="item-stack">
+          <strong>Stack:</strong> Python, WebSockets, WGS84 Geodesic Transforms, Pytest (236 unit tests), HTML5 Canvas Replay Engine
+        </div>
+        <ul class="bullets">
+          <li>Engineered 6-sensor asynchronous pipeline (Radar, Acoustic, RF, IFF transponder, EO, OSINT) across 6 independent clock domains with physical measurement uncertainty bounds and SHA-256 emitter provenance validation.</li>
+          <li>Built zero-RNG deterministic truth engine and operator replay console with WGS84-to-local coordinate transformations; validated system reliability with <strong>236 automated unit tests</strong> under adversarial drone swarm scenarios.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div>
+            <span class="item-title"><a href="https://yxiang-828.vercel.app/projects/aiko.html" target="_blank">Aiko</a></span> &ndash; <span class="item-role">Autonomous Personal OS Agent Runtime (Solo Developer)</span>
+          </div>
+          <span class="item-date">Apr 2026 &ndash; Present</span>
+        </div>
+        <div class="item-stack">
+          <strong>Stack:</strong> TypeScript, Node.js, SQLite, React Native, Tailscale, Ollama, OpenRouter, Qwen3-TTS
+        </div>
+        <ul class="bullets">
+          <li>Designed 5-tier persistent agent memory architecture with hybrid BM25 and vector embeddings unified via Reciprocal Rank Fusion (RRF); <strong>reduced prompt token payload by 69%</strong> (109 KB to 34 KB) while preserving long-term temporal grounding.</li>
+          <li>Engineered autonomous multi-model runtime with automatic provider failover, process watchdog supervision, self-healing diagnostic loops, local GPU Qwen3-TTS voice synthesis, and sandboxed event execution.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div>
+            <span class="item-title"><a href="https://yxiang-828.vercel.app/projects/agora.html" target="_blank">Agora</a></span> &ndash; <span class="item-role">Collaborative Multi-Agent IDE & Dev Environment (Lead Developer, Team of 3)</span>
+          </div>
+          <span class="item-date">Jun 2026 &ndash; Oct 2026</span>
+        </div>
+        <div class="item-stack">
+          <strong>Stack:</strong> TypeScript, VS Code Core Fork, Mattermost Mod, WebSockets, Node.js, Docker
+        </div>
+        <ul class="bullets">
+          <li>Led 3-man development team; architected parallel AI coding agent orchestrator with AST-level Git 3-way merge conflict resolution.</li>
+          <li>Constructed custom Mattermost extension, CLI/API agent harness, and WebSocket state synchronization protocol coordinating concurrent agent modifications within containerized workspaces.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div>
+            <span class="item-title"><a href="https://yxiang-828.vercel.app/projects/kampung-kaki.html" target="_blank">Kampung Kaki</a></span> &ndash; <span class="item-role">Community Emergency Response & Aid Platform (Solo Developer)</span> <span class="tag">Finalist, DSTA BrainHack</span>
+          </div>
+          <span class="item-date">May 2026 &ndash; Jun 2026</span>
+        </div>
+        <div class="item-stack">
+          <strong>Stack:</strong> Python, FastAPI, MQTT 5 QoS 1, Redis Streams, MapLibre GL, OneMap SG GIS, React, Docker
+        </div>
+        <ul class="bullets">
+          <li>Architected distributed event-driven emergency dispatch system; implemented MQTT 5 QoS 1 broker and Redis Streams ingest pipeline delivering sub-second real-time event dissemination between citizens and first responders.</li>
+          <li>Integrated Singapore OneMap GIS APIs and MapLibre GL vector tiles for dynamic role-segregated tactical operation views.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div>
+            <span class="item-title"><a href="https://yxiang-828.github.io/anan/" target="_blank">AnAn</a></span> &ndash; <span class="item-role">Elderly Care Fall & Inactivity Monitoring Companion (Solo Developer)</span> <span class="tag">Tencent Age Well Challenge</span>
+          </div>
+          <span class="item-date">Aug 2026</span>
+        </div>
+        <div class="item-stack">
+          <strong>Stack:</strong> Python, FastAPI, MediaPipe, WebAssembly (WASM), SEA-LION, React, SQLite
+        </div>
+        <ul class="bullets">
+          <li>Constructed 7-stage deterministic safety kernel with state revalidation and permission gating prior to automated emergency alerts.</li>
+          <li>Built client-side browser computer vision using MediaPipe/WASM for fall and inactivity detection—guaranteeing <strong>0 raw video frames</strong> leave the user's local device for absolute privacy compliance.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Technical Skills & Certifications -->
+    <section>
+      <div class="section-title">
+        <span>Technical Skills & Certifications</span>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-row">
+          <span class="skill-label">Languages:</span>
+          <span class="skill-vals">Python, C/C++, TypeScript, JavaScript, Java, SQL, Rust, Bash, HTML/CSS</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-label">AI & Edge Perception:</span>
+          <span class="skill-vals">TensorRT, PyTorch, SAM3, YOLOv8, MediaPipe (WASM), Hybrid Retrieval (BM25 + Vector RRF), Local LLMs (Ollama), Qwen3-TTS</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-label">Robotics & Systems:</span>
+          <span class="skill-vals">ROS 2 (Jazzy), Nav2 MPPI, LiDAR SLAM, Jetson Orin AGX, CAN bus, Docker, Linux, MQTT 5, Redis Streams, WebSockets, MWAN3</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-label">Certifications:</span>
+          <span class="skill-vals">Google AI Professional Certificate (2026) &bull; Deep Learning Engineering Specialization (Coursera, 2026)</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

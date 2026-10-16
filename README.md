@@ -1,16 +1,17 @@
 <p align="center">
-  <img src="./assets/profile-hero.svg" alt="Yao Xiang - From silicon to systems" width="100%" />
+  <img src="./profile/profile-hero.svg" alt="Yao Xiang - From silicon to systems" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://yxiang-828.github.io"><img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-050508?style=for-the-badge&amp;logo=githubpages&amp;logoColor=white&amp;labelColor=FF1E56" /></a>
-  <a href="https://www.linkedin.com/in/yao-xiang-733b06329"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-050508?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white&amp;labelColor=0A66C2" /></a>
+  <a href="https://yxiang-828.vercel.app"><img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-050508?style=for-the-badge&amp;logo=vercel&amp;logoColor=white&amp;labelColor=FF1E56" /></a>
+  <a href="https://yxiang-828.vercel.app/v2media/resume/Yao_Xiang_Resume_General.pdf"><img alt="Résumé" src="https://img.shields.io/badge/R%C3%A9sum%C3%A9-050508?style=for-the-badge&amp;logo=googledocs&amp;logoColor=white&amp;labelColor=FF1E56" /></a>
+  <a href="https://linkedin.com/in/yaoxiang-tech"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-050508?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white&amp;labelColor=0A66C2" /></a>
   <a href="mailto:xiangyao888@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-050508?style=for-the-badge&amp;logo=gmail&amp;logoColor=white&amp;labelColor=EA4335" /></a>
   <img alt="Profile views" src="https://komarev.com/ghpvc/?username=Yxiang-828&amp;style=for-the-badge&amp;color=00E5FF" />
 </p>
 
 <p align="center">
-  <img alt="Typing intro" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=700&amp;size=18&amp;duration=2400&amp;pause=750&amp;color=00E5FF&amp;center=true&amp;vCenter=true&amp;width=900&amp;lines=Internal+AI+%2B+external+agent+systems;Advanced+Electronics+%2B+IoT;Robotics+software+intern+%40+KABAM;AI+systems+for+physical+hardware" />
+  <img alt="Typing intro" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=700&amp;size=18&amp;duration=2400&amp;pause=750&amp;color=00E5FF&amp;center=true&amp;vCenter=true&amp;width=900&amp;lines=Internal+AI+%2B+external+agent+systems;Advanced+Electronics+%2B+IoT;Software+Robotics+Engineer+%40+KABAM+Robotics;AI+systems+for+physical+hardware" />
 </p>
 
 ---
@@ -47,7 +48,7 @@ My work is organized around an internal/external AI split, grounded in hardware 
 
 I am driven to build end-to-end systems where AI does not just process data, but physically interacts with and controls real-world hardware.
 
-Currently: **Robotics Software Intern at KABAM Robotics**, building on the Matrix-4 autonomous delivery robot stack across ROS 2, MQTT, Docker, Jetson Orin AGX, SAM3, Nav2, C++ and Python. Previously taught **CS2113 Software Engineering & OOP** at NUS.
+Currently: **Software Robotics Engineer (Solo On-Site Deployment) at KABAM Robotics**, internship May 2026 – Dec 2026. From Jul 2026 to Oct 2026 I ran its first Singapore field PoC of the latest patrol robot model as the solo on-site engineer, across ROS 2, MQTT, Docker, Jetson Orin AGX, SAM3, Nav2, C++ and Python. Previously taught **CS2113 Software Engineering & OOP** at NUS.
 
 Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** · **DSTA BrainHack CODE_EXP — Open Finalist** · **Vibe For Good — Semi-Finalist**.
 
@@ -120,7 +121,7 @@ Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** · 
 <table>
   <tr>
     <td width="50%" valign="top">
-      <h3><a href="https://yxiang-828.github.io/projects/aiko.html">Aiko</a></h3>
+      <h3><a href="https://yxiang-828.vercel.app/projects/aiko.html">Aiko</a></h3>
       <p><strong>Personal OS Agent</strong></p>
       <p>Local daemon, phone app, Telegram bridge, memory system, voice, tool runtime, and CLI-agent workers wired into one personal automation layer.</p>
       <p>
@@ -133,7 +134,7 @@ Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** · 
       <p><sub>Private research build. Demo on request.</sub></p>
     </td>
     <td width="50%" valign="top">
-      <h3><a href="https://yxiang-828.github.io/projects/kampung-kaki.html">Kampung Kaki</a></h3>
+      <h3><a href="https://yxiang-828.vercel.app/projects/kampung-kaki.html">Kampung Kaki</a></h3>
       <p><strong>DSTA BrainHack CODE_EXP Open Finalist</strong></p>
       <p>Role-aware emergency coordination map for citizens, responders, and operations teams with SOS/report flows and grounded AI guidance.</p>
       <p>
@@ -147,7 +148,7 @@ Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** · 
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3><a href="https://yxiang-828.github.io/projects/planai.html">PLAN.AI</a></h3>
+      <h3><a href="https://yxiang-828.vercel.app/projects/planai.html">PLAN.AI</a></h3>
       <p><strong>Deep-Research Architect Co-Pilot</strong></p>
       <p>Researches across 9 sources and compiles inline-cited 22-section technical blueprints with Mermaid C4 diagrams and implementation tasks.</p>
       <p>
@@ -205,8 +206,8 @@ Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** · 
 | 2026 | **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** | Marsham Edge |
 | 2026 | **DSTA BrainHack CODE_EXP — Open Finalist** | Kampung Kaki |
 | 2026 | **Vibe For Good — Semi-Finalist** | VibeCheck |
-| 2026 | AI-Engineer Hackathon | PLAN.AI |
-| 2026 | Synapxe x IMDA AI Innovation Challenge | Mera |
+| 2026 | AI Engineer Hackathon | PLAN.AI |
+| 2026 | NUS × Synapxe × IMDA AI Innovation Challenge | Mera |
 | 2026 | TinyFish SG Hackathon | Shoppo |
 | 2026 | VibeWithSG | Simulation and public-service AI workflow |
 | 2026 | Hack4Good | Social-impact product build |
@@ -215,3 +216,7 @@ Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6 (LOTR)** · 
 <p align="center">
   <strong>Open to internships and collaboration across applied AI, agent infrastructure, robotics, and full-stack systems.</strong>
 </p>
+
+---
+
+<sub>This repository is the one source for this profile, [my website](https://yxiang-828.vercel.app), its guide Holo and [my résumé](https://yxiang-828.vercel.app/v2media/resume/Yao_Xiang_Resume_General.pdf): all four are built from [`content/facts.json`](content/facts.json). How it fits together: [docs/REPO.md](docs/REPO.md).</sub>
