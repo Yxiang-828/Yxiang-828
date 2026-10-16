@@ -1,5 +1,5 @@
 {
-  "_note": "Plain facts Holo may state that the page leaves implicit: what is current or finished, counts, who Holo is, how her chat works. The page's own lines (site.json) are the rest of what she knows. Every fact has an id; the prepared questions (holo-qa.json) and the answer trace point at ids.",
+  "_note": "Plain facts Holo may state that the page leaves implicit: what is current or finished, counts, who Holo is, how her chat works. The page's own lines (site.json) are the rest of what she knows. Every fact has an id; the prepared questions (holo-qa.json) and the answer trace point at ids. Facts D<n><a-c> are the depth behind each project page (how it works, what was hard, his share), each checked against the project's own repo; 'src' names the commit and files.",
   "facts": [
     {
       "id": "F1",
@@ -90,6 +90,118 @@
       "to": null,
       "title": "Holo's service",
       "text": "Holo's agent is one Python (FastAPI) service on Vercel, at the same address as the page, and it streams each step to the page as it finishes. If the model is down, the visitor still gets the best matching fact as plain text. Limits per visitor and per day keep it within NVIDIA's free tier."
+    },
+    {
+      "id": "D2a",
+      "to": "P2",
+      "title": "Agora: how it works",
+      "text": "How Agora works: it is a Mattermost plugin (a Go server plus a React panel) with a live codespace inside the chat. Each browser edits in CodeMirror 6 with a Yjs CRDT (y-codemirror.next), so a person and several agents typing in one file converge without overwriting each other. The plugin relays every update, stores the merged state so a late joiner catches up, and enforces server-side who may edit which paths. A host connector (Python) owns the real disk and git: live text is flushed to the file 1.5 s after typing stops, and commits and pushes stay deliberate.",
+      "src": "Yxiang-828/Agora af19b87: agora/docs/superpowers/specs/2026-06-22-realtime-codespace-design.md; plugin/webapp/package.json (yjs 13.6.31, y-codemirror.next 0.3.5, @codemirror/*); plugin/webapp/src/CodespacePanel.tsx scheduleFlush 1500 ms; agora/connector/"
+    },
+    {
+      "id": "D2b",
+      "to": "P2",
+      "title": "Agora: what was hard",
+      "text": "A real snag in Agora: the first editor, Monaco, hung forever on 'Loading editor' because Mattermost serves a Content-Security-Policy of script-src 'self', which blocks Monaco's CDN. The team switched to CodeMirror 6, bundled into the plugin itself (same origin, no web workers, no CDN), which also has first-class Yjs collaboration. Before two members collide, a /claim command lets each declare the area they are working on; when two claims in a channel overlap (the same path, or one inside the other), the room calls it out publicly.",
+      "src": "agora/docs/superpowers/specs/2026-06-22-realtime-codespace-design.md 'Editor engine: CodeMirror 6, not Monaco (corrected 2026-06-22)'; agora/plugin/server/command/claims.go (Sentinel v1, areasOverlap)"
+    },
+    {
+      "id": "D2c",
+      "to": "P2",
+      "title": "Agora: skills and his share",
+      "text": "Agora's agent skills are JSON manifests that must pass a gate (skill_law) before an agent may use one: typed inputs, outputs and errors, a declared workflow, no credentials inside, and for each of Windows, macOS and Linux either a way to run or a graceful refusal, so no skill can hard-crash a member's machine; a linter runs the same gate in CI. Xiang wrote most of the code: 106 of the repository's 117 commits are his (41 of 47 in the plugin and connector).",
+      "src": "agora/connector/laws/skill_law.py docstring; agora/connector/skill_lint.py; git log Agora.git: Weed_Lord 106/117, plugin+connector 41/47"
+    },
+    {
+      "id": "D5a",
+      "to": "P5",
+      "title": "Replay: how it works",
+      "text": "How Replay works: seven layers, and facts only flow downward. At the bottom sit source-locked evidence capsules with personal details scrubbed; above them, scenarios are pure data graphs; then a deterministic Python engine with no I/O, no clock and no network; an authoritative WebSocket room server (Python websockets) that holds each seat's private state; a Phaser 4 client drawing the story at 240x160; and a debrief that is derived from the recorded run, so it cannot invent what happened. Each role is dealt only what that person could realistically know, and everyone chooses privately.",
+      "src": "Replay README.md and build/: engine/replay_engine (core, pov, debrief, scoring, validate; imports only json/re/os/hashlib/copy), server/requirements.txt websockets==16.0, package.json phaser ^4.2.1"
+    },
+    {
+      "id": "D5b",
+      "to": "P5",
+      "title": "Replay: the proof",
+      "text": "Replay's engine test walks every possible path through the reference scenario rather than sampling: three roles with two choices each give 8 combinations per turn, over five turns, so 8^5 = 32,768 complete playthroughs. All 32,768 end in distinct runs, and every one of the four declared endings (contained, exposed, late help, ongoing) is reached. Because the engine has no I/O, that walk is a proof, not a test run. The suite passes 28 of 28 (re-run 17 Oct 2026).",
+      "src": "build/engine/tests/run_tests.py every_path_through_the_scenario_terminates_and_every_ending_is_reachable (assert complete == 8 ** 5); run 17 Oct: '32768 complete playthroughs, 32768 distinct runs ... 28 passed, 0 failed'"
+    },
+    {
+      "id": "D5c",
+      "to": "P5",
+      "title": "Replay: what was hard",
+      "text": "What was hard in Replay: AI writes fresh Singapore-grounded scenarios, so a deterministic gate (validate.py) checks each one before anyone plays: every branch must terminate and every scene be reachable, every effect may only touch declared state, and every cited fact must exist in the evidence corpus. It refused a good-looking generated story that had no real branching, and that refusal is kept on the demo reel. Private state per role had to survive reconnects and refreshes; live server tests with one to four seats found zero cross-role leaks. 'Three players' also had to stop being a hard-coded number: the roles come from the scenario file.",
+      "src": "build/engine/replay_engine/validate.py docstring; README.md lines 7, 9, 60 (zero cross-role leaks, one to four seats: the repo's own report); projects/replay.html 'The journey'"
+    },
+    {
+      "id": "D3a",
+      "to": "P3",
+      "title": "AnAn: how it works",
+      "text": "How AnAn works: a kernel pushes every action through seven phases, each written as a receipt before the next may start: WAKE (a trigger is only a chance to look), THINK (the model picks among bounded options; if it is down, slow or answers outside them, a deterministic state machine's choice stands), REVALIDATE (a decision made from an older snapshot is re-checked, so a heartbeat that arrived meanwhile cancels a silence action), GATE, ACT, RECEIPT (what actually changed, such as the message id) and COMMIT. The silence state machine runs CHECKIN_SENT, SILENCE_1, SILENCE_2, ESCALATED, with its waiting windows in config, so a family can retune the patience without a deploy.",
+      "src": "Yxiang-828/anan 1025c39: core/kernel.py docstring; core/fsm.py STATES (IDLE, CHECKIN_SENT, ENGAGED, SILENCE_1, SILENCE_2, ESCALATED, RESOLVED); config.default.json windows"
+    },
+    {
+      "id": "D3b",
+      "to": "P3",
+      "title": "AnAn: limits by design",
+      "text": "AnAn has exactly nine skills: greet and check in, companion chat, relay to family, safe range, health scan, medication reminder, walking the contact tree, the family bulletin, and care insight. Its permission envelope has three tiers in config: autonomous (speak, notify her or the family, write memory), family approval (contact the neighbour, change config) and never (calling 995, medical advice, anything financial), and a never-class action refuses loudly. The health check runs MediaPipe in WebAssembly on the phone (heart rate from the camera, mobility, facial symmetry), and only the score leaves the device, never a frame.",
+      "src": "core/skills_anan.py: 9 Skill(...) entries; config.default.json envelope {autonomous, approval, never}; web/health-lab/ (heart-rate.tsx, mobility.tsx, mp-wrap.js)"
+    },
+    {
+      "id": "D3c",
+      "to": "P3",
+      "title": "AnAn: what was hard",
+      "text": "What was hard in AnAn: anything looks autonomous for ninety seconds, so the build is made to be checked afterwards: seven receipt rows per decision, including the ones the gate refused. The design started from 93 words for what an ageing Singapore needs and built only what neither a family nor a device can already do; fall-detection hardware, medical advice and dialling emergency services were refused on purpose. The full build wants a GPU (cloned family voices, local Whisper); the free public demo has none of it, so every lane announces at boot what it can actually do. Xiang built it solo.",
+      "src": "projects/anan.html 'the journey'; core/kernel.py; facts.json projects.anan role Solo Developer; git log anan.git: Yxiang-828 53, Weed_Lord 16 (both his accounts)"
+    },
+    {
+      "id": "D4a",
+      "to": "P4",
+      "title": "Kampung Kaki: how it works",
+      "text": "How Kampung Kaki works: the whole emergency picture is one canonical state kept as retained MQTT 5 messages (topics under csot/) on a Mosquitto broker. Browsers talk MQTT over WebSockets straight to the broker, so an action by one role reaches the others in the same tick, and a client joining late still receives the current picture. A FastAPI bridge is the identity authority (each browser gets its own user id on join), mirrors every retained message into Redis, and on start replays Redis back into the broker, so the state survives a broker restart; presence uses MQTT Last-Will. Citizens, responders and ops each see a different MapLibre map on the OneMap basemap, drawn from that same state.",
+      "src": "Yxiang-828/CODEEXP 4b371bd: backend/bridge.py docstring, mqtt.MQTTv5, subscribe('csot/#', qos=1), RETAINED_HASH 'kk:retained'; START-HERE.md services (bridge 8787, mosquitto 1883/9001, redis 6379); README.md"
+    },
+    {
+      "id": "D6a",
+      "to": "P6",
+      "title": "Marsham Edge: how his part works",
+      "text": "How Xiang's part of Marsham Edge works: he owned the adversary and sensing lane. A scenario plan drives a world simulation that is byte-identical for a given seed, with degradation and physical spoofer cases built in. Six simulated sensors (radar, acoustic, RF, transponder, electro-optical camera and open-source reports) each run on their own clock and report only what they measured, in native units with an uncertainty; the lane's rule is that a sensor says what it measured, never what a thing is. A typed handoff turns those readings into observations for the team's agents (Ken for signal anomalies and Argo for stream integrity, both Muriel's, and Tien's decision layer). The labelled truth is kept outside the runtime and joined only after a recommendation exists, so the agents cannot peek at the answer. He also built the operator console: a cluster map with response levels and the operator's final decision record.",
+      "src": "Yxiang-828/sdth-defence-pack 7e00f16 (edge-wip): README.md 'Who owns what' (xiang/world, xiang/sensors, xiang/handoff = Yao Xiang; xiang/simulator/truth.py evaluation-only; ken/argo = Muriel; tien/, epistemic/, decision/ = Tien); xiang/TOPOLOGY.md (seeded world, six clocks, 'a sensor says what it measured, never what a thing is'); xiang/sensors/{radar,acoustic,rf,transponder,eo,osint}.py; console commits by Yao Xiang 25-26 Sep ('Console: cluster map with response levels, Argo and Ken first, final decision', 'Rail: ... operator's final decision record')"
+    },
+    {
+      "id": "D7a",
+      "to": "P7",
+      "title": "PLAN.AI: how it works",
+      "text": "How PLAN.AI works: it turns a one-line idea into a cited 22-section technical blueprint (from executive summary to ADR log and references) with a Mermaid C4 diagram. Research runs at three depths: Quick is one direct pass over a couple of sources; Standard plans 4 to 6 questions, fans them out to the sources and synthesises; Deep is a STORM-lite run where three personas (Principal Engineer, Product Manager, SRE/Security) each plan their own queries in parallel and a synthesiser reconciles them. Search goes to GitHub, arXiv, Semantic Scholar, Reddit, Stack Exchange, Wikipedia, Hacker News and Tavily web search. It ships to Vercel as a static React build with one serverless catch-all route; there is no database or login, and every API key is typed in by the user and kept only in the browser's localStorage. Xiang built it solo for the AI Engineer Hackathon.",
+      "src": "Yxiang-828/PLAN_AI 79231a0: src/services/research.ts runQuick/runStandard/runDeep, PERSONAS; src/services/search.ts (8 search functions); src/prompts/index.ts '# 22. References'; api/[...path].ts; facts.json projects.planai"
+    },
+    {
+      "id": "D8a",
+      "to": "P8",
+      "title": "Mera: how it works",
+      "text": "How Mera works: everything happens inside Telegram, an app older patients already use. Text goes to SEA-LION (v3.5 8B, run locally through Ollama); a voice note is converted by FFmpeg and passed to MERaLiON ASR for the words and MERaLiON SER for how the person sounds (a fatigue score), and SEA-LION fuses both into the reply; photos and PDFs go to the SEA-LION 4B vision model. When the agent sees a fatigue spike or a negative trend, it opens a Telegram Mini-App check (smile symmetry, sit-to-stand, shoulder raise, standing march, or heart rate from the camera) that runs MediaPipe in WebAssembly on the phone, so no camera frame leaves the device. Scores go to FastAPI and SQLite, and SEA-LION writes a review comparing them with the last 20 readings.",
+      "src": "Yxiang-828/Synapxe_IMDA_AI_Innovation_Challenge 4825cc8: Readme.md architecture and FSM; projects/mera.html"
+    },
+    {
+      "id": "D8b",
+      "to": "P8",
+      "title": "Mera: the measured results",
+      "text": "Mera's team measured its five camera checks on NUS student volunteers, logging each check's decision against a human-verified result (50-row CSV per tool in the repo). The checks are deliberately strict, so they reject a valid attempt rather than pass a bad one: smile symmetry 100% precision with 72% recall (no false positives), sit-to-stand 92% accuracy, shoulder raise 96%, standing march 98%. Heart rate from the camera: on the 23 readings the check accepted (of 49, from 6 volunteers), the mean absolute error was 3.70 BPM with a Pearson correlation of 0.93 against the reference reading; re-computing from the CSV gives the same numbers. Xiang led the team of four.",
+      "src": "StressTest/README.md results; recomputed 17 Oct from 'Mera_Empirical_Stress_Tests - 5_Heart_Rate_rPPG.csv' (Accept rows: n=23, MAE 3.70, r 0.929); facts.json projects.mera team 4"
+    },
+    {
+      "id": "D9a",
+      "to": "P9",
+      "title": "Shoppo: how it works",
+      "text": "How Shoppo works: the shopper writes in Telegram the way they think (text, a photo, a budget), and the agent asks for what is missing until it has a structured brief. A query planner turns the brief into marketplace searches, and the workflow fires them as one parallel wave through TinyFish's web agents (asyncio.gather), keeping each marketplace's raw result, screenshot, parse errors and rejected items as evidence. The ranking is plain code, not a model's opinion: each listing gains points for matching the product's words (up to 30), for its price against the budget and against the other listings, and for its rating, and loses 35 for a mismatch with the brief; the top five come back as the shortlist with the reasons. Xiang and one teammate built it for the TinyFish hackathon.",
+      "src": "Yxiang-828/TinyFish-SG-Hackathon 123e0da: packages/workflows/sourcing_ghost/state_machine.py (_run_marketplace_wave, asyncio.gather), packages/agent-runtime/tinyfish_runtime/client.py, apps/api/app/services/decision_service.py _score_candidate (-35 mismatch, title min(30, 8 x tokens), budget, rating), scored[:5]; facts.json projects.shoppo team 2"
+    },
+    {
+      "id": "D10a",
+      "to": "P10",
+      "title": "Wingman: how it works",
+      "text": "How Wingman works: an Electron desktop app (React and TypeScript) with a local FastAPI backend, SQLite for tasks, calendar and diary, and Ollama running the language model on the user's own machine. Each chat message takes one of two paths: a slash command (/t tasks, /e events, /d diary, /u users) is parsed and answered straight from the database without the model, while ordinary chat gets context from the database and goes to the local model. Either way the reply passes through a personality layer that matches the chosen theme (six themes, six personalities). The backend picks the model from the machine's RAM (Mistral 7B at 6 GB or more, Llama 3.2 3B at 4 GB, otherwise 1B). It was Xiang's NUS Orbital (Apollo) project with one teammate, May to August 2025.",
+      "src": "Yxiang-828/Wingman 149fb27: Wingman-backend/app/services/llm/ (chat_coordinator, command_parser, personality_manager, ollama_service._get_recommended_model psutil RAM thresholds 6/4 GB); electron/main.js; facts.json projects.wingman team 2, NUS Orbital Apollo"
     }
   ]
 }
