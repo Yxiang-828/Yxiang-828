@@ -55,7 +55,7 @@ def apply(checkout: Path) -> list[tuple[str, str]]:
         if rel == 'index.html' or '/node_modules/' in '/' + rel:
             continue
         html = p.read_text()
-        html = re.sub(re.escape(START) + r'.*?' + re.escape(END) + r'\n?', '', html, flags=re.S)
+        html = re.sub(r'\n?' + re.escape(START) + r'.*?' + re.escape(END) + r'\n?', '', html, flags=re.S)
         m = re.search(r'<body[^>]*>', html)
         if not m:
             raise SystemExit(f'{rel}: no <body>')
