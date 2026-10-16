@@ -80,7 +80,7 @@
    ],
    "also": {
     "id": "A4",
-    "text": "All {{hackathons.count_2026}} in 2026: {{hackathons.list.0.name}} (Top 6), {{hackathons.list.1.name}} ({{hackathons.list.1.result}}), {{hackathons.list.2.name}} ({{hackathons.list.2.result}}), {{hackathons.list.3.name}} ({{hackathons.list.3.project}}), {{hackathons.list.4.name}} ({{hackathons.list.4.project}}), {{hackathons.list.5.name}} ({{hackathons.list.5.project}}), {{hackathons.list.6.name}} ({{hackathons.list.6.project}}), {{hackathons.list.7.name}} ({{hackathons.list.7.project}}). In 2025: {{hackathons.list.8.name}} ({{hackathons.list.8.project}})."
+    "text": "All {{hackathons.count_2026}} in 2026: {{hackathons.list.0.name}} (Top 6), {{hackathons.list.1.name}} ({{hackathons.list.1.result}}), {{hackathons.list.2.name}} ({{hackathons.list.2.result}}), {{hackathons.list.3.name}} ({{hackathons.list.3.project}}), {{hackathons.list.4.name}} ({{hackathons.list.4.project}}), {{hackathons.list.5.name}} ({{hackathons.list.5.project}}), {{hackathons.list.6.name}} ({{hackathons.list.6.project}}), {{hackathons.list.7.name}} ({{hackathons.list.7.project}}), {{hackathons.list.9.name}} ({{hackathons.list.9.project}}), {{hackathons.list.10.name}} ({{hackathons.list.10.project}}). In 2025: {{hackathons.list.8.name}} ({{hackathons.list.8.project}})."
    },
    "certs": [
     {
@@ -188,7 +188,7 @@
     },
     {
      "id": "E1b",
-     "text": "Conducted first ever SG field PoC ({{roles.kabam.field_start|m}} – {{roles.kabam.field_end|mon}}) as solo on-site robotics engineer for KABAM’s {{roles.kabam.robot}} model, diagnosing LiDAR SLAM drift, Nav2 MPPI trajectory planning, precision docking, and MWAN3 multi-WAN bonding alongside remote firmware/hardware teams."
+     "text": "Conducted first ever SG field PoC as solo on-site robotics engineer for KABAM’s {{roles.kabam.robot}} model of Jul 2026, diagnosing LiDAR SLAM drift, Nav2 MPPI trajectory planning, precision docking, and MWAN3 multi-WAN bonding alongside remote firmware/hardware teams."
     },
     {
      "id": "E1c",
@@ -333,7 +333,7 @@
   {
    "id": "P2",
    "title": "Agora",
-   "tag": "Collaborative Multi-Agent IDE · {{projects.agora.role}}, team of {{projects.agora.team}} · {{projects.agora.start|m}} – {{projects.agora.end|mon}}",
+   "tag": "Collaborative Multi-Agent IDE · {{projects.agora.role}}, team of {{projects.agora.team}} · {{projects.agora.event}} · {{projects.agora.start|m}} – {{projects.agora.end|mon}}",
    "what": {
     "id": "P2w",
     "text": "A collaborative development environment where multiple AI coding agents and human developers co-edit one codebase concurrently."
@@ -389,7 +389,7 @@
   {
    "id": "P5",
    "title": "Replay",
-   "tag": "Multiplayer pixel game · {{projects.replay.role}} · {{projects.replay.start|m}} – {{projects.replay.end|mon}}",
+   "tag": "Multiplayer pixel game · {{projects.replay.role}} · {{projects.replay.event}} · {{projects.replay.start|m}} – {{projects.replay.end|mon}}",
    "what": {
     "id": "P5w",
     "text": "A multiplayer AI simulation for practising scam and safety scenarios, where each player sees different evidence."
@@ -566,15 +566,15 @@
   {
    "id": "P6",
    "title": "Marsham Edge",
-   "tag": "Counter-Drone Decision Console · {{projects.marsham.role}} · {{projects.marsham.result}}, {{projects.marsham.event}} · {{projects.marsham.start|mon}}",
+   "tag": "Counter-Drone Decision Console · {{projects.marsham.role}}, team of {{projects.marsham.team}} · {{projects.marsham.result}}, {{projects.marsham.event}} · {{projects.marsham.start|mon}}",
    "what": {
     "id": "P6w",
-    "text": "A deterministic counter-drone decision console and 6-sensor asynchronous simulation built at the {{projects.marsham.event}} 2026."
+    "text": "A deterministic counter-drone decision console and 6-sensor asynchronous simulation, built by a team of {{projects.marsham.team}} at the {{projects.marsham.event}} 2026. His part: the sensor output pipeline simulation and the operator console."
    },
    "bullets": [
     {
      "id": "P6a",
-     "text": "Engineered a deterministic counter-drone decision engine fusing 6 asynchronous sensor streams into prioritized threat tracks with verifiable rule receipts (monitor, jam, or intercept)."
+     "text": "Built the 6-sensor output pipeline simulation (radar, acoustic, RF, IFF, EO, OSINT) that feeds the team's counter-drone decision engine, which ranks threat tracks with verifiable rule receipts (monitor, jam, or intercept)."
     },
     {
      "id": "P6b",
@@ -582,7 +582,7 @@
     },
     {
      "id": "P6c",
-     "text": "Migrated telemetry to a canonical sensor producer, unified THALES WGS84 to local Cartesian projection, and backed the system with 236 automated unit and pipeline tests."
+     "text": "Migrated telemetry to one canonical sensor producer and converted THALES WGS84 positions to local Cartesian (ENU); the team's system is backed by 236 automated unit and pipeline tests."
     }
    ],
    "stack": [
@@ -647,7 +647,7 @@
   {
    "id": "P8",
    "title": "Mera",
-   "tag": "Telegram Health Companion · {{projects.mera.role}} · {{projects.mera.event}} · {{projects.mera.start|m}} – {{projects.mera.end|mon}}",
+   "tag": "Telegram Health Companion · {{projects.mera.role}}, team of {{projects.mera.team}} · {{projects.mera.event}} · {{projects.mera.start|m}} – {{projects.mera.end|mon}}",
    "what": {
     "id": "C06w",
     "text": "A Telegram health companion for chronic patients, with three camera checks (heart rate, smile, mobility) that run on the phone."
@@ -693,7 +693,7 @@
   {
    "id": "P9",
    "title": "Shoppo",
-   "tag": "Telegram Shopping Agent · {{projects.shoppo.role}} · {{projects.shoppo.event}} · {{projects.shoppo.start|mon}}",
+   "tag": "Telegram Shopping Agent · {{projects.shoppo.role}}, team of {{projects.shoppo.team}} · {{projects.shoppo.event}} · {{projects.shoppo.start|mon}}",
    "what": {
     "id": "C05w",
     "text": "A Telegram shopping agent: it turns a vague request into searches across several marketplaces and returns a ranked shortlist with its reasons."

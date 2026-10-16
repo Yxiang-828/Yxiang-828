@@ -11,7 +11,7 @@
     "detail": "{{education.degree}} &bull; Specialization: <strong>{{education.specialisation}}</strong> &bull; Minor: <strong>{{education.minor}}</strong>",
     "honors": [
       {
-        "text": "<strong>{{projects.marsham.event}} (SDTH)</strong>: {{projects.marsham.result}}, {{projects.marsham.start|mon}}",
+        "text": "<strong>{{projects.marsham.event}} (SDTH)</strong>: {{projects.marsham.result}}, {{projects.marsham.start|mon}} <span class=\"tag\">Top 0.75%</span>",
         "metric": "Marsham Edge"
       },
       {
@@ -32,7 +32,9 @@
       "{{hackathons.list.3.name}}",
       "{{hackathons.list.5.name}}",
       "{{hackathons.list.7.name}}",
-      "{{hackathons.list.6.name}}"
+      "{{hackathons.list.6.name}}",
+      "{{hackathons.list.9.name}}",
+      "{{hackathons.list.10.name}}"
     ]
   },
   "experience": {
@@ -44,7 +46,7 @@
         "date": "{{roles.kabam.start|mon}} &ndash; Present (until {{roles.kabam.end|mon}})",
         "stack": "Jetson Orin AGX, TensorRT, SAM3, YOLO11, FFmpeg, ROS 2, LiDAR SLAM, Nav2 MPPI, CAN bus, MWAN3, Docker",
         "bullets": [
-          "<strong>Sole On-Site Deployment:</strong> Conducted first ever SG field PoC ({{roles.kabam.field_start|m}} &ndash; {{roles.kabam.field_end|mon}}) as solo on-site robotics engineer for KABAM’s {{roles.kabam.robot}} model; diagnosed LiDAR SLAM drift, Nav2 MPPI trajectory tracking, autonomous docking, and MWAN3 multi-WAN networking alongside remote engineers.",
+          "<strong>Sole On-Site Deployment:</strong> Conducted first ever SG field PoC as solo on-site robotics engineer for KABAM’s {{roles.kabam.robot}} model of Jul 2026; diagnosed LiDAR SLAM drift, Nav2 MPPI trajectory tracking, autonomous docking, and MWAN3 multi-WAN networking alongside remote engineers.",
           "<strong>Edge CV Acceleration:</strong> Optimized Segment Anything Model (SAM3) vision-language inference on Jetson Orin AGX with TensorRT; piped real-time RTSP/FFmpeg video streams with YOLO11 perception overlays.",
           "<strong>Diagnostic & Mission Tooling:</strong> Shipped cross-platform desktop ROS 2 diagnostics and mobile mission-control tools featuring hardware emergency-stop overrides, CAN bus telemetry decoders, and live LiDAR/occupancy grid streaming."
         ]
@@ -65,13 +67,13 @@
       {
         "href": "{{person.site}}{{projects.marsham.page}}",
         "name": "{{projects.marsham.title}}",
-        "role": "Counter-Drone Decision Console & Simulation ({{projects.marsham.role}})",
+        "role": "Counter-Drone Decision Console & Simulation ({{projects.marsham.role}}, team of {{projects.marsham.team}})",
         "tag": "Top 6, SDTH",
         "date": "{{projects.marsham.start|mon}}",
         "stack": "Python, WebSockets, WGS84 Geodesic Transforms, Pytest (236 unit tests), HTML5 Canvas Replay Engine",
         "bullets": [
-          "Engineered 6-sensor asynchronous pipeline (Radar, Acoustic, RF, IFF transponder, EO, OSINT) across 6 independent clock domains with physical measurement uncertainty bounds and SHA-256 emitter provenance validation.",
-          "Built zero-RNG deterministic truth engine and operator replay console with WGS84-to-local coordinate transformations; validated system reliability with <strong>236 automated unit tests</strong> under adversarial drone swarm scenarios."
+          "Built 6-sensor output pipeline simulation (Radar, Acoustic, RF, IFF transponder, EO, OSINT) across 6 independent clock domains with physical measurement uncertainty bounds and SHA-256 emitter provenance validation.",
+          "Built proof-of-concept operator replay console and THALES WGS84-to-local (ENU) coordinate conversion; team system validated by <strong>236 automated unit tests</strong> under adversarial drone swarm scenarios."
         ]
       },
       {
@@ -89,6 +91,7 @@
         "href": "{{person.site}}{{projects.agora.page}}",
         "name": "{{projects.agora.title}}",
         "role": "Collaborative Multi-Agent IDE & Dev Environment ({{projects.agora.role}}, team of {{projects.agora.team}})",
+        "tag": "{{projects.agora.event}}",
         "date": "{{projects.agora.start|mon}} &ndash; {{projects.agora.end|mon}}",
         "stack": "TypeScript, VS Code Core Fork, Mattermost Mod, WebSockets, Node.js, Docker",
         "bullets": [

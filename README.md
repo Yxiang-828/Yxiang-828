@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img alt="Typing intro" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=700&amp;size=18&amp;duration=2400&amp;pause=750&amp;color=00E5FF&amp;center=true&amp;vCenter=true&amp;width=900&amp;lines=Internal+AI+%2B+external+agent+systems;Advanced+Electronics+%2B+IoT;Software+Robotics+Engineer+%40+KABAM+Robotics;AI+systems+for+physical+hardware" />
+  <img alt="Typing intro" src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;weight=700&amp;size=18&amp;duration=2400&amp;pause=750&amp;color=00E5FF&amp;center=true&amp;vCenter=true&amp;width=900&amp;lines=Internal+AI+%2B+external+agent+systems;Advanced+Electronics+%2B+IoT;Software+Robotics+Intern+%40+KABAM+Robotics;AI+systems+for+physical+hardware" />
 </p>
 
 ---
@@ -48,7 +48,7 @@ My work is organized around an internal/external AI split, grounded in hardware 
 
 I am driven to build end-to-end systems where AI does not just process data, but physically interacts with and controls real-world hardware.
 
-Currently: **Software Robotics Engineer (Solo On-Site Deployment) at KABAM Robotics**, internship May 2026 – Dec 2026. From Jul 2026 to Oct 2026 I ran its first Singapore field PoC of the latest patrol robot model as the solo on-site engineer, across ROS 2, MQTT, Docker, Jetson Orin AGX, SAM3, Nav2, C++ and Python. Previously taught **CS2113 Software Engineering & OOP** at NUS.
+Currently: **Software Robotics Intern (Solo On-Site Deployment) at KABAM Robotics**, internship May 2026 – Dec 2026. From Jul 2026 to Oct 2026 I ran its first Singapore field PoC of the latest patrol robot model as the solo on-site engineer, across ROS 2, MQTT, Docker, Jetson Orin AGX, SAM3, Nav2, C++ and Python. Previously taught **CS2113 Software Engineering & OOP** at NUS.
 
 Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6, LOTR track** · **DSTA BrainHack CODE_EXP — Open Finalist** · **Vibe For Good — Semi-Finalist**.
 
@@ -212,6 +212,8 @@ Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6, LOTR track*
 | 2026 | VibeWithSG × Duality AI | off-road terrain segmentation, solo, test mIoU 0.42 |
 | 2026 | Hack4Good | Care Guardian System |
 | 2025 | HacX CS7 | Dual-Mode AV Disruptor |
+| 2026 | Tencent Cloud Age Well Social Good Challenge | AnAn |
+| 2026 | Huawei Tech4City | Replay |
 
 <p align="center">
   <strong>Open to internships from Jan 2027 in AI and agent engineering, software and systems, or edge AI and robotics.</strong>
