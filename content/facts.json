@@ -73,7 +73,7 @@
       { "year": "2026", "name": "TinyFish SG Hackathon", "project": "Shoppo" },
       { "year": "2026", "name": "VibeWithSG × Duality AI", "project": "off-road terrain segmentation, solo, test mIoU 0.42" },
       { "year": "2026", "name": "Hack4Good", "project": "Care Guardian System" },
-      { "year": "2025", "name": "HacX CS7", "project": "Dual-Mode AV Disruptor" },
+      { "year": "2025", "name": "HacX CS7", "project": "Dual-Mode AV Disruptor", "team": "5" },
       { "year": "2026", "name": "Tencent Cloud Age Well Social Good Challenge", "project": "AnAn" },
       { "year": "2026", "name": "Huawei Tech4City", "project": "Replay" }
     ]
