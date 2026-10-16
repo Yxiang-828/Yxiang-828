@@ -2,10 +2,10 @@
   "_note": "The General Résumé (resume.html and its PDFs), written by resume/build.py. Text may hold <strong>; shared facts (dates, links, titles) are paths into facts.json in double braces.",
   "title": "Yao Xiang - Resume | Software, AI & Robotics Engineer",
   "toolbar": "Generalist Resume (AI Agents, SWE Systems, Robotics)",
-  "summary": "NUS Computer Engineering undergraduate (Minor in AI) combining autonomous multi-model agent systems, real-time distributed backends, and accelerated edge AI for robotics. Experienced leading technical teams, architecting fault-tolerant async pipelines, and deploying mission-critical systems solo on-site.",
+  "summary": "NUS Computer Engineering undergraduate (Minor in AI) combining autonomous multi-model agent systems, real-time distributed backends, and accelerated edge AI for robotics. Experienced architecting fault-tolerant async pipelines and deploying mission-critical systems solo on-site.",
   "education": {
     "heading": "Education & Competitive Hackathons",
-    "sub": "Verified Denominators",
+    "sub": "",
     "school": "{{education.school}}",
     "date": "{{education.start|mon}} &ndash; {{education.end|mon}} (Projected)",
     "detail": "{{education.degree}} &bull; Specialization: <strong>{{education.specialisation}}</strong> &bull; Minor: <strong>{{education.minor}}</strong>",

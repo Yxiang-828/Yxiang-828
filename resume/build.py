@@ -91,7 +91,7 @@ def body(r: dict, f: dict) -> str:
     <section>
       <div class="section-title">
         <span>{e["heading"]}</span>
-        <span class="sub">{e["sub"]}</span>
+        {f'<span class="sub">{e["sub"]}</span>' if e.get("sub") else ""}
       </div>
       <div class="item-header">
         <span class="item-title">{e["school"]}</span>
