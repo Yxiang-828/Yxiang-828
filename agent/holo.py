@@ -4,14 +4,17 @@ One question runs one loop, and each step is streamed to the page as it ends
 (server-sent events), so the visitor sees how the answer was made:
 
   search  keyword + meaning + prepared questions, fused (knowledge.py)
-  draft   Holo answers from those facts only (NVIDIA Nemotron 3 Super)
+  draft   Holo answers from those facts only (NVIDIA Nemotron 3.5 Super); an answer that is
+          mostly one fact word for word is asked once more
   check   optional (HOLO_CHECK=on): a second model labels each sentence
           with the fact that states it and code drops the unsupported ones;
           off because it did not catch slips in the replay (eval_check.py)
   answer  the text, the facts behind it, page links to them, next questions
 
 If the model is down the visitor still gets the best fact as plain text.
-Each question goes to the owner on Telegram. Limits per visitor and per day
+Each question goes to the owner on Telegram, and leaves one trace line (HOLO_TRACE):
+the facts found with their ranks, each model call's request, reply, finish reason
+and token counts, and what code changed in the reply. Limits per visitor and per day
 keep the free NVIDIA tier alive.
 
 run (dev):  uv run --directory agent uvicorn holo:app --port 8790 --env-file <file>
@@ -19,6 +22,7 @@ run (dev):  uv run --directory agent uvicorn holo:app --port 8790 --env-file <fi
 from __future__ import annotations
 
 import hashlib
+import html
 import json
 import logging
 import os
@@ -52,6 +56,9 @@ TG_CHAT = os.environ.get('HOLO_TG_CHAT', '')
 # The claim check is off: on 23 hand-labelled answers (eval_check.py) it either cut true facts
 # from 7 answers or caught none of the 4 slips, and added 2-8 s. Prompt rules at the source did more.
 CHECK_ON = os.environ.get('HOLO_CHECK', '') == 'on'
+# where each question's trace goes: a file path (JSON lines, with every message sent) or, by default,
+# stdout without the messages (Vercel's runtime log; the sha256 of the messages still pins them)
+TRACE = os.environ.get('HOLO_TRACE', 'stdout')
 
 
 def _version() -> str:
@@ -125,15 +132,100 @@ def facts_block(hits: list[dict]) -> str:
 FILLER = re.compile(r"\s*\bThat(?:'s|’s| is| was)\b[^.!?\d]{0,40}[.!]\s*$")
 
 
+# "That's my view, not his." is her marking an opinion as hers (asked for, room/4500), not filler
+MINE = re.compile(r"\bmy (?:view|pick|opinion|guess)\b|\bI'd say\b", re.IGNORECASE)
+
+
 def trim_filler(text: str) -> str:
     m = FILLER.search(text)
-    return text[:m.start()].rstrip() if m and m.start() > 0 and len(m.group(0).split()) <= 7 else text
+    if not m or m.start() == 0 or len(m.group(0).split()) > 7 or MINE.search(m.group(0)):
+        return text
+    return text[:m.start()].rstrip()
+
+
+# Nemotron 3.5 ends some answers on an offer despite the rule ("Want the full list?", "Need anything
+# else?": 11 of 35 closing questions on 17 Oct); the page already offers the next questions. Only that
+# last question goes, never a question back about the visitor ("Fast enough for you?").
+OFFER = re.compile(r"\s*[^.!?…]*\b(?:anything else|shall I|want (?:the|his|me)|(?<![Yy]ou )want to (?:know|hear|see) (?:how|more|what|which|about)|(?<![a-z] )do you want to (?:know|hear|see) (?:how|more|what|which|about)|did you want|need (?:anything|more)|"
+                   r"like (?:to know )?more)\b[^.!?…]*\?\s*$", re.IGNORECASE)
+
+
+def trim_offer(text: str) -> str:
+    m = OFFER.search(text)
+    return text[:m.start()].rstrip() if m and m.start() > 0 else text
+
+
+TOKEN = re.compile(r'[a-z0-9]+')
+
+
+def copied(text: str, hits: list[dict]) -> dict:
+    """The longest run of words the answer shares with one fact it was handed."""
+    a = TOKEN.findall(text.lower())
+    best = {'words': 0, 'of': len(a), 'fact': None}
+    for h in hits:
+        b = TOKEN.findall(h['text'].lower())
+        prev = [0] * (len(b) + 1)
+        for i in range(len(a)):
+            cur = [0] * (len(b) + 1)
+            for j in range(len(b)):
+                if a[i] == b[j]:
+                    cur[j + 1] = prev[j] + 1
+                    if cur[j + 1] > best['words']:
+                        best.update(words=cur[j + 1], fact=h['id'])
+            prev = cur
+    return best
+
+
+# 17 Oct: told an answer was too long, 3.5 Super once wrote its reasoning as the answer ("The user wants
+# three strongest technical differentiators… Must only use facts from "What you know"")
+LEAK = re.compile(r'^\s*(?:The (?:user|visitor) (?:wants|asks|asked|is asking)|We need to|I need to (?:answer|respond)|'
+                  r'Let me (?:think|check|answer))|What you know|\bfacts available\b', re.IGNORECASE)
+
+
+def fault(text: str, c: dict) -> str | None:
+    """Why an answer is asked again: reasoning written into it, or mostly one fact word for word (on 17 Oct:
+    whole facts of 32-185 words, first-person lines read out as Xiang)."""
+    if LEAK.search(text):
+        return 'leak'
+    if c['words'] >= 20 and c['words'] >= 0.6 * c['of']:
+        return 'recited'
+    return None
+
+
+AGAIN = {'recited': '\n\nRetell what you know in your own words, to this visitor; never repeat a line of it word for word.',
+         'leak': ''}
+
+
+def trim_long(text: str, cap: int = 60) -> str:
+    """Drop a sentence the token limit cut off, then whole sentences from the end while over cap words
+    (86-112 words in a 12-question conversation; asking again for fewer words made the model reason aloud)."""
+    parts = sentences(text)
+    if len(parts) > 1 and not re.search(r'[.!?…]["”’)]?$', parts[-1]):
+        parts = parts[:-1]
+    while len(parts) > 1 and len(' '.join(parts).split()) > cap:
+        parts = parts[:-1]
+    return ' '.join(parts)
+
+
+def write_trace(trace: dict) -> None:
+    for call in trace['calls']:
+        call['messages_sha256'] = hashlib.sha256(
+            json.dumps(call['request']['messages'], ensure_ascii=False).encode()).hexdigest() if call.get('request') else None
+    if TRACE == 'off':
+        return
+    if TRACE == 'stdout':
+        lite = dict(trace, calls=[{k: v for k, v in c.items() if k != 'request'} for c in trace['calls']])
+        print('holo-trace ' + json.dumps(lite, ensure_ascii=False, default=str), flush=True)
+        return
+    with open(TRACE, 'a') as f:
+        f.write(json.dumps(trace, ensure_ascii=False, default=str) + '\n')
 
 
 def draft_messages(ask: Ask, hits: list[dict]) -> list[dict]:
     system = (PROMPT + f"\n\nToday is {time.strftime('%d %B %Y')}.\n\n## What you know (for this question)\n"
               + facts_block(hits)
-              + '\n\nRemember: at most 50 words, only what you know above, stop when the question is answered, no offer at the end.')
+              + '\n\nRemember: at most 50 words; facts about Xiang only from what you know above; '
+              'you are Holo talking to this visitor, not a list of facts; no offer at the end.')
     msgs = [{'role': 'system', 'content': system}]
     for q, a in SHOTS:
         msgs += [{'role': 'user', 'content': q}, {'role': 'assistant', 'content': a}]
@@ -225,17 +317,70 @@ def sse(event: str, data: dict) -> str:
     return f'event: {event}\ndata: {json.dumps(data, ensure_ascii=False)}\n\n'
 
 
-async def tell_owner(who: str, ask: Ask, answer: dict) -> bool:
+def _ranks(r: dict) -> str:
+    return ', '.join(f'{k} #{v}' for k, v in r.items())
+
+
+def owner_message(who: str, ask: Ask, answer: dict, trace: dict, hits: list[dict]) -> str:
+    """The Telegram report: question and answer, then two folded quotes (owner, room/4562): the RAG feed (every
+    fact the model was handed, in the order it got them, with where each search ranked it) and the log (each
+    model call, what code changed in the reply, timings). Telegram caps a message at 4096 characters, so the
+    fact texts share what the rest leaves."""
+    e = lambda s: html.escape(str(s), quote=False)
+    head = [f'<b>Holo</b> · visitor {e(who)} · at {e(ask.stop or "?")} · {e(VERSION)}',
+            f'<b>Q:</b> {e(ask.q)}', f'<b>A:</b> {e(answer["text"])}']
+    if ask.history:
+        head.append(f'(turn {len(ask.history) + 1} of a conversation)')
+    s = trace.get('search', {})
+    log = [f"search {s.get('ms')} ms · lists {e(s.get('lists'))}"
+           + (f" · meaning search down: {e(s['embed_error'])[:80]}" if s.get('embed_error') else '')]
+    if s.get('prepared'):
+        log.append('prepared questions: ' + ', '.join(f'{q} {p}' for p, q in s['prepared'][:3])
+                   + (f" → matched {e(s['matched'])}" if s.get('matched') else ' → none matched (≥0.7)'))
+    for i, c in enumerate(trace.get('calls', []), 1):
+        u = c.get('usage') or {}
+        model = (c.get('request') or {}).get('model', '?').split('/')[-1]
+        line = f"call {i} {e(c.get('why'))} · {e(model)}"
+        if c.get('error'):
+            line += f" · ERROR {e(c['error'])[:90]}"
+        else:
+            line += (f" · finish {e(c.get('finish'))} · {u.get('prompt_tokens', '?')} tokens in, "
+                     f"{u.get('completion_tokens', '?')} out · {c.get('ms')} ms · tries {c.get('tries')}")
+        if c.get('messages_sha256'):
+            line += f" · messages {c['messages_sha256'][:10]}"
+        log.append(line)
+    for c in trace.get('copy', []):
+        log.append(f"copied: longest run {c['words']} of {c['of']} words from {e(c['fact'])}")
+    log += [e(x)[:300] for x in trace.get('edits', [])]
+    if answer.get('cut'):
+        log.append('check cut: ' + e(' | '.join(answer['cut'])))
+    if answer.get('plain'):
+        log.append(f"model down ({e(trace.get('error', ''))[:90]}): sent the top fact as plain text")
+    log.append(f"used {e(', '.join(answer.get('used') or []))} · total {answer.get('ms')} ms")
+    fixed = ('\n'.join(head) + f'\n<b>RAG</b>: {len(hits)} of {len(KB.facts)} facts handed to the model'
+             + '\n<blockquote expandable></blockquote>\n<b>Log</b>\n<blockquote expandable>' + '\n'.join(log) + '</blockquote>')
+    room = max(0, 3900 - len(re.sub(r'<[^>]+>', '', fixed)))
+    each = max(60, room // max(1, len(hits)) - 40)
+    rag = []
+    for i, h in enumerate(hits, 1):
+        text = h['text'] if len(h['text']) <= each else h['text'][:each - 1].rstrip() + '…'
+        rag.append(f"{i}. <b>{e(h['id'])}</b> ({e(_ranks(h.get('ranks', {})))}) {e(text)}")
+    return fixed.replace('<blockquote expandable></blockquote>', '<blockquote expandable>' + '\n'.join(rag) + '</blockquote>', 1)
+
+
+async def tell_owner(who: str, ask: Ask, answer: dict, trace: dict | None = None, hits: list[dict] | None = None) -> bool:
     if not (TG_TOKEN and TG_CHAT):
         return False
-    lines = [f'Holo · visitor {who} · at {ask.stop or "?"}', f'Q: {ask.q}', f'A: {answer["text"]}']
-    if answer.get('cut'):
-        lines.append('check cut: ' + ' | '.join(answer['cut']))
-    if answer.get('plain'):
-        lines.append('(model down: sent the top fact as plain text)')
     try:
+        text = owner_message(who, ask, answer, trace or {}, hits or [])
         r = await http.post(f'https://api.telegram.org/bot{TG_TOKEN}/sendMessage', timeout=8,
-                            json={'chat_id': TG_CHAT, 'text': '\n'.join(lines)[:3900], 'disable_web_page_preview': True})
+                            json={'chat_id': TG_CHAT, 'text': text, 'parse_mode': 'HTML',
+                                  'disable_web_page_preview': True})
+        if r.status_code == 400:
+            # a cut or unbalanced tag: send it plain rather than lose the report
+            r = await http.post(f'https://api.telegram.org/bot{TG_TOKEN}/sendMessage', timeout=8,
+                                json={'chat_id': TG_CHAT, 'text': html.unescape(re.sub(r'<[^>]+>', '', text))[:4000],
+                                      'disable_web_page_preview': True})
         print(f'telegram {r.status_code} visitor {who}', flush=True)
         return r.status_code == 200
     except httpx.HTTPError as e:
@@ -247,6 +392,8 @@ async def run(ask: Ask, who: str):
     t0 = time.perf_counter()
     ms = lambda t: round((time.perf_counter() - t) * 1000)
     asked = set(ask.asked)
+    trace = {'at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), 'version': VERSION, 'visitor': who,
+             'q': ask.q, 'history': [t.model_dump() for t in ask.history], 'stop': ask.stop, 'calls': [], 'edits': []}
 
     # 1. search
     t = time.perf_counter()
@@ -270,16 +417,58 @@ async def run(ask: Ask, who: str):
     if found['prepared'] and found['prepared'][0][0] >= 0.7:
         matched = found['prepared'][0][1]
         asked.add(matched)
+    trace['search'] = {'ms': ms(t), 'embed_error': embed_error, 'lists': found['lists'], 'prepared': found['prepared'],
+                       'matched': matched, 'hits': [{k: h[k] for k in ('id', 'score', 'ranks')} for h in hits]}
     yield sse('step', {'stage': 'search', 'ms': ms(t), 'of': len(KB.facts), 'lists': found['lists'],
                        'hits': [{k: h[k] for k in ('id', 'title', 'score', 'ranks')} for h in hits],
                        'prepared': matched, 'note': f'meaning search down ({embed_error}); keyword only' if embed_error else None})
 
     # 2. draft
     t = time.perf_counter()
+    msgs = draft_messages(ask, hits)
+
+    async def model_says(messages: list[dict], why: str, model: str = nim.CHAT) -> str:
+        meta: dict = {'why': why}
+        trace['calls'].append(meta)
+        try:
+            text, _ = await nim.chat(http, messages, max_tokens=160, temperature=0.5, meta=meta, model=model)
+            return text
+        except nim.NimError as e:
+            meta['error'] = str(e)[:160]
+            if model != nim.FALLBACK:
+                return await model_says(messages, f'{why}, on the fallback model', nim.FALLBACK)
+            raise
+
     try:
-        draft, _ = await nim.chat(http, draft_messages(ask, hits), max_tokens=160, temperature=0.5)
-        draft = trim_filler(draft)
+        draft = await model_says(msgs, 'draft')
+        c = copied(draft, hits)
+        trace['copy'] = [c]
+        why = fault(draft, c)
+        if why:
+            # ask once more (told to retell, if it recited); keep the second unless it has the same fault and is no better
+            again = [dict(msgs[0], content=msgs[0]['content'] + AGAIN[why])] + msgs[1:]
+            try:
+                draft2 = await model_says(again, f"{why}: {c['words']} of {c['of']} words from {c['fact']}")
+                c2 = copied(draft2, hits)
+                trace['copy'].append(c2)
+                why2 = fault(draft2, c2)
+                if why2 is None or (why == why2 == 'recited' and c2['words'] < c['words']):
+                    draft = draft2
+                    trace['edits'].append(f'asked again ({why}): second answer kept')
+                else:
+                    trace['edits'].append(f'asked again ({why}): first answer kept')
+            except nim.NimError:
+                pass
+            if fault(draft, copied(draft, hits)) == 'leak':
+                raise nim.NimError('reasoning in the answer, twice')
+        for name, fix in (('trim_long', trim_long), ('trim_filler', trim_filler), ('trim_offer', trim_offer)):
+            fixed = fix(draft)
+            if fixed != draft:
+                trace['edits'].append(f'{name}: cut {draft[len(fixed):].strip()!r}' if draft.startswith(fixed)
+                                      else f'{name}: {draft!r} -> {fixed!r}')
+                draft = fixed
     except nim.NimError as e:
+        trace['error'] = str(e)[:160]
         top = hits[0] if hits else None
         answer = {'text': top['text'] if top else "Holo can't answer just now; the email button at the bottom of the page reaches Xiang.",
                   'plain': True, 'used': [top['id']] if top else [], 'cut': []}
@@ -287,9 +476,12 @@ async def run(ask: Ask, who: str):
         answer.update(links=links_for(answer['used']), chips=KB.chips(qvecs[0] if qvecs else None, asked, ask.stop),
                       matched=matched, ms=ms(t0))
         yield sse('answer', answer)
-        await tell_owner(who, ask, answer)
+        trace.update(answer=answer['text'], plain=True, ms=ms(t0))
+        write_trace(trace)
+        await tell_owner(who, ask, answer, trace, hits)
         return
-    yield sse('step', {'stage': 'draft', 'ms': ms(t), 'model': nim.CHAT})
+    answered_by = next((c['request']['model'] for c in reversed(trace['calls']) if c.get('raw') is not None), nim.CHAT)
+    yield sse('step', {'stage': 'draft', 'ms': ms(t), 'model': answered_by})
 
     # 3. check (off by default, see CHECK_ON)
     checked, check_error = None, None
@@ -302,6 +494,7 @@ async def run(ask: Ask, who: str):
             check_error = str(e)[:160]
         if checked and checked['text']:
             text, cut, used = checked['text'], checked['cut'], checked['used']
+        trace['check'] = {'cut': cut, 'error': check_error, 'model': checked['model'] if checked else nim.CHECK}
         yield sse('step', {'stage': 'check', 'ms': ms(t), 'model': checked['model'] if checked else nim.CHECK,
                            'claims': checked['claims'] if checked else None,
                            'cut': cut, 'changed': text != draft, 'error': check_error})
@@ -310,7 +503,9 @@ async def run(ask: Ask, who: str):
               'links': links_for(used), 'chips': KB.chips(qvecs[0] if qvecs else None, asked, ask.stop),
               'matched': matched, 'ms': ms(t0), 'checked': checked is not None}
     yield sse('answer', answer)
-    await tell_owner(who, ask, answer)
+    trace.update(answer=text, used=used, ms=ms(t0))
+    write_trace(trace)
+    await tell_owner(who, ask, answer, trace, hits)
 
 
 @app.post('/api/ask')

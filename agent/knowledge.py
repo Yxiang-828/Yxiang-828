@@ -63,7 +63,8 @@ def load_facts() -> list[Fact]:
     site = truth.load('site.json')
     out: list[Fact] = []
     for line in site['intro']['intro']:
-        out.append(Fact(line['id'], 'About', 'intro', line['text']))
+        # the page's intro is in his own "I"; a copied "I" had Holo speak as him, so she reads the third person
+        out.append(Fact(line['id'], 'About', 'intro', line.get('holo') or line['text']))
     exp = site['experience']
     for job, title in ((exp['kabam'], 'KABAM'), (exp['ta'], 'Teaching')):
         head = f"{job['title']} ({job['when']})"
@@ -88,8 +89,11 @@ def load_facts() -> list[Fact]:
     for c in hack['certs']:
         out.append(Fact(c['id'], 'Certificates', 'hackathons',
                         f"Certificate: {c['name']} ({c['year']}), Coursera, verify at {c['verify']}."))
+    # F11 lists every project with its card line, so "which is his best?" has something to rest on
+    # (with names only she was handed no project at all and refused, room/4546)
+    cards = '; '.join(f"{p['title']} ({p['tag']})" for p in site['projects'])
     for f in truth.load('holo-facts.json')['facts']:
-        out.append(Fact(f['id'], f['title'], f['to'], f['text']))
+        out.append(Fact(f['id'], f['title'], f['to'], f['text'].replace("[each project's card line]", cards)))
     ids = [f.id for f in out]
     assert len(ids) == len(set(ids)), 'duplicate fact ids'
     return out

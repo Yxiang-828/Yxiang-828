@@ -146,29 +146,35 @@
   "intro": [
    {
     "id": "I1",
-    "text": "Hi, I'm {{person.name}}."
+    "text": "Hi, I'm {{person.name}}.",
+    "holo": "His name is {{person.name}}."
    },
    {
     "id": "I2",
-    "text": "I'm in my {{education.year}} year of Computer Engineering at NUS, specialising in {{education.specialisation}}, with a minor in AI. I graduate in {{education.end|y}}."
+    "text": "I'm in my {{education.year}} year of Computer Engineering at NUS, specialising in {{education.specialisation}}, with a minor in AI. I graduate in {{education.end|y}}.",
+    "holo": "He's in his {{education.year}} year of Computer Engineering at NUS, specialising in {{education.specialisation}}, with a minor in AI. He graduates in {{education.end|y}}."
    },
    {
     "id": "I3",
-    "text": "Since {{roles.kabam.start|mon}} I've been a software robotics intern at {{roles.kabam.org}}, until {{roles.kabam.end|mm}}. From {{roles.kabam.field_start|mm}} to {{roles.kabam.field_end|mm}} I'm the solo on-site engineer deploying their latest autonomous patrol robot."
+    "text": "Since {{roles.kabam.start|mon}} I've been a software robotics intern at {{roles.kabam.org}}, until {{roles.kabam.end|mm}}. From {{roles.kabam.field_start|mm}} to {{roles.kabam.field_end|mm}} I'm the solo on-site engineer deploying their latest autonomous patrol robot.",
+    "holo": "Since {{roles.kabam.start|mon}} he has been a software robotics intern at {{roles.kabam.org}}, until {{roles.kabam.end|mm}}. From {{roles.kabam.field_start|mm}} to {{roles.kabam.field_end|mm}} he is the solo on-site engineer deploying their latest autonomous patrol robot."
    },
    {
     "id": "I4",
-    "text": "I build AI agents and robot software: agent memory and runtimes, vision models on a Jetson, and the tools we use to debug a robot in the field."
+    "text": "I build AI agents and robot software: agent memory and runtimes, vision models on a Jetson, and the tools we use to debug a robot in the field.",
+    "holo": "He builds AI agents and robot software: agent memory and runtimes, vision models on a Jetson, and the tools used to debug a robot in the field."
    },
    {
     "id": "I5",
-    "text": "I'm looking for internships from {{seeking.start|month}}, in {{seeking.areas}}."
+    "text": "I'm looking for internships from {{seeking.start|month}}, in {{seeking.areas}}.",
+    "holo": "He is looking for internships from {{seeking.start|month}}, in {{seeking.areas}}."
    }
   ],
   "holo": {
    "id": "H0",
    "text": "I'm Holo. Scroll and I'll point out what matters, or click me and ask."
-  }
+  },
+  "_holo": "holo: the same line about him in the third person, for Holo only (the page shows text). Holo copies whole facts now and then, and a copied 'I' made her speak as Xiang (room/4533)."
  },
  "experience": {
   "id": "experience",

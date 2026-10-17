@@ -420,6 +420,22 @@
         "what happens to what I type here",
         "where does this chat run"
       ]
+    },
+    {
+      "id": "Q31",
+      "to": null,
+      "src": [
+        "F11",
+        "F5"
+      ],
+      "q": [
+        "Which of his projects is the most impressive?",
+        "What's his best project?",
+        "Rank his strongest projects",
+        "Which project should I look at first?",
+        "What's his strongest work?",
+        "Which project is he proudest of?"
+      ]
     }
   ]
 }
