@@ -119,7 +119,6 @@ export function Holo({ line, stop, go, open, setOpen }: {
                 value={draft} onChange={e => setDraft(e.target.value)} disabled={busy} autoFocus />
               <button className="btn solid" disabled={busy || !draft.trim()} title="Send · Enter">Send</button>
             </form>
-            <p className="fine">Questions you ask here are sent to Xiang. Holo can be wrong; the page is the record.</p>
           </motion.div>
         ) : (
           <motion.button key={line.id} className="bubble" onClick={() => setOpen(true)} title="Open Holo's chat · H"

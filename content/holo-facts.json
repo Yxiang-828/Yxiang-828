@@ -53,7 +53,7 @@
       "id": "F9",
       "to": null,
       "title": "This chat",
-      "text": "Holo's chat is an agent Xiang built for this site. For each question it finds the relevant facts from the site's own content by keyword (BM25) and by meaning (NVIDIA nemotron-3-embed-1b embeddings), fuses the rankings with Reciprocal Rank Fusion, and NVIDIA's Nemotron 3 Super model writes Holo's answer from only those facts. The steps and timings are shown under each answer. It knows only what is on this site."
+      "text": "Holo's chat is an agent Xiang built for this site. For each question it finds the relevant facts from the site's own content by keyword (BM25) and by meaning (NVIDIA nemotron-3-embed-1b embeddings), fuses the rankings with Reciprocal Rank Fusion, and NVIDIA's Nemotron 3.5 Super model writes Holo's answer from only those facts (Nemotron 3 Super if 3.5 fails). The steps and timings are shown under each answer. It knows only what is on this site."
     },
     {
       "id": "F10",
@@ -71,7 +71,7 @@
       "id": "F12",
       "to": null,
       "title": "How Holo answers",
-      "text": "Holo is not just a chat model behind a prompt: Xiang built a retrieval (RAG) loop around the model. Every question first runs four searches over the site's facts: keyword (BM25), meaning (NVIDIA nemotron-3-embed-1b embeddings), meaning together with the visitor's previous question so a follow-up keeps its subject, and the nearest prepared questions. Reciprocal Rank Fusion merges the four rankings, and only the six best facts (plus, for a follow-up, the ones the last answer stood on) reach Nemotron 3 Super, which writes Holo's answer from them."
+      "text": "Holo is not just a chat model behind a prompt: Xiang built a retrieval (RAG) loop around the model. Every question first runs four searches over the site's facts: keyword (BM25), meaning (NVIDIA nemotron-3-embed-1b embeddings), meaning together with the visitor's previous question so a follow-up keeps its subject, and the nearest prepared questions. Reciprocal Rank Fusion merges the four rankings, and only the six best facts (plus, for a follow-up, the ones the last answer stood on) reach Nemotron 3.5 Super (Nemotron 3 Super if 3.5 fails), which writes Holo's answer from them."
     },
     {
       "id": "F13",
