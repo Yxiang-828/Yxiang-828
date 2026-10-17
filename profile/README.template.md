@@ -48,7 +48,7 @@ My work is organized around an internal/external AI split, grounded in hardware 
 
 I am driven to build end-to-end systems where AI does not just process data, but physically interacts with and controls real-world hardware.
 
-Currently: **{{roles.kabam.title}} ({{roles.kabam.mode}}) at {{roles.kabam.org}}**, {{roles.kabam.kind}} {{roles.kabam.start|mon}} – {{roles.kabam.end|mon}}. From {{roles.kabam.field_start|mon}} to {{roles.kabam.field_end|mon}} I ran its first Singapore field PoC of the {{roles.kabam.robot}} model as the solo on-site engineer, across ROS 2, MQTT, Docker, Jetson Orin AGX, SAM3, Nav2, C++ and Python. Previously taught **{{roles.ta.course}}** at NUS.
+Currently: **{{roles.kabam.title}} ({{roles.kabam.mode}}) at {{roles.kabam.org}}**, {{roles.kabam.kind}} {{roles.kabam.start|mon}} – {{roles.kabam.end|mon}}. From {{roles.kabam.field_start|mon}} to {{roles.kabam.field_end|mon}} I was the solo on-site engineer for its {{roles.kabam.robot}} model, across ROS 2, MQTT, Docker, Jetson Orin AGX, SAM3, Nav2, C++ and Python. Previously taught **{{roles.ta.course}}** at NUS.
 
 Recognition: **{{hackathons.list.0.name}} — {{hackathons.list.0.result}}** · **{{hackathons.list.1.name}} — {{hackathons.list.1.result}}** · **{{hackathons.list.2.name}} — {{hackathons.list.2.result}}**.
 

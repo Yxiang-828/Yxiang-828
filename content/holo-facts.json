@@ -5,7 +5,7 @@
       "id": "F1",
       "to": "experience",
       "title": "Now",
-      "text": "Right now {{person.called}} is a {{roles.kabam.title}} at {{roles.kabam.org}}, an {{roles.kabam.kind}} from {{roles.kabam.start|month}} until {{roles.kabam.end|month}}. This job is current. From {{roles.kabam.field_start|month}} to {{roles.kabam.field_end|month}} he is the solo on-site robotics engineer running KABAM’s first ever Singapore field proof of concept (PoC) for its {{roles.kabam.robot}}."
+      "text": "Right now {{person.called}} is a {{roles.kabam.title}} at {{roles.kabam.org}}, an {{roles.kabam.kind}} from {{roles.kabam.start|month}} until {{roles.kabam.end|month}}. This job is current. From {{roles.kabam.field_start|month}} to {{roles.kabam.field_end|month}} he is the solo on-site robotics engineer deploying KABAM’s {{roles.kabam.robot}}."
     },
     {
       "id": "F2",

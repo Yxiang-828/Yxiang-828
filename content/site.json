@@ -194,7 +194,7 @@
     },
     {
      "id": "E1b",
-     "text": "Conducted first ever SG field PoC as solo on-site robotics engineer for KABAM’s {{roles.kabam.robot}} model of Jul 2026, diagnosing LiDAR SLAM drift, Nav2 MPPI trajectory planning, precision docking, and MWAN3 multi-WAN bonding alongside remote firmware/hardware teams."
+     "text": "Solo on-site robotics engineer for KABAM’s {{roles.kabam.robot}} model of Jul 2026, diagnosing LiDAR SLAM drift, Nav2 MPPI trajectory planning, precision docking, and MWAN3 multi-WAN bonding alongside remote firmware/hardware teams."
     },
     {
      "id": "E1c",

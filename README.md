@@ -48,7 +48,7 @@ My work is organized around an internal/external AI split, grounded in hardware 
 
 I am driven to build end-to-end systems where AI does not just process data, but physically interacts with and controls real-world hardware.
 
-Currently: **Software Robotics Intern (Solo On-Site Deployment) at KABAM Robotics**, internship May 2026 – Dec 2026. From Jul 2026 to Oct 2026 I ran its first Singapore field PoC of the latest patrol robot model as the solo on-site engineer, across ROS 2, MQTT, Docker, Jetson Orin AGX, SAM3, Nav2, C++ and Python. Previously taught **CS2113 Software Engineering & OOP** at NUS.
+Currently: **Software Robotics Intern (Solo On-Site Deployment) at KABAM Robotics**, internship May 2026 – Dec 2026. From Jul 2026 to Oct 2026 I was the solo on-site engineer for its latest patrol robot model, across ROS 2, MQTT, Docker, Jetson Orin AGX, SAM3, Nav2, C++ and Python. Previously taught **CS2113 Software Engineering & OOP** at NUS.
 
 Recognition: **Singapore Defence Tech Hackathon — Finalist, Top 6, LOTR track** · **DSTA BrainHack CODE_EXP — Open Finalist** · **Vibe For Good — Semi-Finalist**.
 
