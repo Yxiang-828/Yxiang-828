@@ -7,6 +7,7 @@
   <a href="https://yxiang-828.vercel.app/v2media/resume/Yao_Xiang_Resume_General.pdf"><img alt="Résumé" src="https://img.shields.io/badge/R%C3%A9sum%C3%A9-050508?style=for-the-badge&amp;logo=googledocs&amp;logoColor=white&amp;labelColor=FF1E56" /></a>
   <a href="https://linkedin.com/in/yaoxiang-tech"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-050508?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white&amp;labelColor=0A66C2" /></a>
   <a href="mailto:xiangyao888@gmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-050508?style=for-the-badge&amp;logo=gmail&amp;logoColor=white&amp;labelColor=EA4335" /></a>
+  <a href="tel:+6587985826">☎ +65 87985826</a>
   <img alt="Profile views" src="https://komarev.com/ghpvc/?username=Yxiang-828&amp;style=for-the-badge&amp;color=00E5FF" />
 </p>
 
