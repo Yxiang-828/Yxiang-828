@@ -8,6 +8,8 @@
  "identity": {
   "name": "Yao Xiang",
   "email": "{{person.email}}",
+  "phone": "{{person.phone}}",
+  "phone_e164": "{{person.phone_e164}}",
   "github": "{{person.github}}",
   "linkedin": "{{person.linkedin}}",
   "portrait": {
