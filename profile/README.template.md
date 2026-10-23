@@ -7,6 +7,7 @@
   <a href="{{person.site}}{{person.resume_pdf}}"><img alt="Résumé" src="https://img.shields.io/badge/R%C3%A9sum%C3%A9-050508?style=for-the-badge&amp;logo=googledocs&amp;logoColor=white&amp;labelColor=FF1E56" /></a>
   <a href="{{person.linkedin}}"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-050508?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white&amp;labelColor=0A66C2" /></a>
   <a href="mailto:{{person.email}}"><img alt="Email" src="https://img.shields.io/badge/Email-050508?style=for-the-badge&amp;logo=gmail&amp;logoColor=white&amp;labelColor=EA4335" /></a>
+  <a href="tel:{{person.phone_e164}}">☎ {{person.phone}}</a>
   <img alt="Profile views" src="https://komarev.com/ghpvc/?username=Yxiang-828&amp;style=for-the-badge&amp;color=00E5FF" />
 </p>
 
