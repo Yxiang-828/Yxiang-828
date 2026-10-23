@@ -33,6 +33,7 @@ export function Reach() {
   return (
     <div className="row">
       <a className="btn solid" href={`mailto:${id.email}`} title={`Email ${id.email} · opens your mail app`}>Email me</a>
+      <a className="btn" href={`tel:${id.phone_e164}`} title={`Call ${id.phone}`}>{id.phone}</a>
       <a className="btn" href={id.github} target="_blank" rel="noopener" title="Open GitHub in a new tab">GitHub ↗</a>
       <a className="btn" href={id.linkedin} target="_blank" rel="noopener" title="Open LinkedIn in a new tab">LinkedIn ↗</a>
     </div>
