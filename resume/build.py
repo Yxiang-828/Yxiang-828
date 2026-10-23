@@ -74,6 +74,8 @@ def body(r: dict, f: dict) -> str:
       <div class="contact-bar">
         <span>{p["location"]}</span>
         <span>&bull;</span>
+        <a href="tel:{p["phone_e164"]}">{p["phone"]}</a>
+        <span>&bull;</span>
         <a href="mailto:{p["email"]}">{p["email"]}</a>
         <span>&bull;</span>
         <a href="{p["site"]}" target="_blank" class="print-link">{p["site_label"]}</a>
